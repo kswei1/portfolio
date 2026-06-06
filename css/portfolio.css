@@ -65,6 +65,8 @@
   letter-spacing: var(--tracking-normal);
   transition: color var(--duration) var(--ease);
   position: relative;
+  /* extend tap target to 44px without changing layout */
+  padding-block: 14px;
 }
 
 .nav__link::after {
@@ -126,7 +128,7 @@
 }
 
 .hero__heading {
-  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-5xl));
+  font-size: clamp(var(--text-2xl), 4.5vw, var(--text-5xl));
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -198,14 +200,22 @@
   overflow: hidden;
   background: var(--color-surface);
   border: 1px solid var(--color-border-subtle);
-  transition: transform var(--duration-md) var(--ease-out),
-              box-shadow var(--duration-md) var(--ease-out);
+  transition: transform 250ms var(--ease-out),
+              box-shadow 250ms var(--ease-out);
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.card:active {
+  transform: scale(0.98);
+  box-shadow: none;
+  transition-duration: 100ms;
 }
 
 .card__media {
@@ -269,6 +279,12 @@
 
 .card__tag--accent {
   color: var(--color-accent);
+}
+
+.card__tag--accent::before {
+  content: '·';
+  margin-right: 4px;
+  font-weight: var(--weight-semibold);
 }
 
 .card__title {
@@ -427,5 +443,80 @@
 @media (max-width: 480px) {
   .nav__links {
     gap: var(--sp-3);
+  }
+}
+
+/* ══════════════════════════════════════
+   SKIP LINK
+══════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-2);
+  z-index: 200;
+  padding: var(--sp-1) var(--sp-2);
+  background: var(--color-text-primary);
+  color: white;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top 150ms;
+}
+
+.skip-link:focus {
+  top: var(--sp-2);
+}
+
+/* ══════════════════════════════════════
+   FOCUS VISIBLE
+══════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.nav__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.nav__mark:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* ══════════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero__eyebrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  .card:hover {
+    transform: none;
   }
 }

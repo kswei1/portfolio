@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap&font-display=swap');
 
 :root {
   /* ── Colors ── */
@@ -9,7 +9,7 @@
 
   --color-text-primary:     #1C1B19;
   --color-text-secondary:   #6B6864;
-  --color-text-tertiary:    #A09D9A;
+  --color-text-tertiary:    #706E6C;  /* darkened: passes 4.5:1 on --color-bg */
 
   --color-accent:           #8C6E7F;
   --color-accent-muted:     #F2ECF0;
@@ -18,8 +18,8 @@
   /* ── Typography ── */
   --font:                   'DM Sans', sans-serif;
 
-  --text-xs:    0.6875rem;  /* 11px */
-  --text-sm:    0.8125rem;  /* 13px */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
   --text-base:  1rem;       /* 16px */
   --text-lg:    1.125rem;   /* 18px */
   --text-xl:    1.375rem;   /* 22px */
@@ -70,5 +70,5 @@
   --ease-out:   cubic-bezier(0, 0, 0.2, 1);
   --duration:   200ms;
   --duration-md: 400ms;
-  --duration-lg: 600ms;
+  --duration-lg: 350ms;
 }

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Katherine Swei — Portfolio</title>
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/gate.css" />
@@ -21,6 +23,7 @@
 
     <form class="gate__form" id="gate-form" novalidate>
       <div class="gate__input-wrap">
+        <label for="gate-password" class="visually-hidden">Password</label>
         <input
           class="gate__input"
           id="gate-password"
@@ -31,7 +34,7 @@
         />
       </div>
       <button class="gate__submit" id="gate-submit" type="submit">Enter</button>
-      <p class="gate__error" id="gate-error" role="alert"></p>
+      <p class="gate__error" id="gate-error" role="alert" aria-live="polite"></p>
     </form>
   </main>
 
