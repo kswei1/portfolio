@@ -120,8 +120,7 @@
 
   /* Grainy text: noise layered over the solid ink, clipped to glyphs */
   color: var(--color-text-primary);  /* fallback if background-clip unsupported */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"),
+  background-image: var(--grain-img),
     linear-gradient(var(--color-text-primary), var(--color-text-primary));
   -webkit-background-clip: text;
   background-clip: text;
@@ -149,19 +148,33 @@
 
 /* ── Hero meta (Currently / …) ── */
 .hero__meta {
-  margin-top: var(--sp-6);
+  margin: var(--sp-6) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 10px;
+  font-size: var(--text-lg);   /* a bit bigger */
+}
+
+.hero__meta-label,
+.hero__meta-value {
+  /* grainy text, clipped to glyphs */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero__meta-label {
-  font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   color: var(--color-text-primary);
-  margin-bottom: 2px;
+  background-image: var(--grain-img),
+    linear-gradient(var(--color-text-primary), var(--color-text-primary));
 }
 
 .hero__meta-value {
-  font-size: var(--text-base);
   color: var(--color-text-secondary);
+  background-image: var(--grain-img),
+    linear-gradient(var(--color-text-secondary), var(--color-text-secondary));
 }
 
 /* ══════════════════════════════════════
@@ -191,7 +204,7 @@
    MORE WORK
 ══════════════════════════════════════ */
 .more-work {
-  padding-bottom: var(--sp-16);
+  padding-bottom: var(--sp-8);
 }
 
 .more-work__header {
