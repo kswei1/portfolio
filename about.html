@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Katherine Swei</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/portfolio.css" />
+  <style>
+    .about {
+      padding-top: calc(var(--nav-height) + var(--sp-16));
+      padding-bottom: var(--sp-20);
+    }
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--sp-16);
+      align-items: start;
+    }
+    .about__heading {
+      font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+      font-weight: var(--weight-semibold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      margin-bottom: var(--sp-5);
+    }
+    .about__body {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--sp-4);
+    }
+    .about__photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about__photo-placeholder {
+      font-size: var(--text-sm);
+      color: var(--color-text-tertiary);
+    }
+    @media (max-width: 768px) {
+      .about__grid {
+        grid-template-columns: 1fr;
+      }
+      .about__photo {
+        max-width: 280px;
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+        <span class="nav__mark-text">KS</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav__links">
+          <li><a href="./work.html" class="nav__link">Work</a></li>
+          <li><a href="./about.html" class="nav__link active">About me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about">
+      <div class="container">
+        <p class="hero__eyebrow animate-in">
+          <span class="hero__eyebrow-dot"></span>
+          About me
+        </p>
+        <div class="about__grid">
+          <div>
+            <h1 class="about__heading">Katherine Swei</h1>
+            <p class="about__body">
+              I'm a product designer passionate about bringing clarity and strategy to complex platforms and shaping them into simple, scalable products.
+            </p>
+            <p class="about__body">
+              Currently at Wayfair, I design internal platforms, using AI to prototype, generate production-ready code, and collaborate with teams to build agentic AI workflows.
+            </p>
+          </div>
+          <div class="about__photo">
+            <!-- Replace with <img src="./assets/images/photo.jpg" alt="Katherine Swei" /> -->
+            <span class="about__photo-placeholder">Photo coming soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Katherine Swei</p>
+      <ul class="footer__links">
+        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
+        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="./js/portfolio.js"></script>
+</body>
+</html>

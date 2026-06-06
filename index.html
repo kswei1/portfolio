@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katherine Swei — Portfolio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/gate.css" />
+</head>
+<body>
+  <main class="gate">
+    <div class="gate__mark">
+      <!-- Replace src with your logo when ready -->
+      <span class="gate__mark-placeholder">KS</span>
+    </div>
+
+    <p class="gate__label">Katherine Swei</p>
+    <h1 class="gate__title">This portfolio is password protected</h1>
+
+    <form class="gate__form" id="gate-form" novalidate>
+      <div class="gate__input-wrap">
+        <input
+          class="gate__input"
+          id="gate-password"
+          type="password"
+          placeholder="Enter password"
+          autocomplete="current-password"
+          autofocus
+        />
+      </div>
+      <button class="gate__submit" id="gate-submit" type="submit">Enter</button>
+      <p class="gate__error" id="gate-error" role="alert"></p>
+    </form>
+  </main>
+
+  <script src="./js/gate.js"></script>
+</body>
+</html>
