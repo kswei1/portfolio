@@ -100,22 +100,33 @@
 
 .hero__heading {
   font-size: clamp(var(--text-2xl), 4.5vw, var(--text-3xl));
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);   /* lighter than semibold */
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--color-text-primary);
-  max-width: 860px;
 }
 
 /* ── Rotating hero statements ── */
 .hero__rotator {
   display: grid;          /* stack all phrases in one cell → sizes to tallest, no layout jump */
+  grid-template-columns: minmax(0, 1fr);  /* column fills container width */
   perspective: 1200px;    /* gives the flip real depth */
 }
 
 .hero__phrase {
   grid-area: 1 / 1;       /* all phrases share the same grid cell */
   margin: 0;
+  max-width: none;        /* fill the container */
+
+  /* Grainy text: noise layered over the solid ink, clipped to glyphs */
+  color: var(--color-text-primary);  /* fallback if background-clip unsupported */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"),
+    linear-gradient(var(--color-text-primary), var(--color-text-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
   opacity: 0;
   transform: rotateX(-92deg) translateY(0.35em);
   transform-origin: top center;
@@ -134,6 +145,23 @@
 .hero__phrase.is-exiting {
   opacity: 0;
   transform: rotateX(92deg) translateY(-0.35em);
+}
+
+/* ── Hero meta (Currently / …) ── */
+.hero__meta {
+  margin-top: var(--sp-6);
+}
+
+.hero__meta-label {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.hero__meta-value {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
 }
 
 /* ══════════════════════════════════════
