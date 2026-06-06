@@ -105,15 +105,35 @@
   letter-spacing: var(--tracking-tight);
   color: var(--color-text-primary);
   max-width: 860px;
-  margin-bottom: var(--sp-4);
 }
 
-.hero__body {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-regular);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text-secondary);
-  max-width: 860px;
+/* ── Rotating hero statements ── */
+.hero__rotator {
+  display: grid;          /* stack all phrases in one cell → sizes to tallest, no layout jump */
+  perspective: 1200px;    /* gives the flip real depth */
+}
+
+.hero__phrase {
+  grid-area: 1 / 1;       /* all phrases share the same grid cell */
+  margin: 0;
+  opacity: 0;
+  transform: rotateX(-92deg) translateY(0.35em);
+  transform-origin: top center;
+  transition: opacity 550ms var(--ease-out),
+              transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.hero__phrase.is-active {
+  opacity: 1;
+  transform: rotateX(0deg) translateY(0);
+  pointer-events: auto;
+}
+
+.hero__phrase.is-exiting {
+  opacity: 0;
+  transform: rotateX(92deg) translateY(-0.35em);
 }
 
 /* ══════════════════════════════════════
@@ -428,6 +448,17 @@
 
   .hero__eyebrow {
     opacity: 1;
+    transform: none;
+  }
+
+  /* Crossfade instead of 3D flip; no vertical motion */
+  .hero__phrase {
+    transform: none;
+  }
+  .hero__phrase.is-active {
+    transform: none;
+  }
+  .hero__phrase.is-exiting {
     transform: none;
   }
 

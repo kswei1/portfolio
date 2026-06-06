@@ -11,11 +11,29 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 16);
 }, { passive: true });
 
-// ── Eyebrow animation on load ──
+// ── Rotating hero statements ──
 document.addEventListener('DOMContentLoaded', () => {
-  const eyebrow = document.querySelector('.hero__eyebrow');
-  if (eyebrow) {
-    requestAnimationFrame(() => eyebrow.classList.add('animate-in'));
+  const phrases = document.querySelectorAll('.hero__phrase');
+  if (phrases.length > 1) {
+    const HOLD = 3000;   // time each phrase stays fully visible
+    let current = 0;
+
+    const advance = () => {
+      const next = (current + 1) % phrases.length;
+
+      // current flips out, next flips in
+      phrases[current].classList.remove('is-active');
+      phrases[current].classList.add('is-exiting');
+      phrases[next].classList.add('is-active');
+
+      // clear the exiting state once it has flipped away
+      const prev = current;
+      setTimeout(() => phrases[prev].classList.remove('is-exiting'), 600);
+
+      current = next;
+    };
+
+    setInterval(advance, HOLD);
   }
 
   // Autoplay videos when in viewport
