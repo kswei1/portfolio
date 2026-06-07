@@ -47,17 +47,29 @@
           </p>
         </div>
 
-        <p class="hero__meta">Currently Core Platform &amp; AI at Wayfair</p>
+        <p class="hero__meta">Currently designing Core Platform &amp; AI at Wayfair </p>
       </div>
     </section>
 
-    <!-- ── FEATURED WORK ── -->
-    <section class="featured" aria-label="Featured work">
+    <!-- ── WORK ── -->
+    <section class="featured" aria-label="Work">
       <div class="container">
-        <div class="featured__grid">
+        <div class="work-tabs" role="tablist" aria-label="Filter projects">
+          <button type="button" role="tab" id="work-tab-all"
+            class="work-tabs__tab" aria-selected="true"
+            aria-controls="work-grid">All</button>
+          <button type="button" role="tab" id="work-tab-ai"
+            class="work-tabs__tab" aria-selected="false"
+            aria-controls="work-grid" tabindex="-1">AI projects</button>
+        </div>
+
+        <div class="featured__grid" id="work-grid" role="tabpanel" aria-labelledby="work-tab-all">
 
           <!-- Card 1: Wayfair Core Platform Redesign -->
-          <a class="card card--featured" href="#" aria-label="View case study: Wayfair Core Platform Redesign">
+          <a class="card card--featured card--custom-cursor" href="#" aria-label="View case study: Wayfair Core Platform Redesign">
+            <span class="card__custom-cursor" aria-hidden="true">
+              <img src="./assets/images/wayfair-cursor.png" alt="" width="24" height="24" />
+            </span>
             <div class="card__media card__media--video">
               <video autoplay loop muted playsinline aria-label="Wayfair Core Platform Redesign walkthrough">
                 <source src="./assets/videos/wayfair-core.webm" type="video/webm" />
@@ -75,25 +87,28 @@
             </div>
           </a>
 
-          <!-- Card 2: Designing and Prototyping with AI -->
-          <a class="card card--featured" href="#" aria-label="View case study: Designing and Prototyping with AI">
+          <!-- Card 2: Wayfair's Internal AI Agent -->
+          <a class="card card--featured card--coming-soon" href="#" aria-label="Wayfair's Internal AI Agent — Coming soon">
+            <span class="card__coming-soon-cursor" aria-hidden="true">Coming Soon</span>
             <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/ai-prototyping.jpg" alt="AI prototyping workflow screenshot" /> -->
+              <!-- <img src="./assets/images/ai-prototyping.jpg" alt="Wayfair internal AI agent interface" /> -->
             </div>
             <div class="card__body">
               <div class="card__tags">
-                <span class="card__tag">AI Tools</span>
-                <span class="card__tag">Claude</span>
-                <span class="card__tag">Cursor</span>
-                <span class="card__tag">Figma Make</span>
+                <span class="card__tag">AI agent</span>
+                <span class="card__tag">Prototyping</span>
+                <span class="card__tag">UI</span>
               </div>
-              <h2 class="card__title">Designing and Prototyping with AI</h2>
-              <p class="card__desc">Used AI tools to prototype product visions, contribute production-ready UI code, and shorten design-to-implementation cycles.</p>
+              <h2 class="card__title">Wayfair's Internal AI Agent</h2>
+              <p class="card__desc">Led the redesign of Wayfair's internal AI agent, transforming a free-form chatbot into a guided experience that helps users discover capabilities and complete tasks more effectively.</p>
             </div>
           </a>
 
           <!-- Card 3: Wayfair Internal Template System -->
-          <a class="card card--featured" href="#" aria-label="View case study: Wayfair Internal Template System">
+          <a class="card card--featured card--custom-cursor" href="#" aria-label="View case study: Wayfair Internal Template System">
+            <span class="card__custom-cursor" aria-hidden="true">
+              <img src="./assets/images/wayfair-cursor.png" alt="" width="24" height="24" />
+            </span>
             <div class="card__media card__media--video card__media--video-template">
               <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
                 <source src="./assets/videos/template-system.webm" type="video/webm" />
@@ -112,9 +127,12 @@
           </a>
 
           <!-- Card 4: Google Maps for Gen Z -->
-          <a class="card card--featured" href="#" aria-label="View case study: Google Maps for Gen Z">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/google-maps.jpg" alt="Google Maps Gen Z feature designs" /> -->
+          <a class="card card--featured card--custom-cursor" href="#" aria-label="View case study: Google Maps for Gen Z">
+            <span class="card__custom-cursor" aria-hidden="true">
+              <img src="./assets/images/google-maps-cursor.png" alt="" width="24" height="24" />
+            </span>
+            <div class="card__media card__media--image card__media--image-maps">
+              <img src="./assets/images/google-maps.png" alt="Google Maps Gen Z feature designs" />
             </div>
             <div class="card__body">
               <div class="card__tags">
@@ -127,18 +145,6 @@
               <p class="card__desc">Designed new features to help Gen Z users discover outdoor groups and connect with like-minded communities.</p>
             </div>
           </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── MORE PAST WORK ── -->
-    <section class="more-work" aria-labelledby="more-label">
-      <div class="container">
-        <div class="more-work__header">
-          <p class="section-label" id="more-label" style="margin-bottom:0">More past work</p>
-        </div>
-        <div class="more-work__grid">
 
           <!-- Card 5 -->
           <a class="card card--small" href="#" aria-label="View case study: Favorites for Faster Block Access">
@@ -156,18 +162,18 @@
           </a>
 
           <!-- Card 6 -->
-          <a class="card card--small" href="#" aria-label="View case study: Unified Feedback Patterns">
+          <a class="card card--small" href="#" aria-label="View case study: Figma Plugin - Easy Spotlight">
             <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/feedback-patterns.jpg" alt="Unified feedback pattern system" /> -->
+              <!-- <img src="./assets/images/easy-spotlight.jpg" alt="Easy Spotlight Figma plugin interface" /> -->
             </div>
             <div class="card__body">
               <div class="card__tags">
                 <span class="card__tag">Shipped</span>
-                <span class="card__tag">UI Design</span>
-                <span class="card__tag">Design System</span>
+                <span class="card__tag">Figma Plugin</span>
+                <span class="card__tag">Cursor</span>
               </div>
-              <h3 class="card__title">Unified Feedback Patterns</h3>
-              <p class="card__desc">Standardized status patterns across banners, modals, and badges to make system feedback more consistent, recognizable, and easier to act on.</p>
+              <h3 class="card__title">Figma Plugin - Easy Spotlight</h3>
+              <p class="card__desc">Built and launched a Figma plugin using Cursor to help designers highlight key areas for clearer communication and faster reviews.</p>
             </div>
           </a>
 
@@ -187,6 +193,66 @@
           </a>
 
           <!-- Card 8 -->
+          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion">
+            <div class="card__media card__media--placeholder">
+              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">Shipped</span>
+                <span class="card__tag">New Feature</span>
+              </div>
+              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
+              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+            </div>
+          </a>
+
+          <!-- Card 9 -->
+          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion">
+            <div class="card__media card__media--placeholder">
+              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">Shipped</span>
+                <span class="card__tag">New Feature</span>
+              </div>
+              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
+              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+            </div>
+          </a>
+
+          <!-- Card 10 -->
+          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion">
+            <div class="card__media card__media--placeholder">
+              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">Shipped</span>
+                <span class="card__tag">New Feature</span>
+              </div>
+              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
+              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+            </div>
+          </a>
+
+          <!-- Card 11 -->
+          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion">
+            <div class="card__media card__media--placeholder">
+              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">Shipped</span>
+                <span class="card__tag">New Feature</span>
+              </div>
+              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
+              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+            </div>
+          </a>
+
+          <!-- Card 12 -->
           <a class="card card--small" href="#" aria-label="View case study: Rapid Quote Flow for Homeowners">
             <div class="card__media card__media--placeholder">
               <!-- <img src="./assets/images/rapid-quote.jpg" alt="Mobile quote flow screens" /> -->
@@ -202,7 +268,7 @@
             </div>
           </a>
 
-          <!-- Card 9 -->
+          <!-- Card 13 -->
           <a class="card card--small" href="#" aria-label="View case study: Non-Profit Visual System">
             <div class="card__media card__media--placeholder">
               <!-- <img src="./assets/images/nonprofit.jpg" alt="Non-profit visual system overview" /> -->

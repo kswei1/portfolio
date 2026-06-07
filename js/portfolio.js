@@ -38,22 +38,131 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Autoplay videos when in viewport
   const videos = document.querySelectorAll('.card__media video');
-  if (!videos.length) return;
+  if (videos.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) {
+          target.play().catch(() => {});
+        } else {
+          target.pause();
+        }
+      });
+    }, { threshold: 0.25 });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) {
-        target.play().catch(() => {});
-      } else {
-        target.pause();
-      }
+    videos.forEach(v => {
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      observer.observe(v);
     });
-  }, { threshold: 0.25 });
+  }
 
-  videos.forEach(v => {
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    observer.observe(v);
+  // Coming Soon cursor pill
+  const comingSoonCard = document.querySelector('.card--coming-soon');
+  if (comingSoonCard) {
+    const pill = comingSoonCard.querySelector('.card__coming-soon-cursor');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const OFFSET = 12;
+
+    const positionPill = (clientX, clientY) => {
+      if (!pill) return;
+      if (reducedMotion) {
+        const rect = comingSoonCard.getBoundingClientRect();
+        pill.style.left = `${rect.left + rect.width / 2}px`;
+        pill.style.top = `${rect.top + rect.height / 2}px`;
+        pill.style.transform = 'translate(-50%, -50%)';
+        return;
+      }
+      pill.style.transform = '';
+      pill.style.left = `${clientX + OFFSET}px`;
+      pill.style.top = `${clientY + OFFSET}px`;
+    };
+
+    comingSoonCard.addEventListener('mouseenter', (e) => {
+      comingSoonCard.classList.add('is-hovering');
+      positionPill(e.clientX, e.clientY);
+    });
+
+    comingSoonCard.addEventListener('mousemove', (e) => {
+      positionPill(e.clientX, e.clientY);
+    });
+
+    comingSoonCard.addEventListener('mouseleave', () => {
+      comingSoonCard.classList.remove('is-hovering');
+    });
+
+    comingSoonCard.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  }
+
+  // Custom image cursors (Wayfair logo, Google Maps pin, etc.)
+  const customCursorCards = document.querySelectorAll('.card--custom-cursor');
+  customCursorCards.forEach((card) => {
+    const cursor = card.querySelector('.card__custom-cursor');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SIZE = 24;
+    const HOTSPOT = SIZE / 2;
+
+    const positionCursor = (clientX, clientY) => {
+      if (!cursor) return;
+      if (reducedMotion) {
+        const rect = card.getBoundingClientRect();
+        cursor.style.left = `${Math.round(rect.left + rect.width / 2 - HOTSPOT)}px`;
+        cursor.style.top = `${Math.round(rect.top + rect.height / 2 - HOTSPOT)}px`;
+        return;
+      }
+      cursor.style.left = `${Math.round(clientX - HOTSPOT)}px`;
+      cursor.style.top = `${Math.round(clientY - HOTSPOT)}px`;
+    };
+
+    card.addEventListener('mouseenter', (e) => {
+      card.classList.add('is-hovering');
+      positionCursor(e.clientX, e.clientY);
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      positionCursor(e.clientX, e.clientY);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('is-hovering');
+    });
   });
+
+  // Work grid filter tabs
+  const workTabs = document.querySelectorAll('.work-tabs__tab');
+  const workGrid = document.getElementById('work-grid');
+
+  if (workTabs.length && workGrid) {
+    const selectTab = (tab) => {
+      workTabs.forEach((t) => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+      });
+      workGrid.setAttribute('aria-labelledby', tab.id);
+    };
+
+    workTabs.forEach((tab) => {
+      tab.addEventListener('click', () => selectTab(tab));
+
+      tab.addEventListener('keydown', (e) => {
+        const tabs = [...workTabs];
+        const index = tabs.indexOf(tab);
+        let next = null;
+
+        if (e.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
+        if (e.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
+        if (e.key === 'Home') next = tabs[0];
+        if (e.key === 'End') next = tabs[tabs.length - 1];
+
+        if (next) {
+          e.preventDefault();
+          selectTab(next);
+          next.focus();
+        }
+      });
+    });
+  }
 });
