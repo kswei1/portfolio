@@ -14,6 +14,7 @@ window.addEventListener('scroll', () => {
 // ── Rotating hero statements ──
 document.addEventListener('DOMContentLoaded', () => {
   const phrases = document.querySelectorAll('.hero__phrase');
+  const scenes = document.querySelectorAll('.hero__scene');
   if (phrases.length > 1) {
     const HOLD = 3000;   // time each phrase stays fully visible
     let current = 0;
@@ -25,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
       phrases[current].classList.remove('is-active');
       phrases[current].classList.add('is-exiting');
       phrases[next].classList.add('is-active');
+
+      // swap the matching visual scene in sync
+      if (scenes.length) {
+        scenes[current]?.classList.remove('is-active');
+        scenes[next]?.classList.add('is-active');
+      }
 
       // clear the exiting state once it has flipped away
       const prev = current;
@@ -96,45 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Custom image cursors (Wayfair logo, Google Maps pin, etc.)
-  const customCursorCards = document.querySelectorAll('.card--custom-cursor');
-  customCursorCards.forEach((card) => {
-    const cursor = card.querySelector('.card__custom-cursor');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SIZE = 24;
-    const HOTSPOT = SIZE / 2;
-
-    const positionCursor = (clientX, clientY) => {
-      if (!cursor) return;
-      if (reducedMotion) {
-        const rect = card.getBoundingClientRect();
-        cursor.style.left = `${Math.round(rect.left + rect.width / 2 - HOTSPOT)}px`;
-        cursor.style.top = `${Math.round(rect.top + rect.height / 2 - HOTSPOT)}px`;
-        return;
-      }
-      cursor.style.left = `${Math.round(clientX - HOTSPOT)}px`;
-      cursor.style.top = `${Math.round(clientY - HOTSPOT)}px`;
-    };
-
-    card.addEventListener('mouseenter', (e) => {
-      card.classList.add('is-hovering');
-      positionCursor(e.clientX, e.clientY);
-    });
-
-    card.addEventListener('mousemove', (e) => {
-      positionCursor(e.clientX, e.clientY);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.classList.remove('is-hovering');
-    });
-  });
-
   // Work grid filter tabs
   const workTabs = document.querySelectorAll('.work-tabs__tab');
   const workGrid = document.getElementById('work-grid');
 
   if (workTabs.length && workGrid) {
+    const cards = workGrid.querySelectorAll('[data-categories]');
+
+    const filterCards = (filter) => {
+      cards.forEach((card) => {
+        const cats = card.dataset.categories ? card.dataset.categories.split(' ') : [];
+        const show = filter === 'all' || cats.includes(filter);
+        card.hidden = !show;
+      });
+    };
+
     const selectTab = (tab) => {
       workTabs.forEach((t) => {
         const selected = t === tab;
@@ -142,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         t.tabIndex = selected ? 0 : -1;
       });
       workGrid.setAttribute('aria-labelledby', tab.id);
+      filterCards(tab.dataset.filter || 'all');
     };
 
     workTabs.forEach((tab) => {

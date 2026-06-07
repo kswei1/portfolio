@@ -1,34 +1,63 @@
 /* ══════════════════════════════════════
-   NAV
+   NAV — logo left + floating centered pill
 ══════════════════════════════════════ */
 .nav {
   position: fixed;
-  top: 0;
+  top: 20px;
   left: 0;
   right: 0;
   z-index: 100;
-  height: var(--nav-height);
+  /* match the page container so the logo lines up with the cards */
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
   display: flex;
   align-items: center;
-  background: var(--color-bg);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--duration-md) var(--ease);
+  justify-content: center; /* pill centered */
+  pointer-events: none;
 }
 
-.nav.scrolled {
-  border-bottom-color: var(--color-border-subtle);
-}
-
+/* The pill itself */
 .nav__inner {
-  display: flex;
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  gap: 4px;
+  height: 44px;
+  padding: 0 8px;
+  border-radius: 100px;
+
+  /* Liquid-glass fill */
+  background: rgba(250, 250, 248, 0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+  /* Layered borders for depth */
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.9) inset,   /* top glass sheen */
+    0 2px 12px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+
+  transition: box-shadow var(--duration-md) var(--ease),
+              background var(--duration-md) var(--ease);
 }
 
+.nav__inner:hover {
+  background: rgba(250, 250, 248, 0.72);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.9) inset,
+    0 4px 20px rgba(0, 0, 0, 0.09),
+    0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar mark — pinned to the left, aligned with the cards */
 .nav__mark {
-  width: 44px;
-  height: 44px;
+  position: absolute;
+  left: var(--container-padding);
+  pointer-events: auto;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,35 +71,49 @@
   display: block;
 }
 
-.nav__mark-text {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  color: var(--color-text-secondary);
-  letter-spacing: var(--tracking-wide);
-}
-
 .nav__links {
   display: flex;
   align-items: center;
-  gap: var(--sp-5);
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+/* Each link is a pill tab */
 .nav__link {
-  font-size: var(--text-title);
+  font-size: var(--text-base);
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
   letter-spacing: var(--tracking-normal);
+  padding: 8px 16px;
+  border-radius: 100px;
   transition: color var(--duration) var(--ease);
-  /* extend tap target to 44px without changing layout */
-  padding-block: 14px;
+  white-space: nowrap;
+  /* stack the visible label + a ghost-bold copy in one cell */
+  display: inline-grid;
+  place-items: center;
 }
 
-.nav__link:hover,
-.nav__link.active {
+/* Ghost bold copy reserves the bold width so it never shifts */
+.nav__link::before {
+  content: attr(data-label);
+  grid-area: 1 / 1;
+  font-weight: var(--weight-semibold);
+  visibility: hidden;
+}
+
+.nav__link-text {
+  grid-area: 1 / 1;
+}
+
+.nav__link:hover {
   color: var(--color-text-primary);
 }
 
+/* Active: bold text only, no background */
 .nav__link.active {
+  color: var(--color-text-primary);
   font-weight: var(--weight-semibold);
 }
 
@@ -78,8 +121,8 @@
    HERO
 ══════════════════════════════════════ */
 .hero {
-  padding-top: calc(var(--nav-height) + var(--sp-8));
-  padding-bottom: var(--sp-4);
+  padding-top: 32px;
+  padding-bottom: 0;
 }
 
 .hero__heading {
@@ -144,6 +187,238 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ── Hero two-column layout ── */
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--sp-6);
+  align-items: center;
+}
+
+.hero__text {
+  min-width: 0;
+}
+
+/* ══════════════════════════════════════
+   HERO VISUAL — three liquid-glass scenes
+══════════════════════════════════════ */
+.hero__visual {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+/* Scenes stack in one cell, crossfade between them */
+.hero__scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  pointer-events: none;
+}
+
+.hero__scene.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Shared liquid-glass chip recipe */
+.hero__tool,
+.hero__step,
+.hero__treat {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(250, 250, 248, 0.55);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 6px 20px rgba(101, 78, 163, 0.14);
+}
+
+/* ── Scene 1: me thinking + concept thought-bubbles ── */
+.hero__avatar {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: 60%;
+  /* no circle / no glass — just the illustration */
+}
+.hero__avatar img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* each concept is a round liquid-glass thought-bubble */
+.hero__tool {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  gap: 7px;
+  animation: heroFloat 5s ease-in-out infinite;
+}
+/* same horizontal spread as before — only shifted down toward the head */
+.hero__tool--platform { left: 16%; top: 40%; animation-delay: 0s;  }
+.hero__tool--ai       { left: 50%; top: 26%; transform: translateX(-50%); animation-delay: .5s;
+                        width: 92px; height: 58px; border-radius: 100px; }
+.hero__tool--strategy { left: 84%; top: 40%; transform: translateX(-100%); animation-delay: 1s; }
+
+/* trailing little bubbles so each chip reads as a thought bubble */
+.hero__tool::before,
+.hero__tool::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(250, 250, 248, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 2px 6px rgba(101, 78, 163, 0.12);
+}
+.hero__tool::before { width: 14px; height: 14px; }
+.hero__tool::after  { width: 8px;  height: 8px;  }
+
+/* trails point toward the head (centre-bottom) */
+.hero__tool--platform::before { bottom: -11px; right: 8px;  }
+.hero__tool--platform::after  { bottom: -23px; right: 0;    }
+
+.hero__tool--ai::before { bottom: -11px; left: 50%; margin-left: -7px; }
+.hero__tool--ai::after  { bottom: -23px; left: 50%; margin-left: -4px; }
+
+.hero__tool--strategy::before { bottom: -11px; left: 8px; }
+.hero__tool--strategy::after  { bottom: -23px; left: 0;   }
+
+/* ── Scene 2: Design → AI → Code ── */
+.hero__scene--flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 6px;
+}
+.hero__step {
+  position: relative;
+  padding: 12px 18px;
+  border-radius: 100px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  white-space: nowrap;
+  animation: heroStepPop 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+}
+.hero__step--ai {
+  font-weight: var(--weight-semibold);
+  background-image: linear-gradient(135deg, #654ea3, #eaafc8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: rgba(250, 250, 248, 0.55);
+}
+.hero__flow-arrow {
+  position: relative;
+  width: 26px;
+  height: 2px;
+  background: rgba(140, 110, 127, 0.35);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+/* travelling pulse dot along each arrow */
+.hero__flow-arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: heroFlowDot 2.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+/* ── Scene 3: cocktail pour ── */
+.hero__scene--play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.hero__cocktail-wrap {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  animation: floatY 5s ease-in-out infinite;
+}
+.hero__cocktail {
+  width: auto;
+  max-width: 300px;
+  height: auto;
+  max-height: 280px;
+  display: block;
+  object-fit: contain;
+}
+
+/* droplets flowing down the drawn pour stream */
+.hero__pour-drop {
+  position: absolute;
+  left: 53.5%;
+  top: 43%;
+  width: 5px;
+  height: 9px;
+  margin-left: -2.5px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background: linear-gradient(#cbb8e6, #b29adb);
+  opacity: 0;
+  animation: pourFlow 1.8s linear infinite;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes pourFlow {
+  0%   { top: 42%; opacity: 0; transform: scale(.7); }
+  15%  { opacity: 1; }
+  50%  { left: 54.5%; }
+  85%  { opacity: 1; }
+  100% { top: 60%; left: 53.5%; opacity: 0; transform: scale(.5); }
+}
+
+/* ── Keyframes ── */
+@keyframes heroFloat {
+  0%, 100% { translate: 0 -7px; }
+  50%      { translate: 0 7px; }
+}
+@keyframes heroStepPop {
+  0%, 100% { transform: scale(1);    box-shadow: 0 1px 0 0 rgba(255,255,255,0.9) inset, 0 6px 20px rgba(101,78,163,0.14); }
+  /* each step peaks at a staggered moment via its delay */
+  10%      { transform: scale(1.08); box-shadow: 0 1px 0 0 rgba(255,255,255,0.9) inset, 0 10px 28px rgba(101,78,163,0.26); }
+  25%      { transform: scale(1);    box-shadow: 0 1px 0 0 rgba(255,255,255,0.9) inset, 0 6px 20px rgba(101,78,163,0.14); }
+}
+@keyframes heroFlowDot {
+  0%       { left: 0;    opacity: 0; }
+  20%      { opacity: 1; }
+  80%      { opacity: 1; }
+  100%     { left: 100%; opacity: 0; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(6px); }
+}
+@keyframes froth {
+  0%, 100% { opacity: 0;   transform: scale(.4); }
+  50%      { opacity: .95; transform: scale(1); }
 }
 
 /* ══════════════════════════════════════
@@ -222,10 +497,6 @@
   cursor: none;
 }
 
-.card--custom-cursor {
-  cursor: none;
-}
-
 .card__coming-soon-cursor {
   position: fixed;
   top: 0;
@@ -250,31 +521,6 @@
 }
 
 .card--coming-soon.is-hovering .card__coming-soon-cursor {
-  opacity: 1;
-  visibility: visible;
-}
-
-.card__custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 200;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--duration) var(--ease-out),
-              visibility var(--duration) var(--ease-out);
-}
-
-.card__custom-cursor img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.card--custom-cursor.is-hovering .card__custom-cursor {
   opacity: 1;
   visibility: visible;
 }
@@ -409,7 +655,7 @@
 }
 
 .card--small .card__media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
 }
 
 /* ══════════════════════════════════════
@@ -463,10 +709,22 @@
 /* ══════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════ */
+@media (max-width: 880px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+  }
+
+  .hero__visual {
+    max-width: 320px;
+    order: -1; /* graph above the text on narrow screens */
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--nav-height) + var(--sp-5));
-    padding-bottom: var(--sp-6);
+    padding-bottom: var(--sp-3);
   }
 
   .featured__grid {
@@ -525,14 +783,14 @@
 
 .nav__link:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-  border-radius: 3px;
+  outline-offset: 2px;
+  border-radius: 100px;
 }
 
 .nav__mark:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-  border-radius: var(--radius-sm);
+  outline-offset: 2px;
+  border-radius: 100px;
 }
 
 .card:focus-visible {
@@ -569,6 +827,15 @@
   }
 
   .card:hover {
+    transform: none;
+  }
+
+  /* Hero graph settles centered, no drift */
+  .hero__node {
+    transform: translate(-50%, -50%);
+  }
+  .hero__cocktail-wrap {
+    animation: none !important;
     transform: none;
   }
 }
