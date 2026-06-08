@@ -44,7 +44,7 @@
               I design internal platforms and use AI to prototype, ship production-ready code, and build agentic workflows.
             </p>
             <p class="hero__phrase hero__heading" aria-hidden="true">
-              Outside of design, I love cooking, whisking up matcha, and crafting cocktails.
+              Outside of design, I enjoy experimenting in the kitchen, trying new flavors, and crafting cocktails.
             </p>
           </div>
 
@@ -56,44 +56,69 @@
 
           <!-- Scene 1: me + the tools I think in -->
           <div class="hero__scene hero__scene--intro is-active" data-scene="0">
-            <!-- Complex platforms -->
-            <span class="hero__tool hero__tool--platform">
-              <svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <defs>
-                  <linearGradient id="gPlat" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#7C5CC4"/>
-                    <stop offset="1" stop-color="#EAAFC8"/>
-                  </linearGradient>
-                </defs>
-                <path d="M12 3 L21 8 L12 13 L3 8 Z" fill="url(#gPlat)"/>
-                <path d="M3.5 12 L12 16.7 L20.5 12" stroke="url(#gPlat)" stroke-width="2" opacity=".7"/>
-                <path d="M3.5 15.8 L12 20.5 L20.5 15.8" stroke="url(#gPlat)" stroke-width="2" opacity=".4"/>
+            <!-- Tangle → clarity -->
+            <span class="hero__bubble hero__bubble--clarity">
+              <svg viewBox="0 0 80 68" width="62" height="53" fill="none">
+                <path d="M66 34 A11 11 0 0 1 59.9 50.7 A11 11 0 0 1 44.5 59.6 A11 11 0 0 1 27 56.5 A11 11 0 0 1 15.6 42.9 A11 11 0 0 1 15.6 25.1 A11 11 0 0 1 27 11.5 A11 11 0 0 1 44.5 8.4 A11 11 0 0 1 59.9 17.3 A11 11 0 0 1 66 34 Z"
+                      fill="rgba(250,250,248,.95)" stroke="#6A5C96" stroke-width="1.7" stroke-linejoin="round"/>
+                <g transform="translate(40,34) scale(1.4) translate(-11,-12)" stroke="#6A5C96" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- dense tangle of thoughts -->
+                  <path d="M8.5 9.2
+                           c-2.6 -2.2 -6.4 -.6 -5 2.4 c1.3 2.8 5.6 1.8 4.4 -1.4
+                           c-1.2 -3.2 -6.4 -2.4 -6.2 1 c.2 3 4.8 3.8 5.4 .6
+                           c.5 -2.8 -3.8 -4.4 -5.6 -1.8 c-1.7 2.5 1.2 5.6 4 4.6
+                           c2.4 -.9 2.6 -3.4 .6 -4.6 c-2.2 -1.3 -4.8 .4 -4.2 2.8"/>
+                  <!-- clears into a smooth arrow -->
+                  <path d="M9 13 q5 1.6 9.4 -.5 m-2.7 -2.4 L18.6 12.5 l-2.4 2.8"/>
+                </g>
               </svg>
             </span>
-            <!-- AI: Claude + Cursor -->
-            <span class="hero__tool hero__tool--ai">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#C2683F" stroke-width="2.2" stroke-linecap="round">
-                <path d="M12 12 L22 12 M12 12 L20.7 7 M12 12 L17 3.3 M12 12 L12 2 M12 12 L7 3.3 M12 12 L3.3 7 M12 12 L2 12 M12 12 L3.3 17 M12 12 L7 20.7 M12 12 L12 22 M12 12 L17 20.7 M12 12 L20.7 17"/>
-              </svg>
-              <svg viewBox="0 0 64 64" width="20" height="20">
-                <path fill="#111114" d="M28.7 3.4a6 6 0 0 1 6.6 0l21 13.9a6 6 0 0 1 2.7 5v19.4a6 6 0 0 1-2.7 5l-21 13.9a6 6 0 0 1-6.6 0l-21-13.9a6 6 0 0 1-2.7-5V22.3a6 6 0 0 1 2.7-5z"/>
-                <path fill="#fff" d="M11 21 L53 21 L32 56 Z"/>
-                <path fill="#111114" d="M32.8 21 L53 21 L32 56 Z"/>
-                <path fill="#111114" d="M11 21 L32 33.5 L32 56 Z" opacity=".35"/>
+            <!-- Code -->
+            <span class="hero__bubble hero__bubble--code">
+              <svg viewBox="0 0 80 68" width="62" height="53" fill="none">
+                <path d="M66 34 A11 11 0 0 1 59.9 50.7 A11 11 0 0 1 44.5 59.6 A11 11 0 0 1 27 56.5 A11 11 0 0 1 15.6 42.9 A11 11 0 0 1 15.6 25.1 A11 11 0 0 1 27 11.5 A11 11 0 0 1 44.5 8.4 A11 11 0 0 1 59.9 17.3 A11 11 0 0 1 66 34 Z"
+                      fill="rgba(250,250,248,.95)" stroke="#6A5C96" stroke-width="1.7" stroke-linejoin="round"/>
+                <g transform="translate(40,34) scale(1.3) translate(-12,-12)" stroke="#6A5C96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 8 L5 12 L9 16 M15 8 L19 12 L15 16 M13.5 6.5 L10.5 17.5"/>
+                </g>
               </svg>
             </span>
-            <!-- Strategy -->
-            <span class="hero__tool hero__tool--strategy">
-              <svg viewBox="0 0 24 24" width="27" height="27" fill="none">
-                <defs>
-                  <linearGradient id="gStrat" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#7C5CC4"/>
-                    <stop offset="1" stop-color="#E59BB8"/>
-                  </linearGradient>
-                </defs>
-                <circle cx="12" cy="12" r="8.5" stroke="url(#gStrat)" stroke-width="2"/>
-                <circle cx="12" cy="12" r="4.6" stroke="url(#gStrat)" stroke-width="2" opacity=".7"/>
-                <circle cx="12" cy="12" r="1.8" fill="url(#gStrat)"/>
+            <!-- Complex platforms (layers) -->
+            <span class="hero__bubble hero__bubble--platform">
+              <svg viewBox="0 0 80 68" width="62" height="53" fill="none">
+                <path d="M66 34 A11 11 0 0 1 59.9 50.7 A11 11 0 0 1 44.5 59.6 A11 11 0 0 1 27 56.5 A11 11 0 0 1 15.6 42.9 A11 11 0 0 1 15.6 25.1 A11 11 0 0 1 27 11.5 A11 11 0 0 1 44.5 8.4 A11 11 0 0 1 59.9 17.3 A11 11 0 0 1 66 34 Z"
+                      fill="rgba(250,250,248,.95)" stroke="#6A5C96" stroke-width="1.7" stroke-linejoin="round"/>
+                <g transform="translate(40,34) scale(1.3) translate(-12,-12)">
+                  <path d="M12 4 L20 9 L12 14 L4 9 Z" fill="#9B7FD4" stroke="#6A5C96" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M4.5 12 L12 16.6 L19.5 12" fill="none" stroke="#6A5C96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.5 15 L12 19.6 L19.5 15" fill="none" stroke="#6A5C96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </svg>
+            </span>
+            <!-- Design (pen tool) -->
+            <span class="hero__bubble hero__bubble--design">
+              <svg viewBox="0 0 80 68" width="62" height="53" fill="none">
+                <path d="M66 34 A11 11 0 0 1 59.9 50.7 A11 11 0 0 1 44.5 59.6 A11 11 0 0 1 27 56.5 A11 11 0 0 1 15.6 42.9 A11 11 0 0 1 15.6 25.1 A11 11 0 0 1 27 11.5 A11 11 0 0 1 44.5 8.4 A11 11 0 0 1 59.9 17.3 A11 11 0 0 1 66 34 Z"
+                      fill="rgba(250,250,248,.95)" stroke="#6A5C96" stroke-width="1.7" stroke-linejoin="round"/>
+                <g transform="translate(40,34) scale(1.3) translate(-12,-12)" stroke="#6A5C96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 8 Q12 3 19 8" fill="none"/>
+                  <rect x="3.4" y="6.4" width="3.2" height="3.2" rx=".5" fill="rgba(250,250,248,.95)"/>
+                  <rect x="17.4" y="6.4" width="3.2" height="3.2" rx=".5" fill="rgba(250,250,248,.95)"/>
+                  <path d="M12 12 L9.5 14 L11 17.5 L12 21 L13 17.5 L14.5 14 Z" fill="rgba(250,250,248,.95)"/>
+                </g>
+              </svg>
+            </span>
+            <!-- Strategy (target) -->
+            <span class="hero__bubble hero__bubble--strategy">
+              <svg viewBox="0 0 80 68" width="62" height="53" fill="none">
+                <path d="M66 34 A11 11 0 0 1 59.9 50.7 A11 11 0 0 1 44.5 59.6 A11 11 0 0 1 27 56.5 A11 11 0 0 1 15.6 42.9 A11 11 0 0 1 15.6 25.1 A11 11 0 0 1 27 11.5 A11 11 0 0 1 44.5 8.4 A11 11 0 0 1 59.9 17.3 A11 11 0 0 1 66 34 Z"
+                      fill="rgba(250,250,248,.95)" stroke="#6A5C96" stroke-width="1.7" stroke-linejoin="round"/>
+                <g transform="translate(40,34) scale(1.3) translate(-12,-12)" stroke="#6A5C96" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="13" r="7.5"/>
+                  <circle cx="11" cy="13" r="4"/>
+                  <circle cx="11" cy="13" r="1.2" fill="#6A5C96"/>
+                  <path d="M11 13 L21 3 M18 3 L21 3 L21 6"/>
+                </g>
               </svg>
             </span>
             <span class="hero__avatar">
@@ -113,6 +138,12 @@
           <!-- Scene 3: cocktail pour -->
           <div class="hero__scene hero__scene--play" data-scene="2">
             <div class="hero__cocktail-wrap">
+              <div class="hero__ingredients" aria-hidden="true">
+                <img class="hero__ingredient hero__ingredient--gin" src="./assets/images/cocktail-gin.png" alt="" />
+                <img class="hero__ingredient hero__ingredient--orange" src="./assets/images/cocktail-orange.png" alt="" />
+                <img class="hero__ingredient hero__ingredient--teabag" src="./assets/images/cocktail-teabag.png" alt="" />
+                <img class="hero__ingredient hero__ingredient--lemon" src="./assets/images/cocktail-lemon.png" alt="" />
+              </div>
               <img class="hero__cocktail" src="./assets/images/cocktail-pour.png" alt="" />
               <span class="hero__pour-drop" style="--d:0s"></span>
               <span class="hero__pour-drop" style="--d:.45s"></span>
@@ -131,18 +162,15 @@
           <button type="button" role="tab" id="work-tab-all"
             class="work-tabs__tab" aria-selected="true"
             aria-controls="work-grid" data-filter="all">All</button>
+          <button type="button" role="tab" id="work-tab-ai"
+            class="work-tabs__tab" aria-selected="false"
+            aria-controls="work-grid" tabindex="-1" data-filter="ai">AI</button>
           <button type="button" role="tab" id="work-tab-internal"
             class="work-tabs__tab" aria-selected="false"
             aria-controls="work-grid" tabindex="-1" data-filter="internal-platforms">Internal Platforms</button>
           <button type="button" role="tab" id="work-tab-consumer"
             class="work-tabs__tab" aria-selected="false"
             aria-controls="work-grid" tabindex="-1" data-filter="consumer-products">Consumer Products</button>
-          <button type="button" role="tab" id="work-tab-mobile"
-            class="work-tabs__tab" aria-selected="false"
-            aria-controls="work-grid" tabindex="-1" data-filter="mobile">Mobile Apps</button>
-          <button type="button" role="tab" id="work-tab-ai"
-            class="work-tabs__tab" aria-selected="false"
-            aria-controls="work-grid" tabindex="-1" data-filter="ai">AI</button>
         </div>
 
         <div class="featured__grid" id="work-grid" role="tabpanel" aria-labelledby="work-tab-all">
@@ -169,8 +197,8 @@
           <!-- Card 2: Wayfair's Internal AI Agent -->
           <a class="card card--featured card--coming-soon" href="#" aria-label="Wayfair's Internal AI Agent — Coming soon" data-categories="internal-platforms ai">
             <span class="card__coming-soon-cursor" aria-hidden="true">Coming Soon</span>
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/ai-prototyping.jpg" alt="Wayfair internal AI agent interface" /> -->
+            <div class="card__media card__media--image card__media--image-blocky">
+              <img src="./assets/images/blocky-agent.png" alt="Blocky AI Agent greeting and block creation interface" />
             </div>
             <div class="card__body">
               <div class="card__tags">
@@ -203,9 +231,12 @@
           </a>
 
           <!-- Card 4: Figma Plugin - Easy Spotlight -->
-          <a class="card card--small" href="#" aria-label="View case study: Figma Plugin - Easy Spotlight" data-categories="ai">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/easy-spotlight.jpg" alt="Easy Spotlight Figma plugin interface" /> -->
+          <a class="card card--small" href="https://www.figma.com/community/plugin/1501766663479478631" target="_blank" rel="noopener" aria-label="View Easy Spotlight on the Figma Community (opens in new tab)" data-categories="consumer-products ai">
+            <div class="card__media card__media--video card__media--video-spotlight">
+              <video autoplay loop muted playsinline aria-label="Easy Spotlight Figma plugin walkthrough">
+                <source src="./assets/videos/easy-spotlight.webm" type="video/webm" />
+                <source src="./assets/videos/easy-spotlight.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="card__body">
               <div class="card__tags">
@@ -220,8 +251,11 @@
 
           <!-- Card 5 -->
           <a class="card card--small" href="#" aria-label="View case study: Favorites for Faster Block Access" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/block-access.jpg" alt="Favorites feature interface" /> -->
+            <div class="card__media card__media--video card__media--video-favorites">
+              <video autoplay loop muted playsinline aria-label="Favorites for Faster Block Access walkthrough">
+                <source src="./assets/videos/block-favorites.webm" type="video/webm" />
+                <source src="./assets/videos/block-favorites.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="card__body">
               <div class="card__tags">
@@ -250,85 +284,40 @@
             </div>
           </a>
 
-          <!-- Card 7 -->
-          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
-            </div>
-            <div class="card__body">
-              <div class="card__tags">
-                <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
-              </div>
-              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
-              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
-            </div>
-          </a>
-
-          <!-- Card 8 -->
-          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
-            </div>
-            <div class="card__body">
-              <div class="card__tags">
-                <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
-              </div>
-              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
-              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
-            </div>
-          </a>
-
           <!-- Card 9 -->
-          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+          <a class="card card--small" href="#" aria-label="View case study: Designing and Shipping with AI" data-categories="internal-platforms ai">
+            <div class="card__media card__media--image card__media--image-inset card__media--image-shipping">
+              <img src="./assets/images/shipping-with-ai.png" alt="Designing and shipping UI updates with AI-assisted code workflow" />
             </div>
             <div class="card__body">
               <div class="card__tags">
                 <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
+                <span class="card__tag">AI</span>
               </div>
-              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
-              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+              <h3 class="card__title">Designing and Shipping with AI</h3>
+              <p class="card__desc">Used AI tools to translate designs into production-ready code, enabling faster iteration and lightweight UI updates with minimal engineering dependency.</p>
             </div>
           </a>
 
           <!-- Card 10 -->
-          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
+          <a class="card card--small" href="#" aria-label="View case study: Wayfair Design System Rebuild" data-categories="internal-platforms">
+            <div class="card__media card__media--image card__media--image-inset">
+              <img src="./assets/images/design-system.png" alt="Wayfair Design System components and patterns" />
             </div>
             <div class="card__body">
               <div class="card__tags">
                 <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
+                <span class="card__tag">Design System</span>
               </div>
-              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
-              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
-            </div>
-          </a>
-
-          <!-- Card 11 -->
-          <a class="card card--small" href="#" aria-label="View case study: Quick Add for Faster Block Insertion" data-categories="internal-platforms">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/quick-add.jpg" alt="Quick add shortcut interface" /> -->
-            </div>
-            <div class="card__body">
-              <div class="card__tags">
-                <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
-              </div>
-              <h3 class="card__title">Quick Add for Faster Block Insertion</h3>
-              <p class="card__desc">Introduced a quick-add shortcut that lets users insert blocks directly in context, reducing workflow interruption during content creation.</p>
+              <h3 class="card__title">Wayfair Design System Rebuild</h3>
+              <p class="card__desc">Rebuilt the internal design system with modern UI foundations, reusable components, and standardized interaction patterns to improve consistency and reduce design debt.</p>
             </div>
           </a>
 
           <!-- Card 12 -->
           <a class="card card--small" href="#" aria-label="View case study: Rapid Quote Flow for Homeowners" data-categories="consumer-products mobile">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/rapid-quote.jpg" alt="Mobile quote flow screens" /> -->
+            <div class="card__media card__media--image card__media--image-quote">
+              <img src="./assets/images/rapid-quote.png" alt="Owens Corning mobile quote flow screens" />
             </div>
             <div class="card__body">
               <div class="card__tags">
@@ -343,8 +332,8 @@
 
           <!-- Card 13 -->
           <a class="card card--small" href="#" aria-label="View case study: Non-Profit Visual System" data-categories="consumer-products">
-            <div class="card__media card__media--placeholder">
-              <!-- <img src="./assets/images/nonprofit.jpg" alt="Non-profit visual system overview" /> -->
+            <div class="card__media card__media--image card__media--image-nonprofit">
+              <img src="./assets/images/nonprofit.png" alt="Tilth Alliance non-profit visual system mockups" />
             </div>
             <div class="card__body">
               <div class="card__tags">

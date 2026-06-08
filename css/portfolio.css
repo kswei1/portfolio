@@ -121,7 +121,7 @@
    HERO
 ══════════════════════════════════════ */
 .hero {
-  padding-top: 32px;
+  padding-top: 64px;
   padding-bottom: 0;
 }
 
@@ -228,7 +228,6 @@
 }
 
 /* Shared liquid-glass chip recipe */
-.hero__tool,
 .hero__step,
 .hero__treat {
   position: absolute;
@@ -245,12 +244,20 @@
 }
 
 /* ── Scene 1: me thinking + concept thought-bubbles ── */
+.hero__scene--intro {
+  --head-cy: 53%;
+  --bubble-cx: 50%;
+  /* 39% ≈ 84px chord at 35° spacing — clears 80px bubbles; cy tracks head */
+  --bubble-r: 39%;
+  --bubble-cy: 50%;
+}
+
 .hero__avatar {
   position: absolute;
   left: 50%;
-  bottom: 8%;
+  bottom: 16%;
   transform: translateX(-50%);
-  width: 60%;
+  width: 74%;
   /* no circle / no glass — just the illustration */
 }
 .hero__avatar img {
@@ -260,42 +267,49 @@
   object-fit: contain;
 }
 
-/* each concept is a round liquid-glass thought-bubble */
-.hero__tool {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  gap: 7px;
+/* hand-drawn cloud thought-bubbles, arranged in an arc above the head */
+.hero__bubble {
+  position: absolute;
+  left: calc(var(--bubble-cx) + var(--bubble-r) * cos(var(--bubble-angle)));
+  top: calc(var(--bubble-cy) - var(--bubble-r) * sin(var(--bubble-angle)));
+  transform: translate(-50%, -50%);
   animation: heroFloat 5s ease-in-out infinite;
 }
-/* same horizontal spread as before — only shifted down toward the head */
-.hero__tool--platform { left: 16%; top: 40%; animation-delay: 0s;  }
-.hero__tool--ai       { left: 50%; top: 26%; transform: translateX(-50%); animation-delay: .5s;
-                        width: 92px; height: 58px; border-radius: 100px; }
-.hero__tool--strategy { left: 84%; top: 40%; transform: translateX(-100%); animation-delay: 1s; }
+.hero__bubble svg { display: block; width: 80px; height: auto; }
+/* keep the outline thin no matter how large the bubble is drawn */
+.hero__bubble svg * { vector-effect: non-scaling-stroke; }
 
-/* trailing little bubbles so each chip reads as a thought bubble */
-.hero__tool::before,
-.hero__tool::after {
+.hero__bubble--clarity  { --bubble-angle: 160deg; animation-delay: 0s;   }
+.hero__bubble--code     { --bubble-angle: 125deg; animation-delay: .4s;  }
+.hero__bubble--platform { --bubble-angle: 90deg;  animation-delay: .8s;  }
+.hero__bubble--design   { --bubble-angle: 55deg;  animation-delay: 1.2s; }
+.hero__bubble--strategy { --bubble-angle: 20deg;  animation-delay: 1.6s; }
+
+/* trailing dots (hand-drawn outline) pointing toward the head */
+.hero__bubble::before,
+.hero__bubble::after {
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: rgba(250, 250, 248, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 2px 6px rgba(101, 78, 163, 0.12);
+  background: rgba(250, 250, 248, 0.95);
+  border: 1.5px solid #6A5C96;
 }
-.hero__tool::before { width: 14px; height: 14px; }
-.hero__tool::after  { width: 8px;  height: 8px;  }
+.hero__bubble::before { width: 10px; height: 10px; }
+.hero__bubble::after  { width: 6px;  height: 6px; }
 
-/* trails point toward the head (centre-bottom) */
-.hero__tool--platform::before { bottom: -11px; right: 8px;  }
-.hero__tool--platform::after  { bottom: -23px; right: 0;    }
-
-.hero__tool--ai::before { bottom: -11px; left: 50%; margin-left: -7px; }
-.hero__tool--ai::after  { bottom: -23px; left: 50%; margin-left: -4px; }
-
-.hero__tool--strategy::before { bottom: -11px; left: 8px; }
-.hero__tool--strategy::after  { bottom: -23px; left: 0;   }
+/* left-side bubbles trail toward bottom-right (toward head) */
+.hero__bubble--clarity::before { bottom: 1px;  right: 10px; }
+.hero__bubble--clarity::after  { bottom: -9px; right: 4px;  }
+.hero__bubble--code::before    { bottom: 1px;  right: 14px; }
+.hero__bubble--code::after     { bottom: -9px; right: 8px;  }
+/* center trails straight down */
+.hero__bubble--platform::before { bottom: 1px;  left: 50%; margin-left: -9px; }
+.hero__bubble--platform::after  { bottom: -9px; left: 50%; margin-left: -2px; }
+/* right-side bubbles trail toward bottom-left (toward head) */
+.hero__bubble--design::before   { bottom: 1px;  left: 14px; }
+.hero__bubble--design::after    { bottom: -9px; left: 8px;  }
+.hero__bubble--strategy::before { bottom: 1px;  left: 10px; }
+.hero__bubble--strategy::after  { bottom: -9px; left: 4px;  }
 
 /* ── Scene 2: Design → AI → Code ── */
 .hero__scene--flow {
@@ -358,12 +372,177 @@
 }
 .hero__cocktail-wrap {
   position: relative;
+  width: 100%;
+  height: 100%;
   flex-shrink: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
   animation: floatY 5s ease-in-out infinite;
 }
+
+.hero__ingredients {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  --orbit-cx: 50%;
+  --orbit-cy: 18%;
+  --orbit-r: 28%;
+}
+
+.hero__ingredient {
+  position: absolute;
+  width: var(--size, 52px);
+  height: var(--size, 52px);
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+  will-change: transform, opacity;
+}
+
+.hero__ingredient--gin {
+  --size: 92px;
+  left: 27%;
+  top: 6%;
+}
+
+.hero__ingredient--orange {
+  --size: 74px;
+  left: 14%;
+  top: 38%;
+}
+
+.hero__ingredient--teabag {
+  --size: 94px;
+  left: 73%;
+  top: 6%;
+}
+
+.hero__ingredient--lemon {
+  --size: 82px;
+  left: 86%;
+  top: 38%;
+}
+
+.hero__cocktail-wrap.is-animating .hero__ingredient--gin {
+  animation:
+    ingredientEnterGin 700ms cubic-bezier(0.22, 1, 0.36, 1) 0ms forwards,
+    ingredientFloat 4s ease-in-out 2.8s infinite;
+}
+
+.hero__cocktail-wrap.is-animating .hero__ingredient--orange {
+  animation:
+    ingredientEnterOrange 700ms cubic-bezier(0.22, 1, 0.36, 1) 275ms forwards,
+    ingredientFloat 4s ease-in-out 3.2s infinite;
+}
+
+.hero__cocktail-wrap.is-animating .hero__ingredient--teabag {
+  animation:
+    ingredientEnterTeabag 700ms cubic-bezier(0.22, 1, 0.36, 1) 550ms forwards,
+    ingredientFloat 4s ease-in-out 3.6s infinite;
+}
+
+.hero__cocktail-wrap.is-animating .hero__ingredient--lemon {
+  animation:
+    ingredientEnterLemon 700ms cubic-bezier(0.22, 1, 0.36, 1) 825ms forwards,
+    ingredientFloat 4s ease-in-out 4s infinite;
+}
+
+@keyframes ingredientEnterGin {
+  0% {
+    opacity: 0;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+  55% {
+    opacity: 1;
+    left: 18%;
+    top: 2%;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    left: 27%;
+    top: 6%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ingredientEnterOrange {
+  0% {
+    opacity: 0;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+  55% {
+    opacity: 1;
+    left: 8%;
+    top: 40%;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    left: 14%;
+    top: 38%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ingredientEnterTeabag {
+  0% {
+    opacity: 0;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+  55% {
+    opacity: 1;
+    left: 82%;
+    top: 2%;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    left: 73%;
+    top: 6%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ingredientEnterLemon {
+  0% {
+    opacity: 0;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+  55% {
+    opacity: 1;
+    left: 92%;
+    top: 40%;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    left: 86%;
+    top: 38%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ingredientFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50%      { transform: translate(-50%, -50%) translateY(-3px); }
+}
+
 .hero__cocktail {
+  position: relative;
+  z-index: 1;
   width: auto;
   max-width: 300px;
   height: auto;
@@ -493,6 +672,11 @@
   color: inherit;
 }
 
+/* filtered-out cards must hide (display:flex overrides the default [hidden]) */
+.card[hidden] {
+  display: none;
+}
+
 .card--coming-soon {
   cursor: none;
 }
@@ -568,6 +752,28 @@
   background: #A5B4FC;
 }
 
+/* Easy Spotlight: cohesive lavender, 20px top-left inset */
+.card__media--video-spotlight {
+  background: #B35D95;
+}
+.card__media--video-spotlight video {
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}
+
+/* Favorites: warm red, 20px top-left inset */
+.card__media--video-favorites {
+  background: #B35E5D;
+}
+.card__media--video-favorites video {
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}
+
 .card__media--video video {
   position: absolute;
   top: var(--sp-3);   /* 24px */
@@ -591,11 +797,88 @@
   width: calc(100% - var(--sp-3) * 2);
   height: calc(100% - var(--sp-2));
   object-fit: cover;
-  object-position: 22% top;
-  border-top-left-radius: var(--radius-sm);
+  object-position: top center;
 }
 
 .card:hover .card__media--image-maps img {
+  transform: scale(1.03);
+}
+
+/* ── Image cover: 20px top inset (matches maps layout) ── */
+.card__media--image-quote {
+  background: #F9E3EE;
+}
+
+.card__media--image-quote img {
+  position: absolute;
+  top: 20px;
+  left: var(--sp-3);
+  width: calc(100% - var(--sp-3) * 2);
+  height: calc(100% - 20px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card:hover .card__media--image-quote img {
+  transform: scale(1.03);
+}
+
+.card__media--image-nonprofit {
+  background: #FFE3A2;
+}
+
+.card__media--image-nonprofit img {
+  position: absolute;
+  top: 20px;
+  left: var(--sp-3);
+  width: calc(100% - var(--sp-3) * 2);
+  height: calc(100% - 20px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card:hover .card__media--image-nonprofit img {
+  transform: scale(1.03);
+}
+
+.card__media--image-blocky {
+  background: #5E5DB3;
+}
+
+.card__media--image-blocky img {
+  position: absolute;
+  top: 20px;
+  left: var(--sp-3);
+  width: calc(100% - var(--sp-3) * 2);
+  height: calc(100% - 20px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card:hover .card__media--image-blocky img {
+  transform: scale(1.03);
+}
+
+.card__media--image-inset {
+  background: #F5F5F5;
+}
+
+.card__media--image-shipping {
+  background: #EBEAEC;
+}
+
+.card__media--image-inset img {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  object-fit: cover;
+  object-position: top left;
+  border-top-left-radius: 16px;
+}
+
+.card:hover .card__media--image-inset img {
   transform: scale(1.03);
 }
 
@@ -837,5 +1120,11 @@
   .hero__cocktail-wrap {
     animation: none !important;
     transform: none;
+  }
+
+  .hero__ingredient {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: translate(-50%, -50%) !important;
   }
 }

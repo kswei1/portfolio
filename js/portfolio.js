@@ -15,8 +15,19 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const phrases = document.querySelectorAll('.hero__phrase');
   const scenes = document.querySelectorAll('.hero__scene');
+  const cocktailWrap = document.querySelector('.hero__cocktail-wrap');
+  const COCKTAIL_SCENE_INDEX = 2;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const restartCocktailSequence = () => {
+    if (!cocktailWrap || reducedMotion) return;
+    cocktailWrap.classList.remove('is-animating');
+    void cocktailWrap.offsetWidth;
+    cocktailWrap.classList.add('is-animating');
+  };
+
   if (phrases.length > 1) {
-    const HOLD = 3000;   // time each phrase stays fully visible
+    const HOLD = 5000;   // time each phrase stays fully visible
     let current = 0;
 
     const advance = () => {
@@ -33,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
         scenes[next]?.classList.add('is-active');
       }
 
+      if (next === COCKTAIL_SCENE_INDEX) {
+        restartCocktailSequence();
+      } else if (cocktailWrap) {
+        cocktailWrap.classList.remove('is-animating');
+      }
+
       // clear the exiting state once it has flipped away
       const prev = current;
       setTimeout(() => phrases[prev].classList.remove('is-exiting'), 600);
@@ -41,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setInterval(advance, HOLD);
+  } else if (cocktailWrap && scenes[COCKTAIL_SCENE_INDEX]?.classList.contains('is-active')) {
+    restartCocktailSequence();
   }
 
   // Autoplay videos when in viewport
@@ -68,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const comingSoonCard = document.querySelector('.card--coming-soon');
   if (comingSoonCard) {
     const pill = comingSoonCard.querySelector('.card__coming-soon-cursor');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const OFFSET = 12;
 
     const positionPill = (clientX, clientY) => {

@@ -5,65 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Katherine Swei</title>
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css" />
   <style>
     .about {
-      padding-top: calc(var(--nav-height) + var(--sp-16));
-      padding-bottom: var(--sp-20);
+      padding-top: calc(20px + 44px + var(--sp-8));
+      padding-bottom: var(--sp-10);
     }
-    .about__grid {
+
+    /* ── Intro ── */
+    .intro {
       display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: var(--sp-16);
-      align-items: start;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--sp-8);
+      align-items: center;
+      padding-bottom: var(--sp-10);
     }
-    .about__heading {
-      font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    .intro__eyebrow {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-accent);
+      margin-bottom: var(--sp-3);
+    }
+    .intro__title {
+      font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
       font-weight: var(--weight-semibold);
       line-height: var(--leading-tight);
       letter-spacing: var(--tracking-tight);
-      margin-bottom: var(--sp-5);
+      margin-bottom: var(--sp-3);
     }
-    .about__body {
+    .intro__lead {
       font-size: var(--text-lg);
       line-height: var(--leading-relaxed);
       color: var(--color-text-secondary);
+      max-width: 46ch;
+    }
+    .intro__photo {
+      width: 100%;
+    }
+    .intro__photo img { width: 100%; aspect-ratio: 3 / 4; display: block; object-fit: cover; border-radius: 32px; }
+    .intro__photo span { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+
+    /* ── Section row (label left, content right) ── */
+    .sec {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--sp-8);
+      padding: var(--sp-8) 0;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .sec__label {
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-text-primary);
+    }
+    .sec__lead {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-secondary);
+      max-width: 60ch;
+    }
+    .sec__lead + .sec__lead { margin-top: var(--sp-3); }
+    .sec__sub {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--sp-2);
+    }
+
+    /* ── Skills grid ── */
+    .skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5) var(--sp-6);
+    }
+    .skill__title {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      margin-bottom: 6px;
+    }
+    .skill__desc {
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--color-text-secondary);
+    }
+
+    /* ── Experience / Education list ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: var(--sp-3);
+      padding: var(--sp-4) 0;
+    }
+    .entry:first-child { padding-top: 0; }
+    .entry + .entry { border-top: 1px solid var(--color-border-subtle); }
+    .entry__year { font-size: var(--text-sm); color: var(--color-text-tertiary); }
+    .entry__role { font-size: var(--text-base); font-weight: var(--weight-semibold); }
+    .entry__org { font-size: var(--text-sm); color: var(--color-accent); font-weight: var(--weight-medium); margin-top: 2px; }
+    .entry__desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-normal); margin-top: 6px; }
+
+    /* ── Talk / deck cards ── */
+    .talks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      margin-top: var(--sp-5);
+    }
+    .talk {
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-md);
+      background: linear-gradient(150deg, #6E4AA8 0%, #8C5EC4 100%);
+      color: #fff;
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .talk__brand { font-size: var(--text-sm); font-weight: var(--weight-semibold); opacity: .9; letter-spacing: .02em; }
+    .talk__title { font-size: var(--text-xl); font-weight: var(--weight-semibold); line-height: var(--leading-snug); letter-spacing: var(--tracking-tight); }
+    .talk__meta { font-size: var(--text-xs); opacity: .85; }
+
+    /* ── Fun gallery ── */
+    .fun__block + .fun__block { margin-top: var(--sp-6); }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-2);
+      margin-top: var(--sp-3);
+    }
+    .gallery__item {
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+    }
+    .gallery__item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Connect ── */
+    .connect {
+      text-align: center;
+      padding: var(--sp-12) 0 var(--sp-6);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .connect__title {
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-tight);
       margin-bottom: var(--sp-4);
     }
-    .about__photo {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: var(--radius-lg);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      overflow: hidden;
-      display: flex;
+    .connect__links { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+    .connect__btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-    }
-    .about__photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .about__photo-placeholder {
+      padding: 10px 22px;
+      border-radius: 100px;
       font-size: var(--text-sm);
-      color: var(--color-text-tertiary);
+      font-weight: var(--weight-medium);
+      text-decoration: none;
+      transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
     }
+    .connect__btn--primary { background: var(--color-accent); color: #fff; }
+    .connect__btn--primary:hover { background: var(--color-accent-hover); }
+    .connect__btn--ghost { border: 1px solid var(--color-border); color: var(--color-text-primary); }
+    .connect__btn--ghost:hover { background: var(--color-surface); }
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .about__grid {
-        grid-template-columns: 1fr;
-      }
-      .about__photo {
-        max-width: 280px;
-        order: -1;
-      }
+      .intro { grid-template-columns: 1fr; gap: var(--sp-6); }
+      .intro__photo { max-width: 280px; order: -1; }
+      .sec { grid-template-columns: 1fr; gap: var(--sp-4); }
+      .skills { grid-template-columns: 1fr; }
+      .talks { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="nav" role="banner">
     <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
@@ -79,28 +204,183 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="about">
       <div class="container">
-        <p class="hero__eyebrow animate-in">
-          <span class="hero__eyebrow-dot"></span>
-          About me
-        </p>
-        <div class="about__grid">
+
+        <!-- ── Intro ── -->
+        <div class="intro">
           <div>
-            <h1 class="about__heading">Katherine Swei</h1>
-            <p class="about__body">
-              I'm a product designer passionate about bringing clarity and strategy to complex platforms and shaping them into simple, scalable products.
+            <p class="intro__eyebrow">About me</p>
+            <h1 class="intro__title">Hey, I'm Katherine.</h1>
+            <p class="intro__lead">
+              I hold a Master's in Human Centered Design &amp; Engineering from the University of
+              Washington and a BA in Cognitive Science from UC Berkeley — which shape how I approach
+              problems through both systems thinking and human behavior. I've also worked across B2C
+              products and startups, giving me a broader perspective on user needs and product development.
             </p>
-            <p class="about__body">
-              Currently at Wayfair, I design internal platforms, using AI to prototype, generate production-ready code, and collaborate with teams to build agentic AI workflows.
+            <p class="intro__lead">
+              I'm especially interested in building thoughtful systems that help people work more
+              effectively in complex environments. Currently, I'm designing Core Platform &amp; AI
+              experiences at Wayfair.
             </p>
           </div>
-          <div class="about__photo">
-            <!-- Replace with <img src="./assets/images/photo.jpg" alt="Katherine Swei" /> -->
-            <span class="about__photo-placeholder">Photo coming soon</span>
+          <div class="intro__photo">
+            <img src="./assets/images/about-photo.jpg" alt="Katherine Swei" />
           </div>
         </div>
+
+        <!-- ── Super powers ── -->
+        <div class="sec">
+          <p class="sec__label">My super powers</p>
+          <div class="skills">
+            <div class="skill">
+              <h3 class="skill__title">Clarity from chaos</h3>
+              <p class="skill__desc">I bring clarity and structure to messy, ambiguous problems — making complex systems easier for others to navigate and understand.</p>
+            </div>
+            <div class="skill">
+              <h3 class="skill__title">Systems thinking</h3>
+              <p class="skill__desc">I design for the whole system, not just the screen — connecting workflows, edge cases, and how things scale over time.</p>
+            </div>
+            <div class="skill">
+              <h3 class="skill__title">Prototyping</h3>
+              <p class="skill__desc">Prototyping is how I think. I'd rather build something you can click through than describe it in a doc. I use prototypes to pressure-test ideas early, align teams around a shared vision, and turn abstract concepts into something tangible.</p>
+            </div>
+            <div class="skill">
+              <h3 class="skill__title">AI-assisted craft</h3>
+              <p class="skill__desc">I use AI tools to prototype, generate production-ready code, and build agentic workflows that move ideas forward faster.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Growing an AI community ── -->
+        <div class="sec">
+          <p class="sec__label">Growing an AI community at Wayfair</p>
+          <div>
+            <p class="sec__sub">Being a change maker</p>
+            <p class="sec__lead">
+              I enjoy sharing what I learn, so I actively run internal talks and demos to introduce
+              AI workflows and tools. This helps teams adopt AI in their daily work and improves
+              overall efficiency and experimentation across the organization.
+            </p>
+            <div class="talks">
+              <div class="talk">
+                <span class="talk__brand">wayfair</span>
+                <h3 class="talk__title">Figma Plugin with Cursor AI</h3>
+                <span class="talk__meta">Internal Talk · August 2025</span>
+              </div>
+              <div class="talk">
+                <span class="talk__brand">wayfair</span>
+                <h3 class="talk__title">Cursor for Designers: Creating a UX Fast Lane</h3>
+                <span class="talk__meta">Internal Talk · September 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Experience ── -->
+        <div class="sec">
+          <p class="sec__label">Experience</p>
+          <div>
+            <div class="entry">
+              <span class="entry__year">2023 — Now</span>
+              <div>
+                <p class="entry__role">Product Designer</p>
+                <p class="entry__org">Wayfair · Core Platform &amp; AI</p>
+                <p class="entry__desc">Designing internal platforms and AI-assisted workflows that help content and merchandising teams work faster in complex environments.</p>
+              </div>
+            </div>
+            <!-- TODO: update the entries below with your real roles, companies & dates -->
+            <div class="entry">
+              <span class="entry__year">20XX — 20XX</span>
+              <div>
+                <p class="entry__role">Product / UX Designer</p>
+                <p class="entry__org">B2C Product · Startup</p>
+                <p class="entry__desc">Worked across consumer products and early-stage startups, shaping features end-to-end from research to launch.</p>
+              </div>
+            </div>
+            <div class="entry">
+              <span class="entry__year">20XX</span>
+              <div>
+                <p class="entry__role">UX Design Intern</p>
+                <p class="entry__org">Owens Corning</p>
+                <p class="entry__desc">Streamlined the mobile web quote flow for homeowners, reducing wait time from 2 weeks to 3 minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Education ── -->
+        <div class="sec">
+          <p class="sec__label">Education</p>
+          <div>
+            <div class="entry">
+              <span class="entry__year">Master's</span>
+              <div>
+                <p class="entry__role">Human Centered Design &amp; Engineering</p>
+                <p class="entry__org">University of Washington</p>
+              </div>
+            </div>
+            <div class="entry">
+              <span class="entry__year">Bachelor's</span>
+              <div>
+                <p class="entry__role">BA, Cognitive Science</p>
+                <p class="entry__org">UC Berkeley</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── When I'm not designing ── -->
+        <div class="sec">
+          <p class="sec__label">When I'm not designing</p>
+          <div>
+            <div class="fun__block">
+              <p class="sec__lead">
+                I'm a huge coffee person and love discovering cute local spots whenever I'm in a new
+                city — it's my way of exploring and getting inspired at the same time.
+              </p>
+              <div class="gallery">
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+              </div>
+            </div>
+            <div class="fun__block">
+              <p class="sec__lead">
+                At night, I moonlight as an amateur cocktail bartender — hosting cocktail nights with
+                friends and turning creativity into something tasty and a little bit magical.
+              </p>
+              <div class="gallery">
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+              </div>
+            </div>
+            <div class="fun__block">
+              <p class="sec__lead">
+                I'm also a big traveler. Experiencing different cultures and meeting people from all
+                kinds of backgrounds keeps me curious — and that curiosity always finds its way back
+                into my work.
+              </p>
+              <div class="gallery">
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+                <div class="gallery__item"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Connect ── -->
+        <div class="connect">
+          <h2 class="connect__title">Curious about my journey? Let's connect!</h2>
+          <div class="connect__links">
+            <a class="connect__btn connect__btn--primary" href="mailto:hello@katherineswei.com">Email me</a>
+            <a class="connect__btn connect__btn--ghost" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
