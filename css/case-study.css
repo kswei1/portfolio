@@ -1,0 +1,309 @@
+/* ============================================================
+   Case Study template — ROM-style editorial, on the portfolio
+   tokens. DM Sans throughout. Reusable across all projects.
+   ============================================================ */
+
+.cs {
+  /* tuning knobs local to case studies */
+  --cs-measure: 62ch;          /* body text max width   */
+  --cs-rail: 300px;            /* meta / heading column  */
+  --cs-dark: #1C1B19;          /* full-bleed dark panels */
+  --cs-dark-text: #F4F2EE;
+  --cs-dark-muted: #9A968F;
+  /* clear the fixed top nav (≈64px tall) so it never covers the cover image */
+  padding-top: 72px;
+}
+
+/* ---- shared section rhythm -------------------------------- */
+.cs-section {
+  padding-block: var(--sp-8);   /* 64px */
+}
+.cs-section + .cs-section { padding-top: 0; }
+
+/* two-tone heading: solid line + muted second line */
+.cs-h {
+  font-size: var(--text-2xl);   /* 28px */
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+.cs-h span {
+  display: block;
+  color: var(--color-text-tertiary);
+  font-weight: var(--weight-medium);
+}
+
+.cs-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--sp-2);
+}
+
+.cs-body {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  max-width: none;            /* fill the content column */
+}
+.cs-body + .cs-body { margin-top: var(--sp-3); }
+
+/* generic "heading left / content right" split.
+   Eyebrow sits in its own row so the heading and the right-column body
+   share row 2 — i.e. the body aligns with the heading, not the eyebrow. */
+.cs-split {
+  display: grid;
+  grid-template-columns: var(--cs-rail) 1fr;
+  column-gap: clamp(var(--sp-5), 6vw, var(--sp-12));
+  align-items: start;
+}
+.cs-split > .cs-eyebrow { grid-column: 1; grid-row: 1; }
+.cs-split > .cs-h       { grid-column: 1; grid-row: 2; }
+.cs-split__body         { grid-column: 2; grid-row: 2; }
+
+/* ---- HERO -------------------------------------------------- */
+.cs-hero { position: relative; }
+
+.cs-hero__cover {
+  width: 100%;
+  height: clamp(300px, 44vw, 520px);
+  border-radius: var(--radius-lg);
+  /* image slot — drop an <img> in later */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.cs-hero__cover span {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+.cs-hero__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  border-radius: inherit;
+}
+
+.cs-hero__head {
+  margin-top: clamp(var(--sp-5), 5vw, var(--sp-8));
+}
+
+.cs-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--sp-3);
+}
+/* reuse the visual language of work card tags */
+.cs-tag {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 2px 10px;
+  border-radius: 100px;
+  line-height: 1.6;
+}
+
+.cs-hero__title {
+  font-size: 2.5rem;            /* 40px */
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--sp-2);
+}
+.cs-hero__summary {
+  font-size: var(--text-2xl);   /* 28px */
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-text-tertiary);
+  max-width: none;            /* fill the container */
+  margin: 0;
+  /* clamp to at most 2 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ---- META (inline role + timeline) ------------------------ */
+.cs-meta {
+  display: grid;
+  /* mirror .cs-split so the content column (Timeline/Team) aligns with section body */
+  grid-template-columns: var(--cs-rail) 1fr;
+  column-gap: clamp(var(--sp-5), 6vw, var(--sp-12));
+  row-gap: var(--sp-4);
+  margin-top: clamp(var(--sp-5), 5vw, var(--sp-8));
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--color-border-subtle);
+}
+.cs-meta__group {
+  display: flex;
+  gap: clamp(var(--sp-5), 6vw, var(--sp-10));
+}
+.cs-meta__item { display: flex; flex-direction: column; gap: 4px; }
+.cs-meta__label {
+  font-size: var(--text-lg);    /* 18px */
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+.cs-meta__value {
+  font-size: var(--text-lg);    /* 18px */
+  color: var(--color-text-secondary);
+}
+
+/* ---- OUTCOME / PROBLEM blocks ----------------------------- */
+.cs-lead {
+  font-size: clamp(var(--text-xl), 2.4vw, var(--text-2xl));
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-text-primary);
+  max-width: none;            /* fill the content column */
+}
+
+/* evidence / stat rows (the 97% / 79% pattern) */
+.cs-stats { display: flex; flex-direction: column; gap: var(--sp-5); }
+.cs-stat {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+}
+.cs-stat__num {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+.cs-stat__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+}
+.cs-stat__desc {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ---- soft visual placeholders ----------------------------- */
+.cs-visual {
+  border-radius: var(--radius-lg);
+  aspect-ratio: 16 / 10;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  display: grid;
+  place-items: center;
+}
+.cs-visual span {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-tertiary);
+}
+.cs-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+
+.cs-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+/* ---- DARK full-bleed moment ------------------------------- */
+.cs-section--dark {
+  background: var(--cs-dark);
+  color: var(--cs-dark-text);
+  padding-block: clamp(var(--sp-12), 11vw, var(--sp-20));
+}
+.cs-section--dark .cs-h { color: var(--cs-dark-text); }
+.cs-section--dark .cs-h span { color: var(--cs-dark-muted); }
+.cs-section--dark .cs-body { color: var(--cs-dark-muted); }
+.cs-section--dark .cs-eyebrow { color: #C9A9BB; }
+.cs-section--dark .cs-visual {
+  background: linear-gradient(135deg, #2A2832 0%, #34303A 100%);
+  border-color: rgba(255,255,255,0.08);
+}
+.cs-section--dark .cs-visual span { color: var(--cs-dark-muted); }
+
+/* ---- reflection ------------------------------------------- */
+.cs-reflect {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+.cs-reflect__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--sp-1);
+}
+
+/* ---- pager (Home / Next) ---------------------------------- */
+.cs-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-block: var(--sp-8);
+  border-top: 1px solid var(--color-border-subtle);
+}
+.cs-pager__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 10px 20px;
+  transition: background var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+/* right arrow on the Next button */
+.cs-pager__next { position: relative; }
+.cs-pager__next::after {
+  content: "→";
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.cs-pager__btn:hover {
+  background: var(--color-surface);
+  border-color: #C4C0BB;
+  transform: translateY(-2px);
+}
+.cs-pager__next .cs-pager__sub {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+}
+.cs-pager__next { text-align: right; }
+
+/* ---- responsive ------------------------------------------- */
+@media (max-width: 760px) {
+  .cs-split { grid-template-columns: 1fr; row-gap: var(--sp-3); }
+  .cs-split > .cs-eyebrow,
+  .cs-split > .cs-h,
+  .cs-split__body { grid-column: 1; grid-row: auto; }
+  .cs-meta { grid-template-columns: 1fr; row-gap: var(--sp-4); }
+  .cs-visual-grid { grid-template-columns: 1fr; }
+  .cs-hero__summary { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-pager__btn:hover { transform: none; }
+}

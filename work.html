@@ -51,7 +51,7 @@
           <p class="hero__meta">Currently designing Core Platform &amp; AI at Wayfair </p>
         </div>
 
-        <!-- Decorative liquid-glass scenes, synced to the rotating phrases -->
+        <!-- Decorative illustrated scenes, synced to the rotating phrases -->
         <div class="hero__visual" aria-hidden="true">
 
           <!-- Scene 1: me + the tools I think in -->
@@ -122,17 +122,17 @@
               </svg>
             </span>
             <span class="hero__avatar">
-              <img src="./assets/images/me-thinking.png" alt="" />
+              <img src="./assets/images/focus-face.png" alt="" />
             </span>
           </div>
 
-          <!-- Scene 2: Design → AI → Code workflow -->
-          <div class="hero__scene hero__scene--flow" data-scene="1">
-            <span class="hero__step" style="--i:0">Design</span>
-            <span class="hero__flow-arrow" style="--i:0" aria-hidden="true"></span>
-            <span class="hero__step hero__step--ai" style="--i:1">AI</span>
-            <span class="hero__flow-arrow" style="--i:1" aria-hidden="true"></span>
-            <span class="hero__step" style="--i:2">Code</span>
+          <!-- Scene 2: Code → Design → Prototyping → Implementation -->
+          <div class="hero__scene hero__scene--workflow" data-scene="1">
+            <div class="hero__workflow-wrap">
+              <div id="workflow-lottie" class="hero__workflow-lottie"
+                   role="img"
+                   aria-label="Design workflow revealing in sequence: code, design, prototyping, and implementation"></div>
+            </div>
           </div>
 
           <!-- Scene 3: cocktail pour -->
@@ -176,7 +176,7 @@
         <div class="featured__grid" id="work-grid" role="tabpanel" aria-labelledby="work-tab-all">
 
           <!-- Card 1: Wayfair Core Platform Redesign -->
-          <a class="card card--featured" href="#" aria-label="View case study: Wayfair Core Platform Redesign" data-categories="internal-platforms">
+          <a class="card card--featured" href="./case-core-platform.html" aria-label="View case study: Wayfair Core Platform Redesign" data-categories="internal-platforms">
             <div class="card__media card__media--video">
               <video autoplay loop muted playsinline aria-label="Wayfair Core Platform Redesign walkthrough">
                 <source src="./assets/videos/wayfair-core.webm" type="video/webm" />
@@ -212,7 +212,7 @@
           </a>
 
           <!-- Card 3: Wayfair Internal Template System -->
-          <a class="card card--featured" href="#" aria-label="View case study: Wayfair Internal Template System" data-categories="internal-platforms">
+          <a class="card card--featured" href="./case-template-system.html" aria-label="View case study: Wayfair Internal Template System" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-template">
               <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
                 <source src="./assets/videos/template-system.webm" type="video/webm" />
@@ -250,7 +250,7 @@
           </a>
 
           <!-- Card 5 -->
-          <a class="card card--small" href="#" aria-label="View case study: Favorites for Faster Block Access" data-categories="internal-platforms">
+          <a class="card card--small" href="./case-favorites.html" aria-label="View case study: Favorites for Faster Block Access" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-favorites">
               <video autoplay loop muted playsinline aria-label="Favorites for Faster Block Access walkthrough">
                 <source src="./assets/videos/block-favorites.webm" type="video/webm" />
@@ -268,7 +268,7 @@
           </a>
 
           <!-- Card 6: Google Maps for Gen Z -->
-          <a class="card card--featured" href="#" aria-label="View case study: Google Maps for Gen Z" data-categories="consumer-products mobile">
+          <a class="card card--featured" href="./case-google-maps.html" aria-label="View case study: Google Maps for Gen Z" data-categories="consumer-products mobile">
             <div class="card__media card__media--image card__media--image-maps">
               <img src="./assets/images/google-maps.png" alt="Google Maps Gen Z feature designs" />
             </div>
@@ -285,7 +285,7 @@
           </a>
 
           <!-- Card 9 -->
-          <a class="card card--small" href="#" aria-label="View case study: Designing and Shipping with AI" data-categories="internal-platforms ai">
+          <a class="card card--small" href="./case-shipping-ai.html" aria-label="View case study: Designing and Shipping with AI" data-categories="internal-platforms ai">
             <div class="card__media card__media--image card__media--image-inset card__media--image-shipping">
               <img src="./assets/images/shipping-with-ai.png" alt="Designing and shipping UI updates with AI-assisted code workflow" />
             </div>
@@ -300,7 +300,7 @@
           </a>
 
           <!-- Card 10 -->
-          <a class="card card--small" href="#" aria-label="View case study: Wayfair Design System Rebuild" data-categories="internal-platforms">
+          <a class="card card--small" href="./case-design-system.html" aria-label="View case study: Wayfair Design System Rebuild" data-categories="internal-platforms">
             <div class="card__media card__media--image card__media--image-inset">
               <img src="./assets/images/design-system.png" alt="Wayfair Design System components and patterns" />
             </div>
@@ -315,7 +315,7 @@
           </a>
 
           <!-- Card 12 -->
-          <a class="card card--small" href="#" aria-label="View case study: Rapid Quote Flow for Homeowners" data-categories="consumer-products mobile">
+          <a class="card card--small" href="./case-rapid-quote.html" aria-label="View case study: Rapid Quote Flow for Homeowners" data-categories="consumer-products mobile">
             <div class="card__media card__media--image card__media--image-quote">
               <img src="./assets/images/rapid-quote.png" alt="Owens Corning mobile quote flow screens" />
             </div>
@@ -331,7 +331,7 @@
           </a>
 
           <!-- Card 13 -->
-          <a class="card card--small" href="#" aria-label="View case study: Non-Profit Visual System" data-categories="consumer-products">
+          <a class="card card--small" href="./case-nonprofit.html" aria-label="View case study: Non-Profit Visual System" data-categories="consumer-products">
             <div class="card__media card__media--image card__media--image-nonprofit">
               <img src="./assets/images/nonprofit.png" alt="Tilth Alliance non-profit visual system mockups" />
             </div>
@@ -362,6 +362,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie_svg.min.js"></script>
   <script src="./js/portfolio.js"></script>
 </body>
 </html>

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const scenes = document.querySelectorAll('.hero__scene');
   const cocktailWrap = document.querySelector('.hero__cocktail-wrap');
   const COCKTAIL_SCENE_INDEX = 2;
+  const WORKFLOW_SCENE_INDEX = 1;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const restartCocktailSequence = () => {
@@ -24,6 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
     cocktailWrap.classList.remove('is-animating');
     void cocktailWrap.offsetWidth;
     cocktailWrap.classList.add('is-animating');
+  };
+
+  // ── Workflow Lottie (scene 2) ──
+  const workflowEl = document.getElementById('workflow-lottie');
+  let workflowAnim = null;
+  if (workflowEl && window.lottie) {
+    workflowAnim = window.lottie.loadAnimation({
+      container: workflowEl,
+      renderer: 'svg',
+      loop: false,
+      autoplay: false,
+      path: './assets/lottie/workflow.json',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
+    });
+  }
+  const restartWorkflow = () => {
+    if (!workflowAnim) return;
+    if (reducedMotion) { workflowAnim.goToAndStop(workflowAnim.totalFrames - 1 || 0, true); return; }
+    workflowAnim.goToAndPlay(0, true);
   };
 
   if (phrases.length > 1) {
@@ -48,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         restartCocktailSequence();
       } else if (cocktailWrap) {
         cocktailWrap.classList.remove('is-animating');
+      }
+
+      if (next === WORKFLOW_SCENE_INDEX) {
+        restartWorkflow();
       }
 
       // clear the exiting state once it has flipped away
