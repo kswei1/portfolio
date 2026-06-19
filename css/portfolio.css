@@ -641,6 +641,7 @@
 
 .card--unlinked {
   cursor: default;
+  pointer-events: none;
 }
 
 .card--unlinked:hover .card__media img,
