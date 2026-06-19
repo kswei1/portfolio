@@ -147,8 +147,12 @@
   border-top: 1px solid var(--color-border-subtle);
 }
 .cs-meta__group {
-  display: flex;
-  gap: clamp(var(--sp-5), 6vw, var(--sp-10));
+  /* mirror the meta's rail rhythm so Role → Timeline → Team are evenly spaced
+     while Timeline stays aligned with the section content column. The first
+     track shrinks on narrow screens so Team never gets cramped/wrapped. */
+  display: grid;
+  grid-template-columns: minmax(140px, var(--cs-rail)) max-content;
+  column-gap: clamp(var(--sp-5), 6vw, var(--sp-12));
 }
 .cs-meta__item { display: flex; flex-direction: column; gap: 4px; }
 .cs-meta__label {

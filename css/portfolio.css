@@ -639,6 +639,15 @@
   cursor: none;
 }
 
+.card--unlinked {
+  cursor: default;
+}
+
+.card--unlinked:hover .card__media img,
+.card--unlinked:hover .card__media video {
+  transform: none;
+}
+
 .card__coming-soon-cursor {
   position: fixed;
   top: 0;

@@ -11,12 +11,328 @@
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css" />
   <link rel="stylesheet" href="./css/case-study.css" />
+  <style>
+    /* annotation chips */
+    .cs-annotation {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+    .cs-annotations {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: var(--sp-3);
+    }
+    .cs-annotations .cs-annotation::before {
+      content: "↗";
+      font-size: 10px;
+      color: var(--color-accent);
+    }
+
+    /* this page: 4 inline meta items */
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--sp-10);
+      row-gap: var(--sp-4);
+    }
+
+
+    /* hero cover — matches work card purple + inset layout */
+    .cs-hero__cover--core {
+      position: relative;
+      background: #995AB8;
+      display: block;
+      border: none;
+    }
+    .cs-hero__cover__media {
+      position: absolute;
+      top: var(--sp-4);
+      left: var(--sp-4);
+      bottom: 0;
+      width: calc(100% - var(--sp-4) * 2);
+      overflow: hidden;
+    }
+    .cs-hero__cover--core img {
+      position: static;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+      border-radius: 0;
+    }
+
+    /* this summary runs long — show it in full (no 2-line clamp) */
+    .cs-hero__summary {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+
+    /* annotated screenshot: chips pinned over the visual */
+    .cs-visual--annotated { position: relative; }
+    .cs-visual--annotated .cs-annotation { position: absolute; box-shadow: 0 2px 8px rgba(28, 27, 25, 0.08); }
+
+    /* eyebrow folded into the title as a kicker line */
+    .cs-h .cs-h__kicker {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+    .cs-h .cs-h__muted {
+      display: inline;
+      color: var(--color-text-tertiary);
+      font-weight: var(--weight-medium);
+    }
+
+    /* Overview: full-width image below split */
+    .cs-visual--overview {
+      aspect-ratio: unset;
+      background: none;
+      border: none;
+      display: block;
+      padding: 0;
+      margin: var(--sp-5) 0 0;
+      width: 100%;
+    }
+    .cs-visual--overview img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+    }
+
+    /* challenge cards */
+    .cs-challenges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+    .cs-challenge {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-4);
+    }
+    .cs-challenge__tag {
+      display: inline-block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      padding: 2px 10px;
+      margin-bottom: var(--sp-2);
+    }
+    .cs-challenge__title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-1);
+    }
+    .cs-challenge__desc {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+    .cs-challenge__visual {
+      border-radius: var(--radius-md);
+      aspect-ratio: 4 / 3;
+      background: var(--color-border-subtle);
+      margin-top: var(--sp-3);
+      overflow: hidden;
+    }
+    .cs-challenge__visual img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* process 3-col grid */
+    .cs-process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+    .cs-process-item__visual {
+      border-radius: var(--radius-md);
+      aspect-ratio: 4 / 3;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+      margin-bottom: var(--sp-2);
+    }
+    .cs-process-item__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-process-item__title {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 4px;
+    }
+    .cs-process-item__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    /* design feature rows */
+    .cs-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(var(--sp-5), 6vw, var(--sp-12));
+      align-items: center;
+      margin-top: var(--sp-8);
+      padding-top: var(--sp-8);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .cs-feature:first-of-type { border-top: none; margin-top: var(--sp-6); }
+    .cs-feature__tag {
+      display: inline-block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      padding: 2px 10px;
+      margin-bottom: var(--sp-2);
+    }
+    .cs-feature__title {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-2);
+      line-height: var(--leading-tight);
+    }
+    .cs-feature__desc {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+    .cs-feature__visual {
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4 / 3;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+    }
+    .cs-feature__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* panel config grid */
+    .cs-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-3);
+      margin-top: var(--sp-6);
+    }
+    .cs-panel-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .cs-panel-item__visual {
+      aspect-ratio: 4 / 3;
+      background: var(--color-border-subtle);
+      overflow: hidden;
+    }
+    .cs-panel-item__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-panel-item__body { padding: var(--sp-2) var(--sp-3) var(--sp-3); }
+    .cs-panel-item__title {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 4px;
+    }
+    .cs-panel-item__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    /* nav evolution 3-col */
+    .cs-evolution {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+    .cs-evolution__label {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-2);
+    }
+    .cs-evolution__visual {
+      border-radius: var(--radius-md);
+      aspect-ratio: 3 / 4;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+    }
+    .cs-evolution__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* slack quote */
+    .cs-quote {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      margin-top: var(--sp-6);
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+    }
+    .cs-quote__visual {
+      flex-shrink: 0;
+      width: 200px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+    }
+    .cs-quote__visual img { width: 100%; display: block; }
+    .cs-quote__text {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-2);
+    }
+    .cs-quote__attr {
+      font-size: var(--text-sm);
+      color: var(--color-text-tertiary);
+    }
+
+    @media (max-width: 760px) {
+      .cs-challenges, .cs-process-grid, .cs-panel-grid, .cs-evolution { grid-template-columns: 1fr; }
+      .cs-feature { grid-template-columns: 1fr; }
+      .cs-quote { flex-direction: column; }
+      .cs-quote__visual { width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ── NAV (shared) ── -->
+  <!-- ── NAV ── -->
   <header class="nav" role="banner">
     <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
       <img src="./assets/images/nav-mark.png" alt="" />
@@ -33,67 +349,66 @@
 
   <main id="main" class="cs">
 
-    <!-- ── HERO: title + one-line summary + cover ── -->
+    <!-- ── 1. HERO ── -->
     <header class="cs-hero">
-      <!-- Cover image slot. Replace the <span> with an <img> when ready. -->
       <div class="container">
-        <div class="cs-hero__cover">
-          <span>Cover image — add later</span>
-          <!-- <img src="./assets/images/core-platform.png" alt="Wayfair Core Platform Redesign" /> -->
+        <div class="cs-hero__cover cs-hero__cover--core">
+          <div class="cs-hero__cover__media">
+            <img src="./assets/images/WF-IA.png" alt="Block Builder 3-panel redesign interface" />
+          </div>
         </div>
       </div>
 
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Wayfair Core Platform Redesign</h1>
-        <p class="cs-hero__summary">Redefined the platform&#x27;s information architecture and core workflows by introducing a new 3-panel design.</p>
+        <p class="cs-hero__summary">Redefined the platform's information architecture and core workflows by introducing a new 3-panel design.</p>
 
-        <!-- ── META: role + timeline, inline ── -->
         <div class="cs-meta">
           <div class="cs-meta__item">
             <span class="cs-meta__label">Role</span>
-            <span class="cs-meta__value">Lead Product Designer · Core Platform</span>
+            <span class="cs-meta__value">Product Designer II</span>
           </div>
-          <div class="cs-meta__group">
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Timeline</span>
-              <span class="cs-meta__value">2024</span>
-            </div>
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Team</span>
-              <span class="cs-meta__value">PM · Engineering · Design</span>
-            </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Team</span>
+            <span class="cs-meta__value">Content Platform</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Timeline</span>
+            <span class="cs-meta__value">Aug 2025–Jan 2026</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Stakeholders</span>
+            <span class="cs-meta__value">PM, EM and Engineers</span>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- ── OUTCOME ── -->
+    <!-- ── 2. IMPACT ── -->
     <section class="cs-section">
       <div class="container cs-split">
-        <p class="cs-eyebrow">Outcome</p>
-        <h2 class="cs-h">What<span>shipped</span></h2>
+        <h2 class="cs-h">Impact</h2>
         <div class="cs-split__body">
-          <p class="cs-lead">A restructured platform built around a 3-panel model that made complex workflows faster to navigate and far easier to scale.</p>
-          <div class="cs-stats" style="margin-top: var(--sp-6);">
+          <div class="cs-stats">
             <div class="cs-stat">
-              <span class="cs-stat__num">3-panel</span>
+              <span class="cs-stat__num">50+</span>
               <div>
-                <h3 class="cs-stat__title">Unified workspace</h3>
-                <p class="cs-stat__desc">Replaced scattered tabs with one coherent inputs / workspace / context layout.</p>
+                <h3 class="cs-stat__title">Content teams</h3>
+                <p class="cs-stat__desc">Now have an editing experience they can navigate without working around it.</p>
               </div>
             </div>
             <div class="cs-stat">
-              <span class="cs-stat__num">IA</span>
+              <span class="cs-stat__num">0</span>
               <div>
-                <h3 class="cs-stat__title">Rebuilt architecture</h3>
-                <p class="cs-stat__desc">Reorganized the platform&#x27;s information architecture around how people actually work.</p>
+                <h3 class="cs-stat__title">Major flow changes after user testing</h3>
+                <p class="cs-stat__desc">Core problem solved right the first time — testing validated direction, not redirected it.</p>
               </div>
             </div>
             <div class="cs-stat">
-              <span class="cs-stat__num">Shipped</span>
+              <span class="cs-stat__num">1</span>
               <div>
-                <h3 class="cs-stat__title">In production</h3>
-                <p class="cs-stat__desc">Rolled out across the platform&#x27;s core workflows.</p>
+                <h3 class="cs-stat__title">AI agent unblocked</h3>
+                <p class="cs-stat__desc">The new IA gives Blocky a stable foundation to build on.</p>
               </div>
             </div>
           </div>
@@ -101,89 +416,276 @@
       </div>
     </section>
 
-    <!-- ── PROBLEM ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Problem</p>
-        <h2 class="cs-h">What wasn't<span>working</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">The platform had grown through “tab overwhelm” — fractured navigation, duplicated entry points, and workflows scattered across disconnected screens.</p>
-          <p class="cs-body">How might we restructure the platform&#x27;s information architecture so complex tasks happen in one coherent space?</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROCESS ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 01</p>
-        <h2 class="cs-h">Mapping<span>the architecture</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">I audited every existing surface and traced how people actually moved through tasks, exposing the real structure hidden under the navigation.</p>
-          <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>Architecture map — visual placeholder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROCESS ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 02</p>
-        <h2 class="cs-h">Designing<span>the 3-panel model</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">I prototyped a three-panel layout — inputs, workspace, and context — so users could stay in one place across the full journey.</p>
-          <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>3-panel prototype — visual placeholder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── SOLUTION ── -->
+    <!-- ── 3. OVERVIEW ── -->
     <section class="cs-section">
       <div class="container">
-        <div class="cs-split" style="margin-bottom: var(--sp-8);">
-          <p class="cs-eyebrow">Solution</p>
-          <h2 class="cs-h">The 3-panel<span>system</span></h2>
-          <p class="cs-body cs-split__body">The shipped redesign organizes the platform into a predictable 3-panel system with consistent patterns across every core workflow.</p>
+        <div class="cs-split">
+          <h2 class="cs-h"><span class="cs-h__kicker">Overview</span>What is Block Builder</h2>
+          <div class="cs-split__body">
+            <p class="cs-body">Block Builder is Wayfair's internal CMS — similar to Squarespace or Webflow but far more complex. It's how 50+ cross-functional teams build, configure, and publish everything customers see on Wayfair.com.</p>
+          </div>
         </div>
-        <div class="cs-visual-grid">
-          <div class="cs-visual"><span>3-panel overview — placeholder</span></div>
-          <div class="cs-visual"><span>Navigation model — placeholder</span></div>
-          <div class="cs-visual"><span>Workflow in context — placeholder</span></div>
-          <div class="cs-visual"><span>Before / after — placeholder</span></div>
+        <div class="cs-visual cs-visual--overview">
+          <img src="./assets/images/what-is-BB.png" alt="How Block Builder powers the Wayfair experience" />
         </div>
       </div>
     </section>
 
-    <!-- ── REFLECTION ── -->
+    <!-- ── 4. PROBLEM ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-3);"><span class="cs-h__kicker">Problem</span>Hard to use on the surface. <span class="cs-h__muted">Broken underneath.</span></h2>
+
+        <p class="cs-body" style="margin-bottom: var(--sp-6);">Block Builder had been growing for years without a shared information architecture. As it scaled to support more teams and workflows, cracks started showing at every level. The team knew something was broken — the PM heard complaints constantly, and a survey confirmed it. But knowing a problem exists and knowing how to fix it are very different things.</p>
+
+        <div class="cs-challenges">
+          <div class="cs-challenge">
+            <span class="cs-challenge__tag">UI Problem</span>
+            <h3 class="cs-challenge__title">Hard to Find Key Actions</h3>
+            <p class="cs-challenge__desc">9 features in one place buried important actions, forcing users to scroll and search — slowing down key workflows.</p>
+            <div class="cs-challenge__visual">
+              <!-- <img src="./assets/images/problem-ui.png" alt="UI problem screenshot" /> -->
+            </div>
+          </div>
+          <div class="cs-challenge">
+            <span class="cs-challenge__tag">User Problem</span>
+            <h3 class="cs-challenge__title">Hard to Stay Oriented</h3>
+            <p class="cs-challenge__desc">Nested drawers and multiple layers made it difficult for users to stay oriented and move efficiently. Every action felt like starting over.</p>
+            <div class="cs-challenge__visual">
+              <!-- <img src="./assets/images/problem-user.png" alt="User problem screenshot" /> -->
+            </div>
+          </div>
+          <div class="cs-challenge">
+            <span class="cs-challenge__tag">System Problem</span>
+            <h3 class="cs-challenge__title">Poor Structure &amp; Limited Scalability</h3>
+            <p class="cs-challenge__desc">No shared IA meant every new feature got bolted on wherever it fit. The platform couldn't grow without getting harder to use.</p>
+            <div class="cs-challenge__visual">
+              <!-- <img src="./assets/images/problem-system.png" alt="System problem screenshot" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. DIRECTION ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-6);"><span class="cs-h__kicker">How I drove direction</span>Finding the path<span>before designing the solution</span></h2>
+
+        <p class="cs-body">My first move wasn't to design. It was to get the team to feel the problem themselves. I ran a dogfooding workshop where we used Block Builder the way our users do. That gave us shared language — not just a list of complaints, but a real understanding of where the experience broke down.</p>
+        <p class="cs-body">From there I went deep on competitor research: Contentful, Sanity, Figma. The pattern was consistent. Fixed left rail for navigation. 3-panel layout for editing. It's the standard for this type of platform because it works. I explored other directions too — a dedicated dashboard page per block felt promising until it didn't. Too many surfaces, too much context switching. The 3-panel layout was structurally cleaner, easier to learn, and easier to extend.</p>
+
+        <div class="cs-process-grid">
+          <div class="cs-process-item">
+            <div class="cs-process-item__visual">
+              <!-- <img src="./assets/images/process-research.png" alt="Competitive research" /> -->
+            </div>
+            <p class="cs-process-item__title">Competitive research</p>
+            <p class="cs-process-item__desc">Identified patterns and interactions across complex platforms</p>
+          </div>
+          <div class="cs-process-item">
+            <div class="cs-process-item__visual">
+              <!-- <img src="./assets/images/process-prototype.png" alt="Prototyping & ideation" /> -->
+            </div>
+            <p class="cs-process-item__title">Prototyping &amp; ideation</p>
+            <p class="cs-process-item__desc">Validated ideas and aligned stakeholders early</p>
+          </div>
+          <div class="cs-process-item">
+            <div class="cs-process-item__visual">
+              <!-- <img src="./assets/images/process-planning.png" alt="Strategic planning" /> -->
+            </div>
+            <p class="cs-process-item__title">Strategic planning</p>
+            <p class="cs-process-item__desc">Defined MVP, Post-MVP, and long-term vision</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. DESIGN ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-3);"><span class="cs-h__kicker">The design</span>Solution — 3 Panel Navigation</h2>
+        <p class="cs-body" style="max-width: 68ch;">I introduced a three-panel layout: a fixed left rail for feature navigation, a central editing workspace, and a right preview panel. The layout stays stable while content changes — so users always know where they are.</p>
+
+        <div class="cs-visual-grid" style="margin-top: var(--sp-6);">
+          <div class="cs-visual">
+            <span>Before — fragmented navigation</span>
+            <!-- <img src="./assets/images/before.png" alt="Old fragmented navigation" /> -->
+          </div>
+          <div class="cs-visual">
+            <span>After — 3-panel structure</span>
+            <!-- <img src="./assets/images/after.png" alt="New 3-panel layout" /> -->
+          </div>
+        </div>
+
+        <!-- Feature rows -->
+        <div class="cs-feature">
+          <div>
+            <span class="cs-feature__tag">UI</span>
+            <h3 class="cs-feature__title">Improved Feature Discoverability</h3>
+            <p class="cs-feature__desc">Reorganized features into a structured sidebar grouped by function. Key actions surfaced higher in the hierarchy — no more scrolling to find basic tools.</p>
+          </div>
+          <div class="cs-feature__visual">
+            <!-- <img src="./assets/images/feature-discoverability.png" alt="Feature discoverability" /> -->
+          </div>
+        </div>
+
+        <div class="cs-feature">
+          <div class="cs-feature__visual">
+            <!-- <img src="./assets/images/feature-navigation.png" alt="Easier navigation" /> -->
+          </div>
+          <div>
+            <span class="cs-feature__tag">User</span>
+            <h3 class="cs-feature__title">Easier Navigation Within the Page</h3>
+            <p class="cs-feature__desc">Replaced nested drawers with menu-based navigation. Users can navigate and edit in one place — reducing context switching and keeping them oriented.</p>
+          </div>
+        </div>
+
+        <div class="cs-feature">
+          <div>
+            <span class="cs-feature__tag">System</span>
+            <h3 class="cs-feature__title">Designed for Scalability</h3>
+            <p class="cs-feature__desc">Introduced a clearer structure to support future features — the platform can grow without getting harder to use.</p>
+          </div>
+          <div class="cs-feature__visual">
+            <!-- <img src="./assets/images/feature-scalability.png" alt="Designed for scalability" /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. PANEL ARCHITECTURE ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-3);"><span class="cs-h__kicker">Flexible panel architecture</span>3 Panels + AI Agent</h2>
+        <p class="cs-body" style="max-width: 68ch;">The design supports multiple panel configurations — not just a fixed 3-panel layout. We also introduced Blocky, an AI agent, as an optional panel. Since we envision AI-assisted workflows as core to the platform's future, it's always accessible.</p>
+
+        <div class="cs-panel-grid">
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-default.png" alt="Default" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">Default</p>
+              <p class="cs-panel-item__desc">Main editing workspace is always visible.</p>
+            </div>
+          </div>
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-feature-main.png" alt="Feature + Main" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">Feature + Main</p>
+              <p class="cs-panel-item__desc">Focus on building and iterating features while editing content.</p>
+            </div>
+          </div>
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-main-preview.png" alt="Main + Preview" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">Main + Preview</p>
+              <p class="cs-panel-item__desc">Edit and preview side by side for quick QA.</p>
+            </div>
+          </div>
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-full.png" alt="Feature + Main + Preview" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">Feature + Main + Preview</p>
+              <p class="cs-panel-item__desc">Full workflow — navigate features, edit content, and preview in one view.</p>
+            </div>
+          </div>
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-ai-main.png" alt="AI agent + Main" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">AI agent + Main</p>
+              <p class="cs-panel-item__desc">Use AI agent while focusing on editing the main content.</p>
+            </div>
+          </div>
+          <div class="cs-panel-item">
+            <div class="cs-panel-item__visual"><!-- <img src="./assets/images/panel-ai-full.png" alt="AI agent + Main + Preview" /> --></div>
+            <div class="cs-panel-item__body">
+              <p class="cs-panel-item__title">AI agent + Main + Preview</p>
+              <p class="cs-panel-item__desc">Generate content with AI while previewing the live experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 8. DEEP DIVE: MENU NAV ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-3);"><span class="cs-h__kicker">Deep dive</span>Menu Navigation</h2>
+        <p class="cs-body" style="max-width: 68ch;">I reimagined the existing feature as a menu-based navigation — reusing what was already there to save engineering time and remove the need for multiple drawers. Through iteration I refined how information is displayed.</p>
+        <ul style="margin-top: var(--sp-3); padding-left: var(--sp-4); display: flex; flex-direction: column; gap: 8px;">
+          <li class="cs-body" style="list-style: disc;">Old: only block titles shown — hard to distinguish between similar blocks</li>
+          <li class="cs-body" style="list-style: disc;">Final: block title as primary label, block type and ID as secondary — hierarchy is clear at a glance</li>
+        </ul>
+
+        <div class="cs-evolution">
+          <div>
+            <p class="cs-evolution__label">Old</p>
+            <div class="cs-evolution__visual">
+              <!-- <img src="./assets/images/nav-old.png" alt="Old navigation" /> -->
+            </div>
+          </div>
+          <div>
+            <p class="cs-evolution__label">V1</p>
+            <div class="cs-evolution__visual">
+              <!-- <img src="./assets/images/nav-v1.png" alt="V1 navigation" /> -->
+            </div>
+          </div>
+          <div>
+            <p class="cs-evolution__label">Final</p>
+            <div class="cs-evolution__visual">
+              <!-- <img src="./assets/images/nav-final.png" alt="Final navigation" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. ALIGNMENT ── -->
+    <section class="cs-section">
+      <div class="container">
+        <h2 class="cs-h" style="margin-bottom: var(--sp-6);"><span class="cs-h__kicker">Stakeholder alignment</span>Getting engineering to pull it in</h2>
+
+        <p class="cs-body">PM and EM were on board early. Engineering was a different story. When I first presented in summer, the project didn't make the winter roadmap — the scope felt too large and the timing wasn't right.</p>
+        <p class="cs-body">What actually changed things wasn't persistence — it was reframing. The redesign wasn't just a usability fix. It was the infrastructure the AI agent needed to exist. Once engineering understood that, they pulled it into the roadmap themselves at the end of the winter cycle. To make it feasible, I scoped it into a clear MVP and post-MVP — giving engineering a path they could commit to without betting everything on one big launch.</p>
+
+        <div class="cs-quote">
+          <div class="cs-quote__visual">
+            <!-- <img src="./assets/images/slack-reaction.png" alt="Slack message on launch" /> -->
+            <div style="background: var(--color-surface); height: 120px; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: var(--text-sm); color: var(--color-text-tertiary);">Slack screenshot</span>
+            </div>
+          </div>
+          <div>
+            <p class="cs-quote__text">"There aren't enough emojis in the world to show how excited I am 🌟 SO COOL!"</p>
+            <p class="cs-quote__attr">— User reaction on launch day</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10. REFLECTION ── -->
     <section class="cs-section">
       <div class="container cs-split">
-        <h2 class="cs-h">Reflection</h2>
-        <div class="cs-split__body cs-reflect">
-          <div class="cs-reflect__item">
-            <h3 class="cs-reflect__title">What I learned</h3>
-            <p class="cs-body">How much information architecture shapes whether a complex product feels simple — structure did more for usability than any single screen.</p>
-          </div>
-          <div class="cs-reflect__item">
-            <h3 class="cs-reflect__title">What I'd do differently</h3>
-            <p class="cs-body">I&#x27;d pressure-test the 3-panel model with users earlier, before investing in high-fidelity flows.</p>
-          </div>
+        <h2 class="cs-h"><span class="cs-h__kicker">Reflection</span>Building in the unknown</h2>
+        <div class="cs-split__body">
+          <p class="cs-body">This project had a lot of ambiguity. I identified the problem and led it end-to-end without a clear roadmap — which meant I had to build conviction before I had permission.</p>
+          <p class="cs-body">What I'd do differently: trust the idea sooner. I had a previous direction fail and let that make me hesitant longer than I should have been. The research was pointing at 3-panel the whole time. Next time I'll move faster from insight to conviction.</p>
         </div>
       </div>
     </section>
 
     <!-- ── PAGER ── -->
     <nav class="container cs-pager" aria-label="Case study navigation">
-      <a class="cs-pager__btn cs-pager__home" href="./work.html">← All work</a>
-      <a class="cs-pager__btn cs-pager__next" href="./case-template-system.html">Next</a>
+      <a class="cs-pager__btn cs-pager__home" href="./work.html">← All Work</a>
+      <a class="cs-pager__btn cs-pager__next" href="#">
+        Next Project
+        <span class="cs-pager__sub">Internal AI Agent</span>
+      </a>
     </nav>
 
   </main>
 
-  <!-- ── FOOTER (shared) ── -->
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>

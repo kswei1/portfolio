@@ -73,7 +73,7 @@
   color: var(--color-text-primary);
   background: white;
   border: 1px solid var(--color-border);
-  border-radius: 9999px;
+  border-radius: 16px;
   outline: none;
   transition: border-color var(--duration) var(--ease),
               box-shadow var(--duration) var(--ease);
@@ -85,7 +85,12 @@
 
 .gate__input:focus {
   border-color: var(--color-text-primary);
-  box-shadow: none;
+  box-shadow: 0 0 0 4px rgba(28, 27, 25, 0.07);
+}
+
+/* the input styles its own focus — no outer ring on top */
+.gate__input:focus-visible {
+  outline: none;
 }
 
 .gate__input.error {
@@ -102,7 +107,7 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-wide);
-  border-radius: 9999px;
+  border-radius: 16px;
   transition: background var(--duration) var(--ease),
               transform var(--duration) var(--ease);
 }
@@ -114,6 +119,27 @@
 
 .gate__submit:active {
   transform: scale(0.98);
+}
+
+/* keyboard focus on the button: same soft halo, no outline ring */
+.gate__submit:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(28, 27, 25, 0.15);
+}
+
+/* ── Success state: stays ink, soft halo, gentle lift ── */
+.gate__submit.is-success {
+  background: var(--color-text-primary);
+  color: white;
+  box-shadow: 0 0 0 4px rgba(28, 27, 25, 0.10);
+  transform: translateY(-1px);
+  pointer-events: none;
+}
+
+/* whole gate fades out while redirecting */
+.gate.is-leaving {
+  opacity: 0;
+  transition: opacity 400ms var(--ease);
 }
 
 .gate__error {
@@ -128,11 +154,10 @@
   opacity: 1;
 }
 
-/* ── Focus visible ── */
+/* ── Focus visible (neutral ink, matches the theme) ── */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-text-secondary);
   outline-offset: 3px;
-  border-radius: 3px;
 }
 
 :focus:not(:focus-visible) {

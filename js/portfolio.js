@@ -145,6 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  document.querySelectorAll('.card--unlinked').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
+
   // Work grid filter tabs
   const workTabs = document.querySelectorAll('.work-tabs__tab');
   const workGrid = document.getElementById('work-grid');

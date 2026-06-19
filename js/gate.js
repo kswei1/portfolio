@@ -16,9 +16,10 @@ form.addEventListener('submit', (e) => {
 
   if (val === PASSWORD) {
     sessionStorage.setItem(SESSION_KEY, 'true');
-    submit.textContent = '✓';
-    submit.style.background = 'var(--color-accent)';
-    setTimeout(() => window.location.replace('./work.html'), 300);
+    submit.textContent = 'Welcome';
+    submit.classList.add('is-success');
+    document.querySelector('.gate').classList.add('is-leaving');
+    setTimeout(() => window.location.replace('./work.html'), 450);
   } else {
     input.classList.add('error');
     error.textContent = 'Incorrect password. Try again.';
