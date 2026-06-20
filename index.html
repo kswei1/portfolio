@@ -10,9 +10,93 @@
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/gate.css" />
+  <style>
+    /* ── Taiwan black bear mark (eyes follow the cursor) ── */
+    .gate__bear {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto var(--sp-5);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFC93C;
+      animation: bearBob 3.4s ease-in-out infinite;
+      will-change: transform;
+    }
+    .gate__bear-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .gate__eye {
+      position: absolute;
+      top: 50.5%;
+      width: 11px;
+      height: 12.5px;
+      border-radius: 50%;
+      background: #FBFAF6;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(28, 27, 25, 0.08);
+      transition: opacity 0.2s ease;
+    }
+    .gate__eye--l { left: 37%; }
+    .gate__eye--r { left: 61%; }
+
+    .gate__pupil {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #1C1B19;
+      transform: translate(var(--px, 0px), var(--py, 0px));
+      transition: transform 0.13s ease-out;
+    }
+
+    /* happy face shown on correct password */
+    .gate__happy {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .gate__bear.is-happy .gate__happy { opacity: 1; }
+    .gate__bear.is-happy .gate__eye  { opacity: 0; }
+    .gate__bear.is-happy { animation: bearPop 0.55s ease; }
+
+    @keyframes bearBob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-4px); }
+    }
+    @keyframes bearPop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gate__bear { animation: none; }
+      .gate__pupil { transition: none; }
+      .gate__bear.is-happy { animation: none; }
+    }
+  </style>
 </head>
 <body>
   <main class="gate">
+    <div class="gate__bear" id="gate-bear" aria-hidden="true">
+      <img class="gate__bear-img" src="./assets/images/tw-bear-yellow.png" alt="" />
+      <span class="gate__eye gate__eye--l"><span class="gate__pupil"></span></span>
+      <span class="gate__eye gate__eye--r"><span class="gate__pupil"></span></span>
+      <svg class="gate__happy" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="29" cy="58" rx="5" ry="3.2" fill="rgba(234,110,135,0.55)" />
+        <ellipse cx="66" cy="58" rx="5" ry="3.2" fill="rgba(234,110,135,0.55)" />
+        <g fill="none" stroke="#FBFAF6" stroke-width="2.6" stroke-linecap="round">
+          <path d="M31 50 Q35.5 44.5 40 50" />
+          <path d="M54 50 Q58.5 44.5 63 50" />
+        </g>
+        <path d="M41.5 64 Q47.5 71 53.5 64" fill="none" stroke="#2A2320" stroke-width="2.4" stroke-linecap="round" />
+      </svg>
+    </div>
     <h1 class="gate__title">This portfolio is password protected</h1>
 
     <form class="gate__form" id="gate-form" novalidate>
@@ -33,5 +117,73 @@
   </main>
 
   <script src="./js/gate.js"></script>
+  <script>
+    (function () {
+      const bear = document.getElementById('gate-bear');
+      const field = document.getElementById('gate-password');
+      if (!bear) return;
+      const pupils = bear.querySelectorAll('.gate__pupil');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const MAX_X = 3;     // horizontal pupil travel
+      const MAX_Y = 3;     // vertical pupil travel
+      const PEEK_Y = 4.5;  // how far down pupils drop when peeking
+
+      let targetX = 0, targetY = 0;   // where pupils want to be
+      let curX = 0, curY = 0;          // eased current position
+      let focused = false, hovered = false;
+      const peeking = () => focused || hovered;
+
+      function apply(x, y) {
+        pupils.forEach((p) => {
+          p.style.setProperty('--px', x.toFixed(2) + 'px');
+          p.style.setProperty('--py', y.toFixed(2) + 'px');
+        });
+      }
+
+      // follow the cursor (relative to the bear's centre)
+      window.addEventListener('mousemove', (e) => {
+        if (peeking()) return;
+        const r = bear.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy) || 1;
+        targetX = (dx / dist) * MAX_X;
+        targetY = (dy / dist) * MAX_Y;
+      }, { passive: true });
+
+      // peek down while interacting with the password field
+      function refresh() {
+        if (peeking()) { targetX = 0; targetY = PEEK_Y; }
+      }
+      if (field) {
+        field.addEventListener('focus', () => { focused = true; refresh(); });
+        field.addEventListener('blur',  () => { focused = false; });
+        field.addEventListener('input', () => { focused = true; refresh(); });
+        field.addEventListener('pointerenter', () => { hovered = true; refresh(); });
+        field.addEventListener('pointerleave', () => { hovered = false; });
+      }
+
+      if (reduced) {
+        // no easing loop — snap pupils to target on relevant events
+        const snap = () => apply(targetX, targetY);
+        window.addEventListener('mousemove', () => { if (!peeking()) snap(); }, { passive: true });
+        ['focus', 'blur', 'input', 'pointerenter', 'pointerleave'].forEach((ev) =>
+          field && field.addEventListener(ev, () => { refresh(); snap(); }));
+        snap();
+        return;
+      }
+
+      // smooth easing loop
+      (function tick() {
+        curX += (targetX - curX) * 0.15;
+        curY += (targetY - curY) * 0.15;
+        apply(curX, curY);
+        requestAnimationFrame(tick);
+      })();
+    })();
+  </script>
 </body>
 </html>

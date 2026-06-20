@@ -18,8 +18,12 @@ form.addEventListener('submit', (e) => {
     sessionStorage.setItem(SESSION_KEY, 'true');
     submit.textContent = 'Welcome';
     submit.classList.add('is-success');
-    document.querySelector('.gate').classList.add('is-leaving');
-    setTimeout(() => window.location.replace('./work.html'), 450);
+    input.blur();
+    // bear breaks into a smile, holds ~1s, then the gate fades out
+    const bear = document.getElementById('gate-bear');
+    if (bear) bear.classList.add('is-happy');
+    setTimeout(() => document.querySelector('.gate').classList.add('is-leaving'), 850);
+    setTimeout(() => window.location.replace('./work.html'), 1250);
   } else {
     input.classList.add('error');
     error.textContent = 'Incorrect password. Try again.';
