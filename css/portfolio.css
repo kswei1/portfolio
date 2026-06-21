@@ -192,7 +192,7 @@
 /* ── Hero two-column layout ── */
 .hero__inner {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--sp-6);
   align-items: center;
 }
