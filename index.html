@@ -50,8 +50,9 @@
       transition: transform 0.13s ease-out;
     }
 
-    /* happy face shown on correct password */
-    .gate__happy {
+    /* expression overlays (happy on success, confused on error) */
+    .gate__happy,
+    .gate__confused {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -63,6 +64,14 @@
     .gate__bear.is-happy .gate__happy { opacity: 1; }
     .gate__bear.is-happy .gate__eye  { opacity: 0; }
     .gate__bear.is-happy { animation: bearPop 0.55s ease; }
+
+    .gate__bear.is-confused .gate__confused { opacity: 1; }
+    .gate__bear.is-confused .gate__eye      { opacity: 0; }
+    .gate__bear.is-confused { animation: bearWobble 0.85s ease-in-out infinite; }
+    @keyframes bearWobble {
+      0%, 100% { transform: rotate(-3deg); }
+      50%      { transform: rotate(3deg); }
+    }
 
     @keyframes bearBob {
       0%, 100% { transform: translateY(0); }
@@ -77,7 +86,8 @@
     @media (prefers-reduced-motion: reduce) {
       .gate__bear { animation: none; }
       .gate__pupil { transition: none; }
-      .gate__bear.is-happy { animation: none; }
+      .gate__bear.is-happy,
+      .gate__bear.is-confused { animation: none; }
     }
   </style>
 </head>
@@ -95,6 +105,18 @@
           <path d="M54 50 Q58.5 44.5 63 50" />
         </g>
         <path d="M41.5 64 Q47.5 71 53.5 64" fill="none" stroke="#2A2320" stroke-width="2.4" stroke-linecap="round" />
+      </svg>
+      <svg class="gate__confused" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <text x="71" y="20" font-family="'DM Sans', sans-serif" font-size="17" font-weight="700" fill="#2A2320" text-anchor="middle">?</text>
+        <g stroke="#1C1B19" stroke-width="2.3" stroke-linecap="round" fill="none">
+          <path d="M30 46 L40 43.5" />
+          <path d="M54 42 L64 45.5" />
+        </g>
+        <circle cx="35.5" cy="51.5" r="3" fill="#FBFAF6" />
+        <circle cx="58.5" cy="51.5" r="3" fill="#FBFAF6" />
+        <circle cx="36.6" cy="52" r="1.5" fill="#1C1B19" />
+        <circle cx="59.6" cy="52" r="1.5" fill="#1C1B19" />
+        <ellipse cx="47.5" cy="67" rx="2.3" ry="2.9" fill="#2A2320" />
       </svg>
     </div>
     <h1 class="gate__title">This portfolio is password protected</h1>

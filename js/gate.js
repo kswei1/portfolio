@@ -30,9 +30,12 @@ form.addEventListener('submit', (e) => {
     error.classList.add('visible');
     input.value = '';
     input.focus();
+    const bear = document.getElementById('gate-bear');
+    if (bear) bear.classList.add('is-confused');
     setTimeout(() => {
       input.classList.remove('error');
       error.classList.remove('visible');
+      if (bear) bear.classList.remove('is-confused');
     }, 3000);
   }
 });
@@ -40,4 +43,6 @@ form.addEventListener('submit', (e) => {
 input.addEventListener('input', () => {
   input.classList.remove('error');
   error.classList.remove('visible');
+  const bear = document.getElementById('gate-bear');
+  if (bear) bear.classList.remove('is-confused');
 });
