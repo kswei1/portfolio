@@ -177,7 +177,7 @@
 
 /* ── Hero meta (Currently / …) ── */
 .hero__meta {
-  margin: var(--sp-2) 0 0;
+  margin: var(--sp-2) 0 var(--sp-4);
   font-size: 1.5rem;
   font-weight: var(--weight-medium);
   color: var(--hero-text-fallback);
