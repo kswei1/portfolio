@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayfair's Internal AI Agent — Katherine Swei</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/portfolio.css" />
+  <link rel="stylesheet" href="./css/case-study.css" />
+  <style>
+    /* cover — same framing as the other covers */
+    .cs-hero__cover--agent {
+      position: relative;
+      background: #5E5DB3;
+      display: block;
+      border: none;
+    }
+    .cs-hero__cover--agent .cs-hero__cover__media {
+      position: absolute;
+      top: var(--sp-4);
+      left: var(--sp-4);
+      bottom: 0;
+      width: calc(100% - var(--sp-4) * 2);
+      overflow: hidden;
+    }
+    .cs-hero__cover--agent img {
+      position: static;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border-radius: 0;
+    }
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--sp-10);
+      row-gap: var(--sp-4);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ── NAV (shared) ── -->
+  <header class="nav" role="banner">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+      <img src="./assets/images/nav-mark.png" alt="" />
+    </a>
+    <div class="nav__inner">
+      <nav aria-label="Primary navigation">
+        <ul class="nav__links">
+          <li><a href="./work.html" class="nav__link active" data-label="Work"><span class="nav__link-text">Work</span></a></li>
+          <li><a href="./about.html" class="nav__link" data-label="About me"><span class="nav__link-text">About me</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── HERO: title + one-line summary + cover ── -->
+    <header class="cs-hero">
+      <div class="container">
+        <div class="cs-hero__cover cs-hero__cover--agent">
+          <div class="cs-hero__cover__media">
+            <img src="./assets/images/blocky-agent.png" alt="Blocky AI Agent greeting and block creation interface" />
+          </div>
+        </div>
+      </div>
+
+      <div class="container cs-hero__head">
+        <h1 class="cs-hero__title">Blocky — Wayfair's Internal AI Agent</h1>
+        <p class="cs-hero__summary">Redesigning Blocky from a chatbot into a structured, extensible main UI — starting new users with a ready-made template so they finally know what to ask.</p>
+
+        <div class="cs-meta">
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Team</span>
+            <span class="cs-meta__value">Content Platform</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Role</span>
+            <span class="cs-meta__value">Product Designer II</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Timeline</span>
+            <span class="cs-meta__value">2026</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Stakeholders</span>
+            <span class="cs-meta__value">PM, EM and Engineers</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── OUTCOME ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Outcome</p>
+        <h2 class="cs-h">What<span>shipped</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-lead">A redesign on two fronts — making Blocky usable today, and structuring it for the main UI it's becoming.</p>
+          <div class="cs-stats" style="margin-top: var(--sp-6);">
+            <div class="cs-stat">
+              <span class="cs-stat__num">1 min → 10 sec</span>
+              <div>
+                <h3 class="cs-stat__title">Task Completion Rate</h3>
+                <p class="cs-stat__desc">In early testing with ~10 people (team + a few users), creating a new block dropped from about a minute to about ten seconds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROBLEM ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Problem</p>
+        <h2 class="cs-h">Becoming the main UI<span>but still shaped like a chatbot</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">Blocky now lets users do in a prompt what used to be a manual process, and it's on track to become the platform's primary surface. But it was still shaped like a chatbot — and a chat box couldn't carry that weight. It broke down in three ways: it <strong>didn't teach</strong> (no guidance at the entry points, so new users didn't know what they could do and new features had nowhere to be announced), it <strong>didn't move</strong> (long back-and-forth conversations to get anywhere), and it <strong>didn't grow</strong> (the design couldn't extend to future features or the product vision).</p>
+          <p class="cs-body">How might we make Blocky usable today — and structure it for what it's becoming?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROCESS · 01 ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Process · 01</p>
+        <h2 class="cs-h">Make it<span>usable now</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">My first bet was a wizard that walked users through pre-set questions, so they'd never face a blank box. In testing it made people faster — but new users still didn't know what a <em>good</em> prompt looked like. Guidance moved them through the steps; it didn't teach them the standard.</p>
+          <p class="cs-body">So instead of asking users to author a prompt, I gave them a ready-made template on first use: click a suggestion and a strong example drops in — showing what good looks like. The wizard wasn't scrapped — I modernized its question UI and scoped it to post-MVP.</p>
+          <div class="cs-visual" style="margin-top: var(--sp-5);">
+            <span>Wizard → template (first use) — visual placeholder</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROCESS · 02 ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Process · 02</p>
+        <h2 class="cs-h">Make it<span>a platform</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">Then I rebuilt Blocky as a structured, extensible surface — a place where new capabilities and entry points can slot in and be surfaced, instead of living behind a blinking cursor. That's the bridge from "fixed for today" to "ready for the main UI it's becoming."</p>
+          <p class="cs-body">It also needed an identity to match. I gave it a metallic dark-purple brand that reads as "AI" and fits the Wayfair theme, plus a bespoke Blocky logo for a bit of personality. Across this work I designed the icon, the color, and the UI, and proposed the design solution and MVP.</p>
+          <div class="cs-visual" style="margin-top: var(--sp-5);">
+            <span>Structured, extensible UI — visual placeholder</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SOLUTION ── -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-split" style="margin-bottom: var(--sp-8);">
+          <p class="cs-eyebrow">Solution</p>
+          <h2 class="cs-h">What Blocky<span>became</span></h2>
+          <p class="cs-body cs-split__body">The redesigned Blocky greets new users with a template so they know what to ask, moves them through tasks with fewer turns, and sits on a structured, extensible foundation ready for the features to come — dressed in a new brand and icon that make it feel like the main surface it's becoming.</p>
+        </div>
+        <div class="cs-visual-grid">
+          <div class="cs-visual"><span>First-use template — placeholder</span></div>
+          <div class="cs-visual"><span>Structured UI &amp; entry points — placeholder</span></div>
+          <div class="cs-visual"><span>Brand color — placeholder</span></div>
+          <div class="cs-visual"><span>Blocky logo — placeholder</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── REFLECTION ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <h2 class="cs-h">Reflection</h2>
+        <div class="cs-split__body cs-reflect">
+          <div class="cs-reflect__item">
+            <h3 class="cs-reflect__title">What I learned</h3>
+            <p class="cs-body">Guidance moves people through a task; a concrete example teaches them the standard. A ready-made template did what a step-by-step wizard couldn't — new users learned what "good" looks like by seeing one. And the best fix for right now shouldn't cap what the product can become: solving for the user in front of me and the surface Blocky is growing into turned out to be the same job.</p>
+          </div>
+          <div class="cs-reflect__item">
+            <h3 class="cs-reflect__title">What I'd do differently</h3>
+            <p class="cs-body">I'd validate the template with more real users before rollout, and instrument adoption from day one — so the win shows up in production, not just in early testing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGER ── -->
+    <nav class="container cs-pager" aria-label="Case study navigation">
+      <a class="cs-pager__btn cs-pager__home" href="./work.html">← All work</a>
+      <a class="cs-pager__btn cs-pager__next" href="./case-template-system.html">Next</a>
+    </nav>
+
+  </main>
+
+  <!-- ── FOOTER (shared) ── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 Katherine Swei</p>
+      <ul class="footer__links">
+        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
+        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="./js/portfolio.js"></script>
+</body>
+</html>

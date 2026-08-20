@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css" />
   <link rel="stylesheet" href="./css/case-study.css" />
+  <style>
+    .cs-hero__cover--template {
+      position: relative;
+      background: #A5B4FC;
+      display: block;
+      border: none;
+    }
+    .cs-hero__cover--template .cs-hero__cover__media {
+      position: absolute;
+      top: var(--sp-4);
+      left: var(--sp-4);
+      bottom: 0;
+      width: calc(100% - var(--sp-4) * 2);
+      overflow: hidden;
+    }
+    .cs-hero__cover--template video {
+      position: static;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+      border-radius: 0;
+    }
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--sp-10);
+      row-gap: var(--sp-4);
+    }
+    .cs-problem-visual {
+      margin-top: var(--sp-5);
+      background: #EFEFEF;
+      padding: var(--sp-2);
+      border-radius: 8px;
+    }
+    .cs-problem-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cs-problem-visual__desc {
+      margin: var(--sp-2) 0 0;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--color-text-secondary);
+    }
+    .cs-difficulties {
+      margin-top: var(--sp-8);
+    }
+    .cs-difficulties__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+    }
+    .cs-difficulty {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-4);
+    }
+    .cs-difficulty__title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-2);
+    }
+    .cs-difficulty__emoji {
+      margin-right: 0.25em;
+    }
+    .cs-difficulty__desc {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .cs-difficulties__grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -37,31 +117,36 @@
     <header class="cs-hero">
       <!-- Cover image slot. Replace the <span> with an <img> when ready. -->
       <div class="container">
-        <div class="cs-hero__cover">
-          <span>Cover image — add later</span>
-          <!-- <img src="./assets/images/template-system.png" alt="Wayfair Internal Template System" /> -->
+        <div class="cs-hero__cover cs-hero__cover--template">
+          <div class="cs-hero__cover__media">
+            <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
+              <source src="./assets/videos/template-system.webm" type="video/webm" />
+              <source src="./assets/videos/template-system.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
 
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Wayfair Internal Template System</h1>
-        <p class="cs-hero__summary">Launched a reusable template system that reduced page creation time by 63% and helped teams scale high-traffic page launches.</p>
+        <p class="cs-hero__summary">Launched a reusable template system that reduced page creation time by 83% and helped teams scale high-traffic page launches.</p>
 
-        <!-- ── META: role + timeline, inline ── -->
         <div class="cs-meta">
           <div class="cs-meta__item">
-            <span class="cs-meta__label">Role</span>
-            <span class="cs-meta__value">Product Designer</span>
+            <span class="cs-meta__label">Team</span>
+            <span class="cs-meta__value">Content Platform</span>
           </div>
-          <div class="cs-meta__group">
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Timeline</span>
-              <span class="cs-meta__value">2024</span>
-            </div>
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Team</span>
-              <span class="cs-meta__value">Cross-team · Design &amp; Engineering</span>
-            </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Role</span>
+            <span class="cs-meta__value">Product Designer II</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Timeline</span>
+            <span class="cs-meta__value">April 2025 – August 2025</span>
+          </div>
+          <div class="cs-meta__item">
+            <span class="cs-meta__label">Stakeholders</span>
+            <span class="cs-meta__value">PM, EM and Engineers</span>
           </div>
         </div>
       </div>
@@ -89,6 +174,13 @@
                 <p class="cs-stat__desc">per quarter to be reinvested into creating more pages, driving traffic &amp; revenue.</p>
               </div>
             </div>
+            <div class="cs-stat">
+              <span class="cs-stat__num">11.3%</span>
+              <div>
+                <h3 class="cs-stat__title">Adoption</h3>
+                <p class="cs-stat__desc">within the first month of launch</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -96,12 +188,31 @@
 
     <!-- ── PROBLEM ── -->
     <section class="cs-section">
-      <div class="container cs-split">
+      <div class="container">
         <p class="cs-eyebrow">Problem</p>
-        <h2 class="cs-h">What wasn't<span>working</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">Teams rebuilt similar pages from scratch every launch — slow, inconsistent, and error-prone, especially under high-traffic deadlines.</p>
-          <p class="cs-body">How might we give teams a reusable system to launch pages quickly without sacrificing quality or consistency?</p>
+        <h2 class="cs-h" style="margin-bottom: var(--sp-3);">Building a Single Page Was Slow, Complex, &amp; Unpredictable</h2>
+        <p class="cs-body">Content managers had to manually assemble 8–22 blocks to create a single campaign page, navigating nearly 1,000 block types with little guidance. Finding the right components and configuring nested structures was time-consuming and error-prone, especially for new or infrequent users.</p>
+        <p class="cs-body">On top of that, there was no clear way to preview the final output before publishing, making the process feel uncertain and frustrating.</p>
+        <div class="cs-problem-visual">
+          <img src="./assets/images/bb-template-problem.png" alt="Block Builder paginated blocks mapped to components on a Wayfair campaign page" />
+          <p class="cs-problem-visual__desc">Every block has a block type (banner, collection, etc); 1 block = 1 component on a page.</p>
+        </div>
+        <div class="cs-difficulties">
+          <h2 class="cs-h" style="margin-bottom: var(--sp-5);">Why was it so difficult?</h2>
+          <div class="cs-difficulties__grid">
+            <div class="cs-difficulty">
+              <h3 class="cs-difficulty__title"><span class="cs-difficulty__emoji" aria-hidden="true">😵‍💫</span> Overwhelming Complexity</h3>
+              <p class="cs-difficulty__desc">Content managers had to identify the correct block type from nearly 1,000 available options, often without clear guidance.</p>
+            </div>
+            <div class="cs-difficulty">
+              <h3 class="cs-difficulty__title"><span class="cs-difficulty__emoji" aria-hidden="true">⏳</span> Time-Consuming Setup</h3>
+              <p class="cs-difficulty__desc">A single page could require configuring 8–22 individual blocks, many containing multiple nested layers.</p>
+            </div>
+            <div class="cs-difficulty">
+              <h3 class="cs-difficulty__title"><span class="cs-difficulty__emoji" aria-hidden="true">❓</span> Flying Blind</h3>
+              <p class="cs-difficulty__desc">Users couldn't confidently verify how content would appear until after publishing, resulting in constant back-and-forth revisions.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
