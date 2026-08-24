@@ -42,6 +42,132 @@
       column-gap: var(--sp-10);
       row-gap: var(--sp-4);
     }
+    /* at-a-glance summary grid */
+    .cs-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px) clamp(40px, 8vw, 120px);
+    }
+    .cs-summary__label {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.02em;
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-2);
+    }
+    .cs-summary p.cs-body { margin: 0; }
+    .cs-summary__list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      color: var(--color-text-secondary);
+      font-size: var(--text-lg);
+      line-height: var(--leading-normal);
+    }
+    .cs-summary__list li { margin: 0.25em 0; }
+
+    /* before / after pair */
+    .cs-beforeafter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 3vw, 32px);
+      margin-top: clamp(32px, 5vw, 64px);
+    }
+    .cs-beforeafter figure { margin: 0; }
+    .cs-ba__media {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .cs-ba__media img { width: 100%; height: 100%; object-fit: contain; padding: clamp(12px, 2vw, 24px); }
+    .cs-ba__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .cs-beforeafter figcaption { margin-top: var(--sp-2); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+    .cs-beforeafter figcaption span { color: var(--color-text-tertiary); font-weight: var(--weight-regular); }
+    @media (max-width: 640px) {
+      .cs-summary, .cs-beforeafter { grid-template-columns: 1fr; }
+    }
+
+    /* numbered principles */
+    .cs-principles {
+      margin: var(--sp-5) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+    .cs-principle {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--sp-3);
+      padding: var(--sp-4) 0;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .cs-principle__num {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-accent);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.3;
+    }
+    .cs-principle__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 4px; }
+    .cs-principle__desc { color: var(--color-text-secondary); margin: 0; }
+
+    /* pull quote */
+    .cs-quote {
+      font-size: clamp(var(--text-xl), 2.4vw, var(--text-2xl));
+      font-weight: var(--weight-medium);
+      line-height: var(--leading-snug);
+      color: var(--color-text-primary);
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--sp-4);
+      margin: var(--sp-5) 0;
+    }
+    /* from → to comparison */
+    .cs-fromto {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      gap: var(--sp-3);
+      margin-top: var(--sp-6);
+    }
+    .cs-fromto__item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--sp-3) var(--sp-4);
+    }
+    .cs-fromto__item--to { background: var(--color-accent-muted); border-color: #E3CFF3; }
+    .cs-fromto__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-tertiary); margin: 0 0 4px; }
+    .cs-fromto__item--to .cs-fromto__k { color: var(--color-accent); }
+    .cs-fromto__v { font-size: var(--text-lg); color: var(--color-text-primary); margin: 0; line-height: var(--leading-snug); }
+    .cs-fromto__arrow { align-self: center; color: var(--color-text-tertiary); font-size: var(--text-2xl); }
+    @media (max-width: 640px) {
+      .cs-fromto { grid-template-columns: 1fr; }
+      .cs-fromto__arrow { transform: rotate(90deg); justify-self: center; }
+    }
+
+    /* old-design image, centered on a grey backdrop */
+    .cs-old-blocky {
+      margin-top: var(--sp-6);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(16px, 3vw, 40px);
+      display: grid;
+      place-items: center;
+    }
+    .cs-old-blocky img {
+      max-width: 80%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+    @media (max-width: 640px) {
+      .cs-old-blocky img { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -70,7 +196,7 @@
       <div class="container">
         <div class="cs-hero__cover cs-hero__cover--agent">
           <div class="cs-hero__cover__media">
-            <img src="./assets/images/blocky-agent.png" alt="Blocky AI Agent greeting and block creation interface" />
+            <img src="./assets/images/Blocky.png" alt="Blocky AI Agent interface" />
           </div>
         </div>
       </div>
@@ -100,22 +226,48 @@
       </div>
     </header>
 
-    <!-- ── OUTCOME ── -->
+    <!-- ── AT A GLANCE ── -->
     <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Outcome</p>
-        <h2 class="cs-h">What<span>shipped</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-lead">A redesign on two fronts — making Blocky usable today, and structuring it for the main UI it's becoming.</p>
-          <div class="cs-stats" style="margin-top: var(--sp-6);">
-            <div class="cs-stat">
-              <span class="cs-stat__num">1 min → 10 sec</span>
-              <div>
-                <h3 class="cs-stat__title">Task Completion Rate</h3>
-                <p class="cs-stat__desc">In early testing with ~10 people (team + a few users), creating a new block dropped from about a minute to about ten seconds.</p>
-              </div>
-            </div>
+      <div class="container">
+        <div class="cs-summary">
+          <div>
+            <p class="cs-summary__label">Problems</p>
+            <p class="cs-body">Blocky was a chatbot-shaped tool becoming the platform's main UI — it didn't guide users, didn't drive action, and couldn't scale to new workflows.</p>
           </div>
+          <div>
+            <p class="cs-summary__label">My role</p>
+            <ul class="cs-summary__list">
+              <li>Led the redesign end-to-end</li>
+              <li>Designed the Blocky icon, brand color &amp; UI</li>
+              <li>Proposed the design solution &amp; MVP</li>
+            </ul>
+          </div>
+          <div>
+            <p class="cs-summary__label">Solution</p>
+            <p class="cs-body">A first-use template that shows users what to ask, on a structured, extensible UI ready to grow into the platform's main surface.</p>
+          </div>
+          <div>
+            <p class="cs-summary__label">Impact</p>
+            <ul class="cs-summary__list">
+              <li>Creating a block: ~1 min → ~10 sec (early testing, ~10 people)</li>
+              <li>Set the foundation for Blocky as the platform's main UI</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-beforeafter">
+          <figure>
+            <div class="cs-ba__media">
+              <img src="./assets/images/blocky-before.png" alt="The old chatbot-style Blocky design" />
+            </div>
+            <figcaption>Before <span>· chat-first Blocky</span></figcaption>
+          </figure>
+          <figure>
+            <div class="cs-ba__media">
+              <span>After — new design (add image)</span>
+            </div>
+            <figcaption>After <span>· redesigned Blocky</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -126,8 +278,12 @@
         <p class="cs-eyebrow">Problem</p>
         <h2 class="cs-h">Blocky was becoming the main UI<span>but still shaped like a chatbot</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Blocky now lets users do in a prompt what used to be a manual process, and it's on track to become the platform's primary surface. But it was still shaped like a chatbot — and a chat box couldn't carry that weight. It broke down in three ways: it <strong>didn't teach</strong> (no guidance at the entry points, so new users didn't know what they could do and new features had nowhere to be announced), it <strong>didn't move</strong> (long back-and-forth conversations to get anywhere), and it <strong>didn't grow</strong> (the design couldn't extend to future features or the product vision).</p>
-          <p class="cs-body">How might we make Blocky usable today — and structure it for what it's becoming?</p>
+          <p class="cs-body">Blocky now lets users do in a prompt what used to be a manual process, and it's on track to become the platform's primary surface. But it was still shaped like a chatbot — and a chat box couldn't carry that weight. It broke down in three ways: it <strong>didn't guide</strong> (no clear entry points left users unsure what Blocky could do or where to start), it <strong>didn't drive action</strong> (long back-and-forth conversations made it difficult to turn intent into action), and it <strong>didn't scale</strong> (the chat-first model couldn't easily extend to new capabilities and workflows).</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="cs-old-blocky">
+          <img src="./assets/images/old-blocky-design.png" alt="The old chatbot-style Blocky design, annotated with its problems" />
         </div>
       </div>
     </section>
@@ -135,11 +291,27 @@
     <!-- ── PROCESS · 01 ── -->
     <section class="cs-section">
       <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 01</p>
-        <h2 class="cs-h">Make it<span>usable now</span></h2>
+        <p class="cs-eyebrow">Design Exploration</p>
+        <h2 class="cs-h">Make it easier<span>to start</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">My first bet was a wizard that walked users through pre-set questions, so they'd never face a blank box. In testing it made people faster — but new users still didn't know what a <em>good</em> prompt looked like. Guidance moved them through the steps; it didn't teach them the standard.</p>
-          <p class="cs-body">So instead of asking users to author a prompt, I gave them a ready-made template on first use: click a suggestion and a strong example drops in — showing what good looks like. The wizard wasn't scrapped — I modernized its question UI and scoped it to post-MVP.</p>
+          <p class="cs-body">I first explored a guided wizard that would help users move from an empty chat box to a completed task.</p>
+          <p class="cs-body">Instead of asking users to figure everything out themselves, the wizard broke the experience into smaller questions and guided them toward the right action.</p>
+          <p class="cs-body">But there was a problem. Testing showed that guidance alone wasn't enough. Users could follow the flow, but they still struggled with a fundamental question:</p>
+          <p class="cs-quote">"What should I actually ask Blocky?"</p>
+          <p class="cs-body">The problem wasn't just knowing where to start. Users also needed to understand what a good prompt looked like.</p>
+          <p class="cs-body">So I changed the approach. Rather than teaching users how to formulate a prompt step by step, I explored teaching by example.</p>
+          <p class="cs-body">I introduced ready-made templates through suggested prompts, giving users a concrete starting point they could use, adapt, and build from.</p>
+          <div class="cs-fromto">
+            <div class="cs-fromto__item">
+              <p class="cs-fromto__k">From</p>
+              <p class="cs-fromto__v">Guide users through questions</p>
+            </div>
+            <div class="cs-fromto__arrow" aria-hidden="true">→</div>
+            <div class="cs-fromto__item cs-fromto__item--to">
+              <p class="cs-fromto__k">To</p>
+              <p class="cs-fromto__v">Show users what they can accomplish</p>
+            </div>
+          </div>
           <div class="cs-visual" style="margin-top: var(--sp-5);">
             <span>Wizard → template (first use) — visual placeholder</span>
           </div>
@@ -150,13 +322,39 @@
     <!-- ── PROCESS · 02 ── -->
     <section class="cs-section">
       <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 02</p>
-        <h2 class="cs-h">Make it<span>a platform</span></h2>
+        <p class="cs-eyebrow">Shaping the Direction</p>
+        <h2 class="cs-h">Turning exploration<span>into product direction</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Then I rebuilt Blocky as a structured, extensible surface — a place where new capabilities and entry points can slot in and be surfaced, instead of living behind a blinking cursor. That's the bridge from "fixed for today" to "ready for the main UI it's becoming."</p>
-          <p class="cs-body">It also needed an identity to match. I gave it a metallic dark-purple brand that reads as "AI" and fits the Wayfair theme, plus a bespoke Blocky logo for a bit of personality. Across this work I designed the icon, the color, and the UI, and proposed the design solution and MVP.</p>
+          <p class="cs-body">The explorations revealed that Blocky needed to be more than a better chat experience.</p>
+          <p class="cs-body">If Blocky was going to become a primary surface for AI-powered workflows, it needed to help users discover, act, and grow with the product.</p>
+          <p class="cs-body">I brought these explorations into conversations with PM and engineering to align on the experience we wanted to build, what was feasible for the MVP, and how the interaction model could support future capabilities.</p>
+          <p class="cs-body">Three principles shaped the direction:</p>
+          <div class="cs-principles">
+            <div class="cs-principle">
+              <span class="cs-principle__num">01</span>
+              <div>
+                <h3 class="cs-principle__title">Make it easier to start</h3>
+                <p class="cs-principle__desc">Give users a concrete starting point instead of asking them to begin with a blank prompt.</p>
+              </div>
+            </div>
+            <div class="cs-principle">
+              <span class="cs-principle__num">02</span>
+              <div>
+                <h3 class="cs-principle__title">Help users move forward</h3>
+                <p class="cs-principle__desc">Turn open-ended conversations into clearer, more actionable workflows with less back-and-forth.</p>
+              </div>
+            </div>
+            <div class="cs-principle">
+              <span class="cs-principle__num">03</span>
+              <div>
+                <h3 class="cs-principle__title">Design for what's next</h3>
+                <p class="cs-principle__desc">Create a flexible interaction model where new capabilities could be introduced without redesigning the experience each time.</p>
+              </div>
+            </div>
+          </div>
+          <p class="cs-body">The goal wasn't to add more structure for the sake of structure. It was to put the right amount of guidance around AI so users could stay in control without needing to know how the system works.</p>
           <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>Structured, extensible UI — visual placeholder</span>
+            <span>Interaction model — visual placeholder</span>
           </div>
         </div>
       </div>
@@ -167,7 +365,7 @@
       <div class="container">
         <div class="cs-split" style="margin-bottom: var(--sp-8);">
           <p class="cs-eyebrow">Solution</p>
-          <h2 class="cs-h">What Blocky<span>became</span></h2>
+          <h2 class="cs-h">From chatbot<span>to AI workspace</span></h2>
           <p class="cs-body cs-split__body">The redesigned Blocky greets new users with a template so they know what to ask, moves them through tasks with fewer turns, and sits on a structured, extensible foundation ready for the features to come — dressed in a new brand and icon that make it feel like the main surface it's becoming.</p>
         </div>
         <div class="cs-visual-grid">
