@@ -103,6 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
       v.muted = true;
       v.loop = true;
       v.playsInline = true;
+      const rate = Number(v.dataset.playbackRate);
+      if (rate > 0) v.playbackRate = rate;
       observer.observe(v);
     });
   }

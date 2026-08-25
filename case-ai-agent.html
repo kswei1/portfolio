@@ -165,6 +165,12 @@
       display: block;
       border-radius: 8px;
     }
+    .cs-old-blocky--wide {
+      padding: clamp(10px, 1.5vw, 16px) clamp(12px, 2vw, 24px);
+    }
+    .cs-old-blocky--wide img {
+      max-width: 100%;
+    }
     @media (max-width: 640px) {
       .cs-old-blocky img { max-width: 100%; }
     }
@@ -312,9 +318,14 @@
               <p class="cs-fromto__v">Show users what they can accomplish</p>
             </div>
           </div>
-          <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>Wizard → template (first use) — visual placeholder</span>
-          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="cs-old-blocky cs-old-blocky--wide">
+          <img
+            src="./assets/images/Blocky-design-exploration.png"
+            alt="Design exploration: guided wizard evolving into ready-made templates for first use"
+          />
         </div>
       </div>
     </section>

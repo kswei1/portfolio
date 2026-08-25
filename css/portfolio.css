@@ -809,6 +809,26 @@
   background: #5E5DB3;
 }
 
+.card__media--video-blocky {
+  background: #5E5DB3;
+}
+
+.card__media--video-blocky video {
+  position: absolute;
+  top: 20px;
+  left: var(--sp-3);
+  width: calc(100% - var(--sp-3) * 2);
+  height: calc(100% - 20px);
+  object-fit: cover;
+  object-position: top center;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+.card:hover .card__media--video-blocky video {
+  transform: scale(1.03);
+}
+
 .card__media--image-blocky img {
   position: absolute;
   top: 20px;
