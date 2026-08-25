@@ -180,13 +180,9 @@
   margin: var(--sp-2) 0 var(--sp-4);
   font-size: 1.5rem;
   font-weight: var(--weight-medium);
-  color: var(--hero-text-fallback);
-  background-image: var(--grain-img),
-    linear-gradient(var(--hero-text-fallback), var(--hero-text-fallback));
-  background-size: 160px 160px;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: var(--tracking-tight);
+  /* quieter grey — distinct from the gradient headline, passes WCAG AA (~5.2:1 on --color-bg) */
+  color: var(--color-text-secondary);
 }
 
 /* ── Hero two-column layout ── */
