@@ -56,14 +56,43 @@
     /* 3-up cards */
     .g-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px,3vw,32px); margin-top: var(--sp-6); }
     .g-card__n { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: #0274FF; margin: 0 0 6px; font-variant-numeric: tabular-nums; }
+    .g-card__emoji { display: block; font-size: 2rem; line-height: 1; margin: 0 0 12px; }
     .g-card__t { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
     .g-card__d { color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 720px) { .g-cols { grid-template-columns: 1fr; } }
 
+    /* design explorations */
+    .g-explore { display: flex; flex-direction: column; }
+    .g-explore .g-card__t { margin: var(--sp-4) 0 6px; }
+    .g-verdict { margin: 0; font-weight: var(--weight-medium); }
+    .g-verdict--yes { color: #188038; }
+    .g-verdict--no { color: var(--color-text-tertiary); }
+
+    /* impact + future directions */
+    .g-impact { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+    .g-impact__h { font-size: clamp(28px, 3.6vw, 42px); font-weight: var(--weight-semibold); line-height: var(--leading-tight); letter-spacing: -0.02em; color: var(--color-text-primary); margin: var(--sp-3) 0 var(--sp-6); }
+    .g-impact__q { font-style: italic; color: var(--color-text-secondary); margin: 0; max-width: 54ch; }
+    .g-impact__q + .g-impact__q { margin-top: var(--sp-4); }
+    .g-impact__media img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
+    @media (max-width: 820px) { .g-impact { grid-template-columns: 1fr; } }
+
     /* solution pillars + media */
     .g-pillar { margin-top: var(--sp-10); }
-    .g-media { margin-top: var(--sp-5); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); padding: clamp(12px,2vw,24px); overflow: hidden; }
+    .g-media { margin-top: 20px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); padding: clamp(12px,2vw,24px); overflow: hidden; }
     .g-media img { display: block; width: 100%; height: auto; border-radius: 8px; }
+    .g-media--journey { background: #FCFCFB; max-width: 900px; margin-inline: auto; }
+    .g-media--light { background: #FCFCFB; }
+    .g-trust-row { margin-top: 20px; display: grid; grid-template-columns: minmax(0, 260px) 1fr; gap: var(--sp-4); align-items: center; }
+    .g-trust-row .g-media { margin-top: 0; }
+    .g-trust-row video { display: block; width: 100%; height: auto; border-radius: 8px; }
+    @media (max-width: 640px) { .g-trust-row { grid-template-columns: 1fr; } }
+    /* video left, image right — video matches image height */
+    .g-media-row { margin-top: 20px; display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: var(--sp-4); align-items: stretch; }
+    .g-media-row .g-media { margin-top: 0; display: flex; align-items: center; justify-content: center; }
+    .g-media-row .g-media--vid { margin-top: 0; display: flex; align-items: center; justify-content: center; }
+    .g-media-row .g-media--vid video { display: block; width: auto; max-width: 100%; height: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+    .g-media-row .g-media--img img { width: 100%; height: auto; }
+    @media (max-width: 640px) { .g-media-row { grid-template-columns: 1fr; } .g-media-row .g-media--vid video { width: 100%; height: auto; } }
     .g-placeholder { margin-top: var(--sp-5); border-radius: var(--radius-lg); aspect-ratio: 16/9; background: var(--color-surface); border: 1px dashed var(--color-border); display: grid; place-items: center; color: var(--color-text-tertiary); font-size: var(--text-sm); font-weight: var(--weight-medium); text-align: center; padding: var(--sp-4); }
 
     @media (max-width: 640px) { .cs-summary { grid-template-columns: 1fr; } }
@@ -175,10 +204,10 @@
               <p class="g-card__d">Static listings feel impersonal and uninspiring compared to short-form video.</p>
             </div>
           </div>
+          <div class="g-media g-media--light" style="margin-top: var(--sp-6);">
+            <img src="./assets/images/GM-discovery.png" alt="Gen Z user journey: passive discovery, active discovery, decide, navigate, connect & remember" />
+          </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="g-placeholder" style="aspect-ratio: 21/9;">Gen Z journey map — passive discovery → connect &amp; remember (add later)</div>
       </div>
     </section>
 
@@ -190,11 +219,6 @@
         <div class="cs-split__body">
           <p class="cs-body">With discovery as the focus, we narrowed Google's broad ask into a sharper, more actionable problem.</p>
           <div class="g-reframe">
-            <div class="g-reframe__row">
-              <p class="g-reframe__k">The ask from Google Maps</p>
-              <p class="g-reframe__ask">"How might we create a more realistic map by introducing dynamic data in a way that benefits Gen Z communities?"</p>
-            </div>
-            <div class="g-reframe__arrow" aria-hidden="true">↓</div>
             <div class="g-reframe__row">
               <p class="g-reframe__k">My reframe</p>
               <p class="g-reframe__new">"How might we give Gen Z real-time information to discover <strong>outdoor activity communities</strong> in <strong>unfamiliar places</strong>?"</p>
@@ -212,19 +236,39 @@
         <div class="cs-split__body">
           <div class="g-cols">
             <div class="g-card">
+              <span class="g-card__emoji" aria-hidden="true">🔍</span>
               <h3 class="g-card__t" style="color:#4285F4;">Streamline discovery</h3>
               <p class="g-card__d">Make finding communities feel effortless, not like a search task.</p>
             </div>
             <div class="g-card">
+              <span class="g-card__emoji" aria-hidden="true">🤝</span>
               <h3 class="g-card__t" style="color:#EA4335;">Build trust</h3>
               <p class="g-card__d">Surface real-time signals that help Gen Z decide whether to join.</p>
             </div>
             <div class="g-card">
+              <span class="g-card__emoji" aria-hidden="true">💖</span>
               <h3 class="g-card__t" style="color:#F9AB00;">Deliver personalization</h3>
               <p class="g-card__d">Tie discovery to the hobbies and interests people already have.</p>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ── DESIGN EXPLORATIONS ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Design explorations</p>
+        <h2 class="cs-h">Taking inspiration from<span>social media and Gen Z</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">I explored three concepts, each borrowing from how Gen Z already discovers things, then weighed them against effort, trust, and community.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="g-media g-media--light">
+          <img src="./assets/images/GM-design-explorations.png" alt="Three explorations: community view with group pins (chosen), AI visual search, and AI-generated recommendation list" />
+        </div>
+        <p class="cs-body" style="max-width: 68ch; margin-top: var(--sp-6);">I focused on the <strong>community view</strong> — it made discovery easiest and felt genuinely community-driven. The AI search still demanded manual effort, and AI-generated lists felt less authentic, so the community view struck the right balance for Gen Z.</p>
       </div>
     </section>
 
@@ -240,34 +284,59 @@
         <div class="g-pillar">
           <h3 class="g-card__t" style="font-size: var(--text-xl);">1 · Design for discovery</h3>
           <p class="cs-body" style="max-width: 68ch;">Research revealed discovery starts with existing hobbies, not random browsing — someone who plays basketball weekly moves and asks "how do I find a group here?" So I expanded entry points: an activity pin on the map, search results, elevated results, and integration on place detail pages.</p>
-          <div class="g-placeholder">Expanding entry points — 4 iOS screens (add later)</div>
+          <div class="g-media g-media--light">
+            <img src="./assets/images/GM-design-for-discovery.png" alt="Expanding entry points for discovery: activity pin, search results, elevated search results, and details page integration" />
+          </div>
         </div>
 
         <div class="g-pillar">
-          <h3 class="g-card__t" style="font-size: var(--text-xl);">2 · Design for trust</h3>
-          <p class="cs-body" style="max-width: 68ch;">To decide whether to join, Gen Z needs the right real-time data. I ran a card sort across nine metadata points; four rose to the top — frequency of meeting times, number of people, location, and contact info — and shaped the group profile around them.</p>
-          <div class="g-placeholder">Real-time data card sort → group profile (add later)</div>
+          <h3 class="g-card__t" style="font-size: var(--text-xl);">2 · Design for trust <span style="color: var(--color-text-tertiary); font-weight: var(--weight-regular);">— Surfacing the right details</span></h3>
+          <p class="cs-body" style="max-width: 68ch; margin-top: var(--sp-2);">To decide whether to join, Gen Z needs the right real-time data. I ran a card sort across nine metadata points; four rose to the top — frequency of meeting times, number of people, location, and contact info — and shaped the group profile around them.</p>
+          <div class="g-media-row">
+            <div class="g-media g-media--light g-media--vid">
+              <video src="./assets/videos/gm-trust.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="g-media g-media--light g-media--img">
+              <img src="./assets/images/GM-design-for-trust-1.png" alt="Card sort of nine real-time metadata points, ranked by importance" />
+            </div>
+          </div>
+          <div class="g-media g-media--light" style="margin-top: var(--sp-4);">
+            <img src="./assets/images/GM-design-for-trust-2.png" alt="Group profile shaped around the top real-time details" />
+          </div>
+          <div class="g-media g-media--light" style="margin-top: var(--sp-4);">
+            <img src="./assets/images/GM-design-for-trust-3.png" alt="Real-time trust signals in the Group Pin experience" />
+          </div>
         </div>
 
         <div class="g-pillar">
-          <h3 class="g-card__t" style="font-size: var(--text-xl);">3 · Design for personalization</h3>
+          <h3 class="g-card__t" style="font-size: var(--text-xl);">3 · Design for personalization <span style="color: var(--color-text-tertiary); font-weight: var(--weight-regular);">— Personalized discovery along the journey</span></h3>
           <p class="cs-body" style="max-width: 68ch;">Discovery is tied to what people already love to do — surfacing communities that match their interests and habits so the map feels made for them.</p>
-          <div class="g-placeholder">Personalized recommendations (add later)</div>
+          <div class="g-media-row">
+            <div class="g-media g-media--light g-media--vid">
+              <video src="./assets/videos/gm-personalization.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="g-media g-media--light g-media--img">
+              <img src="./assets/images/GM-design-for-personalization.png" alt="Personalized 'Suggestions along the way' recommendations based on the user's interests" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── TESTING ── -->
+    <!-- ── IMPACT & FUTURE DIRECTIONS ── -->
     <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">From concept to testing</p>
-        <h2 class="cs-h">Evaluating the concept<span>with users</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">I walked Gen Z users through the full journey — select a pin, browse a list, check the detail page, navigate, and set a reminder to connect — to pressure-test whether Group Pin made discovery feel effortless and trustworthy.</p>
-        </div>
-      </div>
       <div class="container">
-        <div class="g-placeholder" style="aspect-ratio: 21/9;">Journey walkthrough — 5 iOS screens (add later)</div>
+        <div class="g-impact">
+          <div class="g-impact__text">
+            <p class="cs-eyebrow">Impact and future directions</p>
+            <h2 class="g-impact__h">Gen Z loves it — many said they'd switch to Google Maps from competitors if these features were added.</h2>
+            <p class="g-impact__q">"I'm an Apple user, but if Google Maps has this feature, I'll switch to Google Maps." — Gen Z UW student</p>
+            <p class="g-impact__q">"Congratulations on a job extremely well done! You left our team inspired… with your thoughtful, considerate, and iterative design proposal." — Staff UX Design Lead &amp; Manager at Google</p>
+          </div>
+          <div class="g-impact__media">
+            <img src="./assets/images/GM-pic.png" alt="The capstone team outside the Google office" />
+          </div>
+        </div>
       </div>
     </section>
 
