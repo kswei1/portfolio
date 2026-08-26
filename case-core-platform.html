@@ -45,6 +45,54 @@
       row-gap: var(--sp-4);
     }
 
+    /* at-a-glance summary grid */
+    .cs-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px);
+    }
+    .cs-summary__label {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.02em;
+      color: var(--color-text-primary);
+      margin: 0 0 8px;
+    }
+    .cs-summary p.cs-body { margin: 0; }
+    .cs-summary__list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      color: var(--color-text-secondary);
+      font-size: var(--text-lg);
+      line-height: var(--leading-normal);
+    }
+    .cs-summary__list li { margin: 0.25em 0; }
+    @media (max-width: 640px) { .cs-summary { grid-template-columns: 1fr; } }
+
+    /* before / after pair */
+    .cs-beforeafter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 3vw, 32px);
+      margin-top: clamp(32px, 5vw, 64px);
+    }
+    .cs-beforeafter figure { margin: 0; }
+    .cs-ba__media {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .cs-ba__media img { width: 100%; height: 100%; object-fit: contain; padding: clamp(12px, 2vw, 24px); }
+    .cs-ba__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .cs-beforeafter figcaption { margin-top: var(--sp-2); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+    .cs-beforeafter figcaption span { color: var(--color-text-tertiary); font-weight: var(--weight-regular); }
+    @media (max-width: 640px) { .cs-beforeafter { grid-template-columns: 1fr; } }
+
 
     /* hero cover — matches work card purple + inset layout */
     .cs-hero__cover--core {
@@ -360,56 +408,49 @@
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Wayfair Core Platform Redesign</h1>
         <p class="cs-hero__summary">Redefined the platform's information architecture and core workflows by introducing a new 3-panel design.</p>
-
-        <div class="cs-meta">
-          <div class="cs-meta__item">
-            <span class="cs-meta__label">Role</span>
-            <span class="cs-meta__value">Product Designer II</span>
-          </div>
-          <div class="cs-meta__item">
-            <span class="cs-meta__label">Team</span>
-            <span class="cs-meta__value">Content Platform</span>
-          </div>
-          <div class="cs-meta__item">
-            <span class="cs-meta__label">Timeline</span>
-            <span class="cs-meta__value">Aug 2025–Jan 2026</span>
-          </div>
-          <div class="cs-meta__item">
-            <span class="cs-meta__label">Stakeholders</span>
-            <span class="cs-meta__value">PM, EM and Engineers</span>
-          </div>
-        </div>
       </div>
     </header>
 
-    <!-- ── 2. IMPACT ── -->
+    <!-- ── 2. AT A GLANCE ── -->
     <section class="cs-section">
-      <div class="container cs-split">
-        <h2 class="cs-h">Impact</h2>
-        <div class="cs-split__body">
-          <div class="cs-stats">
-            <div class="cs-stat">
-              <span class="cs-stat__num">50+</span>
-              <div>
-                <h3 class="cs-stat__title">Content teams</h3>
-                <p class="cs-stat__desc">Now have an editing experience they can navigate without working around it.</p>
-              </div>
-            </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">0</span>
-              <div>
-                <h3 class="cs-stat__title">Major flow changes after user testing</h3>
-                <p class="cs-stat__desc">Core problem solved right the first time — testing validated direction, not redirected it.</p>
-              </div>
-            </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">1</span>
-              <div>
-                <h3 class="cs-stat__title">AI agent unblocked</h3>
-                <p class="cs-stat__desc">The new IA gives Blocky a stable foundation to build on.</p>
-              </div>
-            </div>
+      <div class="container">
+        <div class="cs-summary">
+          <div>
+            <p class="cs-summary__label">Problems</p>
+            <p class="cs-body">Block Builder had grown for years without a shared information architecture — key actions were buried, users lost their place in nested drawers, and every new feature made the platform harder to use and scale.</p>
           </div>
+          <div>
+            <p class="cs-summary__label">My role</p>
+            <ul class="cs-summary__list">
+              <li>Led the redesign end-to-end</li>
+              <li>Ran a dogfooding workshop to align the team</li>
+              <li>Drove the IA and 3-panel design direction</li>
+              <li>Defined the MVP, post-MVP, and long-term vision</li>
+            </ul>
+          </div>
+          <div>
+            <p class="cs-summary__label">Solution</p>
+            <p class="cs-body">A new information architecture built on a stable 3-panel layout — a fixed left rail for navigation, a central editing workspace, and a right preview — so users always know where they are.</p>
+          </div>
+          <div>
+            <p class="cs-summary__label">Impact</p>
+            <ul class="cs-summary__list">
+              <li>50+ content teams on an experience they can navigate without workarounds</li>
+              <li>0 major flow changes after user testing — validated the direction</li>
+              <li>Gave Blocky, the AI agent, a stable foundation to build on</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-beforeafter">
+          <figure>
+            <div class="cs-ba__media"><span>Before — image placeholder</span></div>
+            <figcaption>Before <span>· fragmented navigation</span></figcaption>
+          </figure>
+          <figure>
+            <div class="cs-ba__media"><span>After — image placeholder</span></div>
+            <figcaption>After <span>· 3-panel redesign</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
