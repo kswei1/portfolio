@@ -154,6 +154,55 @@
       color: var(--color-text-secondary);
       margin: 0;
     }
+    .cs-solution-caption p + p { margin-top: var(--sp-3); }
+    .cs-solution-caption p strong { color: var(--color-text-primary); font-weight: var(--weight-semibold); }
+    .cs-bonus-h {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cs-blocky-anim {
+      position: relative;
+      flex: none;
+      width: 48px;
+      height: 48px;
+      transform-origin: 50% 80%;
+      animation: cs-blocky-tilt 3s ease-in-out infinite;
+    }
+    @keyframes cs-blocky-tilt {
+      0%, 100% { transform: rotate(-5deg); }
+      50%      { transform: rotate(5deg); }
+    }
+    .cs-blocky-anim img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: auto;
+    }
+    .cs-blocky-anim__base {
+      animation: cs-blocky-base 4s ease-in-out infinite;
+    }
+    .cs-blocky-anim__smile {
+      opacity: 0;
+      animation: cs-blocky-smile 4s ease-in-out infinite;
+    }
+    @keyframes cs-blocky-base {
+      0%, 40%   { opacity: 1; }
+      50%, 90%  { opacity: 0; }
+      100%      { opacity: 1; }
+    }
+    @keyframes cs-blocky-smile {
+      0%, 40%   { opacity: 0; }
+      50%, 90%  { opacity: 1; }
+      100%      { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cs-blocky-anim { animation: none; }
+      .cs-blocky-anim__base { animation: none; opacity: 1; }
+      .cs-blocky-anim__smile { animation: none; opacity: 0; }
+    }
 
     /* pull quote */
     .cs-quote {
@@ -366,7 +415,8 @@
         <p class="cs-eyebrow">Problem</p>
         <h2 class="cs-h">Blocky was becoming the main UI<span>but still shaped like a chatbot</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Blocky now lets users do in a prompt what used to be a manual process, and it's on track to become the platform's primary surface. But it was still shaped like a chatbot — and a chat box couldn't carry that weight. It broke down in three ways: it <strong>didn't guide</strong> (no clear entry points left users unsure what Blocky could do or where to start), it <strong>didn't drive action</strong> (long back-and-forth conversations made it difficult to turn intent into action), and it <strong>didn't scale</strong> (the chat-first model couldn't easily extend to new capabilities and workflows).</p>
+          <p class="cs-body">Blocky was starting to turn complex, manual workflows into simple requests—letting users create and manage content through an AI agent instead of navigating the platform step by step. As Blocky became the platform's primary surface, the chatbot model started to show its limits.</p>
+          <p class="cs-body">It broke down in three ways: it <strong>didn't guide</strong> (no clear entry points left users unsure what Blocky could do or where to start), <strong>didn't drive action</strong> (long back-and-forth conversations made it harder to turn intent into action), and <strong>didn't scale</strong> (a chat-first model was difficult to extend to new capabilities and workflows).</p>
         </div>
       </div>
       <div class="container">
@@ -382,18 +432,19 @@
         <p class="cs-eyebrow">Design Exploration</p>
         <h2 class="cs-h">Make it easier<span>to start</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">I first explored a guided wizard that would help users move from an empty chat box to a completed task. Instead of asking users to figure everything out themselves, the wizard broke the experience into smaller questions and guided them toward the right action. But there was a problem. Testing showed that guidance alone wasn't enough. Users could follow the flow, but they still struggled with a fundamental question:</p>
+          <p class="cs-body">Blocky helps Wayfair teams create and manage content blocks, but starting with an open chat box left users unsure of what to ask or how to get the result they wanted.</p>
+          <p class="cs-body">I first explored a guided wizard that broke the task into smaller questions, helping users move from an empty chat box to a completed block. But testing revealed a deeper problem: even when users knew which steps to follow, they still didn't know what a good request looked like.</p>
           <p class="cs-quote">"What should I actually ask Blocky?"</p>
-          <p class="cs-body">The problem wasn't just knowing where to start. Users also needed to understand what a good prompt looked like. So I changed the approach. Rather than teaching users how to formulate a prompt step by step, I explored teaching by example. I introduced ready-made templates through suggested prompts, giving users a concrete starting point they could use, adapt, and build from.</p>
+          <p class="cs-body">That shifted my approach. Instead of teaching users how to construct a prompt step by step, I explored teaching by example—using predefined prompts and task templates to show users what Blocky could do and give them a starting point they could adapt.</p>
           <div class="cs-fromto">
             <div class="cs-fromto__item">
               <p class="cs-fromto__k">From</p>
-              <p class="cs-fromto__v">Guide users through questions</p>
+              <p class="cs-fromto__v">Guide users step by step</p>
             </div>
             <div class="cs-fromto__arrow" aria-hidden="true">→</div>
             <div class="cs-fromto__item cs-fromto__item--to">
               <p class="cs-fromto__k">To</p>
-              <p class="cs-fromto__v">Show users what they can accomplish</p>
+              <p class="cs-fromto__v">Guide users what they can ask</p>
             </div>
           </div>
         </div>
@@ -458,7 +509,7 @@
         <div class="cs-split" style="margin-bottom: var(--sp-8);">
           <p class="cs-eyebrow">Solution</p>
           <h2 class="cs-h">From chatbot<span>to AI workspace</span></h2>
-          <p class="cs-body cs-split__body">The redesigned Blocky greets new users with a template so they know what to ask, moves them through tasks with fewer turns, and sits on a structured, extensible foundation ready for the features to come — dressed in a new brand and icon that make it feel like the main surface it's becoming.</p>
+          <p class="cs-body cs-split__body">The redesigned Blocky turns an open-ended chatbot into a guided AI workspace—helping users get started with clear entry points, understand what's happening at every step, and work alongside an AI agent that feels more like a collaborative partner than a chatbot.</p>
         </div>
         <div class="cs-solution-stack">
           <figure class="cs-solution-row">
@@ -466,8 +517,8 @@
               <video src="./assets/videos/blocky-solution.mp4" autoplay muted loop playsinline data-playback-rate="1.25"></video>
             </div>
             <figcaption class="cs-solution-caption">
-              <h3>Guided prompts &amp; templates</h3>
-              <p>Instead of a blank prompt, Blocky opens with pre-defined prompts and task templates — giving users a concrete starting point and showing them what a good request looks like.</p>
+              <h3>A guided experience for high-frequency tasks</h3>
+              <p>I designed the end-to-end flow around one of Blocky's most frequent tasks: creating a new block. Predefined prompts give users a clear starting point, while the guided flow takes them from their first request to a completed result with less guesswork. <strong>I also built the prototype in local development on my own branch, allowing me to bring the interaction closer to production and demonstrate the experience to the team.</strong></p>
             </figcaption>
           </figure>
           <figure class="cs-solution-row">
@@ -483,8 +534,8 @@
               <img src="./assets/images/Blocky-task-design.png" alt="Blocky's task-focused UI with structured steps and entry points">
             </div>
             <figcaption class="cs-solution-caption">
-              <h3>A task-focused workspace</h3>
-              <p>Structured steps and clear entry points move users through tasks with fewer turns, turning open-ended chat into a workflow that gets them to the right outcome.</p>
+              <h3>Making progress and outcomes visible</h3>
+              <p>Blocky's tasks move through different states—from thinking to completed or failed. The previous design relied heavily on black text, making these important signals easy to miss within the response. I introduced color, icons, and concise status labels to create stronger visual cues, so users can understand what's happening and scan outcomes without reading every line.</p>
             </figcaption>
           </figure>
           <figure class="cs-solution-row">
@@ -492,8 +543,15 @@
               <img src="./assets/images/Blocky-icon.png" alt="Blocky's new brand icon">
             </div>
             <figcaption class="cs-solution-caption">
-              <h3>A brand that fits its role</h3>
-              <p>A new color system and icon give Blocky an identity that matches the main surface it's becoming — no longer a bolt-on chatbot, but a product in its own right.</p>
+              <h3 class="cs-bonus-h">
+                Bonus: Meet a new Blocky, more than just a robot
+                <span class="cs-blocky-anim" aria-hidden="true">
+                  <img class="cs-blocky-anim__base" src="./assets/images/blocky-default.png" alt="">
+                  <img class="cs-blocky-anim__smile" src="./assets/images/blocky-smiling.png" alt="">
+                </span>
+              </h3>
+              <p>As Blocky became a bigger part of the workspace, I wanted it to feel more approachable and fun, not just another AI chatbot. Inspired by the playful simplicity of Tamagotchi, I created a library of expressions and accessories that give Blocky its own personality while keeping the core design simple.</p>
+              <p>I also used AI throughout the process, from exploring visual directions with ChatGPT to turning selected concepts into editable SVGs with Figma Make. Boston-inspired and seasonal themes give the system room to evolve and bring a little more joy to the experience :)</p>
             </figcaption>
           </figure>
         </div>

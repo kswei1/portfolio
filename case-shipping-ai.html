@@ -11,6 +11,82 @@
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css" />
   <link rel="stylesheet" href="./css/case-study.css" />
+  <style>
+    .sa-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px);
+    }
+    .sa-summary__label {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.02em;
+      color: var(--color-text-primary);
+      margin: 0 0 8px;
+    }
+    .sa-summary__list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      color: var(--color-text-secondary);
+    }
+    .sa-summary__list li { margin: 0.35em 0; }
+    @media (max-width: 640px) { .sa-summary { grid-template-columns: 1fr; } }
+    .sa-list { margin: var(--sp-4) 0 0; padding-left: 1.15em; color: var(--color-text-secondary); }
+    .sa-list li { margin: 0.4em 0; }
+    .sa-prose { max-width: 68ch; }
+    .sa-media {
+      margin-top: var(--sp-6);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: clamp(16px, 3vw, 40px);
+    }
+    .sa-media img,
+    .sa-media video { display: block; width: 100%; height: auto; border-radius: 8px; }
+    .sa-media-grid {
+      margin-top: var(--sp-6);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-4);
+    }
+    .sa-media-grid .sa-media { margin-top: 0; padding: 20px; }
+    .sa-media-grid .sa-media video {
+      aspect-ratio: 4 / 3;
+      height: auto;
+      object-fit: cover;
+      object-position: top left;
+      background: var(--color-surface);
+      vertical-align: bottom;
+    }
+    .sa-placeholder {
+      margin-top: var(--sp-6);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      background: var(--color-surface);
+      border: 1px dashed var(--color-border);
+      display: grid;
+      place-items: center;
+      color: var(--color-text-tertiary);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      text-align: center;
+      padding: var(--sp-4);
+    }
+    .sa-media-grid .sa-placeholder { margin-top: 0; }
+    .sa-subblock { margin-top: var(--sp-8); }
+    .sa-subblock h3 {
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      letter-spacing: -0.01em;
+      color: var(--color-text-primary);
+      margin: 0 0 var(--sp-2);
+    }
+    @media (max-width: 640px) {
+      .sa-media-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -33,144 +109,117 @@
 
   <main id="main" class="cs">
 
-    <!-- ── HERO: title + one-line summary + cover ── -->
+    <!-- ── HERO: title + one-line summary ── -->
     <header class="cs-hero">
-      <!-- Cover image slot. Replace the <span> with an <img> when ready. -->
-      <div class="container">
-        <div class="cs-hero__cover">
-          <span>Cover image — add later</span>
-          <!-- <img src="./assets/images/shipping-ai.png" alt="Designing and Shipping with AI" /> -->
-        </div>
-      </div>
-
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Designing and Shipping with AI</h1>
         <p class="cs-hero__summary">Used AI tools to translate designs into production-ready code, enabling faster iteration and lightweight UI updates with minimal engineering dependency.</p>
-
-        <!-- ── META: role + timeline, inline ── -->
-        <div class="cs-meta">
-          <div class="cs-meta__item">
-            <span class="cs-meta__label">Role</span>
-            <span class="cs-meta__value">Product Designer</span>
-          </div>
-          <div class="cs-meta__group">
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Timeline</span>
-              <span class="cs-meta__value">2024 – 2025</span>
-            </div>
-            <div class="cs-meta__item">
-              <span class="cs-meta__label">Team</span>
-              <span class="cs-meta__value">Design · Engineering</span>
-            </div>
-          </div>
-        </div>
       </div>
     </header>
 
-    <!-- ── OUTCOME ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Outcome</p>
-        <h2 class="cs-h">What<span>shipped</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-lead">An AI-assisted workflow that turns designs into production-ready code, letting design ship lightweight UI updates without waiting on an engineering queue.</p>
-          <div class="cs-stats" style="margin-top: var(--sp-6);">
-            <div class="cs-stat">
-              <span class="cs-stat__num">Faster</span>
-              <div>
-                <h3 class="cs-stat__title">Quicker iteration</h3>
-                <p class="cs-stat__desc">Shortened the loop from design to shipped UI.</p>
-              </div>
-            </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">↓ dependency</span>
-              <div>
-                <h3 class="cs-stat__title">Less eng reliance</h3>
-                <p class="cs-stat__desc">Enabled UI updates with minimal engineering hand-off.</p>
-              </div>
-            </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">Shipped</span>
-              <div>
-                <h3 class="cs-stat__title">Real updates</h3>
-                <p class="cs-stat__desc">Used to ship production UI changes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROBLEM ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Problem</p>
-        <h2 class="cs-h">What wasn't<span>working</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">Small UI updates stalled in engineering queues, slowing iteration and widening the gap between design intent and the shipped product.</p>
-          <p class="cs-body">How might designers ship production-ready UI changes with minimal engineering dependency?</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROCESS ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 01</p>
-        <h2 class="cs-h">Prototyping<span>the workflow</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">I used AI tools like Cursor and Claude to go from design to working code, learning where they helped and where they needed guardrails.</p>
-          <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>AI workflow — visual placeholder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PROCESS ── -->
-    <section class="cs-section">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Process · 02</p>
-        <h2 class="cs-h">Shipping<span>to production</span></h2>
-        <div class="cs-split__body">
-          <p class="cs-body">I built a repeatable path for turning lightweight design changes into production-ready, reviewed code.</p>
-          <div class="cs-visual" style="margin-top: var(--sp-5);">
-            <span>Shipping pipeline — visual placeholder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── SOLUTION ── -->
+    <!-- ── SUMMARY: my role / impact ── -->
     <section class="cs-section">
       <div class="container">
-        <div class="cs-split" style="margin-bottom: var(--sp-8);">
-          <p class="cs-eyebrow">Solution</p>
-          <h2 class="cs-h">The AI<span>workflow</span></h2>
-          <p class="cs-body cs-split__body">The workflow lets design translate updates straight into production-ready code — closing the gap between design and engineering on lightweight changes.</p>
-        </div>
-        <div class="cs-visual-grid">
-          <div class="cs-visual"><span>Design → code — placeholder</span></div>
-          <div class="cs-visual"><span>Workflow — placeholder</span></div>
-          <div class="cs-visual"><span>Shipped update — placeholder</span></div>
-          <div class="cs-visual"><span>Before / after — placeholder</span></div>
+        <div class="sa-summary">
+          <div>
+            <p class="sa-summary__label">My role</p>
+            <ul class="sa-summary__list">
+              <li>Wrote and shipped production-ready code with Cursor</li>
+              <li>Built interactive prototypes in Figma Make to align teams</li>
+              <li>Ran internal talks and demos to grow AI adoption</li>
+            </ul>
+          </div>
+          <div>
+            <p class="sa-summary__label">Impact</p>
+            <ul class="sa-summary__list">
+              <li>Shortened the loop from design to shipped UI</li>
+              <li>Shipped UI updates with minimal engineering dependency</li>
+              <li>Drove AI adoption and experimentation across the org</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── REFLECTION ── -->
+    <!-- ── EXAMPLE 1 ── -->
     <section class="cs-section">
       <div class="container cs-split">
-        <h2 class="cs-h">Reflection</h2>
-        <div class="cs-split__body cs-reflect">
-          <div class="cs-reflect__item">
-            <h3 class="cs-reflect__title">What I learned</h3>
-            <p class="cs-body">AI shifts where a designer&#x27;s leverage is — the value moves from pixel-pushing to clearly defining intent and reviewing output.</p>
+        <p class="cs-eyebrow">Example 1 · Using AI to ship code</p>
+        <h2 class="cs-h">From design to production<span>with AI</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">First designer at Wayfair to use AI tools (Cursor) to write and ship production-ready code for lightweight UI changes.</p>
+          <ul class="sa-list">
+            <li>Translate design directly into code</li>
+            <li>Make live updates without engineering dependency</li>
+            <li>Reduce handoff time and iteration cycles</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="sa-media">
+          <img src="./assets/images/cursor-push-pr.png" alt="Using Cursor to write and push production-ready code changes at Wayfair" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXAMPLE 2 ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Example 2 · AI for prototyping &amp; vision</p>
+        <h2 class="cs-h">Prototyping ideas<span>to align on direction</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">I use Figma Make to create realistic, interactive prototypes that help teams quickly visualize ideas and align on product direction. These prototypes communicate the product vision, support leadership reviews, and drive roadmap decisions.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="sa-media-grid">
+          <div class="sa-media">
+            <video src="./assets/videos/prototyping-1.mp4" autoplay muted loop playsinline></video>
           </div>
-          <div class="cs-reflect__item">
-            <h3 class="cs-reflect__title">What I'd do differently</h3>
-            <p class="cs-body">I&#x27;d formalize review and QA steps earlier so the workflow scales safely beyond small changes.</p>
+          <div class="sa-media">
+            <video src="./assets/videos/prototyping-2.mp4" autoplay muted loop playsinline></video>
           </div>
+        </div>
+
+        <div class="sa-subblock">
+          <h3>Building Wayfair's first Figma Make iOS template</h3>
+          <p class="cs-body sa-prose">PMs were blocked by the lack of a Wayfair theme and usable code output. So I created a token-based system and used Claude to generate a structured code foundation — enabling on-brand results and faster ideation.</p>
+          <div class="sa-media">
+            <video src="./assets/videos/figma-make-ios.mp4" autoplay muted loop playsinline></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXAMPLE 3 ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Example 3</p>
+        <h2 class="cs-h">A CT-Mock<span>for every PM and designer</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">Created a CT-Mock for all the org's PMs and designers — packaged in a single doc so anyone can pick it up and start using AI in their workflow.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="sa-placeholder">Shared CT-Mock doc — placeholder</div>
+      </div>
+    </section>
+
+    <!-- ── EXAMPLE 4 ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Example 4 · Being a change maker</p>
+        <h2 class="cs-h">Growing an AI community<span>at Wayfair</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body">I enjoy sharing what I learn, so I actively run internal talks and demos to introduce AI workflows and tools. This helps teams adopt AI in their daily work and improves overall efficiency and experimentation across the organization.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="sa-media-grid">
+          <div class="sa-media"><img src="./assets/images/talk-cursor-designers.jpg" alt="Internal talk introducing Cursor to designers" /></div>
+          <div class="sa-media"><img src="./assets/images/talk-cursor-learning.jpg" alt="Internal session on learning to build with Cursor" /></div>
+          <div class="sa-media"><img src="./assets/images/talk-figma-make.jpg" alt="Internal demo of Figma Make prototyping" /></div>
+          <div class="sa-media"><img src="./assets/images/talk-figma-plugin.jpg" alt="Internal talk on a Figma plugin workflow" /></div>
         </div>
       </div>
     </section>
