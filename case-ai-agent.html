@@ -96,7 +96,6 @@
       margin: var(--sp-5) 0;
       display: flex;
       flex-direction: column;
-      gap: var(--sp-4);
     }
     .cs-principle {
       display: grid;
@@ -114,6 +113,45 @@
     }
     .cs-principle__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 4px; }
     .cs-principle__desc { color: var(--color-text-secondary); margin: 0; }
+
+    /* solution stack — one media per row */
+    .cs-solution-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-8);
+    }
+    .cs-solution-row {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+    .cs-solution-media {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: clamp(16px, 3vw, 40px);
+    }
+    .cs-solution-media--light { background: #fff; }
+    .cs-solution-media img,
+    .cs-solution-media video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .cs-solution-caption { margin: 0; max-width: 60ch; }
+    .cs-solution-caption h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 6px;
+    }
+    .cs-solution-caption p {
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
 
     /* pull quote */
     .cs-quote {
@@ -166,14 +204,56 @@
       border-radius: 8px;
     }
     .cs-old-blocky--wide {
-      padding: clamp(10px, 1.5vw, 16px) clamp(12px, 2vw, 24px);
+      padding: clamp(6px, 1vw, 12px);
     }
     .cs-old-blocky--wide img {
       max-width: 100%;
+      width: 100%;
     }
     @media (max-width: 640px) {
       .cs-old-blocky img { max-width: 100%; }
     }
+
+    /* click any old-design image to expand */
+    .cs-old-blocky img { cursor: zoom-in; transition: filter 0.2s ease; }
+    .cs-old-blocky:hover img { filter: brightness(0.97); }
+
+    /* lightbox */
+    .cs-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 56px);
+      background: rgba(243, 242, 239, 0.98);
+      cursor: zoom-out;
+    }
+    .cs-lightbox.is-open { display: flex; }
+    .cs-lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .cs-lightbox__close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: #fff;
+      color: var(--color-text-primary);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .cs-lightbox__close:hover { background: var(--color-surface); }
   </style>
 </head>
 <body>
@@ -384,11 +464,56 @@
           <h2 class="cs-h">From chatbot<span>to AI workspace</span></h2>
           <p class="cs-body cs-split__body">The redesigned Blocky greets new users with a template so they know what to ask, moves them through tasks with fewer turns, and sits on a structured, extensible foundation ready for the features to come — dressed in a new brand and icon that make it feel like the main surface it's becoming.</p>
         </div>
-        <div class="cs-visual-grid">
-          <div class="cs-visual"><span>First-use template — placeholder</span></div>
-          <div class="cs-visual"><span>Structured UI &amp; entry points — placeholder</span></div>
-          <div class="cs-visual"><span>Brand color — placeholder</span></div>
-          <div class="cs-visual"><span>Blocky logo — placeholder</span></div>
+        <div class="cs-solution-stack">
+          <figure class="cs-solution-row">
+            <div class="cs-solution-media">
+              <video src="./assets/videos/blocky-solution.mp4" autoplay muted loop playsinline data-playback-rate="1.25"></video>
+            </div>
+            <figcaption class="cs-solution-caption">
+              <h3>Guided prompts &amp; templates</h3>
+              <p>Instead of a blank prompt, Blocky opens with pre-defined prompts and task templates — giving users a concrete starting point and showing them what a good request looks like.</p>
+            </figcaption>
+          </figure>
+          <figure class="cs-solution-row">
+            <div class="cs-solution-media">
+              <img src="./assets/images/Blocky-task-design.png" alt="Blocky's task-focused UI with structured steps and entry points">
+            </div>
+            <figcaption class="cs-solution-caption">
+              <h3>A task-focused workspace</h3>
+              <p>Structured steps and clear entry points move users through tasks with fewer turns, turning open-ended chat into a workflow that gets them to the right outcome.</p>
+            </figcaption>
+          </figure>
+          <figure class="cs-solution-row">
+            <div class="cs-solution-media cs-solution-media--light">
+              <img src="./assets/images/Blocky-icon.png" alt="Blocky's new brand icon">
+            </div>
+            <figcaption class="cs-solution-caption">
+              <h3>A brand that fits its role</h3>
+              <p>A new color system and icon give Blocky an identity that matches the main surface it's becoming — no longer a bolt-on chatbot, but a product in its own right.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT'S NEXT (post-MVP) ── -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-split" style="margin-bottom: var(--sp-8);">
+          <p class="cs-eyebrow">What's next</p>
+          <h2 class="cs-h">Designing for<span>what comes next</span></h2>
+          <p class="cs-body cs-split__body">The MVP was built on a foundation meant to grow. The clearest next step is chat history — the most requested feature from users — so people can return to a past conversation and pick up where they left off instead of starting over each time.</p>
+        </div>
+        <div class="cs-solution-stack">
+          <figure class="cs-solution-row">
+            <div class="cs-solution-media">
+              <img src="./assets/images/Blocky-history.png" alt="Blocky chat history panel where users can resume past conversations">
+            </div>
+            <figcaption class="cs-solution-caption">
+              <h3>Resume where you left off</h3>
+              <p>A history panel lets users revisit and continue previous chats — turning one-off conversations into ongoing work, and setting up Blocky to hold more of a user's workflow over time.</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -429,6 +554,48 @@
     </div>
   </footer>
 
+  <!-- image lightbox -->
+  <div class="cs-lightbox" id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Expanded image">
+    <button class="cs-lightbox__close" type="button" aria-label="Close">✕</button>
+    <img alt="" />
+  </div>
+
   <script src="./js/portfolio.js"></script>
+  <script>
+    (function () {
+      var lb = document.getElementById('cs-lightbox');
+      if (!lb) return;
+      var lbImg = lb.querySelector('img');
+      document.querySelectorAll('.cs-old-blocky img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          lbImg.src = img.currentSrc || img.src;
+          lbImg.alt = img.alt || '';
+          lb.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      function close() {
+        lb.classList.remove('is-open');
+        document.body.style.overflow = '';
+        lbImg.removeAttribute('src');
+      }
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+      });
+    })();
+
+    (function () {
+      document.querySelectorAll('video[data-playback-rate]').forEach(function (v) {
+        var rate = Number(v.dataset.playbackRate);
+        if (rate > 0) {
+          var apply = function () { v.playbackRate = rate; };
+          apply();
+          v.addEventListener('loadedmetadata', apply);
+          v.addEventListener('play', apply);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
