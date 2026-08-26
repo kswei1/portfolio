@@ -46,7 +46,9 @@
     .cs-summary__list li { margin: 0.25em 0; }
 
     /* reframe callout */
-    .g-reframe { display: grid; gap: var(--sp-4); max-width: 68ch; }
+    .g-reframe { display: grid; gap: var(--sp-5); max-width: 68ch; }
+    .hl-blue { color: #0274FF; font-weight: var(--weight-semibold); }
+    .hl-amber { color: #F9AB00; font-weight: var(--weight-semibold); }
     .g-reframe__row { display: grid; gap: 6px; }
     .g-reframe__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-tertiary); margin: 0; }
     .g-reframe__ask { font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--color-text-tertiary); margin: 0; }
@@ -217,11 +219,16 @@
         <p class="cs-eyebrow">The challenge</p>
         <h2 class="cs-h">Reframing<span>the ask</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">With discovery as the focus, we narrowed Google's broad ask into a sharper, more actionable problem.</p>
+          <p class="cs-body" style="margin-bottom: var(--sp-6);">With discovery as the focus, we narrowed Google's broad ask into a sharper, more actionable problem.</p>
           <div class="g-reframe">
             <div class="g-reframe__row">
+              <p class="g-reframe__k">The ask from Google Maps</p>
+              <p class="g-reframe__ask">"How might we create a more realistic map that better reflects the moment by introducing dynamic data in a way that benefits Gen Z communities?"</p>
+            </div>
+            <div class="g-reframe__arrow" aria-hidden="true">↓</div>
+            <div class="g-reframe__row">
               <p class="g-reframe__k">My reframe</p>
-              <p class="g-reframe__new">"How might we give Gen Z real-time information to discover <strong>outdoor activity communities</strong> in <strong>unfamiliar places</strong>?"</p>
+              <p class="g-reframe__new">"How might we provide Gen Z with real-time information to discover <span class="hl-blue">outdoor activity communities</span> in <span class="hl-amber">unfamiliar places</span>?"</p>
             </div>
           </div>
         </div>
