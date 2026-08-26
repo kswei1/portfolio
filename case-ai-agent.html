@@ -46,14 +46,14 @@
     .cs-summary {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(24px, 4vw, 48px) clamp(40px, 8vw, 120px);
+      gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px);
     }
     .cs-summary__label {
       font-size: var(--text-lg);
       font-weight: var(--weight-semibold);
       letter-spacing: 0.02em;
       color: var(--color-text-primary);
-      margin: 0 0 var(--sp-2);
+      margin: 0 0 8px;
     }
     .cs-summary p.cs-body { margin: 0; }
     .cs-summary__list {
@@ -101,7 +101,7 @@
       display: grid;
       grid-template-columns: auto 1fr;
       gap: var(--sp-3);
-      padding: var(--sp-4) 0;
+      padding: 16px 0;
       border-top: 1px solid var(--color-border-subtle);
     }
     .cs-principle__num {
@@ -124,7 +124,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: var(--sp-4);
+      gap: 20px;
     }
     .cs-solution-media {
       border-radius: var(--radius-lg);
@@ -141,9 +141,11 @@
       height: auto;
       border-radius: 8px;
     }
-    .cs-solution-caption { margin: 0; max-width: 60ch; }
+    .cs-solution-media img { cursor: zoom-in; transition: filter .2s; }
+    .cs-solution-media:hover img { filter: brightness(0.97); }
+    .cs-solution-caption { margin: 0; order: -1; }
     .cs-solution-caption h3 {
-      font-size: var(--text-lg);
+      font-size: 24px;
       font-weight: var(--weight-semibold);
       color: var(--color-text-primary);
       margin: 0 0 6px;
@@ -380,13 +382,9 @@
         <p class="cs-eyebrow">Design Exploration</p>
         <h2 class="cs-h">Make it easier<span>to start</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">I first explored a guided wizard that would help users move from an empty chat box to a completed task.</p>
-          <p class="cs-body">Instead of asking users to figure everything out themselves, the wizard broke the experience into smaller questions and guided them toward the right action.</p>
-          <p class="cs-body">But there was a problem. Testing showed that guidance alone wasn't enough. Users could follow the flow, but they still struggled with a fundamental question:</p>
+          <p class="cs-body">I first explored a guided wizard that would help users move from an empty chat box to a completed task. Instead of asking users to figure everything out themselves, the wizard broke the experience into smaller questions and guided them toward the right action. But there was a problem. Testing showed that guidance alone wasn't enough. Users could follow the flow, but they still struggled with a fundamental question:</p>
           <p class="cs-quote">"What should I actually ask Blocky?"</p>
-          <p class="cs-body">The problem wasn't just knowing where to start. Users also needed to understand what a good prompt looked like.</p>
-          <p class="cs-body">So I changed the approach. Rather than teaching users how to formulate a prompt step by step, I explored teaching by example.</p>
-          <p class="cs-body">I introduced ready-made templates through suggested prompts, giving users a concrete starting point they could use, adapt, and build from.</p>
+          <p class="cs-body">The problem wasn't just knowing where to start. Users also needed to understand what a good prompt looked like. So I changed the approach. Rather than teaching users how to formulate a prompt step by step, I explored teaching by example. I introduced ready-made templates through suggested prompts, giving users a concrete starting point they could use, adapt, and build from.</p>
           <div class="cs-fromto">
             <div class="cs-fromto__item">
               <p class="cs-fromto__k">From</p>
@@ -416,10 +414,8 @@
         <p class="cs-eyebrow">Shaping the Direction</p>
         <h2 class="cs-h">Turning exploration<span>into product direction</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">The explorations revealed that Blocky needed to be more than a better chat experience.</p>
-          <p class="cs-body">If Blocky was going to become a primary surface for AI-powered workflows, it needed to help users discover, act, and grow with the product.</p>
-          <p class="cs-body">I brought these explorations into conversations with PM and engineering to align on the experience we wanted to build, what was feasible for the MVP, and how the interaction model could support future capabilities.</p>
-          <p class="cs-body">Three principles shaped the direction:</p>
+          <p class="cs-body">The explorations revealed that Blocky needed to be more than a better chat experience. If Blocky was going to become a primary surface for AI-powered workflows, it needed to help users discover, act, and grow with the product.</p>
+          <p class="cs-body">I brought these explorations into conversations with PM and engineering to align on the experience we wanted to build, what was feasible for the MVP, and how the interaction model could support future capabilities. Three principles shaped the direction:</p>
           <div class="cs-principles">
             <div class="cs-principle">
               <span class="cs-principle__num">01</span>
@@ -476,6 +472,14 @@
           </figure>
           <figure class="cs-solution-row">
             <div class="cs-solution-media">
+              <img src="./assets/images/blocky-dark-mode.png" alt="Blocky in dark mode">
+            </div>
+            <figcaption class="cs-solution-caption">
+              <h3>Dark mode</h3>
+            </figcaption>
+          </figure>
+          <figure class="cs-solution-row">
+            <div class="cs-solution-media">
               <img src="./assets/images/Blocky-task-design.png" alt="Blocky's task-focused UI with structured steps and entry points">
             </div>
             <figcaption class="cs-solution-caption">
@@ -509,10 +513,6 @@
             <div class="cs-solution-media">
               <img src="./assets/images/Blocky-history.png" alt="Blocky chat history panel where users can resume past conversations">
             </div>
-            <figcaption class="cs-solution-caption">
-              <h3>Resume where you left off</h3>
-              <p>A history panel lets users revisit and continue previous chats — turning one-off conversations into ongoing work, and setting up Blocky to hold more of a user's workflow over time.</p>
-            </figcaption>
           </figure>
         </div>
       </div>
@@ -566,7 +566,7 @@
       var lb = document.getElementById('cs-lightbox');
       if (!lb) return;
       var lbImg = lb.querySelector('img');
-      document.querySelectorAll('.cs-old-blocky img').forEach(function (img) {
+      document.querySelectorAll('.cs-old-blocky img, .cs-solution-media img').forEach(function (img) {
         img.addEventListener('click', function () {
           lbImg.src = img.currentSrc || img.src;
           lbImg.alt = img.alt || '';
