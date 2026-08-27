@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Core Platform Redesign — Story Plan</title>
+<style>
+  :root{
+    --bg:#FAFAF8; --surface:#F3F2EF; --border:#E4E2DE; --border-subtle:#EEECE9;
+    --text:#1C1B19; --text-2:#5D5A56; --text-3:#8A8781; --accent:#8A40C3;
+    --green:#3C7D57; --amber:#B7791F; --blue:#3A6EA5; --red:#C0483B;
+    --radius:14px; --maxw:820px;
+    --font:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .zh{display:none}
+  body.lang-zh .en{display:none}
+  body.lang-zh .zh{display:inline}
+  body.lang-zh .zh.block{display:block}
+  .zh.block{display:none}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  #progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:100;transition:width .1s}
+  .wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;max-width:1180px;margin:0 auto;padding:40px 28px 120px}
+  nav.side{position:sticky;top:24px;align-self:start;height:calc(100vh - 48px);overflow-y:auto;padding-right:8px}
+  .side h1{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin:0 0 4px}
+  .side .sub{font-size:13px;color:var(--text-3);margin:0 0 18px}
+  .toc{list-style:none;margin:0 0 18px;padding:0;border-left:1px solid var(--border)}
+  .toc a{display:block;padding:5px 0 5px 14px;margin-left:-1px;font-size:13.5px;color:var(--text-2);border-left:2px solid transparent}
+  .toc a.active{color:var(--text);border-left-color:var(--accent);font-weight:600}
+  .controls{display:flex;flex-direction:column;gap:8px}
+  .ctl{display:flex;gap:6px;align-items:center}
+  button.chip{font-family:inherit;font-size:12.5px;border:1px solid var(--border);background:#fff;color:var(--text-2);border-radius:20px;padding:5px 12px;cursor:pointer}
+  button.chip[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+  button.chip:hover{border-color:var(--text-3)}
+  main{min-width:0;max-width:var(--maxw)}
+  section{scroll-margin-top:24px;margin-bottom:52px}
+  .kicker{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);margin:0 0 8px}
+  h2.sec{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin:0 0 14px}
+  p{margin:0 0 12px}
+  .muted{color:var(--text-2)}
+  .assume{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--border-subtle);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden}
+  .assume div{background:var(--bg);padding:14px 16px}
+  .assume .k{font-size:12px;color:var(--text-3);margin:0 0 3px;letter-spacing:.03em;text-transform:uppercase}
+  .assume .v{font-size:14.5px;font-weight:500;margin:0}
+  .contract{border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;background:#fff}
+  .contract .q{font-size:13px;color:var(--text-3);letter-spacing:.03em;text-transform:uppercase;margin:0 0 6px}
+  .contract .qt{font-size:18px;font-weight:500;margin:0 0 18px;line-height:1.45}
+  .contract .a{font-size:13px;color:var(--accent);letter-spacing:.03em;text-transform:uppercase;margin:0 0 6px;font-weight:600}
+  .contract .at{font-size:20px;font-weight:600;margin:0;line-height:1.4;letter-spacing:-0.01em}
+  .jump{margin-top:16px;font-size:14px}
+  ol.find{list-style:none;counter-reset:f;margin:18px 0 0;padding:0}
+  ol.find li{counter-increment:f;position:relative;padding:14px 0 14px 40px;border-top:1px solid var(--border-subtle)}
+  ol.find li:before{content:counter(f);position:absolute;left:0;top:13px;width:26px;height:26px;background:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--text-2)}
+  ol.find .ft{font-weight:600;margin:0 0 3px}
+  ol.find .fd{font-size:14.5px;color:var(--text-2);margin:0}
+  .chapter{margin:34px 0 14px}
+  .chapter .cnum{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 2px}
+  .chapter .ctitle{font-size:18px;font-weight:600;letter-spacing:-0.01em;margin:0;color:var(--text)}
+  .chapter .cbridge{font-size:14px;color:var(--text-2);margin:4px 0 0}
+  .slide{border:1px solid var(--border);border-radius:12px;background:#fff;margin:10px 0;overflow:hidden}
+  .slide summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .slide summary::-webkit-details-marker{display:none}
+  .sid{font-size:12px;font-weight:600;color:var(--text-3);letter-spacing:.02em;flex:none}
+  .stitle{font-weight:600;font-size:15.5px;flex:1;min-width:0;word-break:normal;line-height:1.35}
+  .chipev{font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;border:1px solid;flex:none;white-space:nowrap}
+  .ev-supported{color:var(--green);border-color:var(--green)}
+  .ev-stated{color:var(--amber);border-color:var(--amber)}
+  .ev-inferred{color:var(--blue);border-color:var(--blue)}
+  .ev-missing{color:var(--red);border-color:var(--red)}
+  .sbody{padding:0 16px 16px;border-top:1px solid var(--border-subtle)}
+  .row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:10px 14px;margin-top:12px}
+  .row .rl{font-size:12px;color:var(--text-3);letter-spacing:.02em;text-transform:uppercase;padding-top:2px}
+  .row .rv{font-size:14.5px;margin:0}
+  @media(max-width:520px){.row{grid-template-columns:1fr;gap:2px 0}.row .rl{padding-top:8px}}
+  .gap{border:1px solid var(--red);border-left-width:3px;border-radius:10px;background:#fdf6f5;padding:13px 16px;margin:10px 0}
+  .gap .gid{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.02em;margin:0 0 3px}
+  .gap p{font-size:14px;margin:0 0 6px}
+  .gap .need{font-size:13px;color:var(--text-2);margin:0}
+  .asset{border:1px dashed var(--border);border-radius:10px;background:var(--surface);padding:11px 16px;margin:10px 0}
+  .asset .aid{font-size:12px;font-weight:700;color:var(--text-2);letter-spacing:.02em;margin:0 0 2px}
+  .asset p{font-size:13.5px;margin:0;color:var(--text-2)}
+  ul.check{list-style:none;margin:16px 0 0;padding:0}
+  ul.check li{padding:11px 0;border-top:1px solid var(--border-subtle);display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:baseline}
+  ul.check .tag{font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;border:1px solid;justify-self:start;white-space:nowrap}
+  ul.check .txt{font-size:14.5px;margin:0}
+  @media(max-width:520px){ul.check li{grid-template-columns:1fr;gap:4px}}
+  ol.rev{margin:16px 0 0;padding-left:22px}
+  ol.rev li{margin:0 0 12px;font-size:15.5px}
+  .note{background:var(--surface);border-radius:12px;padding:16px 18px;font-size:14px;color:var(--text-2);margin-top:30px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-2);margin:6px 0 0}
+  .legend span{display:inline-flex;gap:5px;align-items:center}
+  .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid}
+  hr.soft{border:none;border-top:1px solid var(--border-subtle);margin:34px 0}
+  @media(max-width:860px){
+    .wrap{grid-template-columns:1fr;gap:0}
+    nav.side{position:static;height:auto;overflow:visible;margin-bottom:30px;border-bottom:1px solid var(--border);padding-bottom:20px}
+    .toc{display:flex;flex-wrap:wrap;border-left:none;gap:2px 4px}
+    .toc a{border-left:none;padding:4px 10px;border:1px solid var(--border);border-radius:20px}
+    .toc a.active{border-color:var(--accent)}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="wrap">
+
+  <nav class="side" aria-label="Contents">
+    <h1><span class="en">Story Plan</span><span class="zh">故事规划</span></h1>
+    <p class="sub"><span class="en">Core Platform Redesign · review surface</span><span class="zh">核心平台改版 · 评审文档</span></p>
+    <ul class="toc" id="toc">
+      <li><a href="#assume"><span class="en">Working assumptions</span><span class="zh">前提设定</span></a></li>
+      <li><a href="#contract"><span class="en">Story contract + findings</span><span class="zh">故事契约与要点</span></a></li>
+      <li><a href="#map"><span class="en">Story map</span><span class="zh">故事地图</span></a></li>
+      <li><a href="#evidence"><span class="en">Evidence checklist</span><span class="zh">证据清单</span></a></li>
+      <li><a href="#review"><span class="en">Review decisions</span><span class="zh">待你定夺</span></a></li>
+    </ul>
+    <div class="controls">
+      <div class="ctl">
+        <button class="chip" id="langEn" aria-pressed="true">EN</button>
+        <button class="chip" id="langZh" aria-pressed="false">中文</button>
+      </div>
+      <div class="ctl">
+        <button class="chip" id="toggleAll" aria-pressed="false">
+          <span class="en">Expand all</span><span class="zh">全部展开</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <section id="assume">
+      <p class="kicker"><span class="en">Working assumptions</span><span class="zh">前提设定</span></p>
+      <h2 class="sec"><span class="en">Wayfair Core Platform Redesign</span><span class="zh">Wayfair 核心平台改版</span></h2>
+      <div class="assume">
+        <div><p class="k"><span class="en">Source</span><span class="zh">来源</span></p><p class="v">case-core-platform.html</p></div>
+        <div><p class="k"><span class="en">Audience mode</span><span class="zh">受众模式</span></p><p class="v"><span class="en">Portfolio review (assumed)</span><span class="zh">作品集评审（推断）</span></p></div>
+        <div><p class="k"><span class="en">Duration</span><span class="zh">时长</span></p><p class="v"><span class="en">~8–9 min (assumed)</span><span class="zh">约 8–9 分钟（推断）</span></p></div>
+        <div><p class="k"><span class="en">Slide count</span><span class="zh">页数</span></p><p class="v"><span class="en">Cover + 13</span><span class="zh">封面 + 13 页</span></p></div>
+      </div>
+      <p class="muted" style="font-size:13.5px;margin-top:12px">
+        <span class="en">Updated to match the reframed page: the spine is now <b>navigation → workspace architecture</b>, solved primarily through UI within real backend constraints. Say the word for <b>interview</b> mode (candidate-fit signals + a follow-up workspace after a script pass).</span>
+        <span class="zh">已按改版后的页面更新：主线现为 <b>导航 → 工作区架构</b>，并在真实后端约束下主要通过 UI 解决。如需 <b>面试</b> 模式（岗位匹配信号，及讲稿环节后的面试追问工作区），告诉我即可。</span>
+      </p>
+    </section>
+
+    <section id="contract">
+      <p class="kicker"><span class="en">Story contract</span><span class="zh">故事契约</span></p>
+      <div class="contract">
+        <p class="q"><span class="en">Central question</span><span class="zh">核心问题</span></p>
+        <p class="qt"><span class="en">How do you fix a platform that has outgrown its own structure — without the risk of rebuilding it?</span><span class="zh">当一个平台已经“长大到”超出自身结构，你如何在不承担重建风险的前提下修复它？</span></p>
+        <p class="a"><span class="en">Recommended argument</span><span class="zh">建议主线</span></p>
+        <p class="at"><span class="en">Reframing visible navigation pain as a workspace-architecture problem — then solving it primarily through UI within real backend constraints — created a scalable foundation the platform, and its AI future, can grow on.</span><span class="zh">把表面的导航痛点，重新定义为“工作区架构”问题，并在真实的后端约束下主要通过 UI 解决，从而打造出一个可扩展的底座——平台乃至其 AI 未来都能在此之上生长。</span></p>
+        <p class="jump"><span class="en">→ Feedback needed on <a href="#review">3 review decisions</a>.</span><span class="zh">→ 需要你就 <a href="#review">3 个决策点</a> 给意见。</span></p>
+      </div>
+
+      <p class="kicker" style="margin-top:26px"><span class="en">Findings</span><span class="zh">评估要点</span></p>
+      <ol class="find">
+        <li>
+          <p class="ft"><span class="en">The spine is now the reframe — and it's the right one.</span><span class="zh">主线已是“重新定位”——而且方向正确。</span></p>
+          <p class="fd"><span class="en">Navigation → workspace architecture, plus the constraint-driven "UI-not-backend" decision, reads as platform-design maturity. The <b>Drawer tradeoff</b> ("couldn't change the component, so I changed the interaction") is your single strongest proof — give it prominent visual space. <a href="#SLIDE-07">SLIDE-07</a></span><span class="zh">导航 → 工作区架构，加上“改前端不动后端”的约束驱动决策，体现出平台设计的成熟度。<b>抽屉取舍</b>（“无法替换组件，就改交互模型”）是你最有力的一个证据——应给足视觉篇幅。<a href="#SLIDE-07">SLIDE-07</a></span></p>
+        </li>
+        <li>
+          <p class="ft"><span class="en">Impact is honestly TBD — keep it that way, don't inflate it.</span><span class="zh">结果诚实标注为“待定”——保持如此，不要夸大。</span></p>
+          <p class="fd"><span class="en">Early survey movement is positive but not yet quantified. The leveled Users/Product/Platform framing + the launch quote is credible; resist adding a % until it's validated. <a href="#GAP-01">GAP-01</a></span><span class="zh">早期调研有正向变化，但尚未量化。分层的“用户/产品/平台”表述加上线评价是可信的；在验证前不要加百分比。<a href="#GAP-01">GAP-01</a></span></p>
+        </li>
+        <li>
+          <p class="ft"><span class="en">The story is now visual-first — but the hero screenshots are still placeholders.</span><span class="zh">故事已“视觉优先”——但主视觉截图仍是占位。</span></p>
+          <p class="fd"><span class="en">The built-in CSS diagrams (growth, process loop, drawer) carry it for now, but the architecture before/after and the real Drawer screens are the highest-priority captures. <a href="#GAP-02">GAP-02</a></span><span class="zh">内置的 CSS 图示（增长、流程环、抽屉）暂时撑起了叙事，但“架构前/后”与真实抽屉界面是优先级最高的截图。<a href="#GAP-02">GAP-02</a></span></p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="map">
+      <p class="kicker"><span class="en">Integrated story map</span><span class="zh">整合故事地图</span></p>
+      <h2 class="sec"><span class="en">Cover + 13 slides</span><span class="zh">封面 + 13 页</span></h2>
+      <div class="legend" aria-hidden="true">
+        <span><span class="dot" style="border-color:var(--green)"></span><span class="en">supported</span><span class="zh">有据</span></span>
+        <span><span class="dot" style="border-color:var(--amber)"></span><span class="en">stated-only</span><span class="zh">仅陈述</span></span>
+        <span><span class="dot" style="border-color:var(--blue)"></span><span class="en">inferred</span><span class="zh">推断</span></span>
+        <span><span class="dot" style="border-color:var(--red)"></span><span class="en">missing</span><span class="zh">缺失</span></span>
+      </div>
+
+      <details class="slide" id="COVER-00">
+        <summary><span class="sid">COVER-00</span><span class="stitle"><span class="en">Wayfair Core Platform Redesign</span><span class="zh">Wayfair 核心平台改版</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Job</span><span class="zh">作用</span></div><p class="rv"><span class="en">Light cover: redefined the platform's IA and workspace structure. Product Designer II. 15–30s.</span><span class="zh">轻封面：重定义平台的信息架构与工作区结构。产品设计师 II。15–30 秒。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Note</span><span class="zh">备注</span></div><p class="rv"><span class="en">Don't lead with "3-panel" — that undersells the scope.</span><span class="zh">不要用“三栏”开场——那会低估工作范围。</span></p></div>
+        </div>
+      </details>
+
+      <div class="chapter">
+        <p class="cnum"><span class="en">Section 1 · Growth &amp; the problem</span><span class="zh">第 1 节 · 增长与问题</span></p>
+        <p class="ctitle"><span class="en">A platform that outgrew its own structure</span><span class="zh">一个“长大到”超出自身结构的平台</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-01">
+        <summary><span class="sid">SLIDE-01</span><span class="stitle"><span class="en">Block Builder is the CMS behind everything on Wayfair.com</span><span class="zh">Wayfair.com 上的一切都出自 Block Builder</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Stake</span><span class="zh">利害</span></div><p class="rv"><span class="en">50+ cross-functional teams build every customer-facing page here. Internal tool, direct customer impact.</span><span class="zh">50+ 跨职能团队在这里搭建每一个面向用户的页面。内部工具，却直接影响顾客。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Artifact</span><span class="zh">素材</span></div><p class="rv"><span class="en">what-is-BB.png — Block Builder → Wayfair.com.</span><span class="zh">what-is-BB.png——Block Builder → Wayfair.com。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-02">
+        <summary><span class="sid">SLIDE-02</span><span class="stitle"><span class="en">The platform grew faster than its structure</span><span class="zh">平台的增长快过了它的结构</span></span><span class="chipev ev-inferred">inferred</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Claim</span><span class="zh">论点</span></div><p class="rv"><span class="en">More teams, workflows, and capabilities piled onto the same workspace structure → increasing complexity. Carried by a causal-chain diagram, not a paragraph.</span><span class="zh">更多团队、工作流与能力不断堆在同一套工作区结构上 → 复杂度攀升。用因果链图示承载，而非大段文字。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Note</span><span class="zh">备注</span></div><p class="rv"><span class="en">"inferred" — the causal framing is your synthesis of stated facts (growth + unchanged structure).</span><span class="zh">标“推断”——这一因果框架是你对既有事实（增长 + 结构未变）的综合。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-03">
+        <summary><span class="sid">SLIDE-03</span><span class="stitle"><span class="en">One structural problem → three consequences</span><span class="zh">一个结构问题 → 三个后果</span></span><span class="chipev ev-stated">stated-only</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Claim</span><span class="zh">论点</span></div><p class="rv"><span class="en">Findability (actions buried among 9 features), Context (nested drawers), Scalability (each feature adds a layer) — all symptoms of one root problem.</span><span class="zh">可发现性（操作淹没在 9 个功能里）、方位感（层层抽屉）、可扩展性（每个功能都加一层）——都是同一根因的症状。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Evidence</span><span class="zh">证据</span></div><p class="rv"><span class="en">Direct user feedback — surveys, conversations, day-to-day. A real advantage of an internal tool, but shown without numbers. Label it honestly.</span><span class="zh">直接的用户反馈——调研、对话、日常。这是内部工具的真实优势，但没有数字。要如实标注。</span></p></div>
+        </div>
+      </details>
+
+      <div class="chapter">
+        <p class="cnum"><span class="en">Section 2 · The reframe</span><span class="zh">第 2 节 · 重新定位</span></p>
+        <p class="ctitle"><span class="en">Navigation was the symptom, not the problem</span><span class="zh">导航是症状，不是问题本身</span></p>
+        <p class="cbridge"><span class="en">Bridge: the three consequences share one cause — so the fix isn't a nav pattern, it's structure.</span><span class="zh">承接：三个后果同源——所以解法不是某个导航样式，而是结构。</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-04">
+        <summary><span class="sid">SLIDE-04</span><span class="stitle"><span class="en">From "make navigation easier" to "a workspace structure that can scale"</span><span class="zh">从“让导航更简单”到“一个能扩展的工作区结构”</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Turn</span><span class="zh">转折</span></div><p class="rv"><span class="en">The central design insight. Shown as a From → To with the HMW: structure capabilities, core work, and preview so the platform can keep scaling.</span><span class="zh">全案的核心设计洞察。以“从 → 到”与 HMW 呈现：让能力、核心工作与预览各归其位，使平台得以持续扩展。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Job</span><span class="zh">作用</span></div><p class="rv"><span class="en">This is the storytelling peak — keep it visually prominent (the reframe panel).</span><span class="zh">这是叙事高点——保持视觉突出（重定位面板）。</span></p></div>
+        </div>
+      </details>
+
+      <div class="chapter">
+        <p class="cnum"><span class="en">Section 3 · Designing within constraints</span><span class="zh">第 3 节 · 在约束中设计</span></p>
+        <p class="ctitle"><span class="en">High risk, so collaboration became part of the design</span><span class="zh">高风险，于是协作成了设计的一部分</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-05">
+        <summary><span class="sid">SLIDE-05</span><span class="stitle"><span class="en">A high-risk platform — improve via UI, preserve the backend</span><span class="zh">高风险平台——用 UI 改进、保留后端</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Judgment</span><span class="zh">判断</span></div><p class="rv"><span class="en">Backend changes risk the live site, so a full rebuild was off the table. The design question narrowed to: solve a structural problem primarily through UI/frontend. Reads as product maturity, not an excuse.</span><span class="zh">改后端会危及线上站点，因此全面重建不可行。设计问题收窄为：主要通过 UI/前端解决结构问题。这体现的是产品成熟度，而非借口。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-06">
+        <summary><span class="sid">SLIDE-06</span><span class="stitle"><span class="en">I drove the exploration and aligned PM &amp; engineering</span><span class="zh">我主导探索，并对齐 PM 与工程</span></span><span class="chipev ev-stated">stated-only</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Agency</span><span class="zh">主导</span></div><p class="rv"><span class="en">Shown as a loop (feedback → exploration → prototype → PM/Eng feasibility → iteration → MVP/post-MVP), not a generic UX timeline. Emphasize decisions and alignment.</span><span class="zh">以循环呈现（反馈 → 探索 → 原型 → PM/工程可行性 → 迭代 → MVP/后续），而非泛泛的 UX 时间线。强调决策与对齐。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Evidence</span><span class="zh">证据</span></div><p class="rv"><span class="en">Research board, prototypes, and workshop captures are placeholders — currently narrative. See GAP-02.</span><span class="zh">研究看板、原型与工作坊素材都是占位——目前仅叙述。见 GAP-02。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-07">
+        <summary><span class="sid">SLIDE-07</span><span class="stitle"><span class="en">Couldn't change the component — so I changed the interaction (Drawer)</span><span class="zh">无法替换组件——于是我改了交互（抽屉）</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Tradeoff</span><span class="zh">取舍</span></div><p class="rv"><span class="en">The Drawer was tied to the architecture, so replacing it was unsafe. Stacking drawers meant users went 5 deep, then closed 5 times. Fix: switch the drawer's content instead of stacking, and reduce shadows. Same component, new interaction model.</span><span class="zh">抽屉与架构深度耦合，替换不安全。层层堆叠让用户深入 5 层、再点 5 次关闭。解法：切换抽屉内容而非堆叠，并弱化阴影。同一组件，新的交互模型。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Why strongest</span><span class="zh">为何最强</span></div><p class="rv"><span class="en">Concrete, honest, and proof of pragmatic design within technical limits. Give it a clear before/after visual.</span><span class="zh">具体、诚实，且证明了在技术限制内的务实设计。给它一个清晰的前/后对比图。</span></p></div>
+        </div>
+      </details>
+
+      <div class="chapter">
+        <p class="cnum"><span class="en">Section 4 · The architecture</span><span class="zh">第 4 节 · 架构</span></p>
+        <p class="ctitle"><span class="en">A flexible workspace, not a fixed layout</span><span class="zh">一个灵活的工作区，而非固定布局</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-08">
+        <summary><span class="sid">SLIDE-08</span><span class="stitle"><span class="en">A new workspace architecture: Capabilities · Work · Preview</span><span class="zh">全新工作区架构：能力 · 工作 · 预览</span></span><span class="chipev ev-inferred">inferred</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Reveal</span><span class="zh">揭示</span></div><p class="rv"><span class="en">Left = capabilities (versions, locales, targeting…), Center = stable main work, Right = persistent preview. Connected without competing for space. Let the visual do the work.</span><span class="zh">左 = 能力（版本、地区、定向…），中 = 稳定的主工作区，右 = 常驻预览。彼此相连而不争夺空间。让视觉说话。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Artifact</span><span class="zh">素材</span></div><p class="rv"><span class="en">Before/after screens are placeholders — the hero visual for this beat. See GAP-02.</span><span class="zh">前/后界面是占位——这一段的主视觉。见 GAP-02。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-09">
+        <summary><span class="sid">SLIDE-09</span><span class="stitle"><span class="en">Why three panels — three needs, one workspace</span><span class="zh">为何是三栏——三种需求，一个工作区</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Reasoning</span><span class="zh">依据</span></div><p class="rv"><span class="en">Four inputs converged: competitive patterns, user mental model, the need for capabilities + work + preview to coexist, and future extensibility (AI). Three panels were the result, not the goal.</span><span class="zh">四个输入汇聚：竞品模式、用户心智模型、能力+工作+预览需共存、以及面向未来的可扩展性（AI）。三栏是结果，不是目标。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-10">
+        <summary><span class="sid">SLIDE-10</span><span class="stitle"><span class="en">Designed to scale — flexible panel configurations</span><span class="zh">为扩展而设计——灵活的栏位组合</span></span><span class="chipev ev-inferred">inferred</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Argument</span><span class="zh">论点</span></div><p class="rv"><span class="en">Feature+Main, Main+Preview, AI+Main, etc. New capabilities plug in without a new layout — this is what makes it a foundation, not a one-off UI.</span><span class="zh">功能+主区、主区+预览、AI+主区 等。新能力可直接接入而无需新布局——这正是它成为“底座”而非“一次性 UI”的原因。</span></p></div>
+        </div>
+      </details>
+
+      <details class="slide" id="SLIDE-11">
+        <summary><span class="sid">SLIDE-11</span><span class="stitle"><span class="en">Designed for what's next — a place for AI (Blocky)</span><span class="zh">为未来而设计——为 AI（Blocky）留位</span></span><span class="chipev ev-inferred">inferred</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Job</span><span class="zh">作用</span></div><p class="rv"><span class="en">Blocky as an optional panel — evidence the architecture evolves with the product, not a separate AI project. Keep it short so it doesn't take over.</span><span class="zh">Blocky 作为可选栏——证明架构能随产品演进，而非另起一个 AI 项目。保持简短，别喧宾夺主。</span></p></div>
+        </div>
+      </details>
+
+      <div class="chapter">
+        <p class="cnum"><span class="en">Section 5 · Impact &amp; close</span><span class="zh">第 5 节 · 影响与收尾</span></p>
+        <p class="ctitle"><span class="en">Better today, stronger foundation for tomorrow</span><span class="zh">当下更好，未来更稳</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-12">
+        <summary><span class="sid">SLIDE-12</span><span class="stitle"><span class="en">Impact across users, product, and platform</span><span class="zh">用户、产品、平台三层影响</span></span><span class="chipev ev-stated">stated-only</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Framing</span><span class="zh">表述</span></div><p class="rv"><span class="en">Users (discoverability, context, fewer interactions), Product (structure, fewer layers), Platform (scalable, less backend risk). Honest note: survey shows positive movement, exact numbers being validated. Real launch quote included.</span><span class="zh">用户（可发现性、方位感、更少交互）、产品（结构、更少层级）、平台（可扩展、更低后端风险）。诚实标注：调研有正向变化，具体数字待验证。附真实上线评价。</span></p></div>
+          <div class="row"><div class="rl"><span class="en">Guardrail</span><span class="zh">底线</span></div><p class="rv"><span class="en">Do not add a % until validated. Keep qualitative + clearly labeled TBD.</span><span class="zh">验证前不要加百分比。保持定性 + 明确标注“待定”。</span></p></div>
+        </div>
+      </details>
+      <div class="gap" id="GAP-01">
+        <p class="gid">GAP-01</p>
+        <p><span class="en">No validated quantitative outcome yet — the impact rests on positive-but-unquantified survey movement plus a launch reaction.</span><span class="zh">尚无经验证的量化结果——影响目前依赖“正向但未量化”的调研变化，加一条上线评价。</span></p>
+        <p class="need"><span class="en"><b>Needed:</b> any validated satisfaction, efficiency, or adoption figure once available. <b>Fallback:</b> keep the leveled qualitative impact + launch quote, explicitly labeled as directional / being validated.</span><span class="zh"><b>需要：</b>一旦有，任何经验证的满意度、效率或采用率数字。<b>兜底：</b>保留分层的定性影响 + 上线评价，并明确标注为“方向性 / 验证中”。</span></p>
+      </div>
+
+      <details class="slide" id="SLIDE-13">
+        <summary><span class="sid">SLIDE-13</span><span class="stitle"><span class="en">From navigation problem to platform foundation</span><span class="zh">从导航问题到平台底座</span></span><span class="chipev ev-supported">supported</span></summary>
+        <div class="sbody">
+          <div class="row"><div class="rl"><span class="en">Close</span><span class="zh">收尾</span></div><p class="rv"><span class="en">One line: "I didn't just redesign the navigation. I redesigned how the workspace could evolve." Ties scope, constraints, and future together.</span><span class="zh">一句话：“我不只是重设计了导航，我重设计了工作区如何演进。”把范围、约束与未来收束在一起。</span></p></div>
+        </div>
+      </details>
+      <div class="gap" id="GAP-02">
+        <p class="gid">GAP-02</p>
+        <p><span class="en">The page is visual-first, but most hero screenshots are still placeholders; three CSS diagrams stand in for now.</span><span class="zh">页面已“视觉优先”，但多数主视觉截图仍是占位；目前由三张 CSS 图示替代。</span></p>
+        <p class="need"><span class="en"><b>Needed (priority order):</b> ① architecture before/after (SLIDE-08); ② real Drawer before/after (SLIDE-07); ③ one prototype or workshop capture (SLIDE-06); then the panel-config and feature screens.</span><span class="zh"><b>需要（按优先级）：</b>① 架构前/后（SLIDE-08）；② 真实抽屉前/后（SLIDE-07）；③ 一张原型或工作坊截图（SLIDE-06）；随后是栏位组合与功能界面。</span></p>
+      </div>
+    </section>
+
+    <hr class="soft" />
+
+    <section id="evidence">
+      <p class="kicker"><span class="en">Evidence checklist</span><span class="zh">证据清单</span></p>
+      <h2 class="sec"><span class="en">Highest-leverage items</span><span class="zh">最关键的几项</span></h2>
+      <ul class="check">
+        <li><span class="tag ev-missing">missing</span><span class="txt"><span class="en">A validated satisfaction / efficiency figure. <a href="#GAP-01">GAP-01</a> · <a href="#SLIDE-12">SLIDE-12</a></span><span class="zh">一个经验证的满意度 / 效率数字。<a href="#GAP-01">GAP-01</a> · <a href="#SLIDE-12">SLIDE-12</a></span></span></li>
+        <li><span class="tag ev-missing">missing</span><span class="txt"><span class="en">Architecture before/after screenshots. <a href="#SLIDE-08">SLIDE-08</a> · <a href="#GAP-02">GAP-02</a></span><span class="zh">架构前/后截图。<a href="#SLIDE-08">SLIDE-08</a> · <a href="#GAP-02">GAP-02</a></span></span></li>
+        <li><span class="tag ev-missing">missing</span><span class="txt"><span class="en">Real Drawer before/after screens. <a href="#SLIDE-07">SLIDE-07</a></span><span class="zh">真实抽屉前/后界面。<a href="#SLIDE-07">SLIDE-07</a></span></span></li>
+        <li><span class="tag ev-supported">supported</span><span class="txt"><span class="en">The Drawer tradeoff — concrete pragmatic design decision. <a href="#SLIDE-07">SLIDE-07</a></span><span class="zh">抽屉取舍——具体而务实的设计决策。<a href="#SLIDE-07">SLIDE-07</a></span></span></li>
+        <li><span class="tag ev-supported">supported</span><span class="txt"><span class="en">Constraint-driven scope (UI-not-backend) reasoning. <a href="#SLIDE-05">SLIDE-05</a></span><span class="zh">约束驱动的范围（改前端不动后端）判断。<a href="#SLIDE-05">SLIDE-05</a></span></span></li>
+        <li><span class="tag ev-supported">supported</span><span class="txt"><span class="en">Scale of use — 50+ teams. <a href="#SLIDE-01">SLIDE-01</a></span><span class="zh">使用规模——50+ 团队。<a href="#SLIDE-01">SLIDE-01</a></span></span></li>
+        <li><span class="tag ev-supported">supported</span><span class="txt"><span class="en">Launch-day user reaction quote. <a href="#SLIDE-12">SLIDE-12</a></span><span class="zh">上线当天的用户评价。<a href="#SLIDE-12">SLIDE-12</a></span></span></li>
+        <li><span class="tag ev-stated">stated-only</span><span class="txt"><span class="en">Direct user-feedback theme (surveys, conversations), no numbers. <a href="#SLIDE-03">SLIDE-03</a></span><span class="zh">直接用户反馈主题（调研、对话），无数字。<a href="#SLIDE-03">SLIDE-03</a></span></span></li>
+      </ul>
+    </section>
+
+    <section id="review">
+      <p class="kicker"><span class="en">Review decisions</span><span class="zh">待你定夺</span></p>
+      <h2 class="sec"><span class="en">Three questions before I go further</span><span class="zh">继续之前的三个问题</span></h2>
+      <ol class="rev">
+        <li><span class="en">Is there any <b>validated</b> number yet (satisfaction, efficiency, adoption)? If yes, we feature it in Impact; if not, we keep the honest "being validated" label. <a href="#GAP-01">GAP-01</a></span><span class="zh block">目前有没有任何<b>经验证</b>的数字（满意度、效率、采用率）？有就放到“影响”里突出；没有就保留诚实的“验证中”标注。<a href="#GAP-01">GAP-01</a></span></li>
+        <li><span class="en">Can you capture the three hero visuals — architecture before/after, real Drawer before/after, and one prototype/workshop shot — to replace the placeholders? <a href="#GAP-02">GAP-02</a></span><span class="zh block">能否补三张主视觉——架构前/后、真实抽屉前/后、以及一张原型/工作坊截图——来替换占位？<a href="#GAP-02">GAP-02</a></span></li>
+        <li><span class="en">Agree the <b>Drawer tradeoff</b> is your strongest proof of design judgment and should get prominent visual space? <a href="#SLIDE-07">SLIDE-07</a></span><span class="zh block">是否认同<b>抽屉取舍</b>是你设计判断力最有力的证据，应给足视觉篇幅？<a href="#SLIDE-07">SLIDE-07</a></span></li>
+      </ol>
+
+      <div class="note">
+        <p style="margin:0"><span class="en"><b>How to review:</b> reply in chat citing a stable ID (e.g. <code>SLIDE-07</code>, <code>GAP-01</code>) or quoting exact text, so I can revise precisely. Say <code>/revise</code> with comments, or <code>/script</code> once the storyline is approved to add talking points.</span><span class="zh block"><b>如何评审：</b>在对话里引用稳定编号（如 <code>SLIDE-07</code>、<code>GAP-01</code>）或直接引用原文，我就能精准修改。用 <code>/revise</code> 附意见，或在故事线通过后用 <code>/script</code> 添加讲述要点。</span></p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var b=document.body, en=document.getElementById('langEn'), zh=document.getElementById('langZh');
+  function setLang(l){
+    b.classList.toggle('lang-zh', l==='zh');
+    en.setAttribute('aria-pressed', l==='en'); zh.setAttribute('aria-pressed', l==='zh');
+    document.documentElement.lang = l==='zh' ? 'zh' : 'en';
+    try{localStorage.setItem('cs-lang', l);}catch(e){}
+  }
+  en.onclick=function(){setLang('en')}; zh.onclick=function(){setLang('zh')};
+  var saved; try{saved=localStorage.getItem('cs-lang');}catch(e){}
+  if(!saved){ saved=(navigator.language||'').toLowerCase().indexOf('zh')===0?'zh':'en'; }
+  setLang(saved);
+
+  var slides=[].slice.call(document.querySelectorAll('details.slide'));
+  var t=document.getElementById('toggleAll');
+  function sync(){
+    var allOpen=slides.every(function(s){return s.open;});
+    t.setAttribute('aria-pressed', allOpen?'true':'false');
+    t.querySelector('.en').textContent=allOpen?'Collapse all':'Expand all';
+    t.querySelector('.zh').textContent=allOpen?'全部收起':'全部展开';
+  }
+  t.onclick=function(){var allOpen=slides.every(function(s){return s.open;});slides.forEach(function(s){s.open=!allOpen;});sync();};
+  slides.forEach(function(s){s.addEventListener('toggle', sync);});
+  sync();
+
+  function openHash(){var id=location.hash.slice(1);if(!id)return;var el=document.getElementById(id);if(el&&el.tagName==='DETAILS')el.open=true;}
+  window.addEventListener('hashchange', openHash); openHash();
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){var el=document.getElementById(this.getAttribute('href').slice(1));if(el&&el.tagName==='DETAILS')el.open=true;});});
+
+  var prog=document.getElementById('progress');
+  var secs=[].slice.call(document.querySelectorAll('main section'));
+  var links={};
+  document.querySelectorAll('#toc a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  function onScroll(){
+    var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop, max=h.scrollHeight-h.clientHeight;
+    prog.style.width=(max>0?(sc/max*100):0)+'%';
+    var cur=secs[0];
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=120)cur=s;});
+    Object.keys(links).forEach(function(k){links[k].classList.toggle('active', cur&&cur.id===k);});
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
