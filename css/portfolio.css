@@ -716,6 +716,45 @@
   background: #A5B4FC;
 }
 
+/* Core Platform: zoom to top-left after brief hold */
+.card__media--video-core .card__zoom {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  width: calc(100% - var(--sp-3));
+  height: calc(100% - var(--sp-3));
+  overflow: hidden;
+  border-top-left-radius: var(--radius-sm);
+  transform-origin: top left;
+  animation: card-core-zoom 8.15s ease-in-out infinite;
+}
+
+.card__media--video-core .card__zoom video {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  border-top-left-radius: 0;
+  transition: none;
+}
+
+.card:hover .card__media--video-core .card__zoom video {
+  transform: none;
+}
+
+@keyframes card-core-zoom {
+  0%, 6.1% { transform: scale(1); }
+  18%, 88% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__media--video-core .card__zoom {
+    animation: none;
+  }
+}
+
 /* Easy Spotlight: cohesive lavender, 20px top-left inset */
 .card__media--video-spotlight {
   background: #B35D95;
@@ -813,20 +852,43 @@
   background: #5E5DB3;
 }
 
-.card__media--video-blocky video {
+.card__media--video-blocky .card__zoom {
   position: absolute;
   top: 20px;
   left: var(--sp-3);
   width: calc(100% - var(--sp-3) * 2);
   height: calc(100% - 20px);
-  object-fit: cover;
-  object-position: top center;
+  overflow: hidden;
   border-top-left-radius: var(--radius-sm);
   border-top-right-radius: var(--radius-sm);
+  transform-origin: top left;
+  animation: card-blocky-zoom 32.39s ease-in-out infinite;
 }
 
-.card:hover .card__media--video-blocky video {
-  transform: scale(1.03);
+.card__media--video-blocky .card__zoom video {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 0;
+  transition: none;
+}
+
+.card:hover .card__media--video-blocky .card__zoom video {
+  transform: none;
+}
+
+@keyframes card-blocky-zoom {
+  0%, 9.3% { transform: scale(1); }
+  16%, 88% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__media--video-blocky .card__zoom {
+    animation: none;
+  }
 }
 
 .card__media--image-blocky img {

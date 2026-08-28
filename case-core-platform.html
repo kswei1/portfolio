@@ -49,6 +49,79 @@
     .problems__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 8px; }
     .problems__d { color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 760px) { .problems { grid-template-columns: 1fr; gap: var(--sp-6); } }
+    /* problem rows: text left, image right */
+    .pf-rows { margin-top: clamp(32px, 4vw, 48px); }
+    .pf-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .pf-row + .pf-row { margin-top: clamp(40px, 6vw, 72px); }
+    .pf-media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+    .pf-media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .pf-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pf-media-wrap { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .pf-media--video-panel {
+      padding: 0;
+      overflow: hidden;
+    }
+    .pf-media__zoom {
+      width: 100%;
+      height: 100%;
+      transform-origin: top right;
+      animation: pf-sidebar-zoom 6.27s ease-in-out infinite;
+    }
+    .pf-media__zoom video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    @keyframes pf-sidebar-zoom {
+      0%, 15.9% { transform: scale(1); }
+      32%, 88% { transform: scale(2); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pf-media__zoom { animation: none; }
+    }
+    .pf-media--video { display: block; padding: 0; }
+    .pf-media--video-full { aspect-ratio: 1600 / 818; background: var(--color-surface); }
+    .pf-media--video video { width: 100%; height: 100%; object-fit: cover; object-position: right top; display: block; }
+    .pf-media--video-full video { object-fit: contain; object-position: left top; }
+    .pf-media--video-panel .pf-media__zoom video {
+      object-fit: cover;
+      object-position: left top;
+    }
+    .pf-media__caption { font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0; text-align: center; line-height: var(--leading-relaxed); }
+    @media (max-width: 760px) { .pf-row { grid-template-columns: 1fr; gap: var(--sp-4); } }
+    /* old / now before-after */
+    .ba2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); }
+    .ba2 figure { margin: 0; }
+    .ba2__media { border-radius: var(--radius-lg); aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden; padding: clamp(14px, 2vw, 28px); }
+    .ba2__media--old { background: var(--color-surface); border: 1px solid var(--color-border-subtle); }
+    .ba2__media--now { background: #995AB8; }
+    .ba2__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .ba2__media--now span { color: rgba(255,255,255,0.9); }
+    .ba2__media img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block; }
+    .ba2 figcaption { margin-top: var(--sp-3); font-size: var(--text-lg); color: var(--color-text-secondary); }
+    @media (max-width: 760px) { .ba2 { grid-template-columns: 1fr; gap: var(--sp-5); } }
+    /* bulleted list */
+    .beat-list { margin: var(--sp-4) 0 0; padding-left: 1.2em; }
+    .beat-list li { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0.4em 0; }
+    /* old / v1 / final evolution */
+    .evo3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.5vw, 32px); margin-top: clamp(32px, 4vw, 48px); }
+    .evo3 figure { margin: 0; }
+    .evo3 figcaption { margin: 0 0 var(--sp-2); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-secondary); }
+    .evo3__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 3 / 4; display: grid; place-items: center; overflow: hidden; }
+    .evo3__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .evo3__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 760px) { .evo3 { grid-template-columns: 1fr; } .evo3__media { aspect-ratio: 4 / 3; } }
+    /* shipped + feedback: text left, image right */
+    .ship { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .ship__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+    .ship__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+    .ship__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 760px) { .ship { grid-template-columns: 1fr; } }
+    /* reflections split */
+    .reflect2 { display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: clamp(24px, 5vw, 72px); }
+    .reflect2__item + .reflect2__item { margin-top: var(--sp-6); }
+    @media (max-width: 760px) { .reflect2 { grid-template-columns: 1fr; } }
 
     /* business-context callout */
     .callout { background: var(--color-surface); border-radius: var(--radius-lg); padding: clamp(20px, 3vw, 32px); margin-top: clamp(32px, 4vw, 48px); }
@@ -76,6 +149,23 @@
     /* 3-up lean columns (solution panels / activities) */
     .cons { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 3vw, 44px); margin-top: clamp(28px, 3.5vw, 44px); }
     .cons__item { border-top: 2px solid var(--color-border); padding-top: var(--sp-3); }
+    .cons__media {
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+      margin-bottom: var(--sp-4);
+      aspect-ratio: 16 / 10;
+    }
+    .cons__media img,
+    .cons__media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+    .cons__media--figma img { object-fit: contain; background: #f0f0f0; }
     .cons__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0 0 6px; }
     .cons__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
     .cons__d { color: var(--color-text-secondary); margin: 0; }
@@ -176,35 +266,24 @@
       </div>
     </header>
 
-    <!-- ══ IMPACT ══ -->
-    <section class="beat">
-      <div class="container cs-split">
-        <p class="cs-eyebrow">Impact</p>
-        <h2 class="cs-h">The outcome<span>so far</span></h2>
-        <div class="cs-split__body">
-          <div class="cs-stats">
-            <div class="cs-stat">
-              <span class="cs-stat__num">XX%</span>
-              <div>
-                <h3 class="cs-stat__title">Higher satisfaction</h3>
-                <p class="cs-stat__desc">Placeholder — early survey data, being validated.</p>
-              </div>
+    <!-- ══ BEFORE / AFTER ══ -->
+    <section class="beat beat--tight">
+      <div class="container">
+        <div class="ba2">
+          <figure>
+            <div class="ba2__media ba2__media--old">
+              <span>Old screenshot — add later</span>
+              <!-- <img src="./assets/images/bb-old.png" alt="Old fragmented navigation" /> -->
             </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">XX → 1</span>
-              <div>
-                <h3 class="cs-stat__title">Faster navigation</h3>
-                <p class="cs-stat__desc">Placeholder — reaching a deeply nested block now takes one interaction instead of one click per level.</p>
-              </div>
+            <figcaption>Old — fragmented navigation</figcaption>
+          </figure>
+          <figure>
+            <div class="ba2__media ba2__media--now">
+              <span>New screenshot — add later</span>
+              <!-- <img src="./assets/images/bb-now.png" alt="New 3-panel structure" /> -->
             </div>
-            <div class="cs-stat">
-              <span class="cs-stat__num">Shipped</span>
-              <div>
-                <h3 class="cs-stat__title">MVP + Post-MVP</h3>
-                <p class="cs-stat__desc">Fully launched across the workspace.</p>
-              </div>
-            </div>
-          </div>
+            <figcaption>Now — 3-panel structure</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -226,16 +305,37 @@
         <h2 class="beat-h">The platform grew, but the workspace didn't</h2>
         <p class="beat-lead">As different teams needed different capabilities, Block Builder grew more complex. But everyone kept working in essentially the same workspace — and it never evolved with the platform. Two problems kept surfacing:</p>
 
-        <div class="problems">
-          <div class="problems__item">
-            <p class="problems__k">Problem A</p>
-            <h3 class="problems__t">Finding capabilities</h3>
-            <p class="problems__d">Targeting, A/B testing, block groups, and other features all lived in one side area. Users scrolled a long list to find what they needed — and since different roles need different tools, seeing everything at once just added cognitive load.</p>
+        <div class="pf-rows">
+          <div class="pf-row">
+            <div>
+              <p class="problems__k">Problem A</p>
+              <h3 class="problems__t">Finding capabilities was harder than it should be</h3>
+              <p class="problems__d">Targeting, experimentation, block groups, and other features all lived in one long list. Different roles needed different capabilities to complete their jobs, but everyone had to navigate the same list to find what they needed.</p>
+            </div>
+            <div class="pf-media-wrap">
+              <div class="pf-media pf-media--video pf-media--video-full pf-media--video-panel">
+                <div class="pf-media__zoom">
+                  <video autoplay loop muted playsinline aria-label="Scrolling through a long list of capabilities in the Block Builder sidebar">
+                    <source src="./assets/videos/wf-problem1.webm" type="video/webm" />
+                    <source src="./assets/videos/wf-problem1.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <p class="pf-media__caption">Users had to scroll through the list to find the right tool.</p>
+            </div>
           </div>
-          <div class="problems__item">
-            <p class="problems__k">Problem B</p>
-            <h3 class="problems__t">Navigating complex page hierarchies</h3>
-            <p class="problems__d">Pages could nest blocks many levels deep. To reach a block buried eight levels down, a user might click through eight drawers — then close them one by one to get back.</p>
+          <div class="pf-row">
+            <div>
+              <p class="problems__k">Problem B</p>
+              <h3 class="problems__t">Users had to go through too many layers to reach what they needed</h3>
+              <p class="problems__d">Blocks could be nested many levels deep. To reach a block buried ten levels down, users had to click through nine drawers — then close them one by one to get back.</p>
+            </div>
+            <div class="pf-media pf-media--video pf-media--video-full">
+              <video autoplay loop muted playsinline aria-label="Navigating deeply nested blocks through stacked drawers in Block Builder">
+                <source src="./assets/videos/wf-problem2.webm" type="video/webm" />
+                <source src="./assets/videos/wf-problem2.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
 
@@ -290,14 +390,32 @@
 
         <div class="cons">
           <div class="cons__item">
+            <div class="cons__media cons__media--figma">
+              <img
+                src="./assets/images/WF-competitive-research.png"
+                alt="Competitive research board comparing Canva, Webflow, HubSpot, and Retool sidebar patterns"
+              />
+            </div>
             <p class="cons__k">Competitive research</p>
             <p class="cons__d">Studied complex products — Contentful, Sanity, Figma — to see how they organize capabilities and dense workflows.</p>
           </div>
           <div class="cons__item">
+            <div class="cons__media">
+              <video autoplay loop muted playsinline aria-label="Prototype walkthrough for aligning with PM and engineering">
+                <source src="./assets/videos/wf-collaboration.webm" type="video/webm" />
+                <source src="./assets/videos/wf-collaboration.mp4" type="video/mp4" />
+              </video>
+            </div>
             <p class="cons__k">Prototypes to align</p>
             <p class="cons__d">Made abstract ideas tangible and used them to validate directions with PM, EM, and engineering.</p>
           </div>
           <div class="cons__item">
+            <div class="cons__media cons__media--figma">
+              <img
+                src="./assets/images/WF-planning.png"
+                alt="MVP and Post-MVP phased rollout planning in Figma"
+              />
+            </div>
             <p class="cons__k">MVP + Post-MVP</p>
             <p class="cons__d">Scoped a phased path around technical constraints instead of one risky big-bang redesign.</p>
           </div>
@@ -403,23 +521,43 @@
           <span class="diff">Different interaction model</span>
         </div>
 
-        <!-- Block tree navigation -->
-        <div class="subbeat">
-          <h3 class="beat-sub">Turning the block hierarchy into navigation</h3>
-          <p class="beat-lead">Block Builder already had a tool that showed the hierarchy of blocks on a page — but it was built to <em>visualize</em> structure, sitting as one tab next to Feature and Preview. I reframed its purpose into a navigation model: instead of just showing the tree, users can select the level they want and jump straight there. Reaching a block eight levels deep went from one click per level to a single interaction. This shipped as part of Post-MVP.</p>
-          <div class="compare">
-            <div class="compare__col">
-              <p class="compare__k">Before · click level by level</p>
-              <p class="compare__big">8 clicks</p>
-              <p class="compare__d">One click per level to reach a block buried eight deep.</p>
+      </div>
+    </section>
+
+    <!-- ══ DEEP DIVE · MENU NAVIGATION ══ -->
+    <section class="beat">
+      <div class="container">
+        <p class="beat-eyebrow">Deep dive</p>
+        <h2 class="beat-h">Menu navigation</h2>
+        <p class="beat-lead">I reimagined and reused the existing feature as a menu-based navigation — simplifying navigation without backend changes, saving the engineering time to build from 0 to 1, and removing the need to open multiple drawers. Through iteration, I refined how information is displayed.</p>
+        <ul class="beat-list">
+          <li>The initial version (V1) only showed block titles, which made it hard to tell similar blocks apart.</li>
+          <li>In the final version, I used the block title as the primary label and added block type and ID as secondary information in a lighter, smaller style.</li>
+        </ul>
+        <p class="beat-lead" style="margin-top: var(--sp-4);">The result is a more intuitive navigation experience: users understand the structure, identify blocks quickly, and move through nested content without losing context.</p>
+
+        <div class="evo3">
+          <figure>
+            <figcaption>Old</figcaption>
+            <div class="evo3__media">
+              <span>Old — screenshot</span>
+              <!-- <img src="./assets/images/nav-old.png" alt="Old tree view" /> -->
             </div>
-            <div class="compare__col">
-              <p class="compare__k">After · jump from the tree</p>
-              <p class="compare__big compare__big--accent">1 interaction</p>
-              <p class="compare__d">Select the level directly and go straight there.</p>
+          </figure>
+          <figure>
+            <figcaption>V1</figcaption>
+            <div class="evo3__media">
+              <span>V1 — screenshot</span>
+              <!-- <img src="./assets/images/nav-v1.png" alt="V1 block tree" /> -->
             </div>
-          </div>
-          <p class="beat-note">The point isn't the component — it's that I saw an existing capability could be repurposed to solve a much larger navigation problem, with no new backend system.</p>
+          </figure>
+          <figure>
+            <figcaption>Final</figcaption>
+            <div class="evo3__media">
+              <span>Final — screenshot</span>
+              <!-- <img src="./assets/images/nav-final.png" alt="Final block tree with title, type, and ID" /> -->
+            </div>
+          </figure>
         </div>
       </div>
     </section>
@@ -427,16 +565,52 @@
     <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
     <section class="beat beat--tight">
       <div class="container">
-        <p class="beat-eyebrow">Designed for what's next</p>
-        <h2 class="beat-h">Room for AI to plug in</h2>
-        <p class="beat-lead">Because the workspace combines panels, new capabilities can slot in without a new layout each time. Blocky — our AI agent — can become an optional panel alongside the main work, so the platform can grow without redesigning the whole workspace around every addition.</p>
+        <p class="beat-eyebrow">A flexible system</p>
+        <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
+        <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations — not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
         <div class="cs-panel-grid">
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-default --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Main</p><p class="cs-panel-item__desc">Main editing workspace.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-feature-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main</p><p class="cs-panel-item__desc">Work a capability while editing.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-main-preview --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Main + Preview</p><p class="cs-panel-item__desc">Edit and preview side by side.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main + Preview</p><p class="cs-panel-item__desc">Full workflow in one view.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI + Main</p><p class="cs-panel-item__desc">Use Blocky while editing.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI + Main + Preview</p><p class="cs-panel-item__desc">Generate with AI, preview live.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-default --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Default</p><p class="cs-panel-item__desc">Main editing workspace is always visible.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-feature-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main</p><p class="cs-panel-item__desc">Focus on building and iterating — access features while editing content.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-main-preview --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Main + Preview</p><p class="cs-panel-item__desc">Edit and preview side by side for quick QA.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main + Preview</p><p class="cs-panel-item__desc">Navigate features, edit content, and preview in one view.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI agent + Main</p><p class="cs-panel-item__desc">Use Blocky while focusing on the main content.</p></div></div>
+          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI agent + Main + Preview</p><p class="cs-panel-item__desc">Generate with AI while previewing the live experience.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SHIPPED + FEEDBACK ══ -->
+    <section class="beat">
+      <div class="container">
+        <div class="ship">
+          <div>
+            <p class="beat-eyebrow">Shipped</p>
+            <h2 class="beat-h">MVP &amp; Post-MVP, shipped with positive feedback</h2>
+            <p class="beat-lead">Shipped across MVP and Post-MVP with strong positive feedback — improved efficiency and navigation, intuitive side-by-side editing and preview, and a more flexible workspace for future growth.</p>
+          </div>
+          <div class="ship__media">
+            <span>Slack feedback — image</span>
+            <!-- <img src="./assets/images/bb-slack-feedback.png" alt="Slack reactions on the Block Tree launch" /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ REFLECTIONS ══ -->
+    <section class="beat">
+      <div class="container">
+        <div class="reflect2">
+          <h2 class="beat-h">Reflections</h2>
+          <div class="reflect2__body">
+            <div class="reflect2__item">
+              <h3 class="beat-sub">Building in the unknown</h3>
+              <p class="beat-lead">This project had a lot of ambiguity. I identified the problem and led it end-to-end without a clear roadmap. Through user insights, research, and close collaboration with stakeholders, I defined the MVP and Post-MVP approach, aligned priorities, and drove it to launch.</p>
+            </div>
+            <div class="reflect2__item">
+              <h3 class="beat-sub">Designing within constraints</h3>
+              <p class="beat-lead">At the same time, I had to design within tight constraints on a complex, high-risk platform. I worked closely with engineering to find feasible solutions, reusing existing systems where possible — and balanced different user needs so it stayed easy for new users while still powerful for advanced ones.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
