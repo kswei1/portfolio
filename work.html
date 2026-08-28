@@ -9,7 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/base.css" />
-  <link rel="stylesheet" href="./css/portfolio.css" />
+  <link rel="stylesheet" href="./css/portfolio.css?v=3" />
+  <style>
+    /* Temporarily hidden work cards (kept in markup — remove this class to show again) */
+    .card--hidden { display: none !important; }
+  </style>
 </head>
 <body>
 
@@ -38,13 +42,13 @@
         <div class="hero__text">
           <div class="hero__rotator" aria-live="polite">
             <h1 class="hero__phrase hero__heading is-active">
-              I'm Katherine, a product designer who thinks in systems<img src="./assets/images/thinker-144.png" alt="" style="width:56px;height:56px;object-fit:contain;vertical-align:middle;display:inline-block;margin:0 0.15em;" />, prototypes in code<img src="./assets/images/code.png" alt="" style="width:56px;height:56px;object-fit:contain;vertical-align:middle;display:inline-block;margin:0 0.15em;border-radius:16px;" />, and builds with AI<img src="./assets/images/cursor-logo-128.png" alt="" style="width:56px;height:56px;object-fit:contain;vertical-align:middle;display:inline-block;margin:0 0.1em 0 0.25em;" /><img src="./assets/images/claude-logo-128.png" alt="" style="width:56px;height:56px;object-fit:contain;vertical-align:middle;display:inline-block;margin:0 0.15em;" />.
+              I'm Katherine, a product designer who thinks in systems<img src="./assets/images/thinker-144.png" alt="" class="hero__icon hero__icon--thinker" />, prototypes in code<img src="./assets/images/code.png" alt="" class="hero__icon hero__icon--code" />, and builds with AI<img src="./assets/images/cursor-logo-128.png" alt="" class="hero__icon hero__icon--ai" /><img src="./assets/images/claude-logo-128.png" alt="" class="hero__icon hero__icon--ai hero__icon--ai-claude" />.
             </h1>
             <p class="hero__phrase hero__heading" aria-hidden="true">
-              Prototyping is how I work through problems, explore different solutions, and shape ideas into something real.
+              Prototyping is how I work through problems<img src="./assets/images/magnifying-glass.png" alt="" class="hero__icon hero__icon--magnifier" />, explore different solutions, and shape ideas into something real.<img src="./assets/images/lightbulb.png" alt="" class="hero__icon hero__icon--lightbulb" />
             </p>
             <p class="hero__phrase hero__heading" aria-hidden="true">
-              Outside of design, I enjoy experimenting in the kitchen, trying new flavors, and crafting cocktails.
+              Outside of design, I enjoy experimenting in the kitchen<img src="./assets/images/kitchen-pot.png" alt="" class="hero__icon hero__icon--pot" />, trying new flavors, and crafting cocktails.<img src="./assets/images/cocktail.png" alt="" class="hero__icon hero__icon--cocktail" />
             </p>
           </div>
 
@@ -113,28 +117,28 @@
                 <span class="card__tag">Product Strategy</span>
                 <span class="card__tag">2026</span>
               </div>
-              <h2 class="card__title">Wayfair Core Platform Redesign</h2>
-              <p class="card__desc">Redefined the platform's information architecture and core workflows by introducing a new 3-panel design.</p>
+              <h2 class="card__title">Wayfair's Core Platform Redesign for Scale</h2>
+              <p class="card__desc">Restructured the workspace to help 50+ teams find capabilities and navigate complex page hierarchies with less friction.</p>
             </div>
           </a>
 
-          <!-- Card 3: Wayfair Internal Template System -->
-          <a class="card card--featured" href="./case-template-system.html" aria-label="View case study: Wayfair Internal Template System" data-categories="internal-platforms">
-            <div class="card__media card__media--video card__media--video-template">
-              <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
-                <source src="./assets/videos/template-system.webm" type="video/webm" />
-                <source src="./assets/videos/template-system.mp4" type="video/mp4" />
+          <!-- Card 3: Figma Plugin - Easy Spotlight -->
+          <a class="card card--small" href="https://www.figma.com/community/plugin/1501766663479478631" target="_blank" rel="noopener" aria-label="View Easy Spotlight on the Figma Community (opens in new tab)" data-categories="consumer-products ai">
+            <div class="card__media card__media--video card__media--video-spotlight">
+              <video autoplay loop muted playsinline aria-label="Easy Spotlight Figma plugin walkthrough">
+                <source src="./assets/videos/easy-spotlight.webm" type="video/webm" />
+                <source src="./assets/videos/easy-spotlight.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="card__body">
               <div class="card__tags">
                 <span class="card__tag">Shipped</span>
-                <span class="card__tag">New Feature</span>
-                <span class="card__tag">Cross-Team Collaboration</span>
+                <span class="card__tag">Figma Plugin</span>
+                <span class="card__tag">Cursor</span>
                 <span class="card__tag">2025</span>
               </div>
-              <h2 class="card__title">Wayfair Internal Template System</h2>
-              <p class="card__desc">Launched a reusable template system that reduced page creation time by 83% and helped teams scale high-traffic page launches.</p>
+              <h3 class="card__title">Figma Plugin - EasySpotlight</h3>
+              <p class="card__desc">Built and launched a Figma plugin using Cursor to help designers highlight key areas for clearer communication and faster reviews.</p>
             </div>
           </a>
 
@@ -156,23 +160,23 @@
             </div>
           </a>
 
-          <!-- Card 5: Figma Plugin - Easy Spotlight -->
-          <a class="card card--small" href="https://www.figma.com/community/plugin/1501766663479478631" target="_blank" rel="noopener" aria-label="View Easy Spotlight on the Figma Community (opens in new tab)" data-categories="consumer-products ai">
-            <div class="card__media card__media--video card__media--video-spotlight">
-              <video autoplay loop muted playsinline aria-label="Easy Spotlight Figma plugin walkthrough">
-                <source src="./assets/videos/easy-spotlight.webm" type="video/webm" />
-                <source src="./assets/videos/easy-spotlight.mp4" type="video/mp4" />
+          <!-- Card 5: Wayfair Internal Template System -->
+          <a class="card card--featured" href="./case-template-system.html" aria-label="View case study: Wayfair Internal Template System" data-categories="internal-platforms">
+            <div class="card__media card__media--video card__media--video-template">
+              <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
+                <source src="./assets/videos/template-system.webm" type="video/webm" />
+                <source src="./assets/videos/template-system.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="card__body">
               <div class="card__tags">
                 <span class="card__tag">Shipped</span>
-                <span class="card__tag">Figma Plugin</span>
-                <span class="card__tag">Cursor</span>
+                <span class="card__tag">New Feature</span>
+                <span class="card__tag">Cross-Team Collaboration</span>
                 <span class="card__tag">2025</span>
               </div>
-              <h3 class="card__title">Figma Plugin - Easy Spotlight</h3>
-              <p class="card__desc">Built and launched a Figma plugin using Cursor to help designers highlight key areas for clearer communication and faster reviews.</p>
+              <h2 class="card__title">Wayfair Internal Template System</h2>
+              <p class="card__desc">Launched a reusable template system that reduced page creation time by 83% and helped teams scale high-traffic page launches.</p>
             </div>
           </a>
 
@@ -193,7 +197,7 @@
           </a>
 
           <!-- Card 7: Wayfair Design System Rebuild (archived) -->
-          <div class="card card--small card--unlinked" aria-label="Wayfair Design System Rebuild — case study archived" data-categories="internal-platforms">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Wayfair Design System Rebuild — case study archived" data-categories="internal-platforms">
             <div class="card__media card__media--image card__media--image-inset">
               <img src="./assets/images/design-system.png" alt="Wayfair Design System components and patterns" />
             </div>
@@ -209,7 +213,7 @@
           </div>
 
           <!-- Card 8: Favorites for Faster Block Access -->
-          <div class="card card--small card--unlinked" aria-label="Favorites for Faster Block Access — case study unavailable" data-categories="internal-platforms">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Favorites for Faster Block Access — case study unavailable" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-favorites">
               <video autoplay loop muted playsinline aria-label="Favorites for Faster Block Access walkthrough">
                 <source src="./assets/videos/block-favorites.webm" type="video/webm" />
@@ -228,7 +232,7 @@
           </div>
 
           <!-- Card 9: Rapid Quote Flow for Homeowners -->
-          <div class="card card--small card--unlinked" aria-label="Rapid Quote Flow for Homeowners — case study unavailable" data-categories="consumer-products mobile">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Rapid Quote Flow for Homeowners — case study unavailable" data-categories="consumer-products mobile">
             <div class="card__media card__media--image card__media--image-quote">
               <img src="./assets/images/rapid-quote.png" alt="Owens Corning mobile quote flow screens" />
             </div>
@@ -245,7 +249,7 @@
           </div>
 
           <!-- Card 10: Non-Profit Visual System -->
-          <div class="card card--small card--unlinked" aria-label="Non-Profit Visual System — case study unavailable" data-categories="consumer-products">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Non-Profit Visual System — case study unavailable" data-categories="consumer-products">
             <div class="card__media card__media--image card__media--image-nonprofit">
               <img src="./assets/images/nonprofit.png" alt="Tilth Alliance non-profit visual system mockups" />
             </div>

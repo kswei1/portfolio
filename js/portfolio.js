@@ -14,11 +14,73 @@ window.addEventListener('scroll', () => {
 // ── Rotating hero statements ──
 document.addEventListener('DOMContentLoaded', () => {
   const phrases = document.querySelectorAll('.hero__phrase');
+  const rotator = document.querySelector('.hero__rotator');
+  const heroText = document.querySelector('.hero__text');
+
+  const syncHeroRotator = () => {
+    if (!rotator || !heroText || !phrases.length) return;
+
+    const width = heroText.clientWidth;
+    rotator.style.width = `${width}px`;
+
+    let maxHeight = 0;
+    phrases.forEach((phrase) => {
+      const probe = phrase.cloneNode(true);
+      probe.removeAttribute('aria-hidden');
+      probe.classList.remove('is-active', 'is-exiting');
+      probe.style.cssText = `
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+        width: ${width}px;
+        opacity: 1;
+        transform: none;
+      `;
+      rotator.appendChild(probe);
+      maxHeight = Math.max(maxHeight, probe.offsetHeight);
+      probe.remove();
+    });
+
+    rotator.style.minHeight = `${maxHeight}px`;
+  };
+
+  if (phrases.length) {
+    syncHeroRotator();
+    window.addEventListener('resize', syncHeroRotator, { passive: true });
+    if (document.fonts?.ready) document.fonts.ready.then(syncHeroRotator);
+  }
+
   const scenes = document.querySelectorAll('.hero__scene');
   const cocktailWrap = document.querySelector('.hero__cocktail-wrap');
   const COCKTAIL_SCENE_INDEX = 2;
   const WORKFLOW_SCENE_INDEX = 1;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const bindHoverSound = (element, src, { loop = false } = {}) => {
+    if (!element) return;
+
+    const audio = new Audio(src);
+    audio.preload = 'auto';
+    audio.loop = loop;
+
+    const stopSound = () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+
+    element.addEventListener('mouseenter', () => {
+      stopSound();
+      audio.play().catch(() => {});
+    });
+
+    element.addEventListener('mouseleave', stopSound);
+  };
+
+  bindHoverSound(document.querySelector('.hero__icon--thinker'), './assets/audio/harp-cue.mp3');
+  bindHoverSound(document.querySelector('.hero__icon--code'), './assets/audio/keyboard-typing.mp3', { loop: true });
+  bindHoverSound(document.querySelector('.hero__icon--lightbulb'), './assets/audio/bulb-ding.mp3');
+  bindHoverSound(document.querySelector('.hero__icon--cocktail'), './assets/audio/cocktail-pour.mp3', { loop: true });
+  bindHoverSound(document.querySelector('.hero__icon--pot'), './assets/audio/cooking-sound.mp3', { loop: true });
 
   const restartCocktailSequence = () => {
     if (!cocktailWrap || reducedMotion) return;

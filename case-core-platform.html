@@ -31,6 +31,13 @@
     .beat-sub { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-3); }
     .beat-note { font-size: var(--text-base); color: var(--color-text-secondary); margin: var(--sp-3) 0 0; }
     .cs-overview-img { width: 100%; height: auto; display: block; margin-top: clamp(28px, 4vw, 44px); }
+    /* at-a-glance summary grid */
+    .cs-summary { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px); }
+    .cs-summary__label { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 8px; }
+    .cs-summary__text { font-size: var(--text-lg); line-height: var(--leading-normal); color: var(--color-text-secondary); margin: 0; }
+    .cs-summary__list { margin: 0; padding-left: 0; list-style: none; color: var(--color-text-secondary); font-size: var(--text-lg); line-height: var(--leading-normal); }
+    .cs-summary__list li { margin: 0.25em 0; }
+    @media (max-width: 640px) { .cs-summary { grid-template-columns: 1fr; } }
     .subbeat { margin-top: clamp(44px, 6vw, 80px); }
     .beat-q {
       font-size: clamp(var(--text-xl), 2.4vw, var(--text-2xl));
@@ -265,6 +272,39 @@
         </div>
       </div>
     </header>
+
+    <!-- ══ AT A GLANCE ══ -->
+    <section class="beat">
+      <div class="container">
+        <div class="cs-summary">
+          <div>
+            <p class="cs-summary__label">Problems</p>
+            <p class="cs-summary__text">As Block Builder grew to 50+ teams and complex workflows, its workspace didn't evolve — capabilities got hard to find, and deeply nested pages were hard to navigate.</p>
+          </div>
+          <div>
+            <p class="cs-summary__label">My role</p>
+            <ul class="cs-summary__list">
+              <li>Led the redesign end-to-end</li>
+              <li>Drove the workspace structure &amp; interaction model</li>
+              <li>Prototyped and aligned PM + engineering</li>
+              <li>Defined the MVP &amp; Post-MVP scope</li>
+            </ul>
+          </div>
+          <div>
+            <p class="cs-summary__label">Solution</p>
+            <p class="cs-summary__text">A flexible workspace — capabilities, main work, and preview — that makes features easy to find and deep hierarchies fast to navigate.</p>
+          </div>
+          <div>
+            <p class="cs-summary__label">Impact</p>
+            <ul class="cs-summary__list">
+              <li>Shipped across MVP + Post-MVP</li>
+              <li>Faster navigation through deep hierarchies</li>
+              <li>Positive early user feedback (being validated)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ══ BEFORE / AFTER ══ -->
     <section class="beat beat--tight">

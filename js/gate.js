@@ -16,6 +16,10 @@ form.addEventListener('submit', (e) => {
 
   if (val === PASSWORD) {
     sessionStorage.setItem(SESSION_KEY, 'true');
+
+    const welcome = new Audio('./assets/audio/welcome-ding.mp3');
+    welcome.preload = 'auto';
+    welcome.play().catch(() => {});
     submit.textContent = 'Welcome';
     submit.classList.add('is-success');
     input.blur();
