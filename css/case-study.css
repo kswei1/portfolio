@@ -16,7 +16,7 @@
 
 /* ---- shared section rhythm -------------------------------- */
 .cs-section {
-  padding-block: var(--sp-8);   /* 64px */
+  padding-block: clamp(48px, 6vw, 80px);   /* matches Core Platform .beat rhythm */
 }
 .cs-section + .cs-section { padding-top: 0; }
 
@@ -41,7 +41,7 @@
   letter-spacing: 0.02em;
   /* sentence case — no all-caps */
   color: var(--color-accent);
-  margin: 0 0 var(--sp-2);
+  margin: 0 0 var(--sp-1);
 }
 
 .cs-body {

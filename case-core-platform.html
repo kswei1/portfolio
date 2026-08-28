@@ -22,15 +22,31 @@
     .cs-hero__summary { display: block; -webkit-line-clamp: unset; overflow: visible; }
 
     /* ── story beats ── */
-    .beat { margin: clamp(64px, 9vw, 116px) 0; }
-    .beat--tight { margin: clamp(44px, 6vw, 72px) 0; }
-    .beat-eyebrow { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0 0 var(--sp-3); }
-    .beat-h { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-4); }
+    .beat { margin: clamp(48px, 6vw, 80px) 0; }
+    .beat--tight { margin: clamp(32px, 4vw, 52px) 0; }
+    .beat-eyebrow { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0 0 var(--sp-1); }
+    .beat-h { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-2); }
     .beat-lead { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
     .beat-lead + .beat-lead { margin-top: var(--sp-3); }
     .beat-sub { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-3); }
-    .beat-note { font-size: var(--text-base); color: var(--color-text-secondary); margin: var(--sp-3) 0 0; }
+    .beat-note { font-size: var(--text-lg); color: var(--color-text-secondary); margin: var(--sp-3) 0 0; }
     .cs-overview-img { width: 100%; height: auto; display: block; margin-top: clamp(28px, 4vw, 44px); }
+    .exploration-pair { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(16px, 2.5vw, 28px); align-items: start; margin: clamp(28px, 4vw, 44px) 0 var(--sp-4); }
+    .exploration-figure { margin: 0; min-width: 0; }
+    .exploration-figure__frame { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 14px; height: 388px; display: flex; align-items: center; justify-content: center; }
+    .exploration-figure__frame img { max-height: 360px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px; }
+    .exploration-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+    @media (max-width: 760px) {
+      .exploration-pair { grid-template-columns: 1fr; }
+      .exploration-figure__frame { height: auto; }
+      .exploration-figure--slides .exploration-figure__frame img { max-height: 280px; }
+    }
+    .sol-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.5vw, 28px); align-items: stretch; margin-top: clamp(32px, 4vw, 48px); }
+    .sol-figure { margin: 0; min-width: 0; display: flex; }
+    .sol-figure__frame { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 14px; width: 100%; aspect-ratio: 6016 / 3172; display: flex; align-items: center; justify-content: center; position: relative; }
+    .sol-figure__frame img,
+    .sol-figure__frame video { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 8px; }
+    @media (max-width: 760px) { .sol-pair { grid-template-columns: 1fr; } }
     /* at-a-glance summary grid */
     .cs-summary { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px); }
     .cs-summary__label { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 8px; }
@@ -63,7 +79,7 @@
     .pf-media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
     .pf-media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
     .pf-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pf-media-wrap { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .pf-media-wrap { display: flex; flex-direction: column; gap: 8px; }
     .pf-media--video-panel {
       padding: 0;
       overflow: hidden;
@@ -91,6 +107,7 @@
     .pf-media--video-full { aspect-ratio: 1600 / 818; background: var(--color-surface); }
     .pf-media--video video { width: 100%; height: 100%; object-fit: cover; object-position: right top; display: block; }
     .pf-media--video-full video { object-fit: contain; object-position: left top; }
+    .pf-media--sol video { object-fit: cover; object-position: top left; }
     .pf-media--video-panel .pf-media__zoom video {
       object-fit: cover;
       object-position: left top;
@@ -100,25 +117,27 @@
     /* old / now before-after */
     .ba2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); }
     .ba2 figure { margin: 0; }
-    .ba2__media { border-radius: var(--radius-lg); aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden; padding: clamp(14px, 2vw, 28px); }
+    .ba2__media { border-radius: var(--radius-lg); display: grid; place-items: center; overflow: hidden; padding: 14px; }
     .ba2__media--old { background: var(--color-surface); border: 1px solid var(--color-border-subtle); }
-    .ba2__media--now { background: #995AB8; }
+    .ba2__media--now { background: var(--color-surface); border: 1px solid var(--color-border-subtle); }
     .ba2__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
-    .ba2__media--now span { color: rgba(255,255,255,0.9); }
-    .ba2__media img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block; }
-    .ba2 figcaption { margin-top: var(--sp-3); font-size: var(--text-lg); color: var(--color-text-secondary); }
+    .ba2__media img { width: 100%; height: auto; border-radius: 8px; display: block; }
+    .ba2 figcaption { margin-top: 8px; font-size: var(--text-lg); color: var(--color-text-secondary); }
     @media (max-width: 760px) { .ba2 { grid-template-columns: 1fr; gap: var(--sp-5); } }
-    /* bulleted list */
+    /* intro on the left, framed figure on the right */
+    .intro-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+    @media (max-width: 860px) { .intro-split { grid-template-columns: 1fr; gap: var(--sp-6); align-items: start; } }
+    /* framed IA figure (image inside, caption below the container) */
+    .ia-figure { margin: 0; }
+    .ia-figure--block { margin-top: clamp(28px, 4vw, 44px); }
+    .ia-figure__frame { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 14px; }
+    .ia-figure__frame img { width: 100%; height: auto; display: block; border-radius: 8px; }
+    .ia-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .panel-figs { display: grid; grid-template-columns: 2.16fr 1.83fr; gap: 0; margin-top: clamp(28px, 4vw, 44px); background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
+    .panel-figs img { width: 100%; height: auto; display: block; }
+    @media (max-width: 760px) { .panel-figs { grid-template-columns: 1fr; } }
     .beat-list { margin: var(--sp-4) 0 0; padding-left: 1.2em; }
     .beat-list li { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0.4em 0; }
-    /* old / v1 / final evolution */
-    .evo3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.5vw, 32px); margin-top: clamp(32px, 4vw, 48px); }
-    .evo3 figure { margin: 0; }
-    .evo3 figcaption { margin: 0 0 var(--sp-2); font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-secondary); }
-    .evo3__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 3 / 4; display: grid; place-items: center; overflow: hidden; }
-    .evo3__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
-    .evo3__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @media (max-width: 760px) { .evo3 { grid-template-columns: 1fr; } .evo3__media { aspect-ratio: 4 / 3; } }
     /* shipped + feedback: text left, image right */
     .ship { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
     .ship__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
@@ -154,14 +173,14 @@
     .constraint__amp { color: var(--color-text-tertiary); font-weight: var(--weight-medium); }
 
     /* 3-up lean columns (solution panels / activities) */
-    .cons { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 3vw, 44px); margin-top: clamp(28px, 3.5vw, 44px); }
-    .cons__item { border-top: 2px solid var(--color-border); padding-top: var(--sp-3); }
+    .cons { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 3vw, 44px); margin-top: 20px; }
+    .cons__item { padding-top: var(--sp-3); }
     .cons__media {
       border-radius: var(--radius-lg);
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
       overflow: hidden;
-      margin-bottom: var(--sp-4);
+      margin-bottom: var(--sp-2);
       aspect-ratio: 16 / 10;
     }
     .cons__media img,
@@ -173,43 +192,10 @@
       display: block;
     }
     .cons__media--figma img { object-fit: contain; background: #f0f0f0; }
-    .cons__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0 0 6px; }
+    .cons__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 6px; }
     .cons__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
     .cons__d { color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 760px) { .cons { grid-template-columns: 1fr; gap: var(--sp-5); } }
-
-    /* why-this-structure compact */
-    .why { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4) var(--sp-8); margin-top: var(--sp-6); }
-    .why__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-accent); margin: 0 0 2px; }
-    .why__d { color: var(--color-text-secondary); margin: 0; font-size: var(--text-base); }
-    @media (max-width: 640px) { .why { grid-template-columns: 1fr; } }
-
-    /* before/after compare (drawer + block tree) */
-    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-6); }
-    .compare__col { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--sp-5); }
-    .compare__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-tertiary); margin: 0 0 var(--sp-4); }
-    .compare__d { font-size: var(--text-sm); color: var(--color-text-secondary); margin: var(--sp-4) 0 0; }
-    .dia-stack { position: relative; height: 150px; }
-    .dia-stack__layer { position: absolute; height: 40px; background: #fff; border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 5px 12px rgba(28,27,25,.10); }
-    .dia-single { height: 150px; display: flex; align-items: center; }
-    .dia-single__panel { width: 100%; height: 96px; background: #fff; border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 1px 2px rgba(28,27,25,.04); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: var(--text-sm); }
-    .compare__big { font-size: clamp(26px, 3.4vw, 34px); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--color-text-primary); margin: var(--sp-2) 0 0; }
-    .compare__big--accent { color: var(--color-accent); }
-    .drawer-tag { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--sp-5); }
-    .drawer-tag span { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; padding: 8px 16px; border-radius: 100px; }
-    .drawer-tag .same { background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border-subtle); }
-    .drawer-tag .diff { background: var(--color-accent-muted); color: var(--color-accent-hover); }
-    @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
-
-    /* panel config grid */
-    .cs-panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); margin-top: var(--sp-6); }
-    .cs-panel-item { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); overflow: hidden; }
-    .cs-panel-item__visual { aspect-ratio: 4 / 3; background: var(--color-border-subtle); overflow: hidden; }
-    .cs-panel-item__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .cs-panel-item__body { padding: var(--sp-2) var(--sp-3) var(--sp-3); }
-    .cs-panel-item__title { font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 4px; }
-    .cs-panel-item__desc { font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0; }
-    @media (max-width: 760px) { .cs-panel-grid { grid-template-columns: 1fr; } }
 
     /* impact */
     .stats2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); margin-top: var(--sp-6); }
@@ -274,7 +260,7 @@
     </header>
 
     <!-- ══ AT A GLANCE ══ -->
-    <section class="beat">
+    <section class="beat" style="margin-bottom: 40px;">
       <div class="container">
         <div class="cs-summary">
           <div>
@@ -307,20 +293,18 @@
     </section>
 
     <!-- ══ BEFORE / AFTER ══ -->
-    <section class="beat beat--tight">
+    <section class="beat beat--tight" style="margin-top: 40px;">
       <div class="container">
         <div class="ba2">
           <figure>
             <div class="ba2__media ba2__media--old">
-              <span>Old screenshot — add later</span>
-              <!-- <img src="./assets/images/bb-old.png" alt="Old fragmented navigation" /> -->
+              <img src="./assets/images/WF-old-bb.PNG" alt="Old fragmented navigation" />
             </div>
             <figcaption>Old — fragmented navigation</figcaption>
           </figure>
           <figure>
             <div class="ba2__media ba2__media--now">
-              <span>New screenshot — add later</span>
-              <!-- <img src="./assets/images/bb-now.png" alt="New 3-panel structure" /> -->
+              <img src="./assets/images/WF-IA.png" alt="New 3-panel structure" />
             </div>
             <figcaption>Now — 3-panel structure</figcaption>
           </figure>
@@ -341,9 +325,19 @@
     <!-- ══ 01 · THE PROBLEM ══ -->
     <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">The problem</p>
-        <h2 class="beat-h">The platform grew, but the workspace didn't</h2>
-        <p class="beat-lead">As different teams needed different capabilities, Block Builder grew more complex. But everyone kept working in essentially the same workspace — and it never evolved with the platform. Two problems kept surfacing:</p>
+        <div class="intro-split">
+          <div class="intro-split__text">
+            <p class="beat-eyebrow">The problem</p>
+            <h2 class="beat-h">The platform grew, but the workspace didn't</h2>
+            <p class="beat-lead">As different teams needed different capabilities, Block Builder grew more complex. But everyone kept working in essentially the same workspace — and it never evolved with the platform. Two problems kept surfacing:</p>
+          </div>
+          <figure class="ia-figure">
+            <div class="ia-figure__frame">
+              <img src="./assets/images/WF-old-bb-IA.png" alt="The old Block Builder workspace split into three areas — block information at the top, editing on the left, and 9+ features on the right" />
+            </div>
+            <figcaption class="ia-figure__cap">Block information lived at the top, editing happened on the left, while 9+ features lived on the right.</figcaption>
+          </figure>
+        </div>
 
         <div class="pf-rows">
           <div class="pf-row">
@@ -386,47 +380,40 @@
       </div>
     </section>
 
-    <!-- ══ 02 · THE REFRAME ══ -->
+    <!-- ══ 02 · FINDING THE RIGHT DIRECTION ══ -->
     <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">The reframe</p>
-        <h2 class="beat-h">The problem wasn't just navigation</h2>
-        <p class="beat-lead">My first idea wasn't the answer. I explored an "overview" concept — like the relationship between a Google Drive folder and a Google Doc: a high-level view of a page and its contents, with breadcrumbs to show where you were, then drill into individual blocks.</p>
-        <p class="beat-lead">But talking it through with stakeholders, it created another problem. An overview for every page added a layer of its own and likely needed backend and data changes — and even with breadcrumbs, reaching deeply nested content could still take many steps. It treated the symptom, not the cause.</p>
-        <p class="beat-lead">That was the turning point. I stepped back and looked at how other complex products structure dense workflows, and reframed the challenge — from making navigation easier to restructuring the workspace and its interaction model.</p>
+        <p class="beat-eyebrow">Finding the right direction</p>
+        <h2 class="beat-h">The problem went deeper than navigation</h2>
+        <p class="beat-lead">I started by exploring an "overview" concept — similar to the relationship between a Google Drive folder and a Google Doc. The idea was to give users a high-level view of a page, then let them drill into individual blocks with breadcrumbs to keep track of where they were.</p>
+        <div class="exploration-pair">
+          <figure class="exploration-figure exploration-figure--ui">
+            <div class="exploration-figure__frame">
+              <img src="./assets/images/WF-Design-Expolration2.png" alt="Overview page concept for a block — a gallery of versions with performance metrics, reached from a high-level page view" />
+            </div>
+            <figcaption class="exploration-figure__cap">One of my design explorations was a page-level overview that gave users a higher-level view before diving into individual blocks.</figcaption>
+          </figure>
+          <figure class="exploration-figure exploration-figure--slides">
+            <div class="exploration-figure__frame">
+              <img src="./assets/images/WF-Design-Expolration.png" alt="Early design exploration of an overview concept — a high-level page view with breadcrumbs to drill into individual blocks" />
+            </div>
+          </figure>
+        </div>
+        <p class="beat-lead">But as I explored the concept and talked it through with stakeholders, I uncovered a bigger issue. Adding an overview to every page would introduce another layer of complexity, while deeply nested content could still require many steps to reach.</p>
+        <p class="beat-lead">That pushed me to step back and explore how other complex products structure dense workflows. Across different concepts, I looked for a way to reduce travel distance, keep users oriented, and make the workspace scalable as capabilities continued to grow.</p>
 
         <p class="beat-q">How might we restructure the workspace so users can easily access the capabilities they need, navigate complex page structures, and keep working — without adding more complexity to the platform?</p>
       </div>
     </section>
 
-    <!-- ══ 03 · HOW I DROVE THE DIRECTION ══ -->
+    <!-- ══ 03 · HOW I SHAPED THE DIRECTION ══ -->
     <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">How I drove the direction</p>
+        <p class="beat-eyebrow">How I shaped the direction</p>
         <h2 class="beat-h">Finding what we could safely change</h2>
         <p class="beat-lead">I drove the direction from framing the problem through MVP and Post-MVP. Because Block Builder powers the live site, large backend changes carried real production and business risk — a full rebuild wasn't realistic. So a core constraint became: improve the experience primarily through UI and frontend changes while preserving the existing backend.</p>
 
-        <div class="constraint">
-          <span class="constraint__box constraint__box--do">UI + frontend change</span>
-          <span class="constraint__amp" aria-hidden="true">while</span>
-          <span class="constraint__box constraint__box--keep">preserving existing backend behavior</span>
-        </div>
-
         <p class="beat-note">I brought engineering into the design early instead of designing first and handing off. Together we worked out what was frontend-only, what needed backend work, which existing components we could reuse, and what belonged in MVP versus Post-MVP — so we could ship real improvements without adding platform risk.</p>
-
-        <div class="dia-loop" aria-label="User feedback to exploration to prototype to PM and engineering feasibility to iteration to MVP and post-MVP">
-          <span class="dia-node">User feedback</span>
-          <span class="dia-arrow-h" aria-hidden="true">→</span>
-          <span class="dia-node">Exploration</span>
-          <span class="dia-arrow-h" aria-hidden="true">→</span>
-          <span class="dia-node">Prototype</span>
-          <span class="dia-arrow-h" aria-hidden="true">→</span>
-          <span class="dia-node">PM / Eng feasibility</span>
-          <span class="dia-arrow-h" aria-hidden="true">→</span>
-          <span class="dia-node">Iteration</span>
-          <span class="dia-arrow-h" aria-hidden="true">→</span>
-          <span class="dia-node dia-node--accent">MVP / Post-MVP</span>
-        </div>
 
         <div class="cons">
           <div class="cons__item">
@@ -470,15 +457,20 @@
         <h2 class="beat-h">A workspace built around how people work</h2>
         <p class="beat-lead">Instead of treating navigation as a separate layer, I restructured the workspace into three parts that work together — so capabilities, editing, and preview each have a clear place instead of competing for the same space.</p>
 
-        <div class="cs-visual-grid" style="margin-top: clamp(32px, 4vw, 48px);">
-          <div class="cs-visual">
-            <span>Before — one crowded workspace</span>
-            <!-- <img src="./assets/images/before.png" alt="Old crowded workspace" /> -->
-          </div>
-          <div class="cs-visual">
-            <span>After — capabilities · main work · preview</span>
-            <!-- <img src="./assets/images/after.png" alt="New three-part workspace" /> -->
-          </div>
+        <div class="sol-pair">
+          <figure class="sol-figure">
+            <div class="sol-figure__frame">
+              <video autoplay loop muted playsinline aria-label="Workspace information architecture growing from two parts into three with a preview panel">
+                <source src="./assets/videos/wf-new-ia.webm" type="video/webm" />
+                <source src="./assets/videos/wf-new-ia.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </figure>
+          <figure class="sol-figure">
+            <div class="sol-figure__frame">
+              <img src="./assets/images/WF-IA.png" alt="The new Block Builder workspace with capabilities, main work, and preview side by side" />
+            </div>
+          </figure>
         </div>
 
         <div class="cons">
@@ -501,66 +493,52 @@
       </div>
     </section>
 
-    <!-- ══ 05 · WHY THIS STRUCTURE ══ -->
-    <section class="beat beat--tight">
+    <!-- ══ NEW SECTION ══ -->
+    <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">Why this structure</p>
-        <h2 class="beat-h">I wasn't trying to make a three-panel UI</h2>
-        <p class="beat-lead">Three panels weren't the goal — a workspace that fit how people actually work was. Four inputs pointed to this structure:</p>
-        <div class="why">
-          <div>
-            <p class="why__k">User needs</p>
-            <p class="why__d">Easier access to capabilities and better navigation through deep page hierarchies.</p>
+        <div class="pf-rows" style="margin-top: 0;">
+          <div class="pf-row">
+            <div>
+              <p class="problems__k">Solution A</p>
+              <h3 class="problems__t">Grouped capabilities around how users work</h3>
+              <p class="problems__d">I moved capabilities into a persistent navigation panel and grouped them by workflow, so users could quickly access the tools relevant to their jobs instead of scanning one long list.</p>
+            </div>
+            <div class="pf-media-wrap">
+              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol">
+                <video autoplay loop muted playsinline aria-label="Capabilities grouped in a persistent navigation panel by workflow">
+                  <source src="./assets/videos/wf-solution1.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
           </div>
-          <div>
-            <p class="why__k">Current workflow</p>
-            <p class="why__d">Capabilities, editing, and preview all need to coexist so users can build and validate the result.</p>
-          </div>
-          <div>
-            <p class="why__k">Competitive research</p>
-            <p class="why__d">Panel-based workspaces are common in complex products — dense functionality without one crowded layer.</p>
-          </div>
-          <div>
-            <p class="why__k">Future direction</p>
-            <p class="why__d">Room for new capabilities like Blocky / AI without another major workspace redesign.</p>
+          <div class="pf-row">
+            <div>
+              <p class="problems__k">Solution B</p>
+              <h3 class="problems__t">Kept users oriented while navigating deep hierarchies</h3>
+              <p class="problems__d">I replaced nested drawers with a persistent workspace structure that keeps the page, its hierarchy, and the active block visible — reducing the steps and travel distance needed to move between levels.</p>
+            </div>
+            <div class="pf-media-wrap">
+              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol">
+                <video autoplay loop muted playsinline aria-label="Navigating a deep page hierarchy in a persistent workspace without stacked drawers">
+                  <source src="./assets/videos/WF-solution2.MP4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ 06 · DESIGN TRADE-OFF (DRAWER) ══ -->
+    <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
     <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">Design trade-off</p>
-        <h2 class="beat-h">When I couldn't change the component, I changed the interaction</h2>
-        <p class="beat-lead">The Drawer was deeply tied to the platform architecture, so replacing it wasn't safe. But stacked drawers were a real usability problem — move between capabilities and each one stacked another layer, until users were five deep and had to close five to get back. So I changed the interaction model: one drawer that switches content in place, with lighter visual treatment so it no longer felt like layers piling up.</p>
-
-        <div class="compare">
-          <div class="compare__col">
-            <p class="compare__k">Before · stacked drawers</p>
-            <div class="dia-stack" aria-hidden="true">
-              <div class="dia-stack__layer" style="top:0;left:0;right:40px;"></div>
-              <div class="dia-stack__layer" style="top:20px;left:10px;right:30px;"></div>
-              <div class="dia-stack__layer" style="top:40px;left:20px;right:20px;"></div>
-              <div class="dia-stack__layer" style="top:60px;left:30px;right:10px;"></div>
-              <div class="dia-stack__layer" style="top:80px;left:40px;right:0;"></div>
-            </div>
-            <p class="compare__d">Open ×5 → close ×5 to return.</p>
-          </div>
-          <div class="compare__col">
-            <p class="compare__k">After · one drawer, content switches</p>
-            <div class="dia-single" aria-hidden="true">
-              <div class="dia-single__panel">Switch content in place</div>
-            </div>
-            <p class="compare__d">One layer. Move between capabilities without losing your place.</p>
-          </div>
+        <p class="beat-eyebrow">A flexible system</p>
+        <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
+        <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations — not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
+        <div class="panel-figs">
+          <img src="./assets/images/WF-flexible-panel1.png" alt="Flexible panel architecture: six configurations of the three-panel workspace plus an optional AI agent panel" />
+          <img src="./assets/images/WF-flexible-panel2.png" alt="The six panel configurations in the Block Builder UI — from the default main workspace through feature, preview, and AI agent combinations" />
         </div>
-
-        <div class="drawer-tag">
-          <span class="same">Same component</span>
-          <span class="diff">Different interaction model</span>
-        </div>
-
       </div>
     </section>
 
@@ -576,46 +554,11 @@
         </ul>
         <p class="beat-lead" style="margin-top: var(--sp-4);">The result is a more intuitive navigation experience: users understand the structure, identify blocks quickly, and move through nested content without losing context.</p>
 
-        <div class="evo3">
-          <figure>
-            <figcaption>Old</figcaption>
-            <div class="evo3__media">
-              <span>Old — screenshot</span>
-              <!-- <img src="./assets/images/nav-old.png" alt="Old tree view" /> -->
-            </div>
-          </figure>
-          <figure>
-            <figcaption>V1</figcaption>
-            <div class="evo3__media">
-              <span>V1 — screenshot</span>
-              <!-- <img src="./assets/images/nav-v1.png" alt="V1 block tree" /> -->
-            </div>
-          </figure>
-          <figure>
-            <figcaption>Final</figcaption>
-            <div class="evo3__media">
-              <span>Final — screenshot</span>
-              <!-- <img src="./assets/images/nav-final.png" alt="Final block tree with title, type, and ID" /> -->
-            </div>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
-    <section class="beat beat--tight">
-      <div class="container">
-        <p class="beat-eyebrow">A flexible system</p>
-        <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
-        <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations — not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
-        <div class="cs-panel-grid">
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-default --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Default</p><p class="cs-panel-item__desc">Main editing workspace is always visible.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-feature-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main</p><p class="cs-panel-item__desc">Focus on building and iterating — access features while editing content.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-main-preview --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Main + Preview</p><p class="cs-panel-item__desc">Edit and preview side by side for quick QA.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">Feature + Main + Preview</p><p class="cs-panel-item__desc">Navigate features, edit content, and preview in one view.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-main --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI agent + Main</p><p class="cs-panel-item__desc">Use Blocky while focusing on the main content.</p></div></div>
-          <div class="cs-panel-item"><div class="cs-panel-item__visual"><!-- panel-ai-full --></div><div class="cs-panel-item__body"><p class="cs-panel-item__title">AI agent + Main + Preview</p><p class="cs-panel-item__desc">Generate with AI while previewing the live experience.</p></div></div>
-        </div>
+        <figure class="ia-figure ia-figure--block">
+          <div class="ia-figure__frame">
+            <img src="./assets/images/WF-minitree.png" alt="Block Tree navigation evolving from the old tree view, to V1 titles-only, to the final version with title, type, and ID" />
+          </div>
+        </figure>
       </div>
     </section>
 
