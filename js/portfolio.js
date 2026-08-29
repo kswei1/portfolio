@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (phrases.length > 1) {
-    const HOLD = 5000;   // time each phrase stays fully visible
+    const HOLD = 6000;   // time each phrase stays fully visible
     let current = 0;
 
     const advance = () => {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Katherine Swei — Product Designer</title>
+  <title>Katherine Swei, Product Designer</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css?v=3" />
   <style>
-    /* Temporarily hidden work cards (kept in markup — remove this class to show again) */
+    /* Temporarily hidden work cards (kept in markup, remove this class to show again) */
     .card--hidden { display: none !important; }
   </style>
 </head>
@@ -21,7 +21,7 @@
 
   <!-- ── NAV ── -->
   <header class="nav" role="banner">
-    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei, Home">
       <img src="./assets/images/nav-mark.png" alt="" />
     </a>
     <div class="nav__inner">
@@ -78,29 +78,7 @@
 
         <div class="featured__grid" id="work-grid" role="tabpanel" aria-labelledby="work-tab-all">
 
-          <!-- Card 1: Wayfair's Internal AI Agent -->
-          <a class="card card--featured" href="./case-ai-agent.html" aria-label="View case study: Wayfair's Internal AI Agent" data-categories="internal-platforms ai">
-            <div class="card__media card__media--video card__media--video-blocky">
-              <div class="card__zoom card__zoom--blocky">
-                <video autoplay loop muted playsinline data-playback-rate="1.2" aria-label="Wayfair's Internal AI Agent walkthrough">
-                  <source src="./assets/videos/ai-agent.webm" type="video/webm" />
-                  <source src="./assets/videos/ai-agent.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div class="card__body">
-              <div class="card__tags">
-                <span class="card__tag">AI agent</span>
-                <span class="card__tag">Prototyping</span>
-                <span class="card__tag">UI</span>
-                <span class="card__tag">2026</span>
-              </div>
-              <h2 class="card__title">Wayfair's Internal AI Agent</h2>
-              <p class="card__desc">Led the redesign of Wayfair's internal AI agent, transforming a free-form chatbot into a guided experience that helps users discover capabilities and complete tasks more effectively.</p>
-            </div>
-          </a>
-
-          <!-- Card 2: Wayfair Core Platform Redesign -->
+          <!-- Card 1: Wayfair Core Platform Redesign -->
           <a class="card card--featured" href="./case-core-platform.html" aria-label="View case study: Wayfair Core Platform Redesign" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-core">
               <div class="card__zoom card__zoom--core">
@@ -119,6 +97,28 @@
               </div>
               <h2 class="card__title">Wayfair's Core Platform Redesign for Scale</h2>
               <p class="card__desc">Restructured the workspace to help 50+ teams find capabilities and navigate complex page hierarchies with less friction.</p>
+            </div>
+          </a>
+
+          <!-- Card 2: Wayfair's Internal AI Agent -->
+          <a class="card card--featured" href="./case-ai-agent.html" aria-label="View case study: Wayfair's Internal AI Agent" data-categories="internal-platforms ai">
+            <div class="card__media card__media--video card__media--video-blocky">
+              <div class="card__zoom card__zoom--blocky">
+                <video autoplay loop muted playsinline data-playback-rate="1.2" aria-label="Wayfair's Internal AI Agent walkthrough">
+                  <source src="./assets/videos/ai-agent.webm" type="video/webm" />
+                  <source src="./assets/videos/ai-agent.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">AI agent</span>
+                <span class="card__tag">Prototyping</span>
+                <span class="card__tag">UI</span>
+                <span class="card__tag">2026</span>
+              </div>
+              <h2 class="card__title">Wayfair's Internal AI Agent</h2>
+              <p class="card__desc">Led the redesign of Wayfair's internal AI agent, transforming a free-form chatbot into a guided experience that helps users discover capabilities and complete tasks more effectively.</p>
             </div>
           </a>
 
@@ -160,8 +160,24 @@
             </div>
           </a>
 
-          <!-- Card 5: Wayfair Internal Template System -->
-          <a class="card card--featured" href="./case-template-system.html" aria-label="View case study: Wayfair Internal Template System" data-categories="internal-platforms">
+          <!-- Card 5: Designing and Shipping with AI -->
+          <a class="card card--small" href="./case-shipping-ai.html" aria-label="View case study: Designing and Shipping with AI" data-categories="internal-platforms ai">
+            <div class="card__media card__media--image card__media--image-inset card__media--image-shipping">
+              <img src="./assets/images/shipping-with-ai.png" alt="Designing and shipping UI updates with AI-assisted code workflow" />
+            </div>
+            <div class="card__body">
+              <div class="card__tags">
+                <span class="card__tag">Shipped</span>
+                <span class="card__tag">AI</span>
+                <span class="card__tag">2025–26</span>
+              </div>
+              <h3 class="card__title">Designing and Shipping with AI</h3>
+              <p class="card__desc">Used AI tools to translate designs into production-ready code, enabling faster iteration and lightweight UI updates with minimal engineering dependency.</p>
+            </div>
+          </a>
+
+          <!-- Card 6: Wayfair Internal Template System -->
+          <div class="card card--featured card--unlinked" aria-label="Wayfair Internal Template System, case study archived" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-template">
               <video autoplay loop muted playsinline aria-label="Wayfair Internal Template System walkthrough">
                 <source src="./assets/videos/template-system.webm" type="video/webm" />
@@ -178,26 +194,10 @@
               <h2 class="card__title">Wayfair Internal Template System</h2>
               <p class="card__desc">Launched a reusable template system that reduced page creation time by 83% and helped teams scale high-traffic page launches.</p>
             </div>
-          </a>
+          </div>
 
-          <!-- Card 6: Designing and Shipping with AI -->
-          <a class="card card--small" href="./case-shipping-ai.html" aria-label="View case study: Designing and Shipping with AI" data-categories="internal-platforms ai">
-            <div class="card__media card__media--image card__media--image-inset card__media--image-shipping">
-              <img src="./assets/images/shipping-with-ai.png" alt="Designing and shipping UI updates with AI-assisted code workflow" />
-            </div>
-            <div class="card__body">
-              <div class="card__tags">
-                <span class="card__tag">Shipped</span>
-                <span class="card__tag">AI</span>
-                <span class="card__tag">2025–26</span>
-              </div>
-              <h3 class="card__title">Designing and Shipping with AI</h3>
-              <p class="card__desc">Used AI tools to translate designs into production-ready code, enabling faster iteration and lightweight UI updates with minimal engineering dependency.</p>
-            </div>
-          </a>
-
-          <!-- Card 7: Wayfair Design System Rebuild (archived) -->
-          <div class="card card--small card--unlinked card--hidden" aria-label="Wayfair Design System Rebuild — case study archived" data-categories="internal-platforms">
+          <!-- Card 7: Wayfair Design System Rebuild -->
+          <div class="card card--small card--unlinked" aria-label="Wayfair Design System Rebuild, case study coming soon" data-categories="internal-platforms">
             <div class="card__media card__media--image card__media--image-inset">
               <img src="./assets/images/design-system.png" alt="Wayfair Design System components and patterns" />
             </div>
@@ -213,7 +213,7 @@
           </div>
 
           <!-- Card 8: Favorites for Faster Block Access -->
-          <div class="card card--small card--unlinked card--hidden" aria-label="Favorites for Faster Block Access — case study unavailable" data-categories="internal-platforms">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Favorites for Faster Block Access, case study unavailable" data-categories="internal-platforms">
             <div class="card__media card__media--video card__media--video-favorites">
               <video autoplay loop muted playsinline aria-label="Favorites for Faster Block Access walkthrough">
                 <source src="./assets/videos/block-favorites.webm" type="video/webm" />
@@ -232,7 +232,7 @@
           </div>
 
           <!-- Card 9: Rapid Quote Flow for Homeowners -->
-          <div class="card card--small card--unlinked card--hidden" aria-label="Rapid Quote Flow for Homeowners — case study unavailable" data-categories="consumer-products mobile">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Rapid Quote Flow for Homeowners, case study unavailable" data-categories="consumer-products mobile">
             <div class="card__media card__media--image card__media--image-quote">
               <img src="./assets/images/rapid-quote.png" alt="Owens Corning mobile quote flow screens" />
             </div>
@@ -249,7 +249,7 @@
           </div>
 
           <!-- Card 10: Non-Profit Visual System -->
-          <div class="card card--small card--unlinked card--hidden" aria-label="Non-Profit Visual System — case study unavailable" data-categories="consumer-products">
+          <div class="card card--small card--unlinked card--hidden" aria-label="Non-Profit Visual System, case study unavailable" data-categories="consumer-products">
             <div class="card__media card__media--image card__media--image-nonprofit">
               <img src="./assets/images/nonprofit.png" alt="Tilth Alliance non-profit visual system mockups" />
             </div>
@@ -275,8 +275,8 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>
       <ul class="footer__links">
-        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
-        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="footer__link" href="mailto:katherine.swei123@gmail.com">Email</a></li>
+        <li><a class="footer__link" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </footer>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wayfair Internal Template System — Katherine Swei</title>
+  <title>Wayfair Internal Template System, Katherine Swei</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -54,7 +54,7 @@
     }
     .cs-problem-visual__desc {
       margin: var(--sp-2) 0 0;
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
       line-height: var(--leading-normal);
       color: var(--color-text-secondary);
     }
@@ -82,7 +82,7 @@
       margin-right: 0.25em;
     }
     .cs-difficulty__desc {
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
       line-height: var(--leading-normal);
       color: var(--color-text-secondary);
       margin: 0;
@@ -103,7 +103,7 @@
     .g-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px,3vw,32px); margin-top: var(--sp-6); }
     .g-card__n { font-size: var(--text-2xl); margin: 0 0 6px; line-height: 1; }
     .g-card__t { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
-    .g-card__d { color: var(--color-text-secondary); margin: 0; }
+    .g-card__d { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 720px) { .g-cols { grid-template-columns: 1fr; } }
 
     /* big design-goal statement */
@@ -123,7 +123,7 @@
 
   <!-- ── NAV (shared) ── -->
   <header class="nav" role="banner">
-    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei, Home">
       <img src="./assets/images/nav-mark.png" alt="" />
     </a>
     <div class="nav__inner">
@@ -154,7 +154,7 @@
 
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Wayfair Internal Template System</h1>
-        <p class="cs-hero__summary">A reusable template system for Block Builder, Wayfair's internal CMS — cutting page-creation time by ~83% and helping teams scale high-traffic launches.</p>
+        <p class="cs-hero__summary">A reusable template system for Block Builder, Wayfair's internal CMS, cutting page-creation time by ~83% and helping teams scale high-traffic launches.</p>
       </div>
     </header>
 
@@ -164,19 +164,19 @@
         <div class="cs-summary">
           <div>
             <p class="cs-summary__label">Problem</p>
-            <p class="cs-body">To build one campaign page, content managers assembled 8–22 nested blocks from ~994 block types — with no way to preview before publishing. Slow, complex, and error-prone.</p>
+            <p class="cs-body">To build one campaign page, content managers assembled 8–22 nested blocks from ~994 block types, with no way to preview before publishing. Slow, complex, and error-prone.</p>
           </div>
           <div>
             <p class="cs-summary__label">My role</p>
             <ul class="cs-summary__list">
-              <li>Product Designer II — led the template system end to end</li>
+              <li>Product Designer II, led the template system end to end</li>
               <li>Audited flows and aligned stakeholders early</li>
               <li>Designed the create → preview → replace experience</li>
             </ul>
           </div>
           <div>
             <p class="cs-summary__label">Solution</p>
-            <p class="cs-body">A reusable template system inside Block Builder — pick a template, preview exactly what it creates, and replace placeholder content, instead of building every page from scratch.</p>
+            <p class="cs-body">A reusable template system inside Block Builder: pick a template, preview exactly what it creates, and replace placeholder content, instead of building every page from scratch.</p>
           </div>
           <div>
             <p class="cs-summary__label">Team</p>
@@ -229,7 +229,7 @@
         <p class="cs-eyebrow">Overview</p>
         <h2 class="cs-h">Block Builder powers<span>thousands of Wayfair pages</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Block Builder is Wayfair's internal CMS — the backbone of the site. Every page on Wayfair.com, from homepages to category and checkout pages, is created and scheduled through it by assembling reusable "blocks."</p>
+          <p class="cs-body">Block Builder is Wayfair's internal CMS, the backbone of the site. Every page on Wayfair.com, from homepages to category and checkout pages, is created and scheduled through it by assembling reusable "blocks."</p>
         </div>
       </div>
     </section>
@@ -239,7 +239,7 @@
       <div class="container">
         <p class="cs-eyebrow">The problem</p>
         <h2 class="cs-h" style="margin-bottom: var(--sp-3);">Building one page was slow, complex, and unpredictable</h2>
-        <p class="cs-body">Every page means assembling blocks by hand — and content managers repeat the same loop again and again: find the right block type, configure its nested layers, and do it 8–22 times per page. Then they can't see the result until it's published.</p>
+        <p class="cs-body">Every page means assembling blocks by hand, and content managers repeat the same loop again and again: find the right block type, configure its nested layers, and do it 8–22 times per page. Then they can't see the result until it's published.</p>
         <div class="cs-problem-visual">
           <img src="./assets/images/bb-template-problem.png" alt="Block Builder paginated blocks mapped to components on a Wayfair campaign page" />
           <p class="cs-problem-visual__desc">Every block has a block type (banner, collection, etc.); 1 block = 1 component on a page.</p>
@@ -253,7 +253,7 @@
           <div>
             <p class="g-card__n" aria-hidden="true">⏳</p>
             <h3 class="g-card__t">Time-consuming</h3>
-            <p class="g-card__d">8–22 nested blocks per page — roughly an hour to build a single campaign page.</p>
+            <p class="g-card__d">8–22 nested blocks per page, roughly an hour to build a single campaign page.</p>
           </div>
           <div>
             <p class="g-card__n" aria-hidden="true">❓</p>
@@ -280,7 +280,7 @@
         <p class="cs-eyebrow">Design process</p>
         <h2 class="cs-h">Scoping the design<span>for stakeholder alignment</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Block Builder is a complex tool, so I started from patterns content managers already knew — auditing familiar platforms to lower the learning curve. Then I mapped every key user flow to cover the edge cases, and built mockups to align stakeholders early and speed up decisions.</p>
+          <p class="cs-body">Block Builder is a complex tool, so I started from patterns content managers already knew, auditing familiar platforms to lower the learning curve. Then I mapped every key user flow to cover the edge cases, and built mockups to align stakeholders early and speed up decisions.</p>
         </div>
       </div>
       <div class="container">
@@ -295,7 +295,7 @@
         <h2 class="cs-h">Spotting a deeper problem<span>and getting it on the roadmap</span></h2>
         <div class="cs-split__body">
           <p class="cs-body">While designing templates, I kept hitting a bigger issue: navigating Block Builder's nested blocks, where drawers can go <strong>8 levels deep</strong>. On my own initiative, I audited how other complex tools handle deep hierarchy and designed a <strong>"Mini-Tree" sidebar</strong> so users can always see where they are and jump between layers.</p>
-          <p class="cs-body">To win buy-in on a tight deadline, I framed it not as a new feature but as a lighter visual treatment of our existing "Tree" — which made it easy for engineering to T-shirt size and for PMs to add it to the roadmap. A quick prototype sealed the alignment.</p>
+          <p class="cs-body">To win buy-in on a tight deadline, I framed it not as a new feature but as a lighter visual treatment of our existing "Tree", which made it easy for engineering to T-shirt size and for PMs to add it to the roadmap. A quick prototype sealed the alignment.</p>
         </div>
       </div>
       <div class="container">
@@ -314,25 +314,25 @@
 
         <div class="g-pillar">
           <h3 class="g-card__t" style="font-size: var(--text-xl);">1 · Switch between block type and template</h3>
-          <p class="cs-body">I added a tab in the create-block flow so users can choose a template instead of a raw block type — right where they already work, making the feature discoverable without disrupting existing behavior. Templates also show a visual preview at the first layer, so it's easy to tell what a block will look like.</p>
-          <div class="g-placeholder">Add template tab + first-layer preview — before/after (add later)</div>
+          <p class="cs-body">I added a tab in the create-block flow so users can choose a template instead of a raw block type, right where they already work, making the feature discoverable without disrupting existing behavior. Templates also show a visual preview at the first layer, so it's easy to tell what a block will look like.</p>
+          <div class="g-placeholder">Add template tab + first-layer preview, before/after (add later)</div>
         </div>
 
         <div class="g-pillar">
           <h3 class="g-card__t" style="font-size: var(--text-xl);">2 · Preview the details before committing</h3>
-          <p class="cs-body">A template details page clarifies exactly what's being added — the relationships between the nested blocks it will create, side by side with a preview of how it will look — so there are no surprises later when multiple blocks appear.</p>
-          <div class="g-placeholder">Template details page — relationships + preview (add later)</div>
+          <p class="cs-body">A template details page clarifies exactly what's being added, the relationships between the nested blocks it will create, side by side with a preview of how it will look, so there are no surprises later when multiple blocks appear.</p>
+          <div class="g-placeholder">Template details page, relationships + preview (add later)</div>
         </div>
 
         <div class="g-pillar">
           <h3 class="g-card__t" style="font-size: var(--text-xl);">3 · Create the whole structure in one click</h3>
-          <p class="cs-body">"Use template" generates the full nested block structure instantly — collapsing what used to be many manual steps into one.</p>
+          <p class="cs-body">"Use template" generates the full nested block structure instantly, collapsing what used to be many manual steps into one.</p>
           <div class="g-placeholder">Use template → generated block (add later)</div>
         </div>
 
         <div class="g-pillar">
           <h3 class="g-card__t" style="font-size: var(--text-xl);">4 · Nudge users to finish the content</h3>
-          <p class="cs-body">Because templates ship with placeholder data, I added a subtle orange "Replace content" badge — a gentle warning that keeps unfinished placeholders from going live.</p>
+          <p class="cs-body">Because templates ship with placeholder data, I added a subtle orange "Replace content" badge, a gentle warning that keeps unfinished placeholders from going live.</p>
           <div class="g-placeholder">"Replace content" badge (add later)</div>
         </div>
       </div>
@@ -345,7 +345,7 @@
         <div class="cs-split__body cs-reflect">
           <div class="cs-reflect__item">
             <h3 class="cs-reflect__title">What I learned</h3>
-            <p class="cs-body">Meeting users inside the flow they already know mattered more than adding a shiny new surface — the template tab worked because it didn't ask people to change their habits.</p>
+            <p class="cs-body">Meeting users inside the flow they already know mattered more than adding a shiny new surface. The template tab worked because it didn't ask people to change their habits.</p>
           </div>
           <div class="cs-reflect__item">
             <h3 class="cs-reflect__title">What I'd do differently</h3>
@@ -368,8 +368,8 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>
       <ul class="footer__links">
-        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
-        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="footer__link" href="mailto:katherine.swei123@gmail.com">Email</a></li>
+        <li><a class="footer__link" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </footer>

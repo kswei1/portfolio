@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Katherine Swei — Portfolio</title>
+  <title>Katherine Swei, Portfolio</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -189,7 +189,7 @@
       }
 
       if (reduced) {
-        // no easing loop — snap pupils to target on relevant events
+        // no easing loop, snap pupils to target on relevant events
         const snap = () => apply(targetX, targetY);
         window.addEventListener('mousemove', () => { if (!peeking()) snap(); }, { passive: true });
         ['focus', 'blur', 'input', 'pointerenter', 'pointerleave'].forEach((ev) =>

@@ -223,7 +223,7 @@
 }
 
 .hero__icon--ai-claude {
-  margin-inline: 0.02em 0.15em;
+  margin-inline: calc(0.02em + 2px) 0.15em;
 }
 
 .hero__icon--pot {

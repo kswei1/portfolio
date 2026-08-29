@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Katherine Swei</title>
+  <title>About, Katherine Swei</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,12 +11,29 @@
   <link rel="stylesheet" href="./css/base.css" />
   <link rel="stylesheet" href="./css/portfolio.css" />
   <style>
-    body {
-      background-color: var(--color-surface);
+    /* ── About: fixed dark mode (same design system, inverted surfaces) ── */
+    :root {
+      --color-bg: #17150F;            /* warm near-black page */
+      --color-surface: #221F18;       /* lifted panels */
+      --color-border: #3A362D;
+      --color-border-subtle: #2C2820;
+      --color-text-primary: #F5F2EC;
+      --color-text-secondary: #B9B3A8;
+      --color-text-tertiary: #8C877C;
+      --color-accent: #C39BEC;        /* lighter purple reads on dark */
+      --color-accent-hover: #D3B2F2;
     }
+    html { color-scheme: dark; }
+    body { background: var(--color-bg); color: var(--color-text-primary); }
 
-    /* slightly darker page background (About only) so the white stamp reads */
-    body { background: #ECEAE4; }
+    /* nav pill → solid dark (stays dark over the bright stamps) */
+    .nav__inner { background: #211E17; border-color: rgba(255, 255, 255, 0.10); backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .nav__inner:hover { background: #2A261E; }
+
+    /* tooltip lifts off the dark background */
+    .stamp__tooltip { background: #34302A; }
+    .stamp__tooltip::after { border-top-color: #34302A; }
+    .stamp__tooltip.is-below::after { border-bottom-color: #34302A; }
 
     .about {
       padding-top: calc(20px + 44px + var(--sp-8));
@@ -26,8 +43,8 @@
     /* ── Intro ── */
     .intro {
       display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: var(--sp-8);
+      grid-template-columns: minmax(0, 1fr) 400px;
+      gap: 40px;
       align-items: center;
       padding-bottom: var(--sp-10);
     }
@@ -42,8 +59,9 @@
       font-size: var(--text-lg);
       line-height: var(--leading-relaxed);
       color: var(--color-text-secondary);
-      max-width: 46ch;
+      max-width: none;
     }
+    .intro__lead + .intro__lead { margin-top: var(--sp-3); }
     .intro__photo {
       width: 100%;
       box-sizing: border-box;
@@ -346,8 +364,8 @@
       text-decoration: none;
       transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
     }
-    .connect__btn--primary { background: var(--color-accent); color: #fff; }
-    .connect__btn--primary:hover { background: var(--color-accent-hover); }
+    .connect__btn--primary { background: #8A40C3; color: #fff; }
+    .connect__btn--primary:hover { background: #9A55CF; }
     .connect__btn--ghost { border: 1px solid var(--color-border); color: var(--color-text-primary); }
     .connect__btn--ghost:hover { background: var(--color-surface); }
 
@@ -380,7 +398,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="nav" role="banner">
-    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei, Home">
       <img src="./assets/images/nav-mark.png" alt="" />
     </a>
     <div class="nav__inner">
@@ -402,15 +420,19 @@
           <div>
             <h1 class="intro__title">Hey, I'm Katherine.</h1>
             <p class="intro__lead">
-              I hold a Master's in Human Centered Design &amp; Engineering from the University of
-              Washington and a BA in Cognitive Science from UC Berkeley — which shape how I approach
-              problems through both systems thinking and human behavior. I've also worked across B2C
-              products and startups, giving me a broader perspective on user needs and product development.
+              I'm a Product Designer who enjoys making complex things feel simple. I like digging into messy
+              problems, finding the structure underneath them, and turning that thinking into experiences
+              that people can actually use.
             </p>
             <p class="intro__lead">
-              I'm especially interested in building thoughtful systems that help people work more
-              effectively in complex environments. Currently, I'm designing Core Platform &amp; AI
-              experiences at Wayfair.
+              My background in Cognitive Science and Human-Centered Design &amp; Engineering shapes how I
+              approach design. I'm curious about how people think and behave, but also about how the
+              systems around them work and how those systems can be designed better.
+            </p>
+            <p class="intro__lead">
+              For the past 3+ years, I've designed across B2C products, internal tools, and complex systems
+              at Wayfair. Today, I'm designing Shopping Discovery and Gen AI experiences, exploring new ways
+              to help people discover what they need and navigate an increasingly AI-powered shopping experience.
             </p>
           </div>
           <div class="intro__photo">
@@ -420,23 +442,23 @@
 
         <!-- ── Super powers ── -->
         <div class="sec">
-          <p class="sec__label">My super powers</p>
+          <p class="sec__label">My superpowers</p>
           <div class="skills">
             <div class="skill">
-              <h3 class="skill__title">Clarity from chaos</h3>
-              <p class="skill__desc">I bring clarity and structure to messy, ambiguous problems — making complex systems easier for others to navigate and understand.</p>
+              <h3 class="skill__title">Finding clarity</h3>
+              <p class="skill__desc">I'm drawn to messy problems with lots of moving pieces. I break them down, find the patterns underneath, and turn complexity into something people can understand and use.</p>
             </div>
             <div class="skill">
-              <h3 class="skill__title">Systems thinking</h3>
-              <p class="skill__desc">I design for the whole system, not just the screen — connecting workflows, edge cases, and how things scale over time.</p>
+              <h3 class="skill__title">Thinking in systems</h3>
+              <p class="skill__desc">I look beyond the interface to understand how everything connects. Workflows, dependencies, edge cases, constraints, and how a product needs to evolve all shape the experience I design.</p>
             </div>
             <div class="skill">
-              <h3 class="skill__title">Prototyping</h3>
-              <p class="skill__desc">Prototyping is how I think. I'd rather build something you can click through than describe it in a doc. I use prototypes to pressure-test ideas early, align teams around a shared vision, and turn abstract concepts into something tangible.</p>
+              <h3 class="skill__title">Prototyping to think</h3>
+              <p class="skill__desc">I don't prototype just to validate a final idea. I prototype to figure out what the idea should be. It helps me explore possibilities, uncover problems, align teams, and make abstract concepts tangible.</p>
             </div>
             <div class="skill">
-              <h3 class="skill__title">AI-assisted craft</h3>
-              <p class="skill__desc">I use AI tools to prototype, generate production-ready code, and build agentic workflows that move ideas forward faster.</p>
+              <h3 class="skill__title">Building with AI</h3>
+              <p class="skill__desc">I use AI as a hands-on part of my design process, from exploring ideas and generating prototypes to writing and shipping code. It helps me move quickly from "what if?" to "let's try it."</p>
             </div>
           </div>
         </div>
@@ -448,19 +470,19 @@
           <div class="fun__block" data-stamp-group="coffee">
             <p class="sec__lead">
               I'm a huge coffee person and love discovering cute local spots whenever I'm in a new
-              city — it's my way of exploring and getting inspired at the same time.
+              city, it's my way of exploring and getting inspired at the same time.
             </p>
           </div>
           <div class="fun__block" data-stamp-group="cocktails">
             <p class="sec__lead">
-              At night, I moonlight as an amateur cocktail bartender — hosting cocktail nights with
+              At night, I moonlight as an amateur cocktail bartender, hosting cocktail nights with
               friends and turning creativity into something tasty and a little bit magical.
             </p>
           </div>
           <div class="fun__block" data-stamp-group="travel">
             <p class="sec__lead">
               I'm also a big traveler. Experiencing different cultures and meeting people from all
-              kinds of backgrounds keeps me curious — and that curiosity always finds its way back
+              kinds of backgrounds keeps me curious, and that curiosity always finds its way back
               into my work.
             </p>
           </div>
@@ -550,8 +572,8 @@
         <div class="connect">
           <h2 class="connect__title">Curious about my journey? Let's connect!</h2>
           <div class="connect__links">
-            <a class="connect__btn connect__btn--primary" href="mailto:hello@katherineswei.com">Email me</a>
-            <a class="connect__btn connect__btn--ghost" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="connect__btn connect__btn--ghost" href="mailto:katherine.swei123@gmail.com">Email me</a>
+            <a class="connect__btn connect__btn--ghost" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
 
@@ -563,8 +585,8 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>
       <ul class="footer__links">
-        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
-        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="footer__link" href="mailto:katherine.swei123@gmail.com">Email</a></li>
+        <li><a class="footer__link" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </footer>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wayfair's Internal AI Agent — Katherine Swei</title>
+  <title>Wayfair's Internal AI Agent, Katherine Swei</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./css/portfolio.css" />
   <link rel="stylesheet" href="./css/case-study.css" />
   <style>
-    /* cover — same framing as the other covers */
+    /* cover, same framing as the other covers */
     .cs-hero__cover--agent {
       position: relative;
       background: #5E5DB3;
@@ -112,9 +112,9 @@
       line-height: 1.3;
     }
     .cs-principle__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 4px; }
-    .cs-principle__desc { color: var(--color-text-secondary); margin: 0; }
+    .cs-principle__desc { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
 
-    /* solution stack — one media per row */
+    /* solution stack, one media per row */
     .cs-solution-stack {
       display: flex;
       flex-direction: column;
@@ -151,6 +151,8 @@
       margin: 0 0 6px;
     }
     .cs-solution-caption p {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
       color: var(--color-text-secondary);
       margin: 0;
     }
@@ -313,7 +315,7 @@
 
   <!-- ── NAV (shared) ── -->
   <header class="nav" role="banner">
-    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei, Home">
       <img src="./assets/images/nav-mark.png" alt="" />
     </a>
     <div class="nav__inner">
@@ -339,8 +341,8 @@
       </div>
 
       <div class="container cs-hero__head">
-        <h1 class="cs-hero__title">Blocky — Wayfair's Internal AI Agent</h1>
-        <p class="cs-hero__summary">Redesigning Blocky from a chatbot into a structured, extensible main UI — starting new users with a ready-made template so they finally know what to ask.</p>
+        <h1 class="cs-hero__title">Blocky, Wayfair's Internal AI Agent</h1>
+        <p class="cs-hero__summary">Redesigning Blocky from a chatbot into a structured, extensible main UI, starting new users with a ready-made template so they finally know what to ask.</p>
       </div>
     </header>
 
@@ -350,7 +352,7 @@
         <div class="cs-summary">
           <div>
             <p class="cs-summary__label">Problems</p>
-            <p class="cs-body">Blocky was a chatbot-shaped tool becoming the platform's main UI — it didn't guide users, didn't drive action, and couldn't scale to new workflows.</p>
+            <p class="cs-body">Blocky was a chatbot-shaped tool becoming the platform's main UI, but it didn't guide users, didn't drive action, and couldn't scale to new workflows.</p>
           </div>
           <div>
             <p class="cs-summary__label">My role</p>
@@ -390,13 +392,25 @@
       </div>
     </section>
 
+    <!-- ── CONTEXT / OVERVIEW ── -->
+    <section class="cs-section">
+      <div class="container cs-split">
+        <p class="cs-eyebrow">Context</p>
+        <h2 class="cs-h">What is Block Builder,<span>and what is Blocky</span></h2>
+        <div class="cs-split__body">
+          <p class="cs-body"><strong>Block Builder</strong> is Wayfair's internal CMS, the platform 50+ cross-functional teams use to build, configure, and publish everything customers see on Wayfair.com. PMs, marketers, analysts, and engineers all create and manage content by assembling reusable "blocks."</p>
+          <p class="cs-body"><strong>Blocky</strong> is the AI agent inside Block Builder. Instead of navigating the platform step by step, users can describe what they want, and Blocky helps them create and manage content through a conversation, turning complex, manual workflows into simple requests.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ── PROBLEM ── -->
     <section class="cs-section">
       <div class="container cs-split">
         <p class="cs-eyebrow">Problem</p>
         <h2 class="cs-h">Blocky was becoming the main UI<span>but still shaped like a chatbot</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Blocky was starting to turn complex, manual workflows into simple requests—letting users create and manage content through an AI agent instead of navigating the platform step by step. As Blocky became the platform's primary surface, the chatbot model started to show its limits.</p>
+          <p class="cs-body">Blocky was starting to turn complex, manual workflows into simple requests, letting users create and manage content through an AI agent instead of navigating the platform step by step. As Blocky became the platform's primary surface, the chatbot model started to show its limits.</p>
           <p class="cs-body">It broke down in three ways: it <strong>didn't guide</strong> (no clear entry points left users unsure what Blocky could do or where to start), <strong>didn't drive action</strong> (long back-and-forth conversations made it harder to turn intent into action), and <strong>didn't scale</strong> (a chat-first model was difficult to extend to new capabilities and workflows).</p>
         </div>
       </div>
@@ -416,7 +430,7 @@
           <p class="cs-body">Blocky helps Wayfair teams create and manage content blocks, but starting with an open chat box left users unsure of what to ask or how to get the result they wanted.</p>
           <p class="cs-body">I first explored a guided wizard that broke the task into smaller questions, helping users move from an empty chat box to a completed block. But testing revealed a deeper problem: even when users knew which steps to follow, they still didn't know what a good request looked like.</p>
           <p class="cs-quote">"What should I actually ask Blocky?"</p>
-          <p class="cs-body">That shifted my approach. Instead of teaching users how to construct a prompt step by step, I explored teaching by example—using predefined prompts and task templates to show users what Blocky could do and give them a starting point they could adapt.</p>
+          <p class="cs-body">That shifted my approach. Instead of teaching users how to construct a prompt step by step, I explored teaching by example, using predefined prompts and task templates to show users what Blocky could do and give them a starting point they could adapt.</p>
           <div class="cs-fromto">
             <div class="cs-fromto__item">
               <p class="cs-fromto__k">From</p>
@@ -490,7 +504,7 @@
         <div class="cs-split" style="margin-bottom: var(--sp-8);">
           <p class="cs-eyebrow">Solution</p>
           <h2 class="cs-h">From chatbot<span>to AI workspace</span></h2>
-          <p class="cs-body cs-split__body">The redesigned Blocky turns an open-ended chatbot into a guided AI workspace—helping users get started with clear entry points, understand what's happening at every step, and work alongside an AI agent that feels more like a collaborative partner than a chatbot.</p>
+          <p class="cs-body cs-split__body">The redesigned Blocky turns an open-ended chatbot into a guided AI workspace, helping users get started with clear entry points, understand what's happening at every step, and work alongside an AI agent that feels more like a collaborative partner than a chatbot.</p>
         </div>
         <div class="cs-solution-stack">
           <figure class="cs-solution-row">
@@ -516,7 +530,7 @@
             </div>
             <figcaption class="cs-solution-caption">
               <h3>Making progress and outcomes visible</h3>
-              <p>Blocky's tasks move through different states—from thinking to completed or failed. The previous design relied heavily on black text, making these important signals easy to miss within the response. I introduced color, icons, and concise status labels to create stronger visual cues, so users can understand what's happening and scan outcomes without reading every line.</p>
+              <p>Blocky's tasks move through different states, from thinking to completed or failed. The previous design relied heavily on black text, making these important signals easy to miss within the response. I introduced color, icons, and concise status labels to create stronger visual cues, so users can understand what's happening and scan outcomes without reading every line.</p>
             </figcaption>
           </figure>
           <figure class="cs-solution-row">
@@ -545,7 +559,7 @@
         <div class="cs-split" style="margin-bottom: var(--sp-8);">
           <p class="cs-eyebrow">What's next</p>
           <h2 class="cs-h">Designing for<span>what comes next</span></h2>
-          <p class="cs-body cs-split__body">The MVP was built on a foundation meant to grow. The clearest next step is chat history — the most requested feature from users — so people can return to a past conversation and pick up where they left off instead of starting over each time.</p>
+          <p class="cs-body cs-split__body">The MVP was built on a foundation meant to grow. The clearest next step is chat history, the most requested feature from users, so people can return to a past conversation and pick up where they left off instead of starting over each time.</p>
         </div>
         <div class="cs-solution-stack">
           <figure class="cs-solution-row">
@@ -564,11 +578,11 @@
         <div class="cs-split__body cs-reflect">
           <div class="cs-reflect__item">
             <h3 class="cs-reflect__title">What I learned</h3>
-            <p class="cs-body">Guidance moves people through a task; a concrete example teaches them the standard. A ready-made template did what a step-by-step wizard couldn't — new users learned what "good" looks like by seeing one. And the best fix for right now shouldn't cap what the product can become: solving for the user in front of me and the surface Blocky is growing into turned out to be the same job.</p>
+            <p class="cs-body">Guidance moves people through a task; a concrete example teaches them the standard. A ready-made template did what a step-by-step wizard couldn't: new users learned what "good" looks like by seeing one. And the best fix for right now shouldn't cap what the product can become: solving for the user in front of me and the surface Blocky is growing into turned out to be the same job.</p>
           </div>
           <div class="cs-reflect__item">
             <h3 class="cs-reflect__title">What I'd do differently</h3>
-            <p class="cs-body">I'd validate the template with more real users before rollout, and instrument adoption from day one — so the win shows up in production, not just in early testing.</p>
+            <p class="cs-body">I'd validate the template with more real users before rollout, and instrument adoption from day one, so the win shows up in production, not just in early testing.</p>
           </div>
         </div>
       </div>
@@ -587,8 +601,8 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>
       <ul class="footer__links">
-        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
-        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="footer__link" href="mailto:katherine.swei123@gmail.com">Email</a></li>
+        <li><a class="footer__link" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </footer>

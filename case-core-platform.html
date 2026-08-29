@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wayfair Core Platform Redesign — Katherine Swei</title>
+  <title>Wayfair Core Platform Redesign, Katherine Swei</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,10 +15,10 @@
     /* meta row */
     .cs-meta { display: flex; flex-wrap: wrap; column-gap: var(--sp-10); row-gap: var(--sp-4); }
 
-    /* hero cover — work card purple + inset */
+    /* hero cover, work card purple + inset */
     .cs-hero__cover--core { position: relative; background: #995AB8; display: block; border: none; }
     .cs-hero__cover__media { position: absolute; top: var(--sp-4); left: var(--sp-4); bottom: 0; width: calc(100% - var(--sp-4) * 2); overflow: hidden; }
-    .cs-hero__cover--core img { position: static; width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; border-radius: 0; }
+    .cs-hero__cover--core img { position: static; width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; border-radius: 16px 16px 0 0; }
     .cs-hero__summary { display: block; -webkit-line-clamp: unset; overflow: visible; }
 
     /* ── story beats ── */
@@ -28,6 +28,7 @@
     .beat-h { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-2); }
     .beat-lead { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
     .beat-lead + .beat-lead { margin-top: var(--sp-3); }
+    .beat-lead strong, .beat-note strong, .beat-list strong, .problems__d strong, .cons__d strong, .callout p strong { color: var(--color-text-primary); font-weight: var(--weight-semibold); }
     .beat-sub { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: var(--leading-tight); color: var(--color-text-primary); margin: 0 0 var(--sp-3); }
     .beat-note { font-size: var(--text-lg); color: var(--color-text-secondary); margin: var(--sp-3) 0 0; }
     .cs-overview-img { width: 100%; height: auto; display: block; margin-top: clamp(28px, 4vw, 44px); }
@@ -35,7 +36,7 @@
     .exploration-figure { margin: 0; min-width: 0; }
     .exploration-figure__frame { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 14px; height: 388px; display: flex; align-items: center; justify-content: center; }
     .exploration-figure__frame img { max-height: 360px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px; }
-    .exploration-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+    .exploration-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-tertiary); line-height: var(--leading-relaxed); }
     @media (max-width: 760px) {
       .exploration-pair { grid-template-columns: 1fr; }
       .exploration-figure__frame { height: auto; }
@@ -65,12 +66,21 @@
       margin: var(--sp-6) 0 0;
     }
 
+    /* limitation cards (2-up, skimmable) */
+    .limit-cards { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.5vw, 28px); margin-top: var(--sp-5); }
+    .limit-card { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: clamp(20px, 2.5vw, 32px); }
+    .limit-card__head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+    .limit-card__emoji { font-size: 22px; line-height: 1; }
+    .limit-card__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0; }
+    .limit-card__t { font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: var(--leading-snug); color: var(--color-text-primary); margin: 0 0 10px; }
+    .limit-card__d { font-size: var(--text-sm); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
+    @media (max-width: 760px) { .limit-cards { grid-template-columns: 1fr; } }
     /* two-problem grid */
     .problems { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(32px, 4vw, 48px); }
     .problems__item { border-top: 2px solid var(--color-border); padding-top: var(--sp-3); }
     .problems__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-accent); margin: 0 0 6px; }
     .problems__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 8px; }
-    .problems__d { color: var(--color-text-secondary); margin: 0; }
+    .problems__d { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 760px) { .problems { grid-template-columns: 1fr; gap: var(--sp-6); } }
     /* problem rows: text left, image right */
     .pf-rows { margin-top: clamp(32px, 4vw, 48px); }
@@ -107,12 +117,17 @@
     .pf-media--video-full { aspect-ratio: 1600 / 818; background: var(--color-surface); }
     .pf-media--video video { width: 100%; height: 100%; object-fit: cover; object-position: right top; display: block; }
     .pf-media--video-full video { object-fit: contain; object-position: left top; }
-    .pf-media--sol video { object-fit: cover; object-position: top left; }
+    .pf-media--sol video { object-fit: cover; object-position: top left; transform-origin: top left; }
+    /* hold 1s, then zoom into the top-left; period matches each clip so it loops in sync */
+    .pf-media--sol1 video { animation: sol-zoom1 8.98s ease-in-out infinite; }
+    .pf-media--sol2 video { transform: scale(1.2); }
+    @keyframes sol-zoom1 { 0%, 11% { transform: scale(1); } 34%, 90% { transform: scale(1.5); } 100% { transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { .pf-media--sol1 video { animation: none; } }
     .pf-media--video-panel .pf-media__zoom video {
       object-fit: cover;
       object-position: left top;
     }
-    .pf-media__caption { font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0; text-align: center; line-height: var(--leading-relaxed); }
+    .pf-media__caption { font-size: var(--text-sm); color: var(--color-text-tertiary); margin: 0; text-align: center; line-height: var(--leading-relaxed); }
     @media (max-width: 760px) { .pf-row { grid-template-columns: 1fr; gap: var(--sp-4); } }
     /* old / now before-after */
     .ba2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); }
@@ -122,17 +137,30 @@
     .ba2__media--now { background: var(--color-surface); border: 1px solid var(--color-border-subtle); }
     .ba2__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
     .ba2__media img { width: 100%; height: auto; border-radius: 8px; display: block; }
-    .ba2 figcaption { margin-top: 8px; font-size: var(--text-lg); color: var(--color-text-secondary); }
+    .ba2 figcaption { margin-top: 8px; font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+    .ba2 figcaption span { color: var(--color-text-tertiary); font-weight: var(--weight-regular); }
     @media (max-width: 760px) { .ba2 { grid-template-columns: 1fr; gap: var(--sp-5); } }
+    /* smooth in-page scrolling + jump button */
+    html { scroll-behavior: smooth; }
+    #solution { scroll-margin-top: 88px; }
+    .jump-cta { margin-top: 40px; text-align: center; }
+    .btn-jump { display: inline-flex; align-items: center; gap: 8px; background: var(--color-text-primary); color: #fff; font-size: var(--text-base); font-weight: var(--weight-semibold); padding: 13px 24px; border-radius: 999px; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+    .btn-jump:hover { transform: translateY(-2px); background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+    .btn-jump__arrow { transition: transform .2s ease; }
+    .btn-jump:hover .btn-jump__arrow { transform: translateY(3px); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn-jump, .btn-jump__arrow { transition: none; } }
     /* intro on the left, framed figure on the right */
     .intro-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
     @media (max-width: 860px) { .intro-split { grid-template-columns: 1fr; gap: var(--sp-6); align-items: start; } }
     /* framed IA figure (image inside, caption below the container) */
     .ia-figure { margin: 0; }
     .ia-figure--block { margin-top: clamp(28px, 4vw, 44px); }
+    .ia-figure--block .ia-figure__frame { padding: 20px; }
+    .ia-figure--block .ia-figure__frame img { max-height: 500px; object-fit: cover; object-position: top; }
     .ia-figure__frame { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 14px; }
     .ia-figure__frame img { width: 100%; height: auto; display: block; border-radius: 8px; }
-    .ia-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .ia-figure__frame video { width: 100%; height: auto; display: block; border-radius: 8px; }
+    .ia-figure__cap { margin: 8px 0 0; font-size: var(--text-sm); color: var(--color-text-tertiary); }
     .panel-figs { display: grid; grid-template-columns: 2.16fr 1.83fr; gap: 0; margin-top: clamp(28px, 4vw, 44px); background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
     .panel-figs img { width: 100%; height: auto; display: block; }
     @media (max-width: 760px) { .panel-figs { grid-template-columns: 1fr; } }
@@ -140,9 +168,9 @@
     .beat-list li { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0.4em 0; }
     /* shipped + feedback: text left, image right */
     .ship { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
-    .ship__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+    .ship__media { border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border-subtle); display: grid; place-items: center; overflow: hidden; }
     .ship__media span { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
-    .ship__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ship__media img { width: 100%; height: auto; object-fit: contain; display: block; }
     @media (max-width: 760px) { .ship { grid-template-columns: 1fr; } }
     /* reflections split */
     .reflect2 { display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: clamp(24px, 5vw, 72px); }
@@ -152,7 +180,7 @@
     /* business-context callout */
     .callout { background: var(--color-surface); border-radius: var(--radius-lg); padding: clamp(20px, 3vw, 32px); margin-top: clamp(32px, 4vw, 48px); }
     .callout__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-tertiary); margin: 0 0 var(--sp-2); }
-    .callout p { font-size: var(--text-base); color: var(--color-text-secondary); margin: 0; }
+    .callout p { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
 
     /* reframe from → to */
     .fromto { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: var(--sp-6); }
@@ -194,7 +222,8 @@
     .cons__media--figma img { object-fit: contain; background: #f0f0f0; }
     .cons__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 6px; }
     .cons__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
-    .cons__d { color: var(--color-text-secondary); margin: 0; }
+    .cons__d { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
+    .cons--sm .cons__d { font-size: var(--text-sm); }
     @media (max-width: 760px) { .cons { grid-template-columns: 1fr; gap: var(--sp-5); } }
 
     /* impact */
@@ -221,7 +250,7 @@
 
   <!-- ── NAV ── -->
   <header class="nav" role="banner">
-    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei — Home">
+    <a href="./work.html" class="nav__mark" aria-label="Katherine Swei, Home">
       <img src="./assets/images/nav-mark.png" alt="" />
     </a>
     <div class="nav__inner">
@@ -265,7 +294,7 @@
         <div class="cs-summary">
           <div>
             <p class="cs-summary__label">Problems</p>
-            <p class="cs-summary__text">As Block Builder grew to 50+ teams and complex workflows, its workspace didn't evolve — capabilities got hard to find, and deeply nested pages were hard to navigate.</p>
+            <p class="cs-summary__text">As Block Builder grew to 50+ teams and complex workflows, its workspace didn't evolve, capabilities got hard to find, and deeply nested pages were hard to navigate.</p>
           </div>
           <div>
             <p class="cs-summary__label">My role</p>
@@ -278,7 +307,7 @@
           </div>
           <div>
             <p class="cs-summary__label">Solution</p>
-            <p class="cs-summary__text">A flexible workspace — capabilities, main work, and preview — that makes features easy to find and deep hierarchies fast to navigate.</p>
+            <p class="cs-summary__text">A flexible workspace of capabilities, main work, and preview that makes features easy to find and deep hierarchies fast to navigate.</p>
           </div>
           <div>
             <p class="cs-summary__label">Impact</p>
@@ -292,22 +321,11 @@
       </div>
     </section>
 
-    <!-- ══ BEFORE / AFTER ══ -->
+    <!-- ══ JUMP TO SOLUTION ══ -->
     <section class="beat beat--tight" style="margin-top: 40px;">
       <div class="container">
-        <div class="ba2">
-          <figure>
-            <div class="ba2__media ba2__media--old">
-              <img src="./assets/images/WF-old-bb.PNG" alt="Old fragmented navigation" />
-            </div>
-            <figcaption>Old — fragmented navigation</figcaption>
-          </figure>
-          <figure>
-            <div class="ba2__media ba2__media--now">
-              <img src="./assets/images/WF-IA.png" alt="New 3-panel structure" />
-            </div>
-            <figcaption>Now — 3-panel structure</figcaption>
-          </figure>
+        <div class="jump-cta">
+          <a href="#solution" class="btn-jump">Jump to the Solution<span class="btn-jump__arrow" aria-hidden="true">↓</span></a>
         </div>
       </div>
     </section>
@@ -316,8 +334,9 @@
     <section class="beat">
       <div class="container">
         <p class="beat-eyebrow">Overview</p>
-        <h2 class="beat-h">What is Block Builder</h2>
-        <p class="beat-lead">Block Builder is Wayfair's internal CMS — the platform 50+ cross-functional teams use to build, configure, and publish everything customers see on Wayfair.com. Think Squarespace or Webflow, but far more complex: PMs, marketing, analysts, engineers, and designers all create, target, and experiment with content here.</p>
+        <h2 class="beat-h">What is Block Builder & who uses it?</h2>
+        <p class="beat-lead"><strong>Block Builder is Wayfair's internal content platform, used by 50+ teams to build and manage experiences across Wayfair.com.</strong> It supports everything from content creation and page configuration to targeting, experimentation, and scheduling.</p>
+        <p class="beat-lead"><strong>The platform serves a wide range of users, from PMs and marketers to engineers, designers, merchandisers, and analysts, each with different workflows and needs.</strong> As more capabilities were added, they all accumulated within the same workspace.</p>
         <img class="cs-overview-img" src="./assets/images/what-is-BB.png" alt="How Block Builder powers the Wayfair.com experience" />
       </div>
     </section>
@@ -329,11 +348,11 @@
           <div class="intro-split__text">
             <p class="beat-eyebrow">The problem</p>
             <h2 class="beat-h">The platform grew, but the workspace didn't</h2>
-            <p class="beat-lead">As different teams needed different capabilities, Block Builder grew more complex. But everyone kept working in essentially the same workspace — and it never evolved with the platform. Two problems kept surfacing:</p>
+            <p class="beat-lead"><strong>As Block Builder expanded to support different teams and roles, it also accumulated more capabilities.</strong> But everyone kept working in essentially the same workspace, and its structure never evolved with the platform. Two problems kept surfacing:</p>
           </div>
           <figure class="ia-figure">
             <div class="ia-figure__frame">
-              <img src="./assets/images/WF-old-bb-IA.png" alt="The old Block Builder workspace split into three areas — block information at the top, editing on the left, and 9+ features on the right" />
+              <img src="./assets/images/WF-old-bb-IA.png" alt="The old Block Builder workspace split into three areas, block information at the top, editing on the left, and 9+ features on the right" />
             </div>
             <figcaption class="ia-figure__cap">Block information lived at the top, editing happened on the left, while 9+ features lived on the right.</figcaption>
           </figure>
@@ -362,7 +381,7 @@
             <div>
               <p class="problems__k">Problem B</p>
               <h3 class="problems__t">Users had to go through too many layers to reach what they needed</h3>
-              <p class="problems__d">Blocks could be nested many levels deep. To reach a block buried ten levels down, users had to click through nine drawers — then close them one by one to get back.</p>
+              <p class="problems__d">Blocks could be nested many levels deep. To reach a block buried ten levels down, users had to click through nine drawers, then close them one by one to get back.</p>
             </div>
             <div class="pf-media pf-media--video pf-media--video-full">
               <video autoplay loop muted playsinline aria-label="Navigating deeply nested blocks through stacked drawers in Block Builder">
@@ -373,9 +392,9 @@
           </div>
         </div>
 
-        <div class="callout">
-          <p class="callout__k">Why it mattered</p>
-          <p>Block Builder is internal, but it directly powers Wayfair.com. Teams build and publish pages — often for time-sensitive promotions and seasonal campaigns — and QA every block before it goes live. When finding features and navigating pages is hard, teams spend more time building, editing, and checking content, and every new capability makes the workspace harder still.</p>
+        <div class="subbeat">
+          <h2 class="beat-h">Why it matters to the business 💸 and the platform 🖥️ ?</h2>
+          <p class="beat-lead"><strong>Block Builder is an internal platform, but it directly powers the customer experiences on Wayfair.com.</strong> More than 50 teams rely on it to build, configure, target, experiment, and publish content, often for time-sensitive promotions and seasonal campaigns. <strong>When finding capabilities and navigating pages is difficult, the impact goes beyond individual users.</strong> Teams spend more time completing everyday tasks, while every new capability adds more complexity to a platform that needs to scale with their growing needs.</p>
         </div>
       </div>
     </section>
@@ -384,25 +403,46 @@
     <section class="beat">
       <div class="container">
         <p class="beat-eyebrow">Finding the right direction</p>
-        <h2 class="beat-h">The problem went deeper than navigation</h2>
-        <p class="beat-lead">I started by exploring an "overview" concept — similar to the relationship between a Google Drive folder and a Google Doc. The idea was to give users a high-level view of a page, then let them drill into individual blocks with breadcrumbs to keep track of where they were.</p>
+        <h2 class="beat-h">The first idea wasn't the answer</h2>
+        <p class="beat-lead">I started by exploring an "overview" concept, similar to the relationship between a Google Drive folder and a Google Doc. The idea was to give users a higher-level view of a page, separate page-level information from individual blocks, and let them drill into blocks when needed.</p>
         <div class="exploration-pair">
           <figure class="exploration-figure exploration-figure--ui">
             <div class="exploration-figure__frame">
-              <img src="./assets/images/WF-Design-Expolration2.png" alt="Overview page concept for a block — a gallery of versions with performance metrics, reached from a high-level page view" />
+              <img src="./assets/images/WF-Design-Expolration2.png" alt="Overview page concept for a block, a gallery of versions with performance metrics, reached from a high-level page view" />
             </div>
             <figcaption class="exploration-figure__cap">One of my design explorations was a page-level overview that gave users a higher-level view before diving into individual blocks.</figcaption>
           </figure>
           <figure class="exploration-figure exploration-figure--slides">
             <div class="exploration-figure__frame">
-              <img src="./assets/images/WF-Design-Expolration.png" alt="Early design exploration of an overview concept — a high-level page view with breadcrumbs to drill into individual blocks" />
+              <img src="./assets/images/WF-Design-Expolration.png" alt="Early design exploration of an overview concept, a high-level page view with breadcrumbs to drill into individual blocks" />
             </div>
+            <figcaption class="exploration-figure__cap">Exploring the concept and presenting it to stakeholders to test the direction.</figcaption>
           </figure>
         </div>
-        <p class="beat-lead">But as I explored the concept and talked it through with stakeholders, I uncovered a bigger issue. Adding an overview to every page would introduce another layer of complexity, while deeply nested content could still require many steps to reach.</p>
-        <p class="beat-lead">That pushed me to step back and explore how other complex products structure dense workflows. Across different concepts, I looked for a way to reduce travel distance, keep users oriented, and make the workspace scalable as capabilities continued to grow.</p>
+        <p class="beat-lead">But as I explored the concept and shared it with stakeholders, I got pushback from my PM, which uncovered two important limitations.</p>
+        <div class="limit-cards">
+          <div class="limit-card">
+            <div class="limit-card__head">
+              <span class="limit-card__emoji" aria-hidden="true">🪜</span>
+              <p class="limit-card__k">Limitation 1</p>
+            </div>
+            <p class="limit-card__t">It improved access to features, but it didn't fully solve the navigation problem.</p>
+            <p class="limit-card__d">Users could see the page at a higher level, but deeply nested blocks could still require multiple steps to reach.</p>
+          </div>
+          <div class="limit-card">
+            <div class="limit-card__head">
+              <span class="limit-card__emoji" aria-hidden="true">⚠️</span>
+              <p class="limit-card__k">Limitation 2</p>
+            </div>
+            <p class="limit-card__t">It introduced more complexity to the platform.</p>
+            <p class="limit-card__d">Block Builder supports thousands of pages, so creating an overview layer for every page would add thousands of additional views and likely require backend and data changes. For a platform where stability was critical, that was a significant trade-off.</p>
+          </div>
+        </div>
+        <p class="beat-sub" style="margin-top: var(--sp-6);">What I learned</p>
+        <p class="beat-lead"><strong>The feedback made me realize that I shouldn't solve a navigation problem by adding another layer to the product.</strong> For a platform this large and complex, the better opportunity was to rethink how the existing workspace was structured, while keeping the underlying system stable.</p>
+        <p class="beat-lead">That changed my approach. I stepped back and explored how other complex products organize dense workflows, looking for ways to reduce travel distance, keep users oriented, and make the workspace scalable as capabilities continued to grow.</p>
 
-        <p class="beat-q">How might we restructure the workspace so users can easily access the capabilities they need, navigate complex page structures, and keep working — without adding more complexity to the platform?</p>
+        <p class="beat-q">How might we restructure the workspace so users can easily access the capabilities they need, navigate complex page structures, and keep working, without adding more complexity to the platform?</p>
       </div>
     </section>
 
@@ -410,12 +450,12 @@
     <section class="beat">
       <div class="container">
         <p class="beat-eyebrow">How I shaped the direction</p>
-        <h2 class="beat-h">Finding what we could safely change</h2>
-        <p class="beat-lead">I drove the direction from framing the problem through MVP and Post-MVP. Because Block Builder powers the live site, large backend changes carried real production and business risk — a full rebuild wasn't realistic. So a core constraint became: improve the experience primarily through UI and frontend changes while preserving the existing backend.</p>
+        <h2 class="beat-h">Designing within the platform's technical constraints</h2>
+        <p class="beat-lead">I drove the direction by balancing user needs with the technical realities of the platform. Because Block Builder powers the live site, large backend changes carried real production and business risk. A full rebuild wasn't realistic, so I focused on how we could meaningfully improve the experience through the UI and frontend while preserving the existing foundation.</p>
+        <p class="beat-lead">I brought engineering into the design process early, using prototypes to make different directions tangible and align on what was feasible. Together with PM, EM, and engineering, we explored different approaches, challenged assumptions, and narrowed the solution toward changes we could safely ship.</p>
+        <p class="beat-lead">This helped us define a phased path from MVP to Post-MVP, addressing the biggest usability problems first while leaving room for deeper changes as the platform evolved.</p>
 
-        <p class="beat-note">I brought engineering into the design early instead of designing first and handing off. Together we worked out what was frontend-only, what needed backend work, which existing components we could reuse, and what belonged in MVP versus Post-MVP — so we could ship real improvements without adding platform risk.</p>
-
-        <div class="cons">
+        <div class="cons cons--sm">
           <div class="cons__item">
             <div class="cons__media cons__media--figma">
               <img
@@ -424,7 +464,7 @@
               />
             </div>
             <p class="cons__k">Competitive research</p>
-            <p class="cons__d">Studied complex products — Contentful, Sanity, Figma — to see how they organize capabilities and dense workflows.</p>
+            <p class="cons__d">Studied complex products like Contentful, Sanity, and Figma to see how they organize capabilities and dense workflows.</p>
           </div>
           <div class="cons__item">
             <div class="cons__media">
@@ -450,12 +490,45 @@
       </div>
     </section>
 
-    <!-- ══ 04 · THE SOLUTION ══ -->
+    <!-- ══ DEEP DIVE · MENU NAVIGATION ══ -->
     <section class="beat">
+      <div class="container">
+        <p class="beat-eyebrow">Design iteration & Eng collab</p>
+        <h2 class="beat-h">Reimagining an existing capability</h2>
+        <p class="beat-lead">I started exploring how we could solve the navigation problem without adding another layer to the platform. <strong>During this exploration, I realized we already had a piece of the solution: Block Tree.</strong></p>
+        <p class="beat-lead">Block Tree was originally designed to visualize the structure of nested blocks, not to serve as navigation. But it already had the underlying data and relationships between blocks. I explored how we could give this existing capability a new role and turn it into a lightweight way to move through the page structure.</p>
+        <p class="beat-lead">Rather than positioning it as a new feature, I intentionally called the concept a "mini tree." This helped stakeholders and engineering see the idea as an evolution of something we already had, rather than another system to build from scratch.</p>
+        <p class="beat-lead">I used prototypes to make the interaction tangible and brought engineering into the conversation early. Through each iteration, we validated what could be achieved with the existing data and frontend architecture, eventually converging on a direction that improved navigation without introducing unnecessary platform complexity.</p>
+
+        <figure class="ia-figure ia-figure--block">
+          <div class="ia-figure__frame">
+            <img src="./assets/images/WF-minitree.png" alt="Block Tree navigation evolving from the old tree view, to V1 titles-only, to the final version with title, type, and ID" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══ 04 · THE SOLUTION ══ -->
+    <section class="beat" id="solution">
       <div class="container">
         <p class="beat-eyebrow">The solution</p>
         <h2 class="beat-h">A workspace built around how people work</h2>
-        <p class="beat-lead">Instead of treating navigation as a separate layer, I restructured the workspace into three parts that work together — so capabilities, editing, and preview each have a clear place instead of competing for the same space.</p>
+        <p class="beat-lead">Instead of treating navigation as a separate layer, I restructured the workspace into three parts that work together, so capabilities, editing, and preview each have a clear place instead of competing for the same space.</p>
+
+        <div class="ba2" style="margin-top: clamp(32px, 4vw, 48px);">
+          <figure>
+            <div class="ba2__media ba2__media--old">
+              <img src="./assets/images/WF-old-bb.PNG" alt="Old fragmented navigation" />
+            </div>
+            <figcaption>Before <span>· fragmented navigation</span></figcaption>
+          </figure>
+          <figure>
+            <div class="ba2__media ba2__media--now">
+              <img src="./assets/images/WF-IA.png" alt="New 3-panel structure" />
+            </div>
+            <figcaption>After <span>· 3-panel structure</span></figcaption>
+          </figure>
+        </div>
 
         <div class="sol-pair">
           <figure class="sol-figure">
@@ -473,6 +546,15 @@
           </figure>
         </div>
 
+        <figure class="ia-figure ia-figure--block">
+          <div class="ia-figure__frame">
+            <video autoplay loop muted playsinline aria-label="Walkthrough of the redesigned Block Builder workspace with capabilities, main work, and preview">
+              <source src="./assets/videos/wayfair-core.webm" type="video/webm" />
+              <source src="./assets/videos/wayfair-core.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </figure>
+
         <div class="cons">
           <div class="cons__item">
             <p class="cons__k">Left</p>
@@ -482,13 +564,26 @@
           <div class="cons__item">
             <p class="cons__k">Center</p>
             <h3 class="cons__t">Main work</h3>
-            <p class="cons__d">The primary editing space — the task users are always on, kept visible and stable.</p>
+            <p class="cons__d">The primary editing space, the task users are always on, kept visible and stable.</p>
           </div>
           <div class="cons__item">
             <p class="cons__k">Right</p>
             <h3 class="cons__t">Preview</h3>
             <p class="cons__d">A persistent place to see and validate the customer-facing result while working.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
+    <section class="beat">
+      <div class="container">
+        <p class="beat-eyebrow">A flexible system</p>
+        <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
+        <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations, not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
+        <div class="panel-figs">
+          <img src="./assets/images/WF-flexible-panel1.png" alt="Flexible panel architecture: six configurations of the three-panel workspace plus an optional AI agent panel" />
+          <img src="./assets/images/WF-flexible-panel2.png" alt="The six panel configurations in the Block Builder UI, from the default main workspace through feature, preview, and AI agent combinations" />
         </div>
       </div>
     </section>
@@ -504,8 +599,9 @@
               <p class="problems__d">I moved capabilities into a persistent navigation panel and grouped them by workflow, so users could quickly access the tools relevant to their jobs instead of scanning one long list.</p>
             </div>
             <div class="pf-media-wrap">
-              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol">
+              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol pf-media--sol1">
                 <video autoplay loop muted playsinline aria-label="Capabilities grouped in a persistent navigation panel by workflow">
+                  <source src="./assets/videos/wf-solution1.webm" type="video/webm" />
                   <source src="./assets/videos/wf-solution1.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -515,50 +611,18 @@
             <div>
               <p class="problems__k">Solution B</p>
               <h3 class="problems__t">Kept users oriented while navigating deep hierarchies</h3>
-              <p class="problems__d">I replaced nested drawers with a persistent workspace structure that keeps the page, its hierarchy, and the active block visible — reducing the steps and travel distance needed to move between levels.</p>
+              <p class="problems__d">I replaced nested drawers with a persistent workspace structure that keeps the page, its hierarchy, and the active block visible, reducing the steps and travel distance needed to move between levels.</p>
             </div>
             <div class="pf-media-wrap">
-              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol">
+              <div class="pf-media pf-media--video pf-media--video-full pf-media--sol pf-media--sol2">
                 <video autoplay loop muted playsinline aria-label="Navigating a deep page hierarchy in a persistent workspace without stacked drawers">
-                  <source src="./assets/videos/WF-solution2.MP4" type="video/mp4" />
+                  <source src="./assets/videos/wf-solution2.webm" type="video/webm" />
+                  <source src="./assets/videos/wf-solution2.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
-    <section class="beat">
-      <div class="container">
-        <p class="beat-eyebrow">A flexible system</p>
-        <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
-        <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations — not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
-        <div class="panel-figs">
-          <img src="./assets/images/WF-flexible-panel1.png" alt="Flexible panel architecture: six configurations of the three-panel workspace plus an optional AI agent panel" />
-          <img src="./assets/images/WF-flexible-panel2.png" alt="The six panel configurations in the Block Builder UI — from the default main workspace through feature, preview, and AI agent combinations" />
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ DEEP DIVE · MENU NAVIGATION ══ -->
-    <section class="beat">
-      <div class="container">
-        <p class="beat-eyebrow">Deep dive</p>
-        <h2 class="beat-h">Menu navigation</h2>
-        <p class="beat-lead">I reimagined and reused the existing feature as a menu-based navigation — simplifying navigation without backend changes, saving the engineering time to build from 0 to 1, and removing the need to open multiple drawers. Through iteration, I refined how information is displayed.</p>
-        <ul class="beat-list">
-          <li>The initial version (V1) only showed block titles, which made it hard to tell similar blocks apart.</li>
-          <li>In the final version, I used the block title as the primary label and added block type and ID as secondary information in a lighter, smaller style.</li>
-        </ul>
-        <p class="beat-lead" style="margin-top: var(--sp-4);">The result is a more intuitive navigation experience: users understand the structure, identify blocks quickly, and move through nested content without losing context.</p>
-
-        <figure class="ia-figure ia-figure--block">
-          <div class="ia-figure__frame">
-            <img src="./assets/images/WF-minitree.png" alt="Block Tree navigation evolving from the old tree view, to V1 titles-only, to the final version with title, type, and ID" />
-          </div>
-        </figure>
       </div>
     </section>
 
@@ -569,11 +633,10 @@
           <div>
             <p class="beat-eyebrow">Shipped</p>
             <h2 class="beat-h">MVP &amp; Post-MVP, shipped with positive feedback</h2>
-            <p class="beat-lead">Shipped across MVP and Post-MVP with strong positive feedback — improved efficiency and navigation, intuitive side-by-side editing and preview, and a more flexible workspace for future growth.</p>
+            <p class="beat-lead">Shipped across MVP and Post-MVP with strong positive feedback, improved efficiency and navigation, intuitive side-by-side editing and preview, and a more flexible workspace for future growth.</p>
           </div>
           <div class="ship__media">
-            <span>Slack feedback — image</span>
-            <!-- <img src="./assets/images/bb-slack-feedback.png" alt="Slack reactions on the Block Tree launch" /> -->
+            <img src="./assets/images/WF-user-feedback.png" alt="Positive user feedback on the redesigned Block Builder workspace" />
           </div>
         </div>
       </div>
@@ -591,7 +654,7 @@
             </div>
             <div class="reflect2__item">
               <h3 class="beat-sub">Designing within constraints</h3>
-              <p class="beat-lead">At the same time, I had to design within tight constraints on a complex, high-risk platform. I worked closely with engineering to find feasible solutions, reusing existing systems where possible — and balanced different user needs so it stayed easy for new users while still powerful for advanced ones.</p>
+              <p class="beat-lead">At the same time, I had to design within tight constraints on a complex, high-risk platform. I worked closely with engineering to find feasible solutions, reusing existing systems where possible, and balanced different user needs so it stayed easy for new users while still powerful for advanced ones.</p>
             </div>
           </div>
         </div>
@@ -614,8 +677,8 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 Katherine Swei</p>
       <ul class="footer__links">
-        <li><a class="footer__link" href="mailto:hello@katherineswei.com">Email</a></li>
-        <li><a class="footer__link" href="https://linkedin.com/in/katherineswei" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a class="footer__link" href="mailto:katherine.swei123@gmail.com">Email</a></li>
+        <li><a class="footer__link" href="https://www.linkedin.com/in/kswei" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </footer>

@@ -51,6 +51,8 @@
   max-width: none;            /* fill the content column */
 }
 .cs-body + .cs-body { margin-top: var(--sp-3); }
+/* bold emphasis in body copy uses the darker primary color */
+.cs-body strong, .cs-lead strong, .cs-split__body strong { color: var(--color-text-primary); font-weight: var(--weight-semibold); }
 
 /* generic "heading left / content right" split.
    Eyebrow sits in its own row so the heading and the right-column body
