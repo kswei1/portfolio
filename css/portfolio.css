@@ -205,7 +205,7 @@
 
 .hero__icon--thinker {
   --hero-icon-size: 1.4em;
-  margin-inline: 0.15em;
+  margin-inline: calc(0.15em - 3px);
 }
 
 .hero__icon--code {

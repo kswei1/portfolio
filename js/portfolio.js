@@ -285,3 +285,32 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', toggle, { passive: true });
   toggle();
 })();
+
+// ── UI click sound: nav links, logo, and back-to-top (not the jump button) ──
+(function () {
+  var click = new Audio('./assets/audio/click.mp3');
+  click.preload = 'auto';
+  var play = function () {
+    try { click.currentTime = 0; click.play(); } catch (e) {}
+  };
+
+  // Stays on the page → just play.
+  document.querySelectorAll('.back-to-top, .work-tabs__tab').forEach(function (el) {
+    el.addEventListener('click', play);
+  });
+
+  // Navigates away → play first, then follow the link so the click isn't cut off.
+  document.querySelectorAll('.nav__link, .nav__mark, a.card').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var href = el.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || e.defaultPrevented ||
+          e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || el.target === '_blank') {
+        play();
+        return;
+      }
+      e.preventDefault();
+      play();
+      setTimeout(function () { window.location.href = href; }, 180);
+    });
+  });
+})();

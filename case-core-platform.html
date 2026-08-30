@@ -145,7 +145,7 @@
     /* smooth in-page scrolling + jump button */
     html { scroll-behavior: smooth; }
     #solution { scroll-margin-top: 88px; }
-    .jump-cta { margin-top: 40px; text-align: center; }
+    .jump-cta { margin-top: 0; text-align: center; }
     .btn-jump { display: inline-flex; align-items: center; gap: 8px; background: var(--color-text-primary); color: #fff; font-size: var(--text-base); font-weight: var(--weight-semibold); padding: 13px 24px; border-radius: 999px; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
     .btn-jump:hover { transform: translateY(-2px); background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
     .btn-jump__arrow { transition: transform .2s ease; }
@@ -324,7 +324,7 @@
     </section>
 
     <!-- ══ JUMP TO SOLUTION ══ -->
-    <section class="beat beat--tight" style="margin-top: 40px;">
+    <section class="beat beat--tight" style="margin: 40px 0;">
       <div class="container">
         <div class="jump-cta">
           <a href="#solution" class="btn-jump">Jump to the Solution<span class="btn-jump__arrow" aria-hidden="true">↓</span></a>
@@ -333,7 +333,7 @@
     </section>
 
     <!-- ══ 00 · OVERVIEW ══ -->
-    <section class="beat">
+    <section class="beat" style="margin-top: 40px;">
       <div class="container">
         <p class="beat-eyebrow">Overview</p>
         <h2 class="beat-h">What is Block Builder & who uses it?</h2>
