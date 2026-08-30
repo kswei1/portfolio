@@ -262,3 +262,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// ── Back-to-top button (case-study / project pages) ──────────────────
+(function () {
+  if (!document.querySelector('main.cs')) return;
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<span class="back-to-top__arrow" aria-hidden="true">↑</span> Back to top';
+  document.body.appendChild(btn);
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var toggle = function () {
+    if (window.scrollY > 400) btn.classList.add('is-visible');
+    else btn.classList.remove('is-visible');
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+})();
