@@ -355,27 +355,20 @@
       <div class="container">
         <div class="cs-summary">
           <div>
-            <p class="cs-summary__label">Problems</p>
-            <p class="cs-body">Blocky was a chatbot-shaped tool becoming the platform's main UI, but it didn't guide users, didn't drive action, and couldn't scale to new workflows.</p>
+            <p class="cs-summary__label">Problem</p>
+            <p class="cs-body">Blocky was becoming the primary way for users to interact with AI in Block Builder, but its chat-first UI wasn't built to scale. New users didn't know what to ask, while experienced users had to rely on open-ended conversation to get things done.</p>
           </div>
           <div>
             <p class="cs-summary__label">My role</p>
-            <ul class="cs-summary__list">
-              <li>Led the redesign end-to-end</li>
-              <li>Designed the Blocky icon, brand color &amp; UI</li>
-              <li>Proposed the design solution &amp; MVP</li>
-            </ul>
+            <p class="cs-body">Led the redesign end-to-end, from interaction model and visual direction to prototyping and MVP definition. Partnered with PM and engineering to explore what the experience could become within existing technical constraints.</p>
           </div>
           <div>
             <p class="cs-summary__label">Solution</p>
-            <p class="cs-body">A first-use template that shows users what to ask, on a structured, extensible UI ready to grow into the platform's main surface.</p>
+            <p class="cs-body">A guided AI agent experience with clear entry points, reusable prompt patterns, and visible task progress, designed to help users discover what Blocky can do while creating a foundation for future capabilities.</p>
           </div>
           <div>
             <p class="cs-summary__label">Impact</p>
-            <ul class="cs-summary__list">
-              <li>Creating a block: ~1 min → ~10 sec (early testing, ~10 people)</li>
-              <li>Set the foundation for Blocky as the platform's main UI</li>
-            </ul>
+            <p class="cs-body">Early testing with ~10 users showed creating a block could go from ~1 minute to ~10 seconds. More importantly, the redesign gave the team a concrete direction for how Blocky could evolve into the platform's primary AI entry point.</p>
           </div>
         </div>
 
@@ -400,10 +393,11 @@
     <section class="cs-section">
       <div class="container cs-split">
         <p class="cs-eyebrow">Context</p>
-        <h2 class="cs-h">What is Block Builder,<span>and what is Blocky</span></h2>
+        <h2 class="cs-h">Blocky was built for chat.<span>The product was growing beyond it.</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body"><strong>Block Builder</strong> is Wayfair's internal CMS, the platform 50+ cross-functional teams use to build, configure, and publish everything customers see on Wayfair.com. PMs, marketers, analysts, and engineers all create and manage content by assembling reusable "blocks."</p>
-          <p class="cs-body"><strong>Blocky</strong> is the AI agent inside Block Builder. Instead of navigating the platform step by step, users can describe what they want, and Blocky helps them create and manage content through a conversation, turning complex, manual workflows into simple requests.</p>
+          <p class="cs-body">Blocky is Wayfair's internal AI agent inside Block Builder, helping teams create and manage content through natural language instead of navigating the platform step by step.</p>
+          <p class="cs-body">As Blocky became a bigger part of the product, the team had a larger ambition: make Blocky the primary entry point for AI-powered workflows across the platform.</p>
+          <p class="cs-body">But the existing experience was still essentially a chatbot.</p>
         </div>
       </div>
     </section>
@@ -412,10 +406,35 @@
     <section class="cs-section">
       <div class="container cs-split">
         <p class="cs-eyebrow">Problem</p>
-        <h2 class="cs-h">Blocky was becoming the main UI<span>but still shaped like a chatbot</span></h2>
+        <h2 class="cs-h">A chatbot wasn't enough<span>for an AI agent</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Blocky was starting to turn complex, manual workflows into simple requests, letting users create and manage content through an AI agent instead of navigating the platform step by step. As Blocky became the platform's primary surface, the chatbot model started to show its limits.</p>
-          <p class="cs-body">It broke down in three ways: it <strong>didn't guide</strong> (no clear entry points left users unsure what Blocky could do or where to start), <strong>didn't drive action</strong> (long back-and-forth conversations made it harder to turn intent into action), and <strong>didn't scale</strong> (a chat-first model was difficult to extend to new capabilities and workflows).</p>
+          <p class="cs-body">The existing UI created three problems:</p>
+          <div class="cs-principles">
+            <div class="cs-principle">
+              <span class="cs-principle__num">01</span>
+              <div>
+                <h3 class="cs-principle__title">It was hard to discover</h3>
+                <p class="cs-principle__desc">New users didn't know what they could ask Blocky or where to start.</p>
+              </div>
+            </div>
+            <div class="cs-principle">
+              <span class="cs-principle__num">02</span>
+              <div>
+                <h3 class="cs-principle__title">It was hard to act</h3>
+                <p class="cs-principle__desc">Users had to rely on back-and-forth conversation to accomplish tasks.</p>
+              </div>
+            </div>
+            <div class="cs-principle">
+              <span class="cs-principle__num">03</span>
+              <div>
+                <h3 class="cs-principle__title">It was hard to scale</h3>
+                <p class="cs-principle__desc">As new capabilities were added, the chat-first model had no clear structure for accommodating them.</p>
+              </div>
+            </div>
+          </div>
+          <p class="cs-body">Early feedback made the gap clear:</p>
+          <p class="cs-quote">"I don't know what I can ask Blocky."<br>"I don't know what Blocky can do."</p>
+          <p class="cs-body"><strong>The real problem wasn't that the UI looked old. It was that the interaction model wasn't helping users understand or use an AI agent.</strong></p>
         </div>
       </div>
       <div class="container">
@@ -429,10 +448,10 @@
     <section class="cs-section">
       <div class="container cs-split">
         <p class="cs-eyebrow">Design Exploration</p>
-        <h2 class="cs-h">Make it easier<span>to start</span></h2>
+        <h2 class="cs-h">Help users discover<span>what Blocky can do</span></h2>
         <div class="cs-split__body">
           <p class="cs-body">Blocky helps Wayfair teams create and manage content blocks, but starting with an open chat box left users unsure of what to ask or how to get the result they wanted.</p>
-          <p class="cs-body">I first explored a guided wizard that broke the task into smaller questions, helping users move from an empty chat box to a completed block. But testing revealed a deeper problem: even when users knew which steps to follow, they still didn't know what a good request looked like.</p>
+          <p class="cs-body">I initially explored a step-by-step wizard to guide users through complex tasks. But as I explored the flow, I realized something: a wizard could tell users what information to provide, but it still didn't teach them what Blocky could actually do.</p>
           <p class="cs-quote">"What should I actually ask Blocky?"</p>
           <p class="cs-body">That shifted my approach. Instead of teaching users how to construct a prompt step by step, I explored teaching by example, using predefined prompts and task templates to show users what Blocky could do and give them a starting point they could adapt.</p>
           <div class="cs-fromto">
