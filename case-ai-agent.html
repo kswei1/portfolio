@@ -43,10 +43,13 @@
     .cs-meta {
       display: flex;
       flex-wrap: nowrap;
-      column-gap: var(--sp-6);
+      align-items: flex-start;
+      column-gap: var(--sp-8);
       row-gap: var(--sp-4);
     }
-    @media (max-width: 820px) { .cs-meta { flex-wrap: wrap; column-gap: var(--sp-8); } }
+    .cs-meta__item { flex: 0 0 auto; }
+    .cs-meta__item:last-child { flex: 1 1 auto; min-width: 0; }
+    @media (max-width: 700px) { .cs-meta { flex-wrap: wrap; } .cs-meta__item:last-child { flex-basis: 100%; } }
     /* at-a-glance summary grid */
     .cs-summary {
       display: grid;
@@ -361,7 +364,7 @@
           <div class="cs-meta__item"><span class="cs-meta__label">Team</span><span class="cs-meta__value">Content Platform</span></div>
           <div class="cs-meta__item"><span class="cs-meta__label">Timeline</span><span class="cs-meta__value">Q2, 2026</span></div>
           <div class="cs-meta__item"><span class="cs-meta__label">Stakeholders</span><span class="cs-meta__value">1 PM, 3 Engs, 1 EM</span></div>
-          <div class="cs-meta__item"><span class="cs-meta__label">Users</span><span class="cs-meta__value">50+ Wayfair teams across product, marketing, commercial, design, and eng.</span></div>
+          <div class="cs-meta__item"><span class="cs-meta__label">Users</span><span class="cs-meta__value">50+ teams across Product, Marketing, Commercial, Design, Engineering, and Data &amp; Analytics</span></div>
         </div>
       </div>
     </header>
