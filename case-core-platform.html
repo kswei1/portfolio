@@ -54,7 +54,7 @@
     .cs-summary { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px) clamp(32px, 5vw, 72px); }
     .cs-summary__label { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 8px; }
     .cs-summary__text { font-size: var(--text-lg); line-height: var(--leading-normal); color: var(--color-text-secondary); margin: 0; }
-    .cs-summary__list { margin: 0; padding-left: 0; list-style: none; color: var(--color-text-secondary); font-size: var(--text-lg); line-height: var(--leading-normal); }
+    .cs-summary__list { margin: 0; padding-left: 1.15em; list-style: disc; color: var(--color-text-secondary); font-size: var(--text-lg); line-height: var(--leading-normal); }
     .cs-summary__list li { margin: 0.25em 0; }
     @media (max-width: 640px) { .cs-summary { grid-template-columns: 1fr; } }
     .subbeat { margin-top: clamp(44px, 6vw, 80px); }
@@ -223,9 +223,11 @@
     }
     .cons__media--figma img { object-fit: contain; background: #f0f0f0; }
     .cons__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0.02em; color: var(--color-text-primary); margin: 0 0 6px; }
-    .cons__t { font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
-    .cons__d { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
-    .cons--sm .cons__d { font-size: var(--text-sm); }
+    .cons__head { display: flex; align-items: baseline; gap: 6px; margin: 0 0 8px; }
+    .cons__head .cons__k, .cons__head .cons__t { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: 0; color: var(--color-text-primary); }
+    .cons__head .cons__k::after { content: ":"; }
+    .cons__t { font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); margin: 0 0 6px; }
+    .cons__d { font-size: var(--text-sm); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0; }
     @media (max-width: 760px) { .cons { grid-template-columns: 1fr; gap: var(--sp-5); } }
 
     /* impact */
@@ -283,9 +285,8 @@
 
         <div class="cs-meta">
           <div class="cs-meta__item"><span class="cs-meta__label">Team</span><span class="cs-meta__value">Content Platform</span></div>
-          <div class="cs-meta__item"><span class="cs-meta__label">Role</span><span class="cs-meta__value">Product Designer II</span></div>
           <div class="cs-meta__item"><span class="cs-meta__label">Timeline</span><span class="cs-meta__value">Aug 2025 – Jan 2026</span></div>
-          <div class="cs-meta__item"><span class="cs-meta__label">Stakeholders</span><span class="cs-meta__value">PM, EM and Engineers</span></div>
+          <div class="cs-meta__item"><span class="cs-meta__label">Stakeholders</span><span class="cs-meta__value">1 Product Manager, 5 Engineers, 1 Engineering Manager</span></div>
         </div>
       </div>
     </header>
@@ -303,7 +304,7 @@
             <ul class="cs-summary__list">
               <li>Led the redesign end-to-end</li>
               <li>Drove the workspace structure &amp; interaction model</li>
-              <li>Prototyped and aligned PM + engineering</li>
+              <li>Prototyped in code with Cursor and aligned with PM and engineering</li>
               <li>Defined the MVP &amp; Post-MVP scope</li>
             </ul>
           </div>
@@ -314,9 +315,9 @@
           <div>
             <p class="cs-summary__label">Impact</p>
             <ul class="cs-summary__list">
-              <li>Shipped across MVP + Post-MVP</li>
-              <li>Faster navigation through deep hierarchies</li>
-              <li>Positive early user feedback (being validated)</li>
+              <li>Shipped across MVP and Post-MVP</li>
+              <li>Made capabilities easier to find and deep hierarchies faster to navigate</li>
+              <li>Increased user satisfaction by 8.6% within two months</li>
             </ul>
           </div>
         </div>
@@ -453,9 +454,8 @@
       <div class="container">
         <p class="beat-eyebrow">How I shaped the direction</p>
         <h2 class="beat-h">Designing within the platform's technical constraints</h2>
-        <p class="beat-lead">I drove the direction by balancing user needs with the technical realities of the platform. Because Block Builder powers the live site, large backend changes carried real production and business risk. A full rebuild wasn't realistic, so I focused on how we could meaningfully improve the experience through the UI and frontend while preserving the existing foundation.</p>
-        <p class="beat-lead">I brought engineering into the design process early, using prototypes to make different directions tangible and align on what was feasible. Together with PM, EM, and engineering, we explored different approaches, challenged assumptions, and narrowed the solution toward changes we could safely ship.</p>
-        <p class="beat-lead">This helped us define a phased path from MVP to Post-MVP, addressing the biggest usability problems first while leaving room for deeper changes as the platform evolved.</p>
+        <p class="beat-lead">Block Builder powers the live site, so large backend changes carried real production and business risk. Instead of rebuilding the foundation, <strong>I focused on what we could improve through the UI and frontend while preserving the existing architecture.</strong></p>
+        <p class="beat-lead"><strong>I worked closely with PM, EM, and engineering from the start</strong>, using competitive research and prototypes to explore what was feasible. This helped us narrow the direction into a phased MVP and Post-MVP plan that addressed the biggest usability issues first without adding unnecessary platform risk.</p>
 
         <div class="cons cons--sm">
           <div class="cons__item">
@@ -496,11 +496,9 @@
     <section class="beat">
       <div class="container">
         <p class="beat-eyebrow">Design iteration & Eng collab</p>
-        <h2 class="beat-h">Reimagining an existing capability</h2>
-        <p class="beat-lead">I started exploring how we could solve the navigation problem without adding another layer to the platform. <strong>During this exploration, I realized we already had a piece of the solution: Block Tree.</strong></p>
-        <p class="beat-lead">Block Tree was originally designed to visualize the structure of nested blocks, not to serve as navigation. But it already had the underlying data and relationships between blocks. I explored how we could give this existing capability a new role and turn it into a lightweight way to move through the page structure.</p>
-        <p class="beat-lead">Rather than positioning it as a new feature, I intentionally called the concept a "mini tree." This helped stakeholders and engineering see the idea as an evolution of something we already had, rather than another system to build from scratch.</p>
-        <p class="beat-lead">I used prototypes to make the interaction tangible and brought engineering into the conversation early. Through each iteration, we validated what could be achieved with the existing data and frontend architecture, eventually converging on a direction that improved navigation without introducing unnecessary platform complexity.</p>
+        <h2 class="beat-h">Reimagining what we already had</h2>
+        <p class="beat-lead">As I explored ways to solve the navigation problem without adding another layer to the platform, I realized we already had a piece of the solution: <strong>Block Tree</strong>. Block Tree was originally built to visualize nested block relationships, but it already had the data needed to move through the page structure. I explored how we could give this existing capability a new role instead of introducing another system.</p>
+        <p class="beat-lead">I called the concept a "mini tree" and used prototypes to make the idea tangible. <strong>Framing it as an evolution of something we already had made it easier for PM and engineering to evaluate the direction and understand what could be achieved with the existing architecture.</strong></p>
 
         <figure class="ia-figure ia-figure--block">
           <div class="ia-figure__frame">
@@ -561,18 +559,15 @@
 
         <div class="cons">
           <div class="cons__item">
-            <p class="cons__k">Left</p>
-            <h3 class="cons__t">Capabilities</h3>
+            <div class="cons__head"><p class="cons__k">Left</p><h3 class="cons__t">Capabilities</h3></div>
             <p class="cons__d">A dedicated area for platform features, grouped so users see and reach the tools relevant to their work instead of one long list.</p>
           </div>
           <div class="cons__item">
-            <p class="cons__k">Center</p>
-            <h3 class="cons__t">Main work</h3>
+            <div class="cons__head"><p class="cons__k">Center</p><h3 class="cons__t">Main work</h3></div>
             <p class="cons__d">The primary editing space, the task users are always on, kept visible and stable.</p>
           </div>
           <div class="cons__item">
-            <p class="cons__k">Right</p>
-            <h3 class="cons__t">Preview</h3>
+            <div class="cons__head"><p class="cons__k">Right</p><h3 class="cons__t">Preview</h3></div>
             <p class="cons__d">A persistent place to see and validate the customer-facing result while working.</p>
           </div>
         </div>
@@ -582,7 +577,7 @@
     <!-- ══ 07 · DESIGNED FOR WHAT'S NEXT ══ -->
     <section class="beat">
       <div class="container">
-        <p class="beat-eyebrow">A flexible system</p>
+        <p class="beat-eyebrow">Beyond the core layout</p>
         <h2 class="beat-h">Flexible panel architecture (3 panels + AI agent)</h2>
         <p class="beat-lead">As a complex platform, the design needed to support multiple panel configurations, not just a fixed 3-panel layout. In addition to navigation, editing, and preview, we also introduced an AI agent (Blocky) as an optional panel. Since we envision AI-assisted workflows as a core part of the platform's future, it was important to ensure users can always access it.</p>
         <div class="panel-figs">
@@ -636,8 +631,8 @@
         <div class="ship">
           <div>
             <p class="beat-eyebrow">Shipped</p>
-            <h2 class="beat-h">MVP &amp; Post-MVP, shipped with positive feedback</h2>
-            <p class="beat-lead">Shipped across MVP and Post-MVP with strong positive feedback, improved efficiency and navigation, intuitive side-by-side editing and preview, and a more flexible workspace for future growth.</p>
+            <h2 class="beat-h">Shipped with an 8.6% increase in user satisfaction</h2>
+            <p class="beat-lead">Shipped across MVP and Post-MVP, the redesign improved navigation, enabled side-by-side editing and preview, and created a more flexible workspace for future capabilities. Within two months, a post-launch survey showed an 8.6% increase in user satisfaction compared with the previous experience.</p>
           </div>
           <div class="ship__media">
             <img src="./assets/images/WF-user-feedback.png" alt="Positive user feedback on the redesigned Block Builder workspace" />

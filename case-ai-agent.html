@@ -35,17 +35,18 @@
       position: static;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: top center;
       display: block;
       border-radius: 0;
     }
     .cs-meta {
       display: flex;
-      flex-wrap: wrap;
-      column-gap: var(--sp-10);
+      flex-wrap: nowrap;
+      column-gap: var(--sp-6);
       row-gap: var(--sp-4);
     }
+    @media (max-width: 820px) { .cs-meta { flex-wrap: wrap; column-gap: var(--sp-8); } }
     /* at-a-glance summary grid */
     .cs-summary {
       display: grid;
@@ -62,8 +63,8 @@
     .cs-summary p.cs-body { margin: 0; }
     .cs-summary__list {
       margin: 0;
-      padding-left: 0;
-      list-style: none;
+      padding-left: 1.15em;
+      list-style: disc;
       color: var(--color-text-secondary);
       font-size: var(--text-lg);
       line-height: var(--leading-normal);
@@ -94,6 +95,14 @@
     @media (max-width: 640px) {
       .cs-summary, .cs-beforeafter { grid-template-columns: 1fr; }
     }
+
+    /* jump-to-solution button */
+    .jump-cta { margin-top: 0; text-align: center; }
+    .btn-jump { display: inline-flex; align-items: center; gap: 8px; background: var(--color-text-primary); color: #fff; font-size: var(--text-base); font-weight: var(--weight-semibold); padding: 13px 24px; border-radius: 999px; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+    .btn-jump:hover { transform: translateY(-2px); background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+    .btn-jump__arrow { transition: transform .2s ease; }
+    .btn-jump:hover .btn-jump__arrow { transform: translateY(3px); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn-jump, .btn-jump__arrow { transition: none; } }
 
     /* numbered principles */
     .cs-principles {
@@ -229,12 +238,12 @@
       margin-top: var(--sp-6);
     }
     .cs-fromto__item {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
+      background: transparent;
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       padding: var(--sp-3) var(--sp-4);
     }
-    .cs-fromto__item--to { background: var(--color-accent-muted); border-color: #E3CFF3; }
+    .cs-fromto__item--to { background: transparent; border: 1.5px solid var(--color-text-primary); }
     .cs-fromto__k { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-tertiary); margin: 0 0 4px; }
     .cs-fromto__item--to .cs-fromto__k { color: var(--color-accent); }
     .cs-fromto__v { font-size: var(--text-lg); color: var(--color-text-primary); margin: 0; line-height: var(--leading-snug); }
@@ -347,44 +356,53 @@
       <div class="container cs-hero__head">
         <h1 class="cs-hero__title">Blocky, Wayfair's Internal AI Agent</h1>
         <p class="cs-hero__summary">Redesigning Blocky from a chatbot into a structured, extensible main UI, starting new users with a ready-made template so they finally know what to ask.</p>
+
+        <div class="cs-meta">
+          <div class="cs-meta__item"><span class="cs-meta__label">Team</span><span class="cs-meta__value">Content Platform</span></div>
+          <div class="cs-meta__item"><span class="cs-meta__label">Timeline</span><span class="cs-meta__value">Q2, 2026</span></div>
+          <div class="cs-meta__item"><span class="cs-meta__label">Stakeholders</span><span class="cs-meta__value">1 PM, 3 Engs, 1 EM</span></div>
+          <div class="cs-meta__item"><span class="cs-meta__label">Users</span><span class="cs-meta__value">50+ Wayfair teams across product, marketing, commercial, design, and eng.</span></div>
+        </div>
       </div>
     </header>
 
     <!-- ── AT A GLANCE ── -->
-    <section class="cs-section">
+    <section class="cs-section" style="padding-bottom: 0;">
       <div class="container">
         <div class="cs-summary">
           <div>
             <p class="cs-summary__label">Problem</p>
-            <p class="cs-body">Blocky was becoming the primary way for users to interact with AI in Block Builder, but its chat-first UI wasn't built to scale. New users didn't know what to ask, while experienced users had to rely on open-ended conversation to get things done.</p>
+            <p class="cs-body">Blocky was becoming the primary way users interacted with AI in Block Builder, but its chat-first experience made it difficult to discover capabilities and complete tasks efficiently.</p>
           </div>
           <div>
             <p class="cs-summary__label">My role</p>
-            <p class="cs-body">Led the redesign end-to-end, from interaction model and visual direction to prototyping and MVP definition. Partnered with PM and engineering to explore what the experience could become within existing technical constraints.</p>
+            <ul class="cs-summary__list">
+              <li>Led the redesign of Blocky's interaction model, from defining the experience to prototyping and MVP exploration</li>
+              <li>Built functional prototypes directly in the codebase using Cursor and Claude Code, testing concepts in local development</li>
+              <li>Partnered with PM and Engineering to shape the direction within technical constraints</li>
+            </ul>
           </div>
           <div>
             <p class="cs-summary__label">Solution</p>
-            <p class="cs-body">A guided AI agent experience with clear entry points, reusable prompt patterns, and visible task progress, designed to help users discover what Blocky can do while creating a foundation for future capabilities.</p>
+            <p class="cs-body">Shifted Blocky from an open-ended chatbot to a more guided AI agent experience, using structured entry points, examples, and reusable task patterns to show users what they could do.</p>
           </div>
           <div>
             <p class="cs-summary__label">Impact</p>
-            <p class="cs-body">Early testing with ~10 users showed creating a block could go from ~1 minute to ~10 seconds. More importantly, the redesign gave the team a concrete direction for how Blocky could evolve into the platform's primary AI entry point.</p>
+            <ul class="cs-summary__list">
+              <li><strong>~87% faster block creation:</strong> Early testing with ~10 users reduced task completion time from ~1 minute to 8 seconds.</li>
+              <li><strong>A clearer product direction:</strong> The prototype gave the team a concrete model for evolving Blocky beyond a chat-first experience and toward a more capable AI agent.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="cs-beforeafter">
-          <figure>
-            <div class="cs-ba__media">
-              <img src="./assets/images/blocky-before.png" alt="The old chatbot-style Blocky design" />
-            </div>
-            <figcaption>Before <span>· chat-first Blocky</span></figcaption>
-          </figure>
-          <figure>
-            <div class="cs-ba__media">
-              <img src="./assets/images/Blocky.png" alt="The redesigned Blocky AI workspace" />
-            </div>
-            <figcaption>After <span>· redesigned Blocky</span></figcaption>
-          </figure>
+      </div>
+    </section>
+
+    <!-- ══ JUMP TO SOLUTION ══ -->
+    <section class="cs-section" style="padding-block: 0; margin: 32px 0 40px;">
+      <div class="container">
+        <div class="jump-cta">
+          <a href="#solution" class="btn-jump">Jump to the Solution<span class="btn-jump__arrow" aria-hidden="true">↓</span></a>
         </div>
       </div>
     </section>
@@ -395,7 +413,7 @@
         <p class="cs-eyebrow">Context</p>
         <h2 class="cs-h">Blocky was built for chat.<span>The product was growing beyond it.</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">Blocky is Wayfair's internal AI agent inside Block Builder, helping teams create and manage content through natural language instead of navigating the platform step by step.</p>
+          <p class="cs-body"><strong>Blocky is Wayfair's internal AI agent inside Block Builder, helping teams create and manage content through natural language instead of navigating the platform step by step.</strong></p>
           <p class="cs-body">As Blocky became a bigger part of the product, the team had a larger ambition: make Blocky the primary entry point for AI-powered workflows across the platform.</p>
           <p class="cs-body">But the existing experience was still essentially a chatbot.</p>
         </div>
@@ -408,33 +426,10 @@
         <p class="cs-eyebrow">Problem</p>
         <h2 class="cs-h">A chatbot wasn't enough<span>for an AI agent</span></h2>
         <div class="cs-split__body">
-          <p class="cs-body">The existing UI created three problems:</p>
-          <div class="cs-principles">
-            <div class="cs-principle">
-              <span class="cs-principle__num">01</span>
-              <div>
-                <h3 class="cs-principle__title">It was hard to discover</h3>
-                <p class="cs-principle__desc">New users didn't know what they could ask Blocky or where to start.</p>
-              </div>
-            </div>
-            <div class="cs-principle">
-              <span class="cs-principle__num">02</span>
-              <div>
-                <h3 class="cs-principle__title">It was hard to act</h3>
-                <p class="cs-principle__desc">Users had to rely on back-and-forth conversation to accomplish tasks.</p>
-              </div>
-            </div>
-            <div class="cs-principle">
-              <span class="cs-principle__num">03</span>
-              <div>
-                <h3 class="cs-principle__title">It was hard to scale</h3>
-                <p class="cs-principle__desc">As new capabilities were added, the chat-first model had no clear structure for accommodating them.</p>
-              </div>
-            </div>
-          </div>
-          <p class="cs-body">Early feedback made the gap clear:</p>
+          <p class="cs-body">Blocky was becoming the primary way for users to interact with AI in Block Builder. But the experience was still built around an open-ended chat: users had to figure out what to ask, how to ask it, and rely on back-and-forth conversation to get things done.</p>
+          <p class="cs-body">Survey feedback revealed the real gap:</p>
           <p class="cs-quote">"I don't know what I can ask Blocky."<br>"I don't know what Blocky can do."</p>
-          <p class="cs-body"><strong>The real problem wasn't that the UI looked old. It was that the interaction model wasn't helping users understand or use an AI agent.</strong></p>
+          <p class="cs-body">The problem wasn't simply that the UI needed more guidance. The interaction model itself wasn't helping users understand or use an AI agent.</p>
         </div>
       </div>
       <div class="container">
@@ -522,13 +517,29 @@
     </section>
 
     <!-- ── SOLUTION ── -->
-    <section class="cs-section">
+    <section class="cs-section" id="solution">
       <div class="container">
-        <div class="cs-split" style="margin-bottom: var(--sp-8);">
-          <p class="cs-eyebrow">Solution</p>
+        <div class="cs-split" style="margin-bottom: var(--sp-6);">
+          <p class="cs-eyebrow">The solution</p>
           <h2 class="cs-h">From chatbot<span>to AI workspace</span></h2>
           <p class="cs-body cs-split__body">The redesigned Blocky turns an open-ended chatbot into a guided AI workspace, helping users get started with clear entry points, understand what's happening at every step, and work alongside an AI agent that feels more like a collaborative partner than a chatbot.</p>
         </div>
+
+        <div class="cs-beforeafter" style="margin-bottom: var(--sp-8);">
+          <figure>
+            <div class="cs-ba__media">
+              <img src="./assets/images/blocky-before.png" alt="The old chatbot-style Blocky design" />
+            </div>
+            <figcaption>Before <span>· chat-first Blocky</span></figcaption>
+          </figure>
+          <figure>
+            <div class="cs-ba__media">
+              <img src="./assets/images/Blocky.png" alt="The redesigned Blocky AI workspace" />
+            </div>
+            <figcaption>After <span>· redesigned Blocky</span></figcaption>
+          </figure>
+        </div>
+
         <div class="cs-solution-stack">
           <figure class="cs-solution-row">
             <div class="cs-solution-media">
@@ -545,6 +556,7 @@
             </div>
             <figcaption class="cs-solution-caption">
               <h3>Dark mode</h3>
+              <p>Block Builder serves engineering-heavy teams, so dark mode was an important part of the experience. I adapted colors, states, and surfaces for dark mode and validated contrast to meet accessibility requirements.</p>
             </figcaption>
           </figure>
           <figure class="cs-solution-row">
@@ -580,9 +592,9 @@
     <section class="cs-section">
       <div class="container">
         <div class="cs-split" style="margin-bottom: var(--sp-8);">
-          <p class="cs-eyebrow">What's next</p>
-          <h2 class="cs-h">Designing for<span>what comes next</span></h2>
-          <p class="cs-body cs-split__body">The MVP was built on a foundation meant to grow. The clearest next step is chat history, the most requested feature from users, so people can return to a past conversation and pick up where they left off instead of starting over each time.</p>
+          <p class="cs-eyebrow">Next iteration</p>
+          <h2 class="cs-h">Helping users<span>pick up where they left off</span></h2>
+          <p class="cs-body cs-split__body">The MVP created a foundation for Blocky to grow beyond one-off interactions. The next step was chat history, one of the most requested features from users, so they could return to previous conversations, review past work, and pick up where they left off.</p>
         </div>
         <div class="cs-solution-stack">
           <figure class="cs-solution-row">
@@ -614,7 +626,7 @@
     <!-- ── PAGER ── -->
     <nav class="container cs-pager" aria-label="Case study navigation">
       <a class="cs-pager__btn cs-pager__home" href="./work.html">← All work</a>
-      <a class="cs-pager__btn cs-pager__next" href="./case-template-system.html">Next</a>
+      <a class="cs-pager__btn cs-pager__next" href="./case-google-maps.html">Next</a>
     </nav>
 
   </main>
@@ -670,6 +682,17 @@
           v.addEventListener('loadedmetadata', apply);
           v.addEventListener('play', apply);
         }
+      });
+    })();
+
+    // Whoosh sound on the "Jump to the Solution" button
+    (function () {
+      var btn = document.querySelector('.btn-jump');
+      if (!btn) return;
+      var whoosh = new Audio('./assets/audio/whoosh.mp3');
+      whoosh.preload = 'auto';
+      btn.addEventListener('click', function () {
+        try { whoosh.currentTime = 0; whoosh.play(); } catch (e) {}
       });
     })();
   </script>
