@@ -40,6 +40,10 @@
       display: block;
       border-radius: 0;
     }
+    /* heading flows inline as one line, all in primary color */
+    .cs-h span { display: inline; color: var(--color-text-primary); font-weight: var(--weight-semibold); }
+    .cs-h span::before { content: " "; }
+
     .cs-meta {
       display: flex;
       flex-wrap: nowrap;
@@ -417,8 +421,7 @@
         <h2 class="cs-h">Blocky was built for chat.<span>The product was growing beyond it.</span></h2>
         <div class="cs-split__body">
           <p class="cs-body"><strong>Blocky is Wayfair's internal AI agent inside Block Builder, helping teams create and manage content through natural language instead of navigating the platform step by step.</strong></p>
-          <p class="cs-body">As Blocky became a bigger part of the product, the team had a larger ambition: make Blocky the primary entry point for AI-powered workflows across the platform.</p>
-          <p class="cs-body">But the existing experience was still essentially a chatbot.</p>
+          <p class="cs-body">As Blocky became a bigger part of the product, the team had a larger ambition: make Blocky the primary entry point for AI-powered workflows across the platform. But the existing experience was still essentially a chatbot.</p>
         </div>
       </div>
     </section>
