@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Presentation — Katherine Swei</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <!-- General Sans: closest free match to Cherry's Aeonik Pro -->
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="./app.css" />
+  <!-- PptxGenJS for editable Keynote/PowerPoint export -->
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+</head>
+<body>
+
+  <!-- ── START / DECK SWITCHER ── -->
+  <section class="start" id="start">
+    <div class="start__inner">
+      <p class="start__eyebrow">Interview presentations</p>
+      <h1 class="start__title">Choose a deck to present</h1>
+      <p class="start__sub">Local presentation tool — separate from the live portfolio. Pick a project, rehearse with presenter notes, present fullscreen, or export an editable <strong>.pptx</strong> for Keynote.</p>
+      <div class="deck-grid" id="deckGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── EDITOR / BUILDER ── -->
+  <section class="editor" id="editor">
+    <div class="topbar">
+      <button class="topbar__back" id="backBtn">← Decks</button>
+      <p class="topbar__title" id="deckTitle"></p>
+      <div class="topbar__spacer"></div>
+      <button class="btn" id="exportBtn" title="Export an editable PowerPoint you can open in Keynote">⬇ Export .pptx</button>
+      <button class="btn" id="presentNotesBtn">Present with notes</button>
+      <button class="btn btn--accent" id="presentBtn">▶ Present</button>
+    </div>
+
+    <div class="workspace">
+      <aside class="nav-rail" id="rail"></aside>
+      <div class="main-col">
+        <div class="stage-area" id="stageArea"></div>
+        <div class="notes-dock">
+          <div class="notes-dock__head">
+            <p class="notes-dock__title">Presenter notes</p>
+            <span class="notes-dock__hint">saved automatically on this device · shown in “Present with notes” and exported into the .pptx</span>
+            <button class="notes-dock__toggle" id="notesToggle" aria-expanded="true">Hide notes</button>
+          </div>
+          <textarea id="notesArea" placeholder="Add presenter notes for this slide…"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRESENT MODE ── -->
+  <section class="present" id="present">
+    <div class="present__stagewrap" id="presentStageWrap"></div>
+
+    <div class="presenter">
+      <div class="presenter__left">
+        <div class="presenter__now" id="presenterNow"></div>
+        <div class="presenter__meta">
+          <span class="presenter__clock" id="presenterClock">00:00</span>
+          <span id="presentCounterMirror"></span>
+        </div>
+      </div>
+      <div class="presenter__right">
+        <p class="presenter__nextlabel">Next</p>
+        <div class="presenter__next" id="presenterNext"></div>
+        <p class="presenter__noteslabel">Notes</p>
+        <div class="presenter__notes" id="presenterNotes"></div>
+      </div>
+    </div>
+
+    <div class="present__bar">
+      <button id="present-prev">‹ Prev</button>
+      <span class="present__counter" id="presentCounter">1 / 1</span>
+      <button id="present-next">Next ›</button>
+      <button id="present-pause" hidden>⏸ Pause</button>
+      <button id="present-reset" hidden>↺ Reset</button>
+      <button id="present-share" hidden>⧉ Share window</button>
+      <button id="present-exit">Exit</button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
