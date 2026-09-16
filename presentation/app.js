@@ -43,59 +43,113 @@ const DECKS = {
       },
       /* 02 — What is Block Builder */
       {
-        layout: "center",
-        text: "Block Builder is an internal platform used by 50+ teams to build and manage customer-facing experiences across Wayfair.com.",
-        img: IMG + "WF-what-is-bb-nobackground.png",
-        notes: "Quick bit of context first. Block Builder is Wayfair's internal CMS. It's what powers thousands of the pages people actually see on Wayfair.com."
+        layout: "figure",
+        realMedia: true,
+        fullWidth: true,
+        titleSm: true,
+        titleFull: true,
+        topAlign: true,
+        figBuild: true,
+        h: "Block Builder is an internal CMS used by 7 user groups across 50+ teams, powering 95% of storefront traffic across Wayfair.com.",
+        hDim: "powering 95% of storefront traffic across Wayfair.com.",
+        imgStep0: IMG + "Block-Builder-UI.png",
+        imgStep0Bg: "#F1EFEB",
+        img: IMG + "what-is-bb-nobackground.png",
+        caps: [
+          { t: "Block Builder", sub: "Where teams build and manage customer-facing experiences" },
+          { t: "Wayfair.com", sub: "Where those experiences come to life" }
+        ],
+        notes: "Quick bit of context first. Block Builder is Wayfair's internal CMS where teams build and manage customer-facing experiences. Then — it powers 95% of storefront traffic across Wayfair.com, where those experiences come to life."
       },
-      /* 03 — Who uses it */
+      /* 03a — User workflows + one fixed workspace */
       {
-        layout: "chips",
-        h: "As the platform grew, the workspace became harder to use.",
-        chips: ["Product", "Marketing", "Commercial", "Design", "Engineering", "Data Science", "Business Analytics"],
-        img: IMG + "WF-old-bb-IA.png",
-        caption: "More features. More workflows. Same workspace.",
-        notes: "Quick context on who uses this. It's one platform, but the teams on it are really different. Product, marketing, commercial, design, engineering, data science, analytics. They all build in the same workspace, but they each need different features to do their jobs."
+        layout: "userresult",
+        titleSm: true,
+        titleFull: true,
+        topAlign: true,
+        pushIn: true,
+        h: "7 user groups. 8 features. One fixed workspace.",
+        users: [
+          { name: "Product", story: "As a Product user, I want to run experiments on customer experiences, so that I can test which experience performs better.", img: IMG + "WF-PM-Example.png" },
+          { name: "Marketing", story: "As a Marketing user, I want to create and manage pages and versions, so that I can launch the right content at the right time.", img: IMG + "WF-Marketing-Example.png" },
+          { name: "Commercial", story: "As a Commercial user, I want to target experiences to specific audiences, so that different customers see the most relevant content.", img: IMG + "WF-Commercial-Example.png" },
+          { name: "Engineering", story: "As an Engineering user, I want to configure and troubleshoot blocks, so that I can keep customer-facing experiences working as expected." },
+          { name: "Design", story: "As a Design user, I want to preview and refine customer-facing experiences, so that I can make sure the final experience looks and feels right." },
+          { name: "Data Science", story: "As a Data Science user, I want to work with experiments and content data, so that I can understand how different experiences perform." },
+          { name: "Business Analytics", story: "As a Business Analytics user, I want to organize and analyze blocks, so that I can understand and manage content across the platform." }
+        ],
+        usersChips: true,
+        chipInteractive: true,
+        hideRisks: true,
+        colLabels: ["User workflows", "One fixed workspace", ""],
+        img: IMG + "wf-old-layout-example-presentation.png",
+        mediaBg: "#F1EFEB",
+        features: ["Locales", "Previews", "Block Trees", "Versions", "Block Groups", "Targeted Instances", "Experiments", "Notifications"],
+        notes: "Seven user groups, eight features, all in one fixed workspace."
+      },
+      /* 03a2 — One fixed workspace -> the cost of friction */
+      {
+        layout: "userresult",
+        titleSm: true,
+        titleFull: true,
+        topAlign: true,
+        pushIn: true,
+        h: "A fixed workspace created a productivity cost across teams.",
+        hideUsers: true,
+        colLabels: ["", "One fixed workspace", "The cost of friction"],
+        img: IMG + "wf-old-layout-example-presentation.png",
+        mediaBg: "#F1EFEB",
+        risks: [
+          { icon: "⏱️", label: "More time spent on routine tasks", desc: "Finding features and blocks" },
+          { icon: "🔀", label: "More context switching", desc: "Across tools and sections" },
+          { icon: "⚠️", label: "Higher risk of errors", desc: "When managing complex pages" },
+          { icon: "📉", label: "Less capacity for high-value work", desc: "Experiments, campaigns, QA, improvements" }
+        ],
+        notes: "As new teams, workflows, and features were added, the workspace stayed the same. The result was everyday work becoming less efficient — more time finding things, more context switching, and a higher chance of errors on complex pages."
+      },
+      /* 04a — The inefficiency came from two parts */
+      {
+        layout: "duo",
+        titleSm: true,
+        titleFull: true,
+        h: "That productivity loss came from two parts of the experience.",
+        cols: [
+          { title: "A · Workspace structure", desc: "Users had to scan through capabilities they didn't need.", img: IMG + "wf-A-slide5.png" },
+          { title: "B · Page hierarchy", desc: "Users had to drill through layers to reach the block they needed.", img: IMG + "wf-B-slide5-13s.png" }
+        ],
+        notes: "The inefficiency came from two parts of the experience. First, the workspace structure — users had to scan through capabilities they didn't need. Second, the page hierarchy — users had to drill through layers to reach the block they needed."
       },
       /* 04 — Problem A */
       {
         layout: "split",
         tag: "Problem A",
-        h: "Finding features was harder than it should be",
+        h: "One workspace wasn't built for different workflows.",
         video: "../assets/videos/wf-problem1",
-        body: "Targeting, Experimentation, Block Groups, and other features all lived in one long list. Different roles needed different things, but everyone scanned the same list.",
-        callout: "[ADD REAL USER / TEAM FEEDBACK]",
+        mediaBg: "#F1EFEB",
+        mediaPad: "16px",
         img: IMG + "WF-old-bb.PNG",
         notes: "The first problem was finding features. Targeting, experimentation, block groups, they all lived in one long list. Different roles needed different things, but everyone scanned the same list. This one was really a structural problem. The team already knew that adding more into one column wouldn't scale."
-      },
-      /* 05 — Wayfair.com <-> Block Builder */
-      {
-        layout: "compare2",
-        h: "A single image on Wayfair.com could be buried eight levels deep in Block Builder. Finding it meant clicking through every layer.",
-        left: { img: IMG + "WF-Homepage-presentation.PNG", label: "Wayfair.com" },
-        right: { videoPlain: "../assets/videos/wf-problem2", label: "Block Builder" },
-        notes: "Here's what that actually meant in practice. A single image you see on the Wayfair.com homepage could be buried eight levels deep in Block Builder. To find it, you'd click through every layer."
       },
       /* 06 — Problem B */
       {
         layout: "split",
         tag: "Problem B",
-        h: "Navigating deep page hierarchies was cumbersome",
+        h: "Users had to drill through layers to reach the block they needed.",
+        wideMedia: true,
         videoPlain: "../assets/videos/wf-problem2",
-        body: "<strong>8 levels in, 8 clicks out.</strong> To reach a block buried eight levels down, users might click through eight drawers, then close them one by one to get back.",
-        callout: "[ADD REAL USER COMPLAINT]",
+        mediaBg: "#F1EFEB",
+        mediaPad: "10px",
         img: IMG + "WF-IA.png",
         notes: "The second problem was navigating deep hierarchies, and this was the one users complained about the most. To reach a block eight levels down, you'd open eight drawers, then close them one by one to get back out. It felt like being trapped in layers."
       },
-      /* 07 — We knew the problems (recap) */
+      /* 07b — Design challenge */
       {
-        layout: "duo",
-        h: "We knew the problems. We didn't know the right solution.",
-        cols: [
-          { tag: "Problem A", title: "Finding features was harder than it should be", video: "../assets/videos/wf-problem1" },
-          { tag: "Problem B", title: "Navigating deep page hierarchies was cumbersome", videoPlain: "../assets/videos/wf-problem2" }
-        ],
-        notes: "So we actually knew the two problems. Problem A, finding features. Problem B, navigating deep hierarchies. The hard part wasn't finding problems. It was finding one solution that solved both without rebuilding the platform."
+        layout: "statement",
+        tag: "Design challenge",
+        plainTag: true,
+        full: true,
+        q: "How could we solve both problems without rebuilding the platform?",
+        notes: "That set up the real design challenge: how could we solve both problems — finding features and navigating deep hierarchies — without rebuilding the platform?"
       },
       /* 08 — How I designed within the constraint */
       {
@@ -110,71 +164,72 @@ const DECKS = {
         ],
         notes: "Given the constraints, I focused on three things. First, exploring different ways to simplify navigation. Second, learning from how other complex products handle dense workflows. And third, validating early by prototyping and aligning with PM, EM, and engineering on what we could actually ship."
       },
-      /* 09 — Explore reflection */
+      /* 10a — Three design directions */
       {
-        layout: "learn",
-        realMedia: true,
-        media: { img: IMG + "WF-Design-Expolration2.png", step: "01 · Explore", text: "Test different ways to simplify navigation." },
-        points: [
-          { label: "What I learned", text: "More context doesn't necessarily mean less navigation." },
-          { label: "Technical constraint", text: "Block Builder powers the live site, so large backend changes carried real production risk and engineering cost." }
+        layout: "matrix3",
+        titleSm: true,
+        titleFull: true,
+        h: "I explored three directions, each testing a different way to solve the problems.",
+        dirs: [
+          { label: "Direction 1", name: "Overview page", a: true, b: false, img: IMG + "WF-Design-Expolration2.png", constraint: "No backend changes", tradeoff: "More eng effort and platform risk, same navigation" },
+          { label: "Direction 2", name: "Add a menu for navigation", a: false, b: true, img: IMG + "WF-exploration2.png", constraint: "Frontend only", tradeoff: "Hierarchy improved, workspace stayed crowded" },
+          { label: "Direction 3", name: "3 Panel", a: true, b: "partial", img: IMG + "WF-exploration3.png", constraint: "Frontend only", tradeoff: "Better structure, hierarchy still needed refinement" }
         ],
-        notes: "My first exploration was a page-level overview. What I learned was that more context doesn't necessarily mean less navigation. And there was a hard technical constraint: Block Builder powers the live site, so large backend changes carried real production risk and engineering cost."
+        notes: "I explored three directions. Direction 1 solved Problem B but not A. Direction 2 solved Problem A but not B. Direction 3 solved both — but the real question was the technical part: how to do it without rebuilding the platform."
+      },
+      /* 10b — The 3-panel direction */
+      {
+        layout: "cols",
+        titleSm: true,
+        titleFull: true,
+        midAlign: true,
+        eyebrow: "THE DESIGN DIRECTION",
+        h: "The 3-panel direction gave every workflow a place to live.",
+        body: "Prototyped in Figma Make to align with stakeholders and validate the interaction with users.",
+        colTemplate: "1fr 1fr",
+        cols: [
+          { videoPlain: "../assets/videos/WF-direction3-problema", bg: "#F1EFEB", tag: "Problem A", from: "Workspace structure", to: "Navigation panel" },
+          { videoPlain: "../assets/videos/WF-direction3-problemb", bg: "#F1EFEB", tag: "Problem B", from: "Page hierarchy", to: "Menu / Hierarchy navigation" }
+        ],
+        notes: "The 3-panel direction gave every workflow a place to live. On the left, how it solves Problem A. On the right, how it solves Problem B."
       },
       /* 10 — Reframe (vertical) */
       {
         layout: "reframe",
-        from: "What new navigation can we build?",
-        to: "What can we do with what we already have?",
-        notes: "That pushed me to reframe the question. Instead of asking what new navigation we could build, I started asking what we could do with what we already had."
+        eyebrow: "THE CONSTRAINT",
+        from: "We couldn't change the backend structure.",
+        to: "So how could we make navigation easier with what we already had?",
+        notes: "We couldn't change the backend structure. So the real question became: how could we make navigation easier with what we already had?"
       },
-      /* 11 — (recap, reuse slide 8 for now) */
+      /* 11 — Reimagining what we already had (Block Tree → Mini Tree, click to switch) */
       {
-        layout: "threeup",
-        realMedia: true,
-        h: "How I designed within the constraint",
-        body: "I focused on what I could change, what I could reuse, and what we could ship safely.",
-        cards: [
-          { img: IMG + "WF-Design-Expolration2.png", title: "01 · Explore", text: "Test different ways to simplify navigation.", dim: true },
-          { img: IMG + "WF-competitive-research.png", title: "02 · Learn", text: "Study patterns from complex products." },
-          { video: "../assets/videos/wf-collaboration", title: "03 · Validate", text: "Prototype early and align on what to ship." }
-        ],
-        notes: "Cycling back to the three-part process. (Placeholder — reusing slide 8 for now.)"
-      },
-      /* 11b — (duplicate of slide 11) */
-      {
-        layout: "threeup",
-        realMedia: true,
-        h: "How I designed within the constraint",
-        body: "I focused on what I could change, what I could reuse, and what we could ship safely.",
-        cards: [
-          { img: IMG + "WF-Design-Expolration2.png", title: "01 · Explore", text: "Test different ways to simplify navigation.", dim: true },
-          { img: IMG + "WF-competitive-research.png", title: "02 · Learn", text: "Study patterns from complex products." },
-          { video: "../assets/videos/wf-collaboration", title: "03 · Validate", text: "Prototype early and align on what to ship." }
-        ],
-        notes: "Cycling back to the three-part process. (Placeholder — reusing slide 8 for now.)"
-      },
-      /* 12 — Reimagining what we already had (Block Tree → Mini Tree) */
-      {
-        layout: "figure",
-        realMedia: true,
-        h: "Reimagining what we already had",
-        body: "Turned an existing visualization into a lightweight navigation tool.",
-        img: "../assets/images/WF-Minitree-Presentation.png",
-        notes: "This is where the direction changed. Instead of building something new, I reimagined what we already had, turning Block Tree, an existing visualization, into a lightweight navigation tool."
+        layout: "toggle",
+        eyebrow: "THE DESIGN MOVE",
+        h: "From visualizing the hierarchy to navigating it.",
+        body: "Repurposed Block Tree as a lightweight navigation tool.",
+        img: IMG + "WF-Minitree-Presentation.png",
+        img2: IMG + "WF-Blocktree-design-details.png",
+        notes: "This is where the direction changed. Instead of building something new, I reimagined what we already had, turning Block Tree, an existing visualization, into a lightweight navigation tool. (Click the image to see the design details.)"
       },
       /* 13 — Drawer design tradeoff (Before/After) */
       {
         layout: "compare2",
-        tag: "Design tradeoff",
+        eyebrow: "DESIGN TRADE-OFF",
         h: "We couldn't remove the Drawer. So I changed how it felt and behaved.",
         left: { label: "Before", img: IMG + "WF-multiple_layers png.png", zoom: true },
         right: { label: "After", videoPlain: "../assets/videos/wf-solution2", zoom: true },
         notes: "The drawer was a real design tradeoff. We couldn't remove it, since we still needed navigation depth. So instead of removing it, I changed how it felt, so it no longer felt like being trapped in stacked layers."
       },
-      /* 12 — (empty) was: Cross-functional */
-      { layout: "blank", notes: "" },
-      /* 14 — Section divider: The solution */
+      /* 15 — Interaction detail (horizontal-scroll drawer) */
+      {
+        layout: "figure",
+        realMedia: true,
+        scrollX: true,
+        h: "Interaction detail",
+        img: IMG + "WF-Drawer.png",
+        notes: "A closer look at the drawer interaction — scroll through the full sequence to see how it behaves step by step."
+      },
+      /* 16 — Section divider: The solution */
       {
         layout: "divider",
         h: "The solution",
@@ -183,6 +238,8 @@ const DECKS = {
       /* 15 — A workspace built around how people work (Before/After, with IA inset overlay) */
       {
         layout: "compare2",
+        big: true,
+        eyebrow: "THE SOLUTION",
         h: "A workspace built around how people work",
         left: { label: "Before", img: IMG + "WF-old-bb.PNG", toggle: { img: IMG + "WF-Old-IA.png" } },
         right: { label: "After", img: IMG + "WF-IA.png", toggle: { videoPlain: "../assets/videos/wf-new-ia" } },
@@ -210,7 +267,7 @@ const DECKS = {
       /* 18 — Solution A (cycle back to Problem A) */
       {
         layout: "split",
-        tag: "Solution A",
+        eyebrow: "SOLUTION → PROBLEM A",
         h: "Grouped features around how users work",
         videoPlain: "../assets/videos/wf-solution1",
         body: "I moved features into a persistent navigation panel and grouped them by workflow, so users could quickly access the tools relevant to their jobs instead of scanning one long list.",
@@ -219,7 +276,7 @@ const DECKS = {
       /* 19 — Solution B (cycle back to Problem B) */
       {
         layout: "split",
-        tag: "Solution B",
+        eyebrow: "SOLUTION → PROBLEM B",
         h: "Kept users oriented while navigating deep hierarchies",
         videoPlain: "../assets/videos/wf-solution2",
         body: "I replaced nested drawers with a persistent workspace structure that keeps the page, its hierarchy, and the active block visible, reducing the steps and travel distance needed to move between levels.",
@@ -228,7 +285,7 @@ const DECKS = {
       /* 20 — Shipped (impact) */
       {
         layout: "split",
-        tag: "Shipped",
+        eyebrow: "SHIPPED",
         h: "Shipped with an 8.6% increase in user satisfaction",
         realMedia: true,
         contain: true,
@@ -262,7 +319,7 @@ const DECKS = {
       {
         layout: "hero",
         h: "Beyond chat: Reimagining Blocky's AI agent experience",
-        bg: "rgb(94, 93, 179)",
+        mediaBg: "rgb(94, 93, 179)",
         video: "../assets/videos/blocky-solution",
         meta: [
           { label: "Role", value: "Product Designer" },
@@ -275,6 +332,7 @@ const DECKS = {
       /* 02 — Problem + survey evidence (merged) */
       {
         layout: "split",
+        titleSm: true,
         h: "Blocky was valuable but not everyone was using it",
         body: "#3 most important feature in Block Builder, yet a real group of users still weren't using it. So we asked why.",
         list: [
@@ -294,6 +352,8 @@ const DECKS = {
         h: "The problem wasn't the UI. It was open-ended chat.",
         body: "A chat-first model that didn't scale, hid what Blocky could do, and left users without guidance on where to start.",
         bodyWide: true,
+        titleSm: true,
+        mediaBg: "var(--surface)",
         img: IMG + "old-blocky-design.png",
         notes: "The problem wasn't simply that Blocky needed a better UI. The experience was built around open-ended chat, which didn't scale with Blocky's growing capabilities, made it hard to discover what Blocky could do, and gave users little guidance or feedback. This breaks down the specific issues in the old design: not built to scale, poor discoverability, limited guidance and feedback, and too many competing actions."
       },
@@ -326,14 +386,13 @@ const DECKS = {
       },
       /* 08 — Exploration: wizard flow */
       {
-        layout: "split",
+        layout: "compare2",
         tag: "Exploration",
         h: "First idea: a guided wizard flow",
-        callout: "“What can Blocky do? What should I ask?” still went unanswered.",
-        videoPlain: "../assets/videos/blocky-wizard-flow",
-        speed: 1.2,
-        contain: true,
-        zoom: 1.1,
+        body: "I explored a step-by-step wizard to guide users through missing information instead of relying on back-and-forth chat.",
+        frame: true,
+        left: { img: IMG + "WF-blocky-before.png", label: "Before" },
+        right: { videoPlain: "../assets/videos/blocky-wizard-flow", speed: 1.2, zoom: 1.1, label: "After" },
         notes: "The first direction was a guided wizard flow that fills in missing context. It reduced back-and-forth, but a rigid wizard could make users dependent on the UI instead of understanding the agent — and it still didn't answer what Blocky could do."
       },
       /* 09 — Pivot: show, don't tell (shaping the direction) */
@@ -341,88 +400,65 @@ const DECKS = {
         layout: "figure",
         realMedia: true,
         contain: true,
-        h: "Show them what they can do",
-        body: "Structured entry points and suggested actions make Blocky's capabilities visible, and give people a clear place to start.",
+        h: "I shifted from guiding tasks to teaching by example",
+        body: "The wizard helped users complete a task, but it didn't help them understand what Blocky could do.",
         bodyWide: true,
-        img: IMG + "Blocky-shapping-direction.png",
+        titleSm: true,
+        mediaBg: "var(--surface)",
+        img: IMG + "Blocky-shapping-direction2.png",
         notes: "So I moved toward a more flexible idea: teaching by example. Structured entry points make Blocky easier to scale, more discoverable, and clearer to work with, while reducing cognitive load."
       },
-      /* 10 — Teaching by example */
+      /* 09 — Section divider: Solution */
       {
-        layout: "split",
-        tag: "Teaching by example",
-        h: "Suggested actions as entry points",
-        body: "Start from common tasks, surface fresh capabilities with a “New” badge, and use editable example prompts with placeholders — a starting point users can modify.",
-        callout: "Example: “Create a new banner block for [brand] US”",
-        img: IMG + "blocky-suggestions.png",
-        notes: "Instead of telling users how to use Blocky, show them what they can do. Suggested actions and editable example prompts give a starting point and a clear example of Blocky's capabilities, while staying flexible. The goal was to make the blank canvas less intimidating."
+        layout: "divider",
+        h: "Solution",
+        notes: "So that brings us to the solution."
       },
-      /* 11 — Agent states / feedback */
+      /* 09b — From chatbot to AI workspace */
       {
-        layout: "split",
-        tag: "System feedback",
-        h: "Making the agent feel alive",
-        body: "Blocky can take time on complex actions — so it always communicates where it is.",
-        list: ["Thinking", "Working", "Success", "Failure"],
-        img: IMG + "blocky-states.png",
-        notes: "Blocky can take time to complete complex actions, so the interaction communicates what's happening across thinking, working, success, and failure. Users should never wonder whether Blocky is still working or whether it actually did something."
+        layout: "figure",
+        realMedia: true,
+        contain: true,
+        titleSm: true,
+        h: "From chatbot to AI workspace",
+        mediaBg: "var(--surface)",
+        img: IMG + "Blocky-shapping-direction.png",
+        notes: "The solution reframed Blocky from a chatbot into an AI workspace — structured entry points, suggested actions, and clearer feedback."
+      },
+      /* 10b — Building Blocky's visual language (bento, 3 images to add) */
+      {
+        layout: "bento",
+        titleSm: true,
+        h: "Building Blocky's visual language",
+        body: "Purple, subtle motion, and expressive details give the AI agent a distinct identity within Block Builder.",
+        media: [],
+        notes: "The visual language uses purple, subtle motion, and expressive details to give Blocky a distinct identity within Block Builder."
       },
       /* 12 — Personality (visual hero) */
       {
         layout: "figure",
+        realMedia: true,
+        contain: true,
         h: "Giving Blocky a personality",
         body: "Purple, gradients, subtle dimensionality, and expressive states — approachable, but still part of an enterprise product.",
         bodyWide: true,
-        img: IMG + "blocky-personality.png",
+        mediaBg: "var(--surface)",
+        img: IMG + "Blocky-icon.png",
         notes: "I wanted Blocky to feel like more than a generic chatbot. The visual language uses purple, gradients, highlights, and expressive states, with the Blocky icon as the face of the agent — while still fitting inside the product."
       },
-      /* 13 — Personality quote */
-      {
-        layout: "statement",
-        q: "An AI agent should feel like something you can work with — not just something you type into.",
-        notes: "That was the principle guiding the craft."
-      },
-      /* 14 — In the real product / dark mode */
+      /* 13 — Dark mode */
       {
         layout: "split",
-        tag: "In context",
-        h: "Designing within the real product",
-        body: "Blocky lives inside Block Builder. A side panel keeps it distinct without taking over the screen — so users still see and edit their work. Built for the existing components, dark mode, and color contrast.",
-        img: IMG + "blocky-darkmode.png",
-        notes: "Blocky lives inside Block Builder, so the redesign had to work within the existing system, hierarchy, dark mode, and accessibility. The side panel was intentional — Blocky shouldn't take over the screen, because users still need to see and edit their content. Distinct, but not disconnected."
+        realMedia: true,
+        contain: true,
+        wideMedia: true,
+        titleSm: true,
+        h: "Dark Mode",
+        body: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode.",
+        img: IMG + "blocky-dark-mode.png",
+        notes: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode."
       },
-      /* 15 — Prototype in code */
-      {
-        layout: "split",
-        tag: "Making it real",
-        h: "I built the prototype in code",
-        body: "Using Cursor and Claude Code, I built a working prototype on my own branch — real states, transitions, and product context. Not to become an engineer, but to make the design real enough to interact with.",
-        callout: "A design tool: PM and Eng could react to something concrete and ask sharper questions.",
-        img: IMG + "blocky-prototype.png",
-        notes: "I used Cursor and Claude Code to build a functional prototype directly in the codebase, on my own branch. Instead of static screens, I could show the interaction, states, transitions, and real product context. It became a design tool that helped PM and Engineering react to something concrete."
-      },
-      /* 16 — The result (before/after) */
-      {
-        layout: "compare2",
-        h: "A new interaction model for Blocky",
-        left: { label: "Before — open-ended chat" },
-        right: { label: "After — a guided AI experience" },
-        notes: "The result was a new interaction model: from open-ended chat to a guided AI experience."
-      },
-      /* 17 — What it unlocks */
-      {
-        layout: "bullets",
-        h: "What it unlocks",
-        items: [
-          "Discover what Blocky can do",
-          "Know how to get started",
-          "Clearer feedback while Blocky works",
-          "Work with an AI agent without the “perfect” prompt",
-          "Room to grow as new capabilities are added"
-        ],
-        notes: "The redesign helps users discover what Blocky can do, get started, and get clearer feedback — without needing the perfect prompt. And it gives Blocky room to grow as more AI capabilities are added."
-      },
-      /* 18 — What's next */
+      /* 14 — What's next */
       {
         layout: "split",
         tag: "Post-MVP",
@@ -438,6 +474,27 @@ const DECKS = {
 /* ---------- SLIDE RENDERING ---------- */
 function esc(s) { return (s == null ? "" : String(s)); }
 function liList(arr, cls) { return `<ul class="${cls || "l-list"}">${arr.map(li => `<li>${li}</li>`).join("")}</ul>`; }
+const CHIP_EMOJI = {
+  "Product": "📦",
+  "Marketing": "📣",
+  "Commercial": "💰",
+  "Design": "🎨",
+  "Engineering": "⚙️",
+  "Data Science": "🔬",
+  "Business Analytics": "📊"
+};
+function chipRow(chips, stories, images) {
+  if (!chips || !chips.length) return "";
+  const ico = `<svg class="chip-ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="8" r="3.6" fill="currentColor"/><path d="M5 19.5c0-3.6 3.1-5.5 7-5.5s7 1.9 7 5.5z" fill="currentColor"/></svg>`;
+  const click = stories && stories.length;
+  const attr = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  const lis = chips.map((c, i) => {
+    const icon = CHIP_EMOJI[c] ? `<span class="chip-emoji" aria-hidden="true">${CHIP_EMOJI[c]}</span>` : ico;
+    const img = images && images[i] ? ` data-img="${attr(images[i])}"` : "";
+    return `<li${click ? ` class="chip--click" data-story="${attr(stories[i])}"${img} role="button" tabindex="0"` : ""}>${icon}<span>${esc(c)}</span></li>`;
+  }).join("");
+  return `<ul class="chip-list chip-list--lg chip-list--row${click ? " chip-list--click" : ""}">${lis}</ul>`;
+}
 
 function slideInnerHTML(s) {
   switch (s.layout) {
@@ -448,7 +505,7 @@ function slideInnerHTML(s) {
           ${s.body ? `<p class="s-body s-body--wide">${esc(s.body)}</p>` : ""}
           ${s.meta ? `<dl class="hero-meta">${s.meta.map(m => `<div class="hero-meta__row"><dt>${esc(m.label)}</dt><dd>${esc(m.value)}</dd></div>`).join("")}</dl>` : ""}
         </div>
-        <div class="l-hero__media${s.video ? " l-hero__media--framed" : ""}">${
+        <div class="l-hero__media${s.video ? " l-hero__media--framed" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${
           s.video
             ? `<video autoplay muted loop playsinline><source src="${s.video}.webm" type="video/webm"><source src="${s.video}.mp4" type="video/mp4"></video>`
             : mediaImg(s.img)
@@ -465,13 +522,13 @@ function slideInnerHTML(s) {
 
     case "split":
       return `<div>
-          ${s.tag ? `<span class="s-tag">${esc(s.tag)}</span>` : ""}
-          <h2 class="s-h2">${esc(s.h)}</h2>
+          ${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : s.tag ? `<span class="s-tag">${esc(s.tag)}</span>` : ""}
+          <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
           ${s.body ? `<p class="s-body s-body--wide" style="margin-top:16px">${esc(s.body)}</p>` : ""}
           ${s.list ? liList(s.list) : ""}
           ${s.callout ? `<p class="s-callout">${esc(s.callout)}</p>` : ""}
         </div>
-        <div class="l-split__media${s.videoPlain && !s.contain ? " l-split__media--wide" : ""}${s.contain ? " l-split__media--contain" : ""}${s.focus === "tl" ? " l-split__media--focus-tl" : ""}">${
+        <div class="l-split__media${s.videoPlain && !s.contain ? " l-split__media--wide" : ""}${s.contain ? " l-split__media--contain" : ""}${s.focus === "tl" ? " l-split__media--focus-tl" : ""}"${(s.mediaBg || s.mediaPad) ? ` style="${s.mediaBg ? `background:${s.mediaBg};` : ""}${s.mediaPad ? `padding:${s.mediaPad};` : ""}"` : ""}>${
           s.video
             ? `<div class="pf-zoom"><video autoplay loop muted playsinline${s.speed ? ` data-speed="${s.speed}"` : ""}><source src="${s.video}.webm" type="video/webm"><source src="${s.video}.mp4" type="video/mp4"></video></div>`
             : s.videoPlain
@@ -481,13 +538,50 @@ function slideInnerHTML(s) {
                 : mediaImg(s.img)
         }</div>`;
 
-    case "figure":
-      return `<h2 class="s-h2">${esc(s.h)}</h2>
+    case "figure": {
+      if (s.figBuild) {
+        const dim = s.hDim || "";
+        const di = dim ? s.h.indexOf(dim) : -1;
+        const titleHtml = di >= 0
+          ? `${esc(s.h.slice(0, di)).replace(/\s+$/, "")}<br><span class="fig-dim">${esc(s.h.slice(di))}</span>`
+          : esc(s.h);
+        return `<div class="fig-build is-step-0">
+          <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${titleHtml}</h2>
+          <div class="l-figure__media l-figure__media--figbuild fig-zoom"${s.imgStep0Bg ? ` style="background:${s.imgStep0Bg}"` : ""}>
+            <div class="fig-zoom__inner">
+              <img class="fig-img fig-img--a" src="${s.imgStep0 || s.img}" alt="">
+              <img class="fig-img fig-img--b" src="${s.img}" alt="">
+            </div>
+          </div>
+          ${s.caps ? `<div class="fig-caps">${s.caps.map((c, i) => `<div class="fig-cap" data-cap="${i}"><span class="cols-cap__t">${esc(c.t)}</span>${c.sub ? `<span class="cols-cap__s">${esc(c.sub)}</span>` : ""}</div>`).join("")}</div>` : ""}
+        </div>`;
+      }
+      return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body${s.bodyWide ? " s-body--full" : ""}" style="margin-top:16px">${esc(s.body)}</p>` : ""}
-        <div class="l-figure__media${s.realMedia ? " l-figure__media--real" : ""}${s.contain ? " l-figure__media--contain" : ""}">${s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img)}</div>`;
+        ${chipRow(s.chips)}
+        <div class="l-figure__media${s.realMedia ? " l-figure__media--real" : ""}${s.contain ? " l-figure__media--contain" : ""}${s.scrollX ? " l-figure__media--scrollx" : ""}${s.mediaBg ? " l-figure__media--bg" : ""}${s.noBorder ? " l-figure__media--noborder" : ""}${s.fullWidth ? " l-figure__media--fullwidth" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img)}</div>
+        ${s.caps ? `<div class="fig-caps">${s.caps.map(c => `<div class="fig-cap"><span class="cols-cap__t">${esc(c.t)}</span>${c.sub ? `<span class="cols-cap__s">${esc(c.sub)}</span>` : ""}</div>`).join("")}</div>` : ""}`;
+    }
+
+    case "bento": {
+      const cell = (o) => o && o.video
+        ? `<video autoplay loop muted playsinline${o.speed ? ` data-speed="${o.speed}"` : ""}><source src="${o.video}.webm" type="video/webm"><source src="${o.video}.mp4" type="video/mp4"></video>`
+        : o && o.img
+          ? `<img src="${o.img}" alt="">`
+          : mediaImg();
+      const md = s.media || [];
+      return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
+        ${s.body ? `<p class="s-body" style="margin-top:14px;max-width:none">${esc(s.body)}</p>` : ""}
+        <div class="bento-grid">
+          <div class="bento-item bento-item--a">${cell(md[0])}</div>
+          <div class="bento-item bento-item--b">${cell(md[1])}</div>
+          <div class="bento-item bento-item--c">${cell(md[2])}</div>
+        </div>`;
+    }
 
     case "reframe":
       return `<div class="reframe">
+          ${s.eyebrow ? `<p class="s-eyebrow reframe__eyebrow">${esc(s.eyebrow)}</p>` : ""}
           <p class="reframe__from">${esc(s.from)}</p>
           <div class="reframe__arrow" aria-hidden="true">↓</div>
           <p class="reframe__to">${esc(s.to)}</p>
@@ -514,40 +608,165 @@ function slideInnerHTML(s) {
     }
 
     case "compare2": {
+      const spd = (o) => o.speed ? ` data-speed="${o.speed}"` : "";
+      const zst = (o) => (typeof o.zoom === "number") ? ` style="transform:scale(${o.zoom});transform-origin:center"` : "";
       const m = (o) => o.videoPlain
-        ? `<video autoplay loop muted playsinline><source src="${o.videoPlain}.webm" type="video/webm"><source src="${o.videoPlain}.mp4" type="video/mp4"></video>`
+        ? `<video autoplay loop muted playsinline${spd(o)}${zst(o)}><source src="${o.videoPlain}.webm" type="video/webm"><source src="${o.videoPlain}.mp4" type="video/mp4"></video>`
         : o.video
-          ? `<video autoplay loop muted playsinline><source src="${o.video}.webm" type="video/webm"><source src="${o.video}.mp4" type="video/mp4"></video>`
+          ? `<video autoplay loop muted playsinline${spd(o)}${zst(o)}><source src="${o.video}.webm" type="video/webm"><source src="${o.video}.mp4" type="video/mp4"></video>`
           : o.img
-            ? `<img src="${o.img}" alt="">`
+            ? `<img src="${o.img}" alt=""${zst(o)}>`
             : mediaImg();
       const sub = (o) => o.overlay ? `<div class="cmp2__media cmp2__sub">${m(o.overlay)}</div>` : "";
       const mediaBlock = (o) => {
-        const zoom = o.zoom ? " cmp2__media--zoom" : "";
+        if (o.list) return `<ol class="numlist" style="--num-color:${o.color || "#D80027"}">${o.list.map((t, i) => `<li><span class="numlist__n">${i + 1}</span><span>${esc(t)}</span></li>`).join("")}</ol>`;
+        if (o.table) return `<div class="cmp2__table"><table class="dtable"><thead><tr>${o.table.head.map(h => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${o.table.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+        const zoom = o.zoom === true ? " cmp2__media--zoom" : "";
+        const styles = `${o.bg ? `background:${o.bg};` : ""}${o.pad ? `padding:${o.pad};` : ""}`;
+        const bg = styles ? ` style="${styles}"` : "";
         return o.toggle
-          ? `<div class="cmp2__media cmp2--toggle${zoom}"><div class="cmp2__base">${m(o)}</div><div class="cmp2__alt">${m(o.toggle)}</div></div>`
-          : `<div class="cmp2__media${zoom}">${m(o)}</div>`;
+          ? `<div class="cmp2__media cmp2--toggle${zoom}"${bg}><div class="cmp2__base">${m(o)}</div><div class="cmp2__alt">${m(o.toggle)}</div></div>`
+          : `<div class="cmp2__media${zoom}"${bg}>${m(o)}</div>`;
       };
+      const cap = (o) => o.label ? `<figcaption class="cmp2__cap"><span class="cmp2__cap-t">${esc(o.label)}</span>${o.labelSub ? `<span class="cmp2__cap-s">${esc(o.labelSub)}</span>` : ""}</figcaption>` : "";
       const hasToggle = s.left.toggle || s.right.toggle;
-      return `${s.tag ? `<span class="s-tag">${esc(s.tag)}</span>` : ""}
-        <h2 class="s-h2">${esc(s.h)}</h2>
-        <div class="cmp2${s.anim === "cover" ? " cmp2--cover" : ""}${hasToggle ? " cmp2--toggle-sync" : ""}"${hasToggle ? ` title="Click to switch"` : ""}>
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : s.tag ? `<span class="s-tag">${esc(s.tag)}</span>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
+        ${s.body ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.body)}</p>` : ""}
+        ${chipRow(s.chips, s.chipStories, s.chipImages)}
+        <div class="cmp2${s.anim === "cover" ? " cmp2--cover" : ""}${hasToggle ? " cmp2--toggle-sync" : ""}${s.fill ? " cmp2--fill" : ""}${s.frame ? " cmp2--frame" : ""}${s.framePadY ? " cmp2--pad-y" : ""}${s.big ? " cmp2--big" : ""}"${hasToggle ? ` title="Click to switch"` : ""}>
           <figure class="cmp2__item">
-            ${mediaBlock(s.left)}
-            ${sub(s.left)}
-            <figcaption class="cmp2__cap">${esc(s.left.label)}</figcaption>
+            ${s.chipStories
+              ? `<div class="chip-swap__main">${mediaBlock(s.left)}</div><div class="chip-swap__story" data-chip-story hidden></div>`
+              : `${mediaBlock(s.left)}${sub(s.left)}${cap(s.left)}`}
           </figure>
-          <div class="cmp2__arrow" aria-hidden="true">→</div>
+          ${s.noArrow ? "" : `<div class="cmp2__arrow" aria-hidden="true">→</div>`}
           <figure class="cmp2__item">
             ${mediaBlock(s.right)}
             ${sub(s.right)}
-            <figcaption class="cmp2__cap">${esc(s.right.label)}</figcaption>
+            ${cap(s.right)}
           </figure>
         </div>`;
     }
 
+    case "cols": {
+      const colCell = (o) => {
+        if (o.list) return `<ol class="numlist" style="--num-color:${o.color || "#D80027"}">${o.list.map((t, i) => `<li><span class="numlist__n">${i + 1}</span><span>${esc(t)}</span></li>`).join("")}</ol>`;
+        const inner = o.videoPlain
+          ? `<video autoplay loop muted playsinline${o.speed ? ` data-speed="${o.speed}"` : ""}><source src="${o.videoPlain}.webm" type="video/webm"><source src="${o.videoPlain}.mp4" type="video/mp4"></video>`
+          : o.video
+            ? `<video autoplay loop muted playsinline${o.speed ? ` data-speed="${o.speed}"` : ""}><source src="${o.video}.webm" type="video/webm"><source src="${o.video}.mp4" type="video/mp4"></video>`
+            : o.img
+              ? `<img src="${o.img}" alt="">`
+              : mediaImg();
+        return `<div class="cols__media"${o.bg ? ` style="background:${o.bg}"` : ""}>${inner}</div>`;
+      };
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
+        ${s.body ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.body)}</p>` : ""}
+        ${chipRow(s.chips)}
+        <div class="cols-row" style="grid-template-columns:${s.colTemplate || `repeat(${s.cols.length}, 1fr)`}">
+          ${s.cols.map(c => `<div class="cols-col">${colCell(c)}${
+            c.from
+              ? `<p class="cols-reframe">${c.tag ? `<span class="cols-reframe__tag">${esc(c.tag)}</span><span class="cols-reframe__dot"> · </span>` : ""}<span class="cols-reframe__from">${esc(c.from)}</span><span class="cols-reframe__arrow" aria-hidden="true"> → </span><span class="cols-reframe__to">${esc(c.to)}</span></p>`
+              : c.caption ? `<p class="cols-cap"><span class="cols-cap__t">${esc(c.caption)}</span>${c.sub ? `<span class="cols-cap__s">${esc(c.sub)}</span>` : ""}</p>` : ""
+          }</div>`).join("")}
+        </div>`;
+    }
+
+    case "userresult": {
+      const attrEsc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+      const users = s.usersChips
+        ? (s.users || []).map(u => `<li class="ur-chip${s.chipInteractive ? " chip--user" : ""}"${s.chipInteractive ? ` data-name="${attrEsc(u.name)}" data-story="${attrEsc(u.story || "")}"${u.img ? ` data-img="${attrEsc(u.img)}"` : ""} role="button" tabindex="0"` : ""}><span class="chip-emoji" aria-hidden="true">${CHIP_EMOJI[u.name] || "•"}</span><span>${esc(u.name)}</span></li>`).join("")
+        : (s.users || []).map(u => `<li class="ur-user">
+          <span class="ur-user__ico" aria-hidden="true">${CHIP_EMOJI[u.name] || "•"}</span>
+          <span class="ur-user__txt"><span class="ur-user__name">${esc(u.name)}</span><span class="ur-user__desc">${esc(u.desc)}</span></span>
+        </li>`).join("");
+      const risks = (s.risks || []).map(r => `<li class="ur-risk">
+          <span class="ur-risk__ico" aria-hidden="true">${r.icon || "•"}</span>
+          <span class="ur-risk__txt"><span class="ur-risk__label">${esc(r.label)}</span><span class="ur-risk__desc">${esc(r.desc)}</span></span>
+        </li>`).join("");
+      const media = s.video
+        ? `<video autoplay loop muted playsinline${s.speed ? ` data-speed="${s.speed}"` : ""}><source src="${s.video}.webm" type="video/webm"><source src="${s.video}.mp4" type="video/mp4"></video>`
+        : `<img src="${s.img}" alt="">`;
+      const lbl = s.colLabels || [];
+      const head = (i) => lbl[i] ? `<p class="ur-eyebrow">${esc(lbl[i])}</p>` : "";
+      const arrow = `<div class="ur-arrow" aria-hidden="true">→</div>`;
+      const usersCol = `<div class="ur-col" data-col="0">${head(0)}<ul class="${s.usersChips ? "ur-chips" : "ur-users"}">${users}</ul></div>`;
+      const featureList = s.features
+        ? `<ol class="numlist numlist--sm" style="--num-color:${s.featuresColor || "#D80027"}">${s.features.map((t, i) => `<li><span class="numlist__n">${i + 1}</span><span>${esc(t)}</span></li>`).join("")}</ol>`
+        : "";
+      const mediaCol = `<div class="ur-col" data-col="1">${head(1)}<div class="ur-workspace"><div class="ur-media"${s.chipInteractive && s.img ? ` data-default-img="${attrEsc(s.img)}"` : ""}${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${media}</div>${(featureList || s.chipInteractive) ? `<div class="ur-side">${featureList ? `<div class="ur-features">${featureList}</div>` : ""}${s.chipInteractive ? `<div class="ur-story" data-chip-user-story hidden></div>` : ""}</div>` : ""}</div></div>`;
+      const risksCol = `<div class="ur-col" data-col="2">${head(2)}<ul class="ur-risks">${risks}</ul></div>`;
+      const titleCls = `s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}`;
+      const title = `<h2 class="${titleCls}">${esc(s.h)}</h2>
+        ${s.sub ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.sub)}</p>` : ""}`;
+      // build mode: step 0 shows [users → workspace], step 1 shows [workspace → cost]
+      if (s.build) {
+        const t0 = `<h2 class="${titleCls} ur-title" data-step="0">${esc(s.h)}</h2>`;
+        const t1 = `<h2 class="${titleCls} ur-title" data-step="1">${esc(s.hStep1 || s.h)}</h2>`;
+        const subEl = s.sub ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.sub)}</p>` : "";
+        return `<div class="ur-build is-step-0">
+          ${t0}${t1}${subEl}
+          <div class="ur-grid ur-grid--build">
+            ${usersCol}
+            <div class="ur-arrow" data-arrow="0" aria-hidden="true">→</div>
+            ${mediaCol}
+            <div class="ur-arrow" data-arrow="1" aria-hidden="true">→</div>
+            ${risksCol}
+          </div>
+        </div>`;
+      }
+      // compose only the columns that aren't hidden, with arrows between them
+      const colDefs = [
+        !s.hideUsers && { el: usersCol, w: s.usersChips ? "0.8fr" : "1fr" },
+        !s.hideMedia && { el: mediaCol, w: s.features ? "1.6fr" : "1.3fr" },
+        !s.hideRisks && { el: risksCol, w: "0.9fr" }
+      ].filter(Boolean);
+      const parts = [], widths = [];
+      colDefs.forEach((c, idx) => {
+        if (idx > 0) { parts.push(arrow); widths.push("auto"); }
+        parts.push(c.el); widths.push(c.w);
+      });
+      return `${title}
+        <div class="ur-grid${s.pushIn ? " ur-grid--push" : ""}" style="grid-template-columns:${s.colTemplate || widths.join(" ")}">
+          ${parts.join("")}
+        </div>`;
+    }
+
+    case "matrix3": {
+      const dirs = s.dirs || [];
+      const media = (o) => o.video
+        ? `<video autoplay loop muted playsinline${o.speed ? ` data-speed="${o.speed}"` : ""}><source src="${o.video}.webm" type="video/webm"><source src="${o.video}.mp4" type="video/mp4"></video>`
+        : o.img ? `<img src="${o.img}" alt="">` : mediaImg();
+      const flag = (v, letter) => {
+        const cls = v === "partial" ? "is-partial" : v ? "is-yes" : "is-no";
+        const mark = v === "partial" ? "–" : v ? "✓" : "✗";
+        return `<span class="mx3__flag ${cls}">${letter} ${mark}</span>`;
+      };
+      const labels = s.rowLabels;
+      const showLabels = Array.isArray(labels) && labels.length > 0;
+      const tpl = showLabels ? `${s.gutter || "150px"} repeat(${dirs.length}, 1fr)` : `repeat(${dirs.length}, 1fr)`;
+      const gut = (i) => showLabels ? `<div class="mx3__rowlabel">${esc(labels[i] || "")}</div>` : "";
+      return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
+        ${s.sub ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.sub)}</p>` : ""}
+        <div class="mx3" style="grid-template-columns:${tpl}">
+          ${gut(-1)}
+          ${dirs.map(d => `<div class="mx3__col">${(d.label || d.name) ? `<p class="mx3__dir">${d.label ? esc(d.label) : ""}${d.label && d.name ? " · " : ""}${d.name ? `<span class="mx3__name">${esc(d.name)}</span>` : ""}</p>` : ""}<div class="mx3__media"${d.bg ? ` style="background:${d.bg}"` : ""}>${media(d)}</div></div>`).join("")}
+          ${gut(0)}
+          ${dirs.map(d => `<div class="mx3__cell mx3__solve">${flag(d.a, "Problem A")}${flag(d.b, "Problem B")}</div>`).join("")}
+          ${gut(1)}
+          ${dirs.map(d => `<div class="mx3__cell mx3__tech">${
+            (d.constraint || d.tradeoff)
+              ? `${d.constraint ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Constraint:</span> ${esc(d.constraint)}</p>` : ""}${d.tradeoff ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Trade-off:</span> ${esc(d.tradeoff)}</p>` : ""}`
+              : esc(d.tech || "")
+          }</div>`).join("")}
+        </div>`;
+    }
+
     case "toggle":
-      return `<h2 class="s-h2">${esc(s.h)}</h2>
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body s-body--wide" style="margin-top:14px">${esc(s.body)}</p>` : ""}
         <div class="toggle-media">
           <img class="toggle-img js-toggle-img" src="${s.img}" data-a="${s.img}" data-b="${s.img2}" alt="" title="Click to switch layout">
@@ -568,7 +787,7 @@ function slideInnerHTML(s) {
         </div>`;
 
     case "duo":
-      return `<h2 class="s-h2">${esc(s.h)}</h2>
+      return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         <div class="duo-grid">
           ${s.cols.map(c => `<div class="duo-col">
             <div class="duo-media">${
@@ -576,10 +795,13 @@ function slideInnerHTML(s) {
                 ? `<div class="pf-zoom"><video autoplay loop muted playsinline><source src="${c.video}.webm" type="video/webm"><source src="${c.video}.mp4" type="video/mp4"></video></div>`
                 : c.videoPlain
                   ? `<video class="pf-plain" autoplay loop muted playsinline><source src="${c.videoPlain}.webm" type="video/webm"><source src="${c.videoPlain}.mp4" type="video/mp4"></video>`
-                  : mediaImg(c.img)
+                  : c.img
+                    ? `<img src="${c.img}" alt="">`
+                    : mediaImg()
             }</div>
             ${c.tag ? `<span class="s-tag">${esc(c.tag)}</span>` : ""}
             ${c.title ? `<p class="duo-title">${esc(c.title)}</p>` : ""}
+            ${c.desc ? `<p class="duo-desc">${esc(c.desc)}</p>` : ""}
           </div>`).join("")}
         </div>`;
 
@@ -658,7 +880,7 @@ function slideInnerHTML(s) {
 
     case "statement":
       return `<div class="slide__spacer"></div>
-        ${s.tag ? `<span class="s-tag" style="margin-bottom:24px">${esc(s.tag)}</span>` : ""}
+        ${s.tag ? (s.plainTag ? `<p class="s-eyebrow">${esc(s.tag)}</p>` : `<span class="s-tag" style="margin-bottom:24px">${esc(s.tag)}</span>`) : ""}
         <p class="l-statement__q${s.full ? " l-statement__q--full" : ""}">${s.q}</p>
         ${s.sub ? `<p class="l-statement__sub">${esc(s.sub)}</p>` : ""}
         ${s.foot ? `<p class="s-foot">${esc(s.foot)}</p>` : ""}
@@ -683,6 +905,9 @@ function buildSlideEl(s) {
   const el = document.createElement("div");
   el.className = "slide l-" + s.layout;
   if (s.bg) { el.style.background = s.bg; el.classList.add("slide--oncolor"); }
+  if (s.wideMedia) el.classList.add("l-split--wide-media");
+  if (s.topAlign) el.classList.add("slide--top");
+  if (s.midAlign) el.classList.add("slide--center");
   el.innerHTML = slideInnerHTML(s);
   return el;
 }
@@ -731,6 +956,25 @@ function applyVideoSpeed(scope) {
   });
 }
 
+/* select a chip by default (story + right image swapped in) after a slide mounts */
+function applyChipDefault(scope, s) {
+  if (!scope || !s || typeof s.chipDefault !== "number") return;
+  const chips = scope.querySelectorAll(".chip--click");
+  const chip = chips[s.chipDefault];
+  if (!chip) return;
+  const story = scope.querySelector("[data-chip-story]");
+  const main = scope.querySelector(".chip-swap__main");
+  const rightItem = scope.querySelectorAll(".cmp2__item")[1];
+  const rightImg = rightItem ? rightItem.querySelector(".cmp2__media img") : null;
+  chips.forEach(c => c.classList.remove("is-active"));
+  chip.classList.add("is-active");
+  if (story && main) { story.textContent = chip.dataset.story || ""; story.hidden = false; main.hidden = true; }
+  if (rightImg) {
+    if (!rightImg.dataset.defaultSrc) rightImg.dataset.defaultSrc = rightImg.getAttribute("src");
+    rightImg.src = chip.dataset.img || rightImg.dataset.defaultSrc;
+  }
+}
+
 /* apply the synced toggle (alt vs base) to a rendered slide inside `scope` */
 function applyToggle(scope, i) {
   if (!scope) return;
@@ -740,6 +984,65 @@ function applyToggle(scope, i) {
     const want = on ? img.dataset.b : img.dataset.a;
     if (want && img.getAttribute("src") !== want) img.src = want;
   });
+}
+
+/* ---------- IN-SLIDE BUILD STEPS (synced across windows) ---------- */
+let buildState = {}; // per-slide-index: which reveal step is showing
+function maxBuildStep(i) { return deck && deck.slides[i] && (deck.slides[i].build || deck.slides[i].figBuild) ? 1 : 0; }
+function applyBuild(scope, i) {
+  if (!scope) return;
+  const step = Math.max(0, Math.min(maxBuildStep(i), buildState[i] || 0));
+  scope.querySelectorAll(".ur-build, .fig-build").forEach(g => {
+    g.classList.toggle("is-step-1", step >= 1);
+    g.classList.toggle("is-step-0", step < 1);
+    const fimg = g.querySelector(".fig-swap-img");
+    if (fimg) {
+      const want = step >= 1 ? fimg.dataset.step1 : fimg.dataset.step0;
+      if (want && fimg.getAttribute("src") !== want) fimg.src = want;
+    }
+  });
+}
+function refreshBuild() {
+  if (presentEl.classList.contains("is-active")) {
+    applyBuild(presentMode === "plain" ? presentStageWrap : presenterNow, cur);
+  } else if (editorEl.classList.contains("is-active")) {
+    applyBuild(stageArea, cur);
+  }
+}
+
+/* ---------- CLICKABLE USER CHIPS (userresult) — swap image + show story ---------- */
+let chipUserState = {}; // per-slide-index: active chip name (or undefined)
+function applyChipUser(scope, i) {
+  if (!scope) return;
+  const active = chipUserState[i];
+  scope.querySelectorAll(".ur-grid").forEach(grid => {
+    grid.querySelectorAll(".chip--user").forEach(chip => {
+      chip.classList.toggle("is-active", !!active && chip.dataset.name === active);
+    });
+    const activeChip = active ? grid.querySelector(`.chip--user[data-name="${CSS.escape(active)}"]`) : null;
+    const img = grid.querySelector(".ur-media img");
+    const media = grid.querySelector(".ur-media");
+    const features = grid.querySelector(".ur-features");
+    const story = grid.querySelector("[data-chip-user-story]");
+    if (activeChip) {
+      const want = activeChip.dataset.img || (media && media.dataset.defaultImg);
+      if (img && want && img.getAttribute("src") !== want) img.src = want;
+      if (features) features.hidden = true;
+      if (story) { story.textContent = activeChip.dataset.story || ""; story.hidden = false; }
+    } else {
+      const def = media && media.dataset.defaultImg;
+      if (img && def && img.getAttribute("src") !== def) img.src = def;
+      if (features) features.hidden = false;
+      if (story) { story.hidden = true; story.textContent = ""; }
+    }
+  });
+}
+function refreshChipUser() {
+  if (presentEl.classList.contains("is-active")) {
+    applyChipUser(presentMode === "plain" ? presentStageWrap : presenterNow, cur);
+  } else if (editorEl.classList.contains("is-active")) {
+    applyChipUser(stageArea, cur);
+  }
 }
 
 /* ---------- ELEMENTS ---------- */
@@ -764,10 +1067,58 @@ function setNotes(i, val) {
   try { localStorage.setItem(notesKey(i), val); } catch (e) {}
 }
 
-/* ---------- SKIP STATE (per slide, this session) ---------- */
+/* ---------- PRIVATE PER-SLIDE COMMENT THREAD (localStorage, never exported/presented) ---------- */
+function commentKey(i) { return `ksp_comments_${deck.id}_${i}`; }
+function getComments(i) {
+  try {
+    const raw = localStorage.getItem(commentKey(i));
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) { return []; }
+}
+function saveComments(i, arr) {
+  try {
+    if (arr && arr.length) localStorage.setItem(commentKey(i), JSON.stringify(arr));
+    else localStorage.removeItem(commentKey(i));
+  } catch (e) {}
+}
+function addComment(i, text) {
+  const t = (text || "").trim();
+  if (!t) return;
+  const arr = getComments(i);
+  arr.push({ id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), text: t, ts: Date.now() });
+  saveComments(i, arr);
+}
+function deleteComment(i, id) {
+  saveComments(i, getComments(i).filter(c => c.id !== id));
+}
+
+/* ---------- SKIP STATE (per slide, persisted per deck) ---------- */
+function skipKey() { return `ksp_skip_${deck.id}`; }
+function saveSkips() {
+  try {
+    const idx = deck.slides.map((s, i) => (s._skip ? i : -1)).filter(i => i >= 0);
+    localStorage.setItem(skipKey(), JSON.stringify(idx));
+  } catch (e) {}
+}
+function loadSkips() {
+  try {
+    const raw = localStorage.getItem(skipKey());
+    if (!raw) return;
+    const idx = JSON.parse(raw);
+    if (Array.isArray(idx)) idx.forEach(i => { if (deck.slides[i]) deck.slides[i]._skip = true; });
+  } catch (e) {}
+}
 function isSkipped(i) { return !!(deck.slides[i] && deck.slides[i]._skip); }
-function setSkipped(i, val) { if (deck.slides[i]) deck.slides[i]._skip = !!val; }
+function setSkipped(i, val) { if (deck.slides[i]) { deck.slides[i]._skip = !!val; saveSkips(); } }
 function visibleIndices() { return deck.slides.map((_, i) => i).filter(i => !isSkipped(i)); }
+// numbering that skips skipped slides: "–" if skipped, else its 1-based position among visible slides
+function visibleNumber(i) {
+  if (isSkipped(i)) return "–";
+  let n = 0;
+  for (let k = 0; k <= i; k++) if (!isSkipped(k)) n++;
+  return String(n);
+}
 
 /* ---------- STRUCTURAL EDITS (this session) ---------- */
 // snapshot every slide's effective note (localStorage override or code default)
@@ -785,11 +1136,21 @@ function writeAllNotes(arr) {
   // mirror onto the in-memory objects too, so notes survive within this session
   deck.slides.forEach((s, i) => { if (arr[i] != null) s.notes = arr[i]; });
 }
+// private comment threads follow the same reorder/never-destroy rules as notes
+function readAllComments() { return deck.slides.map((_, i) => getComments(i)); }
+function writeAllComments(arr) {
+  arr.forEach((val, i) => saveComments(i, val));
+  for (let i = arr.length; i < arr.length + 12; i++) { try { localStorage.removeItem(commentKey(i)); } catch (e) {} }
+}
 function createSlideAfter(i) {
   const notes = readAllNotes();
+  const comments = readAllComments();
   notes.splice(i + 1, 0, "");
+  comments.splice(i + 1, 0, "");
   deck.slides.splice(i + 1, 0, { layout: "blank", notes: "" });
   writeAllNotes(notes);
+  writeAllComments(comments);
+  saveSkips();
   toggleState = {};
   renderRail(); selectSlide(i + 1);
   toast("New slide added");
@@ -797,9 +1158,13 @@ function createSlideAfter(i) {
 function deleteSlide(i) {
   if (deck.slides.length <= 1) { toast("Can't delete the only slide"); return; }
   const notes = readAllNotes();
+  const comments = readAllComments();
   notes.splice(i, 1);
+  comments.splice(i, 1);
   deck.slides.splice(i, 1);
   writeAllNotes(notes);
+  writeAllComments(comments);
+  saveSkips();
   toggleState = {};
   renderRail(); selectSlide(Math.min(i, deck.slides.length - 1));
   toast("Slide deleted");
@@ -808,11 +1173,16 @@ function moveSlide(i, dir) {
   const j = i + dir;
   if (j < 0 || j >= deck.slides.length) return;
   const notes = readAllNotes();
+  const comments = readAllComments();
   const [nv] = notes.splice(i, 1);
   notes.splice(j, 0, nv);
+  const [cv] = comments.splice(i, 1);
+  comments.splice(j, 0, cv);
   const [s] = deck.slides.splice(i, 1);
   deck.slides.splice(j, 0, s);
   writeAllNotes(notes);
+  writeAllComments(comments);
+  saveSkips();
   toggleState = {};
   renderRail(); selectSlide(j);
 }
@@ -841,10 +1211,13 @@ function openDeck(id, slide) {
   deck = DECKS[id];
   cur = 0;
   toggleState = {};
+  buildState = {};
+  chipUserState = {};
   startEl.style.display = "none";
   editorEl.classList.add("is-active");
-  deckTitleEl.innerHTML = `${deck.name} <span>· ${deck.slides.length} slides</span>`;
   try { localStorage.setItem("ksp_last_deck", id); } catch (e) {}
+  loadSkips();
+  deckTitleEl.innerHTML = `${deck.name} <span>· ${visibleIndices().length} slides</span>`;
   renderRail();
   selectSlide(slide || 0);
 }
@@ -868,15 +1241,16 @@ function renderRail() {
     wrap.className = "thumb__stage-wrap";
     const railScale = (railEl.clientWidth - 24 - 4) / 1280;
     mountScaled(wrap, buildSlideEl(s), Math.max(0.05, railScale));
-    t.innerHTML = `<span class="thumb__num">${i + 1}</span>
-      <span class="thumb__skip-badge">Skipped</span>`;
+    t.innerHTML = `<span class="thumb__num">${visibleNumber(i)}</span>
+      <span class="thumb__skip-badge">Skipped</span>
+      <span class="thumb__cmt-dot"${getComments(i).length ? "" : " hidden"} title="Has comments"></span>`;
     t.appendChild(wrap);
     t.addEventListener("click", () => selectSlide(i));
     t.addEventListener("contextmenu", (e) => openThumbCtx(e, i));
     railEl.appendChild(t);
   });
   markActiveThumb();
-  deckTitleEl.innerHTML = `${deck.name} <span>· ${deck.slides.length} slides</span>`;
+  deckTitleEl.innerHTML = `${deck.name} <span>· ${visibleIndices().length} slides</span>`;
 }
 
 /* ---------- RAIL RIGHT-CLICK MENU ---------- */
@@ -909,10 +1283,8 @@ ctxMenu.addEventListener("click", (e) => {
   closeCtx();
   if (i < 0) return;
   if (act === "skip") {
-    const ns = !isSkipped(i);
-    setSkipped(i, ns);
-    const th = railEl.querySelector(`.thumb[data-i="${i}"]`);
-    if (th) th.classList.toggle("thumb--skipped", ns);
+    setSkipped(i, !isSkipped(i));
+    renderRail(); // re-render so numbers renumber and skipped shows "–"
   }
   else if (act === "new") createSlideAfter(i);
   else if (act === "delete") deleteSlide(i);
@@ -933,6 +1305,9 @@ function renderMain() {
   mountScaled(stageArea, buildSlideEl(deck.slides[cur]), scale);
   applyToggle(stageArea, cur);
   applyVideoSpeed(stageArea);
+  applyChipDefault(stageArea, deck.slides[cur]);
+  applyBuild(stageArea, cur);
+  applyChipUser(stageArea, cur);
 }
 
 function selectSlide(i) {
@@ -940,12 +1315,85 @@ function selectSlide(i) {
   renderMain();
   markActiveThumb();
   notesArea.value = getNotes(cur);
+  renderComments();
   try { localStorage.setItem("ksp_last_slide", String(cur)); } catch (e) {}
   const active = railEl.querySelector(".thumb.is-active");
   if (active) active.scrollIntoView({ block: "nearest" });
 }
 
 notesArea.addEventListener("input", () => setNotes(cur, notesArea.value));
+
+/* ---------- COMMENT PANEL (per-slide thread) ---------- */
+const commentBtn = document.getElementById("commentBtn");
+const commentPanel = document.getElementById("commentPanel");
+const commentList = document.getElementById("commentList");
+const commentForm = document.getElementById("commentForm");
+const commentInput = document.getElementById("commentInput");
+const commentBadge = document.getElementById("commentBadge");
+const commentSlideLabel = document.getElementById("commentSlideLabel");
+
+function relTime(ts) {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return "just now";
+  const m = Math.floor(s / 60);
+  if (m < 60) return m + "m ago";
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + "h ago";
+  const d = Math.floor(h / 24);
+  if (d < 7) return d + "d ago";
+  return new Date(ts).toLocaleDateString();
+}
+function renderComments() {
+  if (!commentList) return;
+  const items = getComments(cur);
+  commentList.innerHTML = items.length
+    ? items.map(c => `<div class="cmt-item" data-id="${c.id}">
+        <div class="cmt-item__body">
+          <div class="cmt-item__meta"><span class="cmt-item__who">You</span><span class="cmt-item__time">${esc(relTime(c.ts))}</span></div>
+          <p class="cmt-item__text">${esc(c.text)}</p>
+        </div>
+        <button class="cmt-item__del" data-del="${c.id}" title="Delete comment" aria-label="Delete comment">🗑</button>
+      </div>`).join("")
+    : `<p class="cmt-empty">No comments yet. Add one below.</p>`;
+  // badge on the toolbar button
+  if (commentBadge) {
+    if (items.length) { commentBadge.textContent = String(items.length); commentBadge.hidden = false; }
+    else commentBadge.hidden = true;
+  }
+  if (commentSlideLabel) commentSlideLabel.textContent = "Slide " + visibleNumber(cur);
+  // sync the rail dot for the current slide
+  const dot = railEl && railEl.querySelector(`.thumb[data-i="${cur}"] .thumb__cmt-dot`);
+  if (dot) dot.hidden = !items.length;
+}
+function openComments() {
+  commentPanel.hidden = false;
+  commentBtn.setAttribute("aria-expanded", "true");
+  renderComments();
+  setTimeout(() => commentInput && commentInput.focus(), 0);
+}
+function closeComments() {
+  commentPanel.hidden = true;
+  commentBtn.setAttribute("aria-expanded", "false");
+}
+if (commentBtn) {
+  commentBtn.addEventListener("click", () => { commentPanel.hidden ? openComments() : closeComments(); });
+  document.getElementById("commentClose").addEventListener("click", closeComments);
+  commentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addComment(cur, commentInput.value);
+    commentInput.value = "";
+    renderComments();
+    markActiveThumb();
+  });
+  commentList.addEventListener("click", (e) => {
+    const del = e.target.closest("[data-del]");
+    if (!del) return;
+    deleteComment(cur, del.getAttribute("data-del"));
+    renderComments();
+    markActiveThumb();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !commentPanel.hidden) closeComments(); });
+}
 
 /* collapse / expand the presenter-notes dock */
 document.getElementById("notesToggle").addEventListener("click", (e) => {
@@ -972,7 +1420,7 @@ let bc = null;
 try { bc = new BroadcastChannel("ksp_present"); } catch (e) {}
 const IS_AUDIENCE = new URLSearchParams(location.search).get("audience") === "1";
 function broadcastSync() {
-  if (bc && deck) bc.postMessage({ type: "sync", deckId: deck.id, cur: cur, toggle: toggleState, slides: deck.slides });
+  if (bc && deck) bc.postMessage({ type: "sync", deckId: deck.id, cur: cur, toggle: toggleState, build: buildState, chipUser: chipUserState, slides: deck.slides });
 }
 function applySync(m) {
   if (!m || !DECKS[m.deckId]) return;
@@ -981,7 +1429,9 @@ function applySync(m) {
   if (Array.isArray(m.slides)) deck.slides = m.slides;
   cur = Math.max(0, Math.min(deck.slides.length - 1, m.cur));
   if (m.toggle) toggleState = m.toggle;
-  if (presentEl.classList.contains("is-active")) renderPresent();
+  if (m.build) buildState = m.build;
+  if (m.chipUser) chipUserState = m.chipUser;
+  if (presentEl.classList.contains("is-active")) { renderPresent(); refreshBuild(); refreshChipUser(); }
 }
 if (bc) {
   bc.onmessage = (e) => {
@@ -1079,10 +1529,16 @@ function renderPresent() {
     mountScaled(presentStageWrap, buildSlideEl(deck.slides[cur]), fitScale(presentEl, 0));
     applyToggle(presentStageWrap, cur);
     applyVideoSpeed(presentStageWrap);
+    applyChipDefault(presentStageWrap, deck.slides[cur]);
+    applyBuild(presentStageWrap, cur);
+    applyChipUser(presentStageWrap, cur);
   } else {
     mountScaled(presenterNow, buildSlideEl(deck.slides[cur]), fitScale(presenterNow, 24));
     applyToggle(presenterNow, cur);
     applyVideoSpeed(presenterNow);
+    applyChipDefault(presenterNow, deck.slides[cur]);
+    applyBuild(presenterNow, cur);
+    applyChipUser(presenterNow, cur);
     const nextIdx = Math.min(deck.slides.length - 1, cur + 1);
     if (cur + 1 < deck.slides.length) {
       mountScaled(presenterNext, buildSlideEl(deck.slides[nextIdx]), Math.max(0.05, presenterNext.clientWidth / 1280));
@@ -1095,10 +1551,17 @@ function renderPresent() {
 }
 
 function presentNav(dir) {
+  // advance/retreat an in-slide build step before changing slides
+  const maxB = maxBuildStep(cur);
+  const step = buildState[cur] || 0;
+  if (dir > 0 && step < maxB) { buildState[cur] = step + 1; refreshBuild(); broadcastSync(); return; }
+  if (dir < 0 && step > 0) { buildState[cur] = step - 1; refreshBuild(); broadcastSync(); return; }
   let n = cur + dir;
   while (n >= 0 && n < deck.slides.length && isSkipped(n)) n += dir;
   if (n < 0 || n >= deck.slides.length) return;
   cur = n;
+  // entering forward starts at first reveal; entering backward starts fully revealed
+  buildState[cur] = dir < 0 ? maxBuildStep(cur) : 0;
   renderPresent();
   markActiveThumb();
   notesArea.value = getNotes(cur);
@@ -1162,6 +1625,52 @@ document.addEventListener("click", (e) => {
   const scope = el.closest("#presenterNow, #presentStageWrap, #stageArea") || document;
   applyToggle(scope, cur);
   broadcastSync();
+});
+
+/* click a user chip to swap the workspace image + show that user's story (click again to revert) */
+document.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip--user");
+  if (!chip || chip.closest(".nav-rail")) return;
+  const name = chip.dataset.name;
+  chipUserState[cur] = (chipUserState[cur] === name) ? undefined : name;
+  refreshChipUser();
+  broadcastSync();
+});
+
+/* click a build slide to advance/cycle its reveal step (for previewing in the editor) */
+document.addEventListener("click", (e) => {
+  const g = e.target.closest(".ur-grid--build, .fig-build");
+  if (!g || g.closest(".nav-rail")) return;
+  const maxB = maxBuildStep(cur);
+  buildState[cur] = ((buildState[cur] || 0) >= maxB) ? 0 : (buildState[cur] || 0) + 1;
+  refreshBuild();
+  broadcastSync();
+});
+
+/* click a chip to swap the panel's table with that user's story (click again to revert) */
+document.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip--click");
+  if (!chip || chip.closest(".nav-rail")) return;
+  const item = chip.closest(".slide");
+  if (!item) return;
+  const story = item.querySelector("[data-chip-story]");
+  const main = item.querySelector(".chip-swap__main");
+  if (!story || !main) return;
+  const wasActive = chip.classList.contains("is-active");
+  item.querySelectorAll(".chip--click").forEach(c => c.classList.remove("is-active"));
+  const rightImg = (item.querySelectorAll(".cmp2__item")[1] || {}).querySelector
+    ? item.querySelectorAll(".cmp2__item")[1].querySelector(".cmp2__media img")
+    : null;
+  if (rightImg && !rightImg.dataset.defaultSrc) rightImg.dataset.defaultSrc = rightImg.getAttribute("src");
+  if (wasActive) {
+    story.hidden = true; main.hidden = false;
+    if (rightImg) rightImg.src = rightImg.dataset.defaultSrc;
+  } else {
+    chip.classList.add("is-active");
+    story.textContent = chip.dataset.story || "";
+    story.hidden = false; main.hidden = true;
+    if (rightImg) rightImg.src = chip.dataset.img || rightImg.dataset.defaultSrc;
+  }
 });
 
 /* ---------- TOAST ---------- */

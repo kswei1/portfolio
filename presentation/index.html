@@ -30,6 +30,10 @@
       <button class="topbar__back" id="backBtn">← Decks</button>
       <p class="topbar__title" id="deckTitle"></p>
       <div class="topbar__spacer"></div>
+      <button class="btn btn--icon" id="commentBtn" title="Comments for this slide (private to you)" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 3.5V16H5.5A1.5 1.5 0 0 1 4 14.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="comment-badge" id="commentBadge" hidden></span>
+      </button>
       <button class="btn" id="exportBtn" title="Export an editable PowerPoint you can open in Keynote">⬇ Export .pptx</button>
       <button class="btn" id="presentNotesBtn">Present with notes</button>
       <button class="btn btn--accent" id="presentBtn">▶ Present</button>
@@ -81,6 +85,20 @@
       <button id="present-exit">Exit</button>
     </div>
   </section>
+
+  <!-- ── PER-SLIDE COMMENT THREAD (private, saved on this device) ── -->
+  <div class="cmt-panel" id="commentPanel" hidden>
+    <div class="cmt-panel__head">
+      <span class="cmt-panel__title">Comments</span>
+      <span class="cmt-panel__sub" id="commentSlideLabel"></span>
+      <button class="cmt-panel__close" id="commentClose" aria-label="Close">✕</button>
+    </div>
+    <div class="cmt-list" id="commentList"></div>
+    <form class="cmt-form" id="commentForm">
+      <input type="text" id="commentInput" class="cmt-input" placeholder="Add a comment…" autocomplete="off" />
+      <button type="submit" class="cmt-send" id="commentSend" aria-label="Save comment">↑</button>
+    </form>
+  </div>
 
   <div class="toast" id="toast"></div>
 
