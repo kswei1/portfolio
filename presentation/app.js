@@ -68,6 +68,7 @@ const DECKS = {
         titleFull: true,
         topAlign: true,
         pushIn: true,
+        eyebrow: "THE CHALLENGE",
         h: "7 user groups. 8 features. One fixed workspace.",
         users: [
           { name: "Product", story: "As a Product user, I want to run experiments on customer experiences, so that I can test which experience performs better.", img: IMG + "WF-PM-Example.png" },
@@ -80,6 +81,7 @@ const DECKS = {
         ],
         usersChips: true,
         chipInteractive: true,
+        hDim: "8 features. One fixed workspace.",
         hideRisks: true,
         colLabels: ["User workflows", "One fixed workspace", ""],
         img: IMG + "wf-old-layout-example-presentation.png",
@@ -145,71 +147,116 @@ const DECKS = {
       /* 07b — Design challenge */
       {
         layout: "statement",
-        tag: "Design challenge",
+        tag: "DESIGN CHALLENGE",
         plainTag: true,
         full: true,
-        q: "How could we solve both problems without rebuilding the platform?",
-        notes: "That set up the real design challenge: how could we solve both problems — finding features and navigating deep hierarchies — without rebuilding the platform?"
-      },
-      /* 08 — How I designed within the constraint */
-      {
-        layout: "threeup",
-        realMedia: true,
-        h: "How I designed within the constraint",
-        body: "I focused on what I could change, what I could reuse, and what we could ship safely.",
-        cards: [
-          { img: IMG + "WF-Design-Expolration2.png", title: "01 · Explore", text: "Test different ways to simplify navigation." },
-          { img: IMG + "WF-competitive-research.png", title: "02 · Learn", text: "Study patterns from complex products." },
-          { video: "../assets/videos/wf-collaboration", title: "03 · Validate", text: "Prototype early and align on what to ship." }
-        ],
-        notes: "Given the constraints, I focused on three things. First, exploring different ways to simplify navigation. Second, learning from how other complex products handle dense workflows. And third, validating early by prototyping and aligning with PM, EM, and engineering on what we could actually ship."
+        q: "How might we make a growing workspace work better for different workflows and deep page structures?",
+        notes: "That set up the real design challenge: how might we make a growing workspace work better for different workflows and deep page structures — without rebuilding the platform?"
       },
       /* 10a — Three design directions */
       {
         layout: "matrix3",
         titleSm: true,
         titleFull: true,
-        h: "I explored three directions, each testing a different way to solve the problems.",
+        h: "I explored three directions, balancing the two problems and our technical constraints.",
         dirs: [
-          { label: "Direction 1", name: "Overview page", a: true, b: false, img: IMG + "WF-Design-Expolration2.png", constraint: "No backend changes", tradeoff: "More eng effort and platform risk, same navigation" },
+          { label: "Direction 1", name: "Dashboard", a: true, b: false, img: IMG + "WF-Design-Expolration2.png", constraint: "No backend changes", tradeoff: "More eng effort and platform risk, same navigation" },
           { label: "Direction 2", name: "Add a menu for navigation", a: false, b: true, img: IMG + "WF-exploration2.png", constraint: "Frontend only", tradeoff: "Hierarchy improved, workspace stayed crowded" },
           { label: "Direction 3", name: "3 Panel", a: true, b: "partial", img: IMG + "WF-exploration3.png", constraint: "Frontend only", tradeoff: "Better structure, hierarchy still needed refinement" }
         ],
         notes: "I explored three directions. Direction 1 solved Problem B but not A. Direction 2 solved Problem A but not B. Direction 3 solved both — but the real question was the technical part: how to do it without rebuilding the platform."
       },
-      /* 10b — The 3-panel direction */
+      /* 10b — The 3-panel direction (Problem A) */
       {
         layout: "cols",
         titleSm: true,
         titleFull: true,
         midAlign: true,
-        eyebrow: "THE DESIGN DIRECTION",
-        h: "The 3-panel direction gave every workflow a place to live.",
-        body: "Prototyped in Figma Make to align with stakeholders and validate the interaction with users.",
-        colTemplate: "1fr 1fr",
+        bigMedia: true,
+        eyebrow: "THE DIRECTION",
+        h: "I brought the two solutions together in one 3-panel workspace.",
+        colTemplate: "1fr",
         cols: [
-          { videoPlain: "../assets/videos/WF-direction3-problema", bg: "#F1EFEB", tag: "Problem A", from: "Workspace structure", to: "Navigation panel" },
+          { videoPlain: "../assets/videos/WF-direction3-problema", bg: "#F1EFEB", tag: "Problem A", from: "Workspace structure", to: "Feature panel" }
+        ],
+        notes: "I brought the two solutions together in one 3-panel workspace. Here's how it solves Problem A — the workspace structure becomes a feature panel."
+      },
+      /* 10c — The 3-panel direction (Problem B) */
+      {
+        layout: "cols",
+        titleSm: true,
+        titleFull: true,
+        midAlign: true,
+        bigMedia: true,
+        eyebrow: "THE DIRECTION",
+        h: "Then, I validated the direction with users and stakeholders.",
+        colTemplate: "1fr",
+        cols: [
           { videoPlain: "../assets/videos/WF-direction3-problemb", bg: "#F1EFEB", tag: "Problem B", from: "Page hierarchy", to: "Menu / Hierarchy navigation" }
         ],
-        notes: "The 3-panel direction gave every workflow a place to live. On the left, how it solves Problem A. On the right, how it solves Problem B."
+        notes: "And here's how it solves Problem B — the deep page hierarchy becomes menu / hierarchy navigation."
       },
       /* 10 — Reframe (vertical) */
       {
         layout: "reframe",
-        eyebrow: "THE CONSTRAINT",
+        eyebrow: "THE PLATFORM CONSTRAINT",
         from: "We couldn't change the backend structure.",
-        to: "So how could we make navigation easier with what we already had?",
+        to: "So how could we make navigation easier with\nwhat we already had?",
         notes: "We couldn't change the backend structure. So the real question became: how could we make navigation easier with what we already had?"
       },
-      /* 11 — Reimagining what we already had (Block Tree → Mini Tree, click to switch) */
+      /* 11 — The discovery (Block Tree foundation) */
       {
         layout: "toggle",
-        eyebrow: "THE DESIGN MOVE",
+        eyebrow: "THE DISCOVERY",
+        h: "We already had the foundation for better navigation.",
+        body: "Block Tree already mapped the page hierarchy. I saw an opportunity to turn it into something users could navigate with.",
+        img: IMG + "Wayfair-Block-tree-presentation.png",
+        img2: IMG + "Wayfair-Block-tree-presentation2.png",
+        dissolve: true,
+        mediaBg: "#F1EFEB",
+        mediaLeft: true,
+        mediaFull: true,
+        notes: "We already had the foundation. Block Tree already mapped the page hierarchy — I saw an opportunity to turn it into something users could actually navigate with."
+      },
+      /* 11b — Reframed Block Tree (mini tree) */
+      {
+        layout: "toggle",
+        eyebrow: "GETTING BUY-IN",
         h: "From visualizing the hierarchy to navigating it.",
-        body: "Repurposed Block Tree as a lightweight navigation tool.",
-        img: IMG + "WF-Minitree-Presentation.png",
-        img2: IMG + "WF-Blocktree-design-details.png",
-        notes: "This is where the direction changed. Instead of building something new, I reimagined what we already had, turning Block Tree, an existing visualization, into a lightweight navigation tool. (Click the image to see the design details.)"
+        caption: "I reframed Block Tree as a lightweight navigation tool.",
+        img: IMG + "WF-Blocktree-Minitree-Presentation.png",
+        mediaBg: "#F1EFEB",
+        mediaLeft: true,
+        mediaFull: true,
+        notes: "I reframed Block Tree as a lightweight navigation tool."
+      },
+      /* 11c — The hierarchy needed more (mini → final) */
+      {
+        layout: "toggle",
+        titleSm: true,
+        titleFull: true,
+        midAlign: true,
+        eyebrow: "DESIGN ITERATION",
+        h: "I refined the Mini Tree to make the hierarchy easier to scan and navigate.",
+        img: IMG + "WF-Minitreetofinal-Presentation.png",
+        mediaLeft: true,
+        mediaFull: true,
+        notes: "The hierarchy needed more than just block names."
+      },
+      /* 11d — The hierarchy needed more (design details) */
+      {
+        layout: "toggle",
+        eyebrow: "DESIGN DETAIL",
+        h: "The hierarchy needed more than just block names.",
+        img: IMG + "WF-Blocktree-design-details.png",
+        sequence: [
+          IMG + "WF-Blocktree-design-details1.png",
+          IMG + "WF-Blocktree-design-details2.png",
+          IMG + "WF-Blocktree-design-details3.png",
+          IMG + "WF-Blocktree-design-details4.png"
+        ],
+        mediaCover: true,
+        notes: "The hierarchy needed more than just block names — here are the design details."
       },
       /* 13 — Drawer design tradeoff (Before/After) */
       {
@@ -245,25 +292,6 @@ const DECKS = {
         right: { label: "After", img: IMG + "WF-IA.png", toggle: { videoPlain: "../assets/videos/wf-new-ia" } },
         notes: ""
       },
-      /* 16 — Three core jobs (media + columns) */
-      {
-        layout: "mediacols",
-        video: "../assets/videos/wayfair-core",
-        cols: [
-          { t: "Left: Features", desc: "A dedicated area for platform features, grouped so users see and reach the tools relevant to their work instead of one long list." },
-          { t: "Center: Main work", desc: "The primary editing space, the task users are always on, kept visible and stable." },
-          { t: "Right: Preview", desc: "A persistent place to see and validate the customer-facing result while working." }
-        ],
-        notes: ""
-      },
-      /* 17 — Flexible panel architecture (click to switch layout) */
-      {
-        layout: "toggle",
-        h: "Flexible panel architecture (3 panels + AI agent)",
-        img: IMG + "WF-flexible-panel1.png",
-        img2: IMG + "WF-flexible-panel2.png",
-        notes: ""
-      },
       /* 18 — Solution A (cycle back to Problem A) */
       {
         layout: "split",
@@ -280,6 +308,17 @@ const DECKS = {
         h: "Kept users oriented while navigating deep hierarchies",
         videoPlain: "../assets/videos/wf-solution2",
         body: "I replaced nested drawers with a persistent workspace structure that keeps the page, its hierarchy, and the active block visible, reducing the steps and travel distance needed to move between levels.",
+        notes: ""
+      },
+      /* Three core jobs (media + columns) — moved after Solution B */
+      {
+        layout: "mediacols",
+        img: IMG + "WF-IA.png",
+        cols: [
+          { t: "Left: Features", desc: "A dedicated area for platform features, grouped so users see and reach the tools relevant to their work instead of one long list." },
+          { t: "Center: Main work", desc: "The primary editing space, the task users are always on, kept visible and stable." },
+          { t: "Right: Preview", desc: "A persistent place to see and validate the customer-facing result while working." }
+        ],
         notes: ""
       },
       /* 20 — Shipped (impact) */
@@ -304,6 +343,33 @@ const DECKS = {
           { step: "03", title: "Design for what's next", text: "The workspace needed to support future features, not just today's." }
         ],
         notes: "Three things I took away. Don't always add more, sometimes the better move is rethinking what already exists. Constraints can shape better design, the technical limits actually pushed us somewhere simpler. And design for what's next, the workspace had to hold future features, not just today's."
+      },
+      /* Appendix */
+      {
+        layout: "divider",
+        h: "Appendix",
+        notes: "Appendix — supporting detail if there's time or questions."
+      },
+      /* Appendix — How I designed within the constraint */
+      {
+        layout: "threeup",
+        realMedia: true,
+        h: "How I designed within the constraint",
+        body: "I focused on what I could change, what I could reuse, and what we could ship safely.",
+        cards: [
+          { img: IMG + "WF-Design-Expolration2.png", title: "01 · Explore", text: "Test different ways to simplify navigation." },
+          { img: IMG + "WF-competitive-research.png", title: "02 · Learn", text: "Study patterns from complex products." },
+          { video: "../assets/videos/wf-collaboration", title: "03 · Validate", text: "Prototype early and align on what to ship." }
+        ],
+        notes: "Given the constraints, I focused on three things. First, exploring different ways to simplify navigation. Second, learning from how other complex products handle dense workflows. And third, validating early by prototyping and aligning with PM, EM, and engineering on what we could actually ship."
+      },
+      /* Appendix — Flexible panel architecture (click to switch layout) */
+      {
+        layout: "toggle",
+        h: "Flexible panel architecture (3 panels + AI agent)",
+        img: IMG + "WF-flexible-panel1.png",
+        img2: IMG + "WF-flexible-panel2.png",
+        notes: ""
       }
     ]
   },
@@ -322,108 +388,194 @@ const DECKS = {
         mediaBg: "rgb(94, 93, 179)",
         video: "../assets/videos/blocky-solution",
         meta: [
-          { label: "Role", value: "Product Designer" },
-          { label: "Surface", value: "Block Builder · Blocky" },
-          { label: "Focus", value: "UI + interaction model" },
-          { label: "Made with", value: "Cursor + Claude Code prototype" }
+          { label: "Role", value: "Lead Product Designer" },
+          { label: "Team", value: "Content Platform" },
+          { label: "Year", value: "2026" },
+          { label: "Collaboration", value: "1 PM, 3 Engineers, 1 EM" },
+          { label: "Focus", value: "UI + Prototyping" }
         ],
         notes: "This is Blocky, Wayfair's internal AI agent inside Block Builder. I led a redesign of its UI and interaction model."
       },
-      /* 02 — Problem + survey evidence (merged) */
+      /* 01b — What is Blocky */
       {
         layout: "split",
         titleSm: true,
-        h: "Blocky was valuable but not everyone was using it",
-        body: "#3 most important feature in Block Builder, yet a real group of users still weren't using it. So we asked why.",
-        list: [
-          "“I don't know what I can ask Blocky.”",
-          "“I don't know what Blocky can do.”"
-        ],
+        eyebrow: "WHAT IS BLOCKY",
+        h: "An internal AI agent that helps Wayfair teams create and manage content through natural language.",
         realMedia: true,
-        focus: "tl",
-        img: IMG + "WF-survey.PNG",
+        wideMedia: true,
+        contain: true,
+        tallMedia: true,
+        mediaBg: "#F1EFEB",
+        img: IMG + "what-is-blocky.png",
+        caption: "Blocky entry point and chat interface",
+        notes: "Blocky is Wayfair's internal AI agent inside Block Builder, helping teams create and manage content through natural language instead of navigating the platform step by step."
+      },
+      /* 02 — Problem + survey evidence (merged) */
+      {
+        layout: "stat3",
+        titleSm: true,
+        cardBuild: true,
+        eyebrow: "PROBLEM",
+        h: "Blocky was powerful, but users didn’t know where to start.",
+        hDim: "but users didn’t know where to start.",
+        stats: [
+          { num: "20+", desc: "workflows Blocky could run — create, edit, move blocks, set up A/B tests, and more" },
+          { num: "#3", desc: "most important feature in Block Builder" },
+          { num: "22%", desc: "of users weren’t using Blocky", red: true }
+        ],
+        quotesOverlay: [
+          { t: "“I haven’t had time to learn it.”" },
+          { t: "“I’m not sure what it can do.”" },
+          { t: "“I forget it exists.”", sm: true }
+        ],
         notes: "Blocky was already valuable — it ranked as the #3 most important feature in Block Builder. But a meaningful group of users still weren't using it, so we asked why. The survey answers were consistent: people didn't know what they could ask, or what Blocky could even do."
       },
       /* 04 — The real problem (annotated old design) */
       {
-        layout: "figure",
+        layout: "figlist",
+        figSide: true,
         realMedia: true,
-        contain: true,
-        h: "The problem wasn't the UI. It was open-ended chat.",
-        body: "A chat-first model that didn't scale, hid what Blocky could do, and left users without guidance on where to start.",
-        bodyWide: true,
+        h: "The chat-first experience gave users little to start with.",
         titleSm: true,
         mediaBg: "var(--surface)",
-        img: IMG + "old-blocky-design.png",
+        points: [
+          "Not built to scale",
+          "Poor discoverability",
+          "Limited guidance & feedback",
+          "Too many actions"
+        ],
+        img: IMG + "old-blocky-design-presentation2.png",
         notes: "The problem wasn't simply that Blocky needed a better UI. The experience was built around open-ended chat, which didn't scale with Blocky's growing capabilities, made it hard to discover what Blocky could do, and gave users little guidance or feedback. This breaks down the specific issues in the old design: not built to scale, poor discoverability, limited guidance and feedback, and too many competing actions."
       },
       /* 05 — Opportunity: one thing, three levels */
       {
         layout: "threeup",
+        cardBuild: true,
         h: "One opportunity, three levels",
         cards: [
-          { step: "01", title: "Discover", text: "Help users understand what Blocky can do — and find new capabilities." },
-          { step: "02", title: "Get started", text: "Help new users know where to begin, without learning to prompt from scratch." },
-          { step: "03", title: "Scale", text: "An interaction model that grows as Blocky gains more capabilities." }
+          { step: "01", title: "🔍 Discover", text: "Help users understand what Blocky can do and discover new capabilities." },
+          { step: "02", title: "🚀 Get started", text: "Help new users know where to begin without having to learn how to prompt from scratch." },
+          { step: "03", title: "📈 Scale", text: "An interaction model that grows as Blocky gains more capabilities." }
         ],
-        foot: "Not three feature requests — three levels of the same opportunity.",
         notes: "Blocky was meant to become a much bigger entry point for AI workflows. So the opportunity had three levels: discover, get started, and scale — the same opportunity at increasing depth."
       },
-      /* 06 — Design question */
+      /* 07a — Level 01: Discover */
+      { layout: "divider", h: "Discover", notes: "" },
+      /* 07a-i — Discovery: making capabilities visible */
       {
-        layout: "statement",
-        tag: "Objective",
-        full: true,
-        q: "How might we make Blocky easier to understand and easier to work with, while giving it a more distinct identity as an AI agent?",
-        notes: "That framed the design question."
+        layout: "figure",
+        realMedia: true,
+        contain: true,
+        eyebrow: "DISCOVERY",
+        titleSm: true,
+        h: "Making Blocky’s capabilities visible",
+        mediaBg: "#F1EFEB",
+        imgSeq: [
+          IMG + "Blocky-discovery-exploration.png",
+          IMG + "Blocky-discovery-exploration1.png",
+          IMG + "Blocky-discovery-exploration2.png"
+        ],
+        img: IMG + "Blocky-discovery-exploration.png",
+        notes: "I explored several directions for surfacing Blocky's capabilities — clicking steps through each one."
       },
-      /* 07 — Interaction model (reframe) */
+      /* 07a-ii — Discovery (final direction) */
       {
-        layout: "reframe",
-        from: "Open-ended chat",
-        to: "A more guided, structured AI experience — still chat, just easier to work with",
-        notes: "An important insight: both the old and new experience are still chat. This isn't about replacing chat. It's about evolving the interaction model from open-ended to guided and structured."
+        layout: "figure",
+        realMedia: true,
+        fullWidth: true,
+        eyebrow: "DISCOVERY",
+        titleSm: true,
+        h: "A simpler way to discover what Blocky can do",
+        img: IMG + "Blocky-discovery-exploration-final.png",
+        imgSeq: [
+          IMG + "Blocky-discovery-exploration-final.png",
+          IMG + "Blocky-discovery-exploration-final1.png",
+          IMG + "Blocky-discovery-exploration-final2.png",
+          IMG + "Blocky-discovery-exploration-final3.png",
+          IMG + "Blocky-discovery-exploration-final4.png",
+          IMG + "Blocky-discovery-exploration-final5.png"
+        ],
+        notes: "Clicking steps through each refinement of the discovery direction."
+      },
+      /* 13 — Dark mode */
+      {
+        layout: "split",
+        realMedia: true,
+        contain: true,
+        wideMedia: true,
+        titleSm: true,
+        h: "Dark Mode",
+        body: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode.",
+        img: IMG + "blocky-dark-mode.png",
+        notes: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode."
+      },
+      /* 07b — Level 02: Get started */
+      { layout: "divider", h: "Get started", notes: "" },
+      /* 07a-iii — Get started: too much back and forth */
+      {
+        layout: "figure",
+        realMedia: true,
+        contain: true,
+        eyebrow: "GET STARTED",
+        titleSm: true,
+        h: "A simple task required too much back and forth",
+        mediaBg: "#F1EFEB",
+        img: IMG + "blokcy-create-new-block-old-flow.png",
+        notes: ""
       },
       /* 08 — Exploration: wizard flow */
       {
-        layout: "compare2",
-        tag: "Exploration",
+        layout: "figure",
+        realMedia: true,
+        contain: true,
+        eyebrow: "GET STARTED",
+        titleSm: true,
         h: "First idea: a guided wizard flow",
-        body: "I explored a step-by-step wizard to guide users through missing information instead of relying on back-and-forth chat.",
-        frame: true,
-        left: { img: IMG + "WF-blocky-before.png", label: "Before" },
-        right: { videoPlain: "../assets/videos/blocky-wizard-flow", speed: 1.2, zoom: 1.1, label: "After" },
+        mediaBg: "#F1EFEB",
+        img: IMG + "blokcy-wizard-flow.png",
         notes: "The first direction was a guided wizard flow that fills in missing context. It reduced back-and-forth, but a rigid wizard could make users dependent on the UI instead of understanding the agent — and it still didn't answer what Blocky could do."
+      },
+      /* 08b — Wizard: faster but didn't teach prompting */
+      {
+        layout: "split",
+        eyebrow: "GET STARTED",
+        titleSm: true,
+        h: "The wizard made tasks faster, but didn’t teach users how to prompt",
+        videoPlain: "../assets/videos/blocky-wizard-flow",
+        mediaBg: "#F1EFEB",
+        wideMedia: true,
+        contain: true,
+        tallMedia: true,
+        videoClip: "4px 0 20px 0",
+        notes: ""
       },
       /* 09 — Pivot: show, don't tell (shaping the direction) */
       {
-        layout: "figure",
+        layout: "split",
         realMedia: true,
         contain: true,
+        tallMedia: true,
+        eyebrow: "GET STARTED",
         h: "I shifted from guiding tasks to teaching by example",
-        body: "The wizard helped users complete a task, but it didn't help them understand what Blocky could do.",
-        bodyWide: true,
         titleSm: true,
-        mediaBg: "var(--surface)",
-        img: IMG + "Blocky-shapping-direction2.png",
+        mediaBg: "#F1EFEB",
+        img: IMG + "blokcy-template-design.png",
         notes: "So I moved toward a more flexible idea: teaching by example. Structured entry points make Blocky easier to scale, more discoverable, and clearer to work with, while reducing cognitive load."
       },
-      /* 09 — Section divider: Solution */
-      {
-        layout: "divider",
-        h: "Solution",
-        notes: "So that brings us to the solution."
-      },
-      /* 09b — From chatbot to AI workspace */
+      /* 07c — Level 03: Scale */
+      { layout: "divider", h: "Scale", notes: "" },
+      /* 07c-i — Scale: making room for more capabilities */
       {
         layout: "figure",
         realMedia: true,
         contain: true,
+        eyebrow: "SCALE",
         titleSm: true,
-        h: "From chatbot to AI workspace",
-        mediaBg: "var(--surface)",
+        h: "Making room for more capabilities",
+        mediaBg: "#F1EFEB",
         img: IMG + "Blocky-shapping-direction.png",
-        notes: "The solution reframed Blocky from a chatbot into an AI workspace — structured entry points, suggested actions, and clearer feedback."
+        notes: ""
       },
       /* 10b — Building Blocky's visual language (bento, 3 images to add) */
       {
@@ -440,32 +592,33 @@ const DECKS = {
         realMedia: true,
         contain: true,
         h: "Giving Blocky a personality",
-        body: "Purple, gradients, subtle dimensionality, and expressive states — approachable, but still part of an enterprise product.",
-        bodyWide: true,
-        mediaBg: "var(--surface)",
+        mediaBg: "#F8F7F4",
         img: IMG + "Blocky-icon.png",
         notes: "I wanted Blocky to feel like more than a generic chatbot. The visual language uses purple, gradients, highlights, and expressive states, with the Blocky icon as the face of the agent — while still fitting inside the product."
       },
-      /* 13 — Dark mode */
+      /* 15 — Takeaways & learnings */
       {
-        layout: "split",
-        realMedia: true,
-        contain: true,
-        wideMedia: true,
-        titleSm: true,
-        h: "Dark Mode",
-        body: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode.",
-        img: IMG + "blocky-dark-mode.png",
-        notes: "Engineering-heavy teams often work in dark mode, so I designed Blocky's colors, surfaces, and states to feel just as clear and intentional in dark mode."
-      },
-      /* 14 — What's next */
-      {
-        layout: "split",
-        tag: "Post-MVP",
-        h: "Making conversations easier to return to",
-        body: "The clearest follow-up was conversation history — letting users return to previous conversations and pick up where they left off. A future direction, not shipped.",
-        img: IMG + "blocky-history.png",
-        notes: "One of the clearest follow-up needs was conversation history — returning to previous conversations. This is framed as a post-MVP direction, not shipped functionality."
+        layout: "twoup",
+        h: "Takeaways & learnings",
+        cols: [
+          {
+            t: "Takeaways",
+            list: [
+              "Discoverability was the real problem — surfacing what Blocky could do moved adoption more than new features.",
+              "Structured entry points made a growing agent easier to understand and to scale.",
+              "Prototyping in Cursor + Claude Code let me test real interactions and align stakeholders early."
+            ]
+          },
+          {
+            t: "Learnings",
+            list: [
+              "For an AI agent, the interaction model matters as much as the model — teach users what to ask.",
+              "Design for where the product is heading: an interface that scales as capabilities grow.",
+              "Small, expressive personality choices build trust without feeling unprofessional."
+            ]
+          }
+        ],
+        notes: "To close: the biggest takeaway was that discoverability, not capability, was the real problem. And the main learning — for an AI agent, the interaction model matters as much as the underlying model."
       }
     ]
   }
@@ -528,15 +681,89 @@ function slideInnerHTML(s) {
           ${s.list ? liList(s.list) : ""}
           ${s.callout ? `<p class="s-callout">${esc(s.callout)}</p>` : ""}
         </div>
-        <div class="l-split__media${s.videoPlain && !s.contain ? " l-split__media--wide" : ""}${s.contain ? " l-split__media--contain" : ""}${s.focus === "tl" ? " l-split__media--focus-tl" : ""}"${(s.mediaBg || s.mediaPad) ? ` style="${s.mediaBg ? `background:${s.mediaBg};` : ""}${s.mediaPad ? `padding:${s.mediaPad};` : ""}"` : ""}>${
+        ${s.quotes ? `<div class="sp-quotes">${s.quotes.map(q => `<p class="sp-quote${q.big ? " sp-quote--lg" : " sp-quote--sm"}">${esc(q.t)}</p>`).join("")}</div>` :
+        `<div class="l-split__col${s.caption ? " l-split__col--cap" : ""}"><div class="l-split__media${s.videoPlain && !s.contain ? " l-split__media--wide" : ""}${s.contain ? " l-split__media--contain" : ""}${s.focus === "tl" ? " l-split__media--focus-tl" : ""}"${(s.mediaBg || s.mediaPad) ? ` style="${s.mediaBg ? `background:${s.mediaBg};` : ""}${s.mediaPad ? `padding:${s.mediaPad};` : ""}"` : ""}>${
           s.video
             ? `<div class="pf-zoom"><video autoplay loop muted playsinline${s.speed ? ` data-speed="${s.speed}"` : ""}><source src="${s.video}.webm" type="video/webm"><source src="${s.video}.mp4" type="video/mp4"></video></div>`
             : s.videoPlain
-              ? `<video class="pf-plain" autoplay loop muted playsinline${s.speed ? ` data-speed="${s.speed}"` : ""}${s.zoom ? ` style="transform:scale(${s.zoom}) translateY(-2.5%);transform-origin:top center"` : ""}><source src="${s.videoPlain}.webm" type="video/webm"><source src="${s.videoPlain}.mp4" type="video/mp4"></video>`
+              ? `<video class="pf-plain" autoplay loop muted playsinline${s.speed ? ` data-speed="${s.speed}"` : ""}${s.videoClip ? ` style="clip-path: inset(${s.videoClip} round 8px)"` : s.zoom ? ` style="transform:scale(${s.zoom}) translateY(-2.5%);transform-origin:top center"` : ""}><source src="${s.videoPlain}.webm" type="video/webm"><source src="${s.videoPlain}.mp4" type="video/mp4"></video>`
               : s.realMedia
                 ? `<img src="${s.img}" alt="">`
                 : mediaImg(s.img)
-        }</div>`;
+        }</div>${s.caption ? `<p class="l-split__cap">${esc(s.caption)}</p>` : ""}</div>`}`;
+
+    case "statquote":
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
+        <div class="sq-row">
+          <div class="st3-card sq-stat">
+            <div class="st3-num${s.stat && s.stat.red ? " st3-num--red" : ""}">${esc(s.stat ? s.stat.num : "")}</div>
+            ${s.stat && s.stat.desc ? `<p class="st3-desc">${esc(s.stat.desc)}</p>` : ""}
+          </div>
+          <div class="sp-quotes">${(s.quotes || []).map(q => `<p class="sp-quote${q.big ? " sp-quote--lg" : " sp-quote--sm"}">${esc(q.t)}</p>`).join("")}</div>
+        </div>`;
+
+    case "annotate": {
+      const a = s.anno || {};
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
+        <div class="ann-row${s.revealAnno ? " ann-row--reveal is-step-0" : ""}">
+          <div class="ann-media"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}><img src="${s.img}" alt=""></div>
+          <span class="ann-dot" style="top:${a.dotTop || "26%"};left:${a.dotLeft || "30%"}"></span>
+          <span class="ann-line" style="top:${a.dotTop || "26%"};left:${a.dotLeft || "30%"}"></span>
+          <div class="ann-text">
+            <p class="ann-title">${esc(a.title || "")}</p>
+            <p class="ann-desc">${esc(a.text || "")}</p>
+          </div>
+          ${s.revealAnno ? `<span class="ann-hint">Click to reveal →</span>` : ""}
+        </div>`;
+    }
+
+    case "stat3": {
+      const st3Title = s.hDim && s.h.includes(s.hDim)
+        ? `${esc(s.h.slice(0, s.h.indexOf(s.hDim)))}<span class="st3-tail">${esc(s.hDim)}</span>`
+        : esc(s.h);
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${st3Title}</h2>
+        <div class="st3-grid${s.cardBuild ? " st3-grid--build" : ""}">
+          ${(s.stats || []).map((st, ci) => `<div class="st3-card"${s.cardBuild ? ` data-card-idx="${ci}"` : ""}>
+            <div class="st3-num${st.red ? " st3-num--red" : ""}">${esc(st.num)}</div>
+            <p class="st3-desc">${esc(st.desc)}</p>
+          </div>`).join("")}
+        </div>
+        ${s.quotesOverlay ? `<div class="st3-overlay">${s.quotesOverlay.map((q, qi) => `<p class="st3-oquote st3-oq-${qi}${q.sm ? " st3-oquote--sm" : " st3-oquote--lg"}">${esc(q.t)}</p>`).join("")}</div>` : ""}`;
+    }
+
+    case "figlist":
+      if (s.figSide) {
+        return `<div class="fl-cols">
+          <div class="fl-cols__left">
+            ${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+            <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
+            <ol class="fl-list fl-list--bottom">
+              ${(s.points || []).map((p, i) => `<li><span class="fl-num">${i + 1}</span><span class="fl-txt">${esc(p)}</span></li>`).join("")}
+            </ol>
+          </div>
+          <div class="fl-media"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img)}</div>
+        </div>`;
+      }
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}">${esc(s.h)}</h2>
+        ${s.body ? `<p class="s-body s-body--wide" style="margin-top:16px">${esc(s.body)}</p>` : ""}
+        <div class="fl-row${s.leftItems ? " fl-row--3" : ""}">
+          ${s.leftItems ? `<div class="fl-cap">
+            ${s.leftTitle ? `<p class="fl-cap__title">${esc(s.leftTitle)}</p>` : ""}
+            <ul class="fl-cap__list">${s.leftItems.map(it => `<li>${esc(it)}</li>`).join("")}</ul>
+          </div>` : ""}
+          <div class="fl-media${s.imgSwap ? " fig-reveal is-step-0" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${
+            s.imgSwap
+              ? `<div class="fig-reveal__frame"><img class="fig-reveal__img fig-reveal__old" src="${s.img}" alt=""><img class="fig-reveal__img fig-reveal__new" src="${s.imgSwap}" alt=""></div>`
+              : (s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img))
+          }</div>
+          <ol class="fl-list">
+            ${(s.points || []).map((p, i) => `<li><span class="fl-num">${i + 1}</span><span class="fl-txt">${esc(p)}</span></li>`).join("")}
+          </ol>
+        </div>`;
 
     case "figure": {
       if (s.figBuild) {
@@ -549,17 +776,28 @@ function slideInnerHTML(s) {
           <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${titleHtml}</h2>
           <div class="l-figure__media l-figure__media--figbuild fig-zoom"${s.imgStep0Bg ? ` style="background:${s.imgStep0Bg}"` : ""}>
             <div class="fig-zoom__inner">
-              <img class="fig-img fig-img--a" src="${s.imgStep0 || s.img}" alt="">
               <img class="fig-img fig-img--b" src="${s.img}" alt="">
+              <img class="fig-img fig-img--a" src="${s.imgStep0 || s.img}" alt="">
             </div>
           </div>
           ${s.caps ? `<div class="fig-caps">${s.caps.map((c, i) => `<div class="fig-cap" data-cap="${i}"><span class="cols-cap__t">${esc(c.t)}</span>${c.sub ? `<span class="cols-cap__s">${esc(c.sub)}</span>` : ""}</div>`).join("")}</div>` : ""}
         </div>`;
       }
-      return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
+      return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body${s.bodyWide ? " s-body--full" : ""}" style="margin-top:16px">${esc(s.body)}</p>` : ""}
         ${chipRow(s.chips)}
-        <div class="l-figure__media${s.realMedia ? " l-figure__media--real" : ""}${s.contain ? " l-figure__media--contain" : ""}${s.scrollX ? " l-figure__media--scrollx" : ""}${s.mediaBg ? " l-figure__media--bg" : ""}${s.noBorder ? " l-figure__media--noborder" : ""}${s.fullWidth ? " l-figure__media--fullwidth" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img)}</div>
+        ${s.imgSeq
+          ? `<div class="l-figure__media figseq ${s.fullWidth ? "l-figure__media--fullwidth" : "l-figure__media--bg"}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}><img class="figseq__img" src="${s.imgSeq[0]}" data-seq='${JSON.stringify(s.imgSeq)}' alt=""></div>`
+          : s.revealSwap
+          ? `<div class="l-figure__media l-figure__media--bg fig-reveal is-step-0${s.revealInstant ? " fig-reveal--instant" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>
+              <div class="fig-reveal__frame">
+                <img class="fig-reveal__img fig-reveal__old" src="${s.imgOld}" alt="">
+                <img class="fig-reveal__img fig-reveal__new" src="${s.img}" alt="">
+              </div>
+              ${s.desc ? `<div class="fig-reveal__desc"><span>${esc(s.desc)}</span></div>` : ""}
+            </div>`
+          : `<div class="l-figure__media${s.realMedia ? " l-figure__media--real" : ""}${s.contain ? " l-figure__media--contain" : ""}${s.scrollX ? " l-figure__media--scrollx" : ""}${s.mediaBg ? " l-figure__media--bg" : ""}${s.noBorder ? " l-figure__media--noborder" : ""}${s.fullWidth ? " l-figure__media--fullwidth" : ""}"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${s.realMedia ? `<img src="${s.img}" alt="">` : mediaImg(s.img)}</div>`}
         ${s.caps ? `<div class="fig-caps">${s.caps.map(c => `<div class="fig-cap"><span class="cols-cap__t">${esc(c.t)}</span>${c.sub ? `<span class="cols-cap__s">${esc(c.sub)}</span>` : ""}</div>`).join("")}</div>` : ""}`;
     }
 
@@ -582,9 +820,9 @@ function slideInnerHTML(s) {
     case "reframe":
       return `<div class="reframe">
           ${s.eyebrow ? `<p class="s-eyebrow reframe__eyebrow">${esc(s.eyebrow)}</p>` : ""}
-          <p class="reframe__from">${esc(s.from)}</p>
+          <p class="reframe__from">${esc(s.from).replace(/\n/g, "<br>")}</p>
           <div class="reframe__arrow" aria-hidden="true">↓</div>
-          <p class="reframe__to">${esc(s.to)}</p>
+          <p class="reframe__to">${esc(s.to).replace(/\n/g, "<br>")}</p>
         </div>`;
 
     case "learn": {
@@ -665,7 +903,7 @@ function slideInnerHTML(s) {
         <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.body)}</p>` : ""}
         ${chipRow(s.chips)}
-        <div class="cols-row" style="grid-template-columns:${s.colTemplate || `repeat(${s.cols.length}, 1fr)`}">
+        <div class="cols-row${s.bigMedia ? " cols-row--big" : ""}" style="grid-template-columns:${s.colTemplate || `repeat(${s.cols.length}, 1fr)`}">
           ${s.cols.map(c => `<div class="cols-col">${colCell(c)}${
             c.from
               ? `<p class="cols-reframe">${c.tag ? `<span class="cols-reframe__tag">${esc(c.tag)}</span><span class="cols-reframe__dot"> · </span>` : ""}<span class="cols-reframe__from">${esc(c.from)}</span><span class="cols-reframe__arrow" aria-hidden="true"> → </span><span class="cols-reframe__to">${esc(c.to)}</span></p>`
@@ -699,7 +937,12 @@ function slideInnerHTML(s) {
       const mediaCol = `<div class="ur-col" data-col="1">${head(1)}<div class="ur-workspace"><div class="ur-media"${s.chipInteractive && s.img ? ` data-default-img="${attrEsc(s.img)}"` : ""}${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>${media}</div>${(featureList || s.chipInteractive) ? `<div class="ur-side">${featureList ? `<div class="ur-features">${featureList}</div>` : ""}${s.chipInteractive ? `<div class="ur-story" data-chip-user-story hidden></div>` : ""}</div>` : ""}</div></div>`;
       const risksCol = `<div class="ur-col" data-col="2">${head(2)}<ul class="ur-risks">${risks}</ul></div>`;
       const titleCls = `s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}`;
-      const title = `<h2 class="${titleCls}">${esc(s.h)}</h2>
+      const dimIdx = s.hDim ? s.h.indexOf(s.hDim) : -1;
+      const hHtml = dimIdx >= 0
+        ? `${esc(s.h.slice(0, dimIdx))}<span class="ur3-dim">${esc(s.h.slice(dimIdx))}</span>`
+        : esc(s.h);
+      const title = `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
+        <h2 class="${titleCls}">${hHtml}</h2>
         ${s.sub ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.sub)}</p>` : ""}`;
       // build mode: step 0 shows [users → workspace], step 1 shows [workspace → cost]
       if (s.build) {
@@ -748,19 +991,41 @@ function slideInnerHTML(s) {
       const showLabels = Array.isArray(labels) && labels.length > 0;
       const tpl = showLabels ? `${s.gutter || "150px"} repeat(${dirs.length}, 1fr)` : `repeat(${dirs.length}, 1fr)`;
       const gut = (i) => showLabels ? `<div class="mx3__rowlabel">${esc(labels[i] || "")}</div>` : "";
+      const dirName = (d) => `${d.label ? esc(d.label) : ""}${d.label && d.name ? " · " : ""}${d.name ? `<span class="mx3__name">${esc(d.name)}</span>` : ""}`;
+      const techBlock = (d) => (d.constraint || d.tradeoff)
+        ? `${d.constraint ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Constraint:</span> ${esc(d.constraint)}</p>` : ""}${d.tradeoff ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Trade-off:</span> ${esc(d.tradeoff)}</p>` : ""}`
+        : esc(d.tech || "");
+      // per-direction expanded detail (info left, bigger media right, next-direction link under the image)
+      const detail = (d, idx) => {
+        const isLast = idx === dirs.length - 1;
+        const nd = dirs[idx + 1];
+        const nextBtn = isLast
+          ? `<button class="mx3-detail__next" data-mx-all>See all directions <span aria-hidden="true">→</span></button>`
+          : `<button class="mx3-detail__next" data-mx-next="${idx + 1}">${nd.label ? esc(nd.label) : "Direction " + (idx + 2)}${nd.name ? ` · <span class="mx3__name">${esc(nd.name)}</span>` : ""} <span aria-hidden="true">→</span></button>`;
+        return `<div class="mx3-detail" data-detail="${idx}" hidden>
+          <div class="mx3-detail__info">
+            ${(d.label || d.name) ? `<p class="mx3__dir mx3-detail__dir">${dirName(d)}</p>` : ""}
+            <div class="mx3-detail__flags">${flag(d.a, "Problem A")}${flag(d.b, "Problem B")}</div>
+            <div class="mx3-detail__tech">${techBlock(d)}</div>
+          </div>
+          <div class="mx3-detail__right">
+            <div class="mx3-detail__media"${d.bg ? ` style="background:${d.bg}"` : ""}>${media(d)}</div>
+            ${nextBtn}
+          </div>
+        </div>`;
+      };
       return `<h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.sub ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.sub)}</p>` : ""}
-        <div class="mx3" style="grid-template-columns:${tpl}">
-          ${gut(-1)}
-          ${dirs.map(d => `<div class="mx3__col">${(d.label || d.name) ? `<p class="mx3__dir">${d.label ? esc(d.label) : ""}${d.label && d.name ? " · " : ""}${d.name ? `<span class="mx3__name">${esc(d.name)}</span>` : ""}</p>` : ""}<div class="mx3__media"${d.bg ? ` style="background:${d.bg}"` : ""}>${media(d)}</div></div>`).join("")}
-          ${gut(0)}
-          ${dirs.map(d => `<div class="mx3__cell mx3__solve">${flag(d.a, "Problem A")}${flag(d.b, "Problem B")}</div>`).join("")}
-          ${gut(1)}
-          ${dirs.map(d => `<div class="mx3__cell mx3__tech">${
-            (d.constraint || d.tradeoff)
-              ? `${d.constraint ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Constraint:</span> ${esc(d.constraint)}</p>` : ""}${d.tradeoff ? `<p class="mx3__tech-line"><span class="mx3__tech-k">Trade-off:</span> ${esc(d.tradeoff)}</p>` : ""}`
-              : esc(d.tech || "")
-          }</div>`).join("")}
+        <div class="mx3-wrap">
+          <div class="mx3" style="grid-template-columns:${tpl}">
+            ${gut(-1)}
+            ${dirs.map((d, idx) => `<div class="mx3__col mx3__col--click" data-dir="${idx}" role="button" tabindex="0">${(d.label || d.name) ? `<p class="mx3__dir">${dirName(d)}</p>` : ""}<div class="mx3__media"${d.bg ? ` style="background:${d.bg}"` : ""}>${media(d)}</div></div>`).join("")}
+            ${gut(0)}
+            ${dirs.map(d => `<div class="mx3__cell mx3__solve">${flag(d.a, "Problem A")}${flag(d.b, "Problem B")}</div>`).join("")}
+            ${gut(1)}
+            ${dirs.map(d => `<div class="mx3__cell mx3__tech">${techBlock(d)}</div>`).join("")}
+          </div>
+          ${dirs.map((d, idx) => detail(d, idx)).join("")}
         </div>`;
     }
 
@@ -768,9 +1033,19 @@ function slideInnerHTML(s) {
       return `${s.eyebrow ? `<p class="s-eyebrow">${esc(s.eyebrow)}</p>` : ""}
         <h2 class="s-h2${s.titleSm ? " s-h2--sm" : ""}${s.titleFull ? " s-h2--full" : ""}">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body s-body--wide" style="margin-top:14px">${esc(s.body)}</p>` : ""}
-        <div class="toggle-media">
-          <img class="toggle-img js-toggle-img" src="${s.img}" data-a="${s.img}" data-b="${s.img2}" alt="" title="Click to switch layout">
-        </div>`;
+        <div class="toggle-media${s.mediaLeft ? " toggle-media--left" : ""}${s.mediaFull ? " toggle-media--full" : ""}${s.mediaSquare ? " toggle-media--square" : ""}${s.mediaCover ? " toggle-media--cover" : ""}">
+          ${s.sequence
+            ? `<img class="toggle-img js-toggle-seq" src="${s.img}" data-seq='${JSON.stringify([s.img, ...s.sequence])}' alt="" title="Click to reveal">`
+            : s.dissolve && s.img2
+            ? `<div class="toggle-dissolve js-toggle-dissolve" title="Click to switch"${s.mediaBg ? ` style="background:${s.mediaBg}"` : ""}>
+                 <img class="toggle-dissolve__a" src="${s.img}" alt="">
+                 <img class="toggle-dissolve__b" src="${s.img2}" alt="">
+               </div>`
+            : s.img2
+              ? `<img class="toggle-img js-toggle-img" src="${s.img}" data-a="${s.img}" data-b="${s.img2}" alt="" title="Click to switch layout"${s.mediaBg ? ` style="background:${s.mediaBg};padding:20px 20px 0"` : ""}>`
+              : `<img class="toggle-img" src="${s.img}" alt=""${s.mediaBg ? ` style="background:${s.mediaBg};padding:20px 20px 0"` : ""}>`}
+        </div>
+        ${s.caption ? `<p class="toggle-caption">${esc(s.caption)}</p>` : ""}`;
 
     case "mediacols":
       return `${s.h ? `<h2 class="s-h2">${esc(s.h)}</h2>` : ""}
@@ -827,8 +1102,8 @@ function slideInnerHTML(s) {
           : mediaImg(c.img);
       return `<h2 class="s-h2">${esc(s.h)}</h2>
         ${s.body ? `<p class="s-body s-body--wide" style="margin-top:12px">${esc(s.body)}</p>` : ""}
-        <div class="tu-grid${hasMedia ? "" : " tu-grid--text"}${s.cards.length === 2 ? " tu-grid--2" : ""}">
-          ${s.cards.map(c => `<div class="tcard${c.dim ? " tcard--dim" : ""}">
+        <div class="tu-grid${hasMedia ? "" : " tu-grid--text"}${s.cards.length === 2 ? " tu-grid--2" : ""}${s.cardBuild ? " tu-grid--build" : ""}">
+          ${s.cards.map((c, ci) => `<div class="tcard${c.dim ? " tcard--dim" : ""}"${s.cardBuild ? ` data-card-idx="${ci}"` : ""}>
             ${(c.img || c.video) ? `<div class="tcard__media">${cardMedia(c)}</div>` : ""}
             ${c.step ? `<p class="tcard__step">${esc(c.step)}</p>` : ""}
             ${c.title ? `<h3 class="tcard__title">${esc(c.title)}</h3>` : ""}
@@ -891,7 +1166,7 @@ function slideInnerHTML(s) {
         <ul class="big-list">${s.items.map(li => `<li>${esc(li)}</li>`).join("")}</ul>`;
 
     case "divider":
-      return `<div class="divider"><span class="divider__label">${esc(s.h)}</span></div>`;
+      return `<div class="divider"><span class="divider__label${s.sm ? " divider__label--sm" : ""}">${esc(s.h)}</span></div>`;
 
     case "blank":
       return "";
@@ -906,6 +1181,7 @@ function buildSlideEl(s) {
   el.className = "slide l-" + s.layout;
   if (s.bg) { el.style.background = s.bg; el.classList.add("slide--oncolor"); }
   if (s.wideMedia) el.classList.add("l-split--wide-media");
+  if (s.tallMedia) el.classList.add("l-split--tall-media");
   if (s.topAlign) el.classList.add("slide--top");
   if (s.midAlign) el.classList.add("slide--center");
   el.innerHTML = slideInnerHTML(s);
@@ -979,7 +1255,7 @@ function applyChipDefault(scope, s) {
 function applyToggle(scope, i) {
   if (!scope) return;
   const on = !!toggleState[i];
-  scope.querySelectorAll(".cmp2--toggle-sync").forEach(el => el.classList.toggle("show-alt", on));
+  scope.querySelectorAll(".cmp2--toggle-sync, .js-toggle-dissolve").forEach(el => el.classList.toggle("show-alt", on));
   scope.querySelectorAll(".js-toggle-img").forEach(img => {
     const want = on ? img.dataset.b : img.dataset.a;
     if (want && img.getAttribute("src") !== want) img.src = want;
@@ -988,11 +1264,46 @@ function applyToggle(scope, i) {
 
 /* ---------- IN-SLIDE BUILD STEPS (synced across windows) ---------- */
 let buildState = {}; // per-slide-index: which reveal step is showing
-function maxBuildStep(i) { return deck && deck.slides[i] && (deck.slides[i].build || deck.slides[i].figBuild) ? 1 : 0; }
+function maxBuildStep(i) {
+  const s = deck && deck.slides[i];
+  if (!s) return 0;
+  if (s.cardBuild) {
+    let m = Math.max(0, (s.cards || s.stats || []).length - 1);
+    if (s.quotesOverlay) m += 1;
+    return m;
+  }
+  if (s.imgSeq) return Math.max(0, s.imgSeq.length - 1);
+  return (s.build || s.figBuild || s.revealSwap || s.revealAnno || s.imgSwap) ? 1 : 0;
+}
 function applyBuild(scope, i) {
   if (!scope) return;
   const step = Math.max(0, Math.min(maxBuildStep(i), buildState[i] || 0));
-  scope.querySelectorAll(".ur-build, .fig-build").forEach(g => {
+  scope.querySelectorAll(".tu-grid--build [data-card-idx]").forEach(card => {
+    card.classList.toggle("tcard--dim", Number(card.dataset.cardIdx) > step);
+  });
+  scope.querySelectorAll(".st3-grid--build [data-card-idx]").forEach(card => {
+    card.classList.toggle("st3-card--hide", Number(card.dataset.cardIdx) > step);
+  });
+  const st3Slide = deck && deck.slides[i];
+  if (st3Slide && st3Slide.stats) {
+    const lastStat = st3Slide.stats.length - 1;
+    scope.querySelectorAll(".st3-tail").forEach(t => {
+      t.classList.toggle("is-on", step >= lastStat);
+    });
+    scope.querySelectorAll(".st3-overlay").forEach(o => {
+      o.classList.toggle("is-on", step > lastStat);
+    });
+  }
+  scope.querySelectorAll(".figseq__img").forEach(img => {
+    try {
+      const list = JSON.parse(img.dataset.seq || "[]");
+      if (list.length) {
+        const want = list[Math.max(0, Math.min(step, list.length - 1))];
+        if (want && img.getAttribute("src") !== want) img.src = want;
+      }
+    } catch (e) {}
+  });
+  scope.querySelectorAll(".ur-build, .fig-build, .fig-reveal, .ann-row--reveal").forEach(g => {
     g.classList.toggle("is-step-1", step >= 1);
     g.classList.toggle("is-step-0", step < 1);
     const fimg = g.querySelector(".fig-swap-img");
@@ -1012,13 +1323,23 @@ function refreshBuild() {
 
 /* ---------- CLICKABLE USER CHIPS (userresult) — swap image + show story ---------- */
 let chipUserState = {}; // per-slide-index: active chip name (or undefined)
+let wsRevealState = {}; // per-slide-index: is the "one fixed workspace" image clicked (title black)?
 function applyChipUser(scope, i) {
   if (!scope) return;
   const active = chipUserState[i];
+  const revealed = !!wsRevealState[i];
   scope.querySelectorAll(".ur-grid").forEach(grid => {
-    grid.querySelectorAll(".chip--user").forEach(chip => {
+    const chips = grid.querySelectorAll(".chip--user");
+    chips.forEach(chip => {
       chip.classList.toggle("is-active", !!active && chip.dataset.name === active);
     });
+    // title tail is grey unless the workspace image itself was clicked;
+    // the workspace column is dimmed only when nothing is selected
+    const slide = grid.closest(".slide");
+    if (slide && chips.length) {
+      slide.classList.toggle("title-gray", !revealed);
+      slide.classList.toggle("ws-dim", !revealed && !active);
+    }
     const activeChip = active ? grid.querySelector(`.chip--user[data-name="${CSS.escape(active)}"]`) : null;
     const img = grid.querySelector(".ur-media img");
     const media = grid.querySelector(".ur-media");
@@ -1042,6 +1363,52 @@ function refreshChipUser() {
     applyChipUser(presentMode === "plain" ? presentStageWrap : presenterNow, cur);
   } else if (editorEl.classList.contains("is-active")) {
     applyChipUser(stageArea, cur);
+  }
+}
+
+/* ---------- MATRIX3 — click a direction to expand its detail view ---------- */
+let matrixState = {}; // per-slide-index: open direction index (or undefined)
+function applyMatrix(scope, i) {
+  if (!scope) return;
+  const open = matrixState[i];
+  scope.querySelectorAll(".mx3-wrap").forEach(wrap => {
+    const isOpen = open != null;
+    const grid = wrap.querySelector(".mx3");
+    if (grid) grid.hidden = isOpen;
+    wrap.querySelectorAll(".mx3-detail").forEach(d => {
+      d.hidden = !(isOpen && String(open) === d.dataset.detail);
+    });
+  });
+}
+function refreshMatrix() {
+  if (presentEl.classList.contains("is-active")) {
+    applyMatrix(presentMode === "plain" ? presentStageWrap : presenterNow, cur);
+  } else if (editorEl.classList.contains("is-active")) {
+    applyMatrix(stageArea, cur);
+  }
+}
+
+/* ---------- IMAGE SEQUENCE — click to reveal the next annotated image (pops in) ---------- */
+let seqState = {}; // per-slide-index: current step in the image sequence
+function applySeq(scope, i) {
+  if (!scope) return;
+  scope.querySelectorAll(".js-toggle-seq").forEach(img => {
+    let list = [];
+    try { list = JSON.parse(img.dataset.seq || "[]"); } catch (e) {}
+    if (!list.length) return;
+    const n = list.length;
+    const step = (((seqState[i] || 0) % n) + n) % n;
+    const want = list[step];
+    if (want && img.getAttribute("src") !== want) {
+      img.src = want; // instant swap, no animation
+    }
+  });
+}
+function refreshSeq() {
+  if (presentEl.classList.contains("is-active")) {
+    applySeq(presentMode === "plain" ? presentStageWrap : presenterNow, cur);
+  } else if (editorEl.classList.contains("is-active")) {
+    applySeq(stageArea, cur);
   }
 }
 
@@ -1213,6 +1580,9 @@ function openDeck(id, slide) {
   toggleState = {};
   buildState = {};
   chipUserState = {};
+  wsRevealState = {};
+  matrixState = {};
+  seqState = {};
   startEl.style.display = "none";
   editorEl.classList.add("is-active");
   try { localStorage.setItem("ksp_last_deck", id); } catch (e) {}
@@ -1308,6 +1678,8 @@ function renderMain() {
   applyChipDefault(stageArea, deck.slides[cur]);
   applyBuild(stageArea, cur);
   applyChipUser(stageArea, cur);
+  applyMatrix(stageArea, cur);
+  applySeq(stageArea, cur);
 }
 
 function selectSlide(i) {
@@ -1420,7 +1792,7 @@ let bc = null;
 try { bc = new BroadcastChannel("ksp_present"); } catch (e) {}
 const IS_AUDIENCE = new URLSearchParams(location.search).get("audience") === "1";
 function broadcastSync() {
-  if (bc && deck) bc.postMessage({ type: "sync", deckId: deck.id, cur: cur, toggle: toggleState, build: buildState, chipUser: chipUserState, slides: deck.slides });
+  if (bc && deck) bc.postMessage({ type: "sync", deckId: deck.id, cur: cur, toggle: toggleState, build: buildState, chipUser: chipUserState, wsReveal: wsRevealState, matrix: matrixState, seq: seqState, slides: deck.slides });
 }
 function applySync(m) {
   if (!m || !DECKS[m.deckId]) return;
@@ -1431,7 +1803,10 @@ function applySync(m) {
   if (m.toggle) toggleState = m.toggle;
   if (m.build) buildState = m.build;
   if (m.chipUser) chipUserState = m.chipUser;
-  if (presentEl.classList.contains("is-active")) { renderPresent(); refreshBuild(); refreshChipUser(); }
+  if (m.wsReveal) wsRevealState = m.wsReveal;
+  if (m.matrix) matrixState = m.matrix;
+  if (m.seq) seqState = m.seq;
+  if (presentEl.classList.contains("is-active")) { renderPresent(); refreshBuild(); refreshChipUser(); refreshMatrix(); refreshSeq(); }
 }
 if (bc) {
   bc.onmessage = (e) => {
@@ -1532,6 +1907,8 @@ function renderPresent() {
     applyChipDefault(presentStageWrap, deck.slides[cur]);
     applyBuild(presentStageWrap, cur);
     applyChipUser(presentStageWrap, cur);
+    applyMatrix(presentStageWrap, cur);
+    applySeq(presentStageWrap, cur);
   } else {
     mountScaled(presenterNow, buildSlideEl(deck.slides[cur]), fitScale(presenterNow, 24));
     applyToggle(presenterNow, cur);
@@ -1539,6 +1916,8 @@ function renderPresent() {
     applyChipDefault(presenterNow, deck.slides[cur]);
     applyBuild(presenterNow, cur);
     applyChipUser(presenterNow, cur);
+    applyMatrix(presenterNow, cur);
+    applySeq(presenterNow, cur);
     const nextIdx = Math.min(deck.slides.length - 1, cur + 1);
     if (cur + 1 < deck.slides.length) {
       mountScaled(presenterNext, buildSlideEl(deck.slides[nextIdx]), Math.max(0.05, presenterNext.clientWidth / 1280));
@@ -1619,7 +1998,7 @@ presenterClock.addEventListener("click", toggleClock);
 
 /* click-to-switch media — state-driven so it syncs to the shared audience window */
 document.addEventListener("click", (e) => {
-  const el = e.target.closest(".cmp2--toggle-sync, .js-toggle-img");
+  const el = e.target.closest(".cmp2--toggle-sync, .js-toggle-img, .js-toggle-dissolve");
   if (!el || el.closest(".nav-rail")) return; // ignore tiny rail previews
   toggleState[cur] = !toggleState[cur];
   const scope = el.closest("#presenterNow, #presentStageWrap, #stageArea") || document;
@@ -1627,19 +2006,62 @@ document.addEventListener("click", (e) => {
   broadcastSync();
 });
 
-/* click a user chip to swap the workspace image + show that user's story (click again to revert) */
+/* click a user chip to swap the workspace image + show that user's story (title stays grey) */
 document.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip--user");
   if (!chip || chip.closest(".nav-rail")) return;
   const name = chip.dataset.name;
   chipUserState[cur] = (chipUserState[cur] === name) ? undefined : name;
+  wsRevealState[cur] = false; // chip selection is exclusive with the image reveal
   refreshChipUser();
+  broadcastSync();
+});
+
+/* click the "one fixed workspace" image itself to make the title black (click again to revert) */
+document.addEventListener("click", (e) => {
+  const media = e.target.closest(".ur-media[data-default-img]");
+  if (!media || media.closest(".nav-rail")) return;
+  wsRevealState[cur] = !wsRevealState[cur];
+  chipUserState[cur] = undefined; // image reveal is exclusive with a selected chip
+  refreshChipUser();
+  broadcastSync();
+});
+
+/* image sequence: click the image to reveal the next annotated version (pops in) */
+document.addEventListener("click", (e) => {
+  const img = e.target.closest(".js-toggle-seq");
+  if (!img || img.closest(".nav-rail")) return;
+  seqState[cur] = (seqState[cur] || 0) + 1;
+  refreshSeq();
+  broadcastSync();
+});
+
+/* matrix3: click a direction to expand it, or the next-direction link to advance */
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".nav-rail")) return;
+  if (e.target.closest("[data-mx-all]")) {
+    matrixState[cur] = undefined;
+    refreshMatrix();
+    broadcastSync();
+    return;
+  }
+  const next = e.target.closest("[data-mx-next]");
+  if (next) {
+    matrixState[cur] = Number(next.dataset.mxNext);
+    refreshMatrix();
+    broadcastSync();
+    return;
+  }
+  const col = e.target.closest(".mx3__col--click");
+  if (!col) return;
+  matrixState[cur] = Number(col.dataset.dir);
+  refreshMatrix();
   broadcastSync();
 });
 
 /* click a build slide to advance/cycle its reveal step (for previewing in the editor) */
 document.addEventListener("click", (e) => {
-  const g = e.target.closest(".ur-grid--build, .fig-build");
+  const g = e.target.closest(".ur-grid--build, .fig-build, .tu-grid--build, .st3-grid--build, .fig-reveal, .ann-row--reveal, .figseq");
   if (!g || g.closest(".nav-rail")) return;
   const maxB = maxBuildStep(cur);
   buildState[cur] = ((buildState[cur] || 0) >= maxB) ? 0 : (buildState[cur] || 0) + 1;
